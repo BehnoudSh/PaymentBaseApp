@@ -1,6 +1,136 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#FF4081</color>
+    <color name="colorPrimary">#03779e</color>
+    <color name="colorPrimaryDark">#015e7a</color>
+    <color name="colorAccent">@color/colorPrimaryDark</color>
+    <color name="zibfitgreen">#34A853</color>
+    <color name="zibfitgold">#fab829</color>
+
+    <color name="transparent">#00000000</color>
+    <color name="white_smoke">#F5F5F5</color>
+    <color name="transparent_white">#44FFFFFF</color>
+    <color name="progress">#fbb829</color>
+    <color name="registerButtonBGSelected">#2e974a</color>
+    <color name="grayTitle">#68686a</color>
+    <color name="sliderBulletBorder">#004c65</color>
+    <color name="sliderBulletFill">#005672</color>
+    <color name="sliderBulletFillTransparent">#bb005672</color>
+    <color name="snackTagTransparentBG">#665cb8a4</color>
+    <color name="dinnerTagTransparentBG">#66025e7d</color>
+    <color name="lunchTagTransparentBG">#66fbb829</color>
+    <color name="breakfastTagTransparentBG">#6607a0c3</color>
+    <color name="snackTagBG">#5cb8a4</color>
+    <color name="dinnerTagBG">#025e7d</color>
+    <color name="lunchTagBG">#fbb829</color>
+    <color name="breakfastBG">#07a0c3</color>
+    <color name="basicFontColor">#4b4b4b</color>
+    <color name="foodTagBackGround">#8e000000</color>
+    <color name="light_gray">#D3D3D3</color>
+    <color name="white">#FFFFFF</color>
+    <color name="gray_dolphin">#5C5858</color>
+    <color name="red_error">#ffff4444</color>
+    <color name="black_cow">#4C4646</color>
+    <color name="splashBackground">#0d1f22</color>
+    <color name="gray_wolf">#504A4B</color>
+    <color name="backgroundColor">#303030</color>
+    <color name="toolbarColor">#161616</color>
+    <color name="statusbarColor">#0a0a0a</color>
+    <color name="black">#000000</color>
+    <color name="drawerItemTextColor">#e5e5e5</color>
+    <color name="loginripple">#b2b2b2</color>
+    <color name="errorBG">#FFBABA</color>
+    <color name="errorTxt">#D8000C</color>
+
+    <color name="done">#11C94F</color>
+    <color name="doneTransparent">#8011C94F</color>
+    <color name="notdoneTransparent">#80ff0000</color>
+
+    <color name="scanItemTextColor">#565656</color>
+
+    <color name="green">#689F38</color>
+    <color name="greenDark">#3E5F22</color>
+    <color name="banana">#FFCC00</color>
+    <color name="air_force_blue">#5D8AA8</color>
+    <color name="algae_green">#64E986</color>
+    <color name="alice_blue">#F0F8FF</color>
+    <color name="alien_green">#6CC417</color>
+
+
+
+
+
+    <!-- Black Transparent -->
+    <color name="transparent_black_hex_1">#11000000</color>
+    <color name="transparent_black_hex_2">#22000000</color>
+    <color name="transparent_black_hex_3">#33000000</color>
+    <color name="transparent_black_hex_4">#44000000</color>
+    <color name="transparent_black_hex_5">#55000000</color>
+    <color name="transparent_black_hex_6">#66000000</color>
+    <color name="transparent_black_hex_7">#77000000</color>
+    <color name="transparent_black_hex_8">#88000000</color>
+    <color name="transparent_black_hex_9">#99000000</color>
+    <color name="transparent_black_hex_10">#aa000000</color>
+    <color name="transparent_black_hex_11">#bb000000</color>
+    <color name="transparent_black_hex_12">#cc000000</color>
+    <color name="transparent_black_hex_13">#dd000000</color>
+    <color name="transparent_black_hex_14">#ee000000</color>
+    <color name="transparent_black_hex_15">#ff000000</color>
+
+    <color name="transparent_black_percent_5">#0D000000</color>
+    <color name="transparent_black_percent_10">#1A000000</color>
+    <color name="transparent_black_percent_15">#26000000</color>
+    <color name="transparent_black_percent_20">#33000000</color>
+    <color name="transparent_black_percent_25">#40000000</color>
+    <color name="transparent_black_percent_30">#4D000000</color>
+    <color name="transparent_black_percent_35">#59000000</color>
+    <color name="transparent_black_percent_40">#66000000</color>
+    <color name="transparent_black_percent_45">#73000000</color>
+    <color name="transparent_black_percent_50">#80000000</color>
+    <color name="transparent_black_percent_55">#8C000000</color>
+    <color name="transparent_black_percent_60">#99000000</color>
+    <color name="transparent_black_percent_65">#A6000000</color>
+    <color name="transparent_black_percent_70">#B3000000</color>
+    <color name="transparent_black_percent_75">#BF000000</color>
+    <color name="transparent_black_percent_80">#CC000000</color>
+    <color name="transparent_black_percent_85">#D9000000</color>
+    <color name="transparent_black_percent_90">#E6000000</color>
+    <color name="transparent_black_percent_95">#F2000000</color>
+
+    <!-- White Transparent -->
+    <color name="transparent_white_hex_1">#11ffffff</color>
+    <color name="transparent_white_hex_2">#22ffffff</color>
+    <color name="transparent_white_hex_3">#33ffffff</color>
+    <color name="transparent_white_hex_4">#44ffffff</color>
+    <color name="transparent_white_hex_5">#55ffffff</color>
+    <color name="transparent_white_hex_6">#66ffffff</color>
+    <color name="transparent_white_hex_7">#77ffffff</color>
+    <color name="transparent_white_hex_8">#88ffffff</color>
+    <color name="transparent_white_hex_9">#99ffffff</color>
+    <color name="transparent_white_hex_10">#aaffffff</color>
+    <color name="transparent_white_hex_11">#bbffffff</color>
+    <color name="transparent_white_hex_12">#ccffffff</color>
+    <color name="transparent_white_hex_13">#ddffffff</color>
+    <color name="transparent_white_hex_14">#eeffffff</color>
+    <color name="transparent_white_hex_15">#ffffffff</color>
+
+    <color name="transparent_white_percent_5">#0Dffffff</color>
+    <color name="transparent_white_percent_10">#1Affffff</color>
+    <color name="transparent_white_percent_15">#26ffffff</color>
+    <color name="transparent_white_percent_20">#33ffffff</color>
+    <color name="transparent_white_percent_25">#40ffffff</color>
+    <color name="transparent_white_percent_30">#4Dffffff</color>
+    <color name="transparent_white_percent_35">#59ffffff</color>
+    <color name="transparent_white_percent_40">#66ffffff</color>
+    <color name="transparent_white_percent_45">#73ffffff</color>
+    <color name="transparent_white_percent_50">#80ffffff</color>
+    <color name="transparent_white_percent_55">#8Cffffff</color>
+    <color name="transparent_white_percent_60">#99ffffff</color>
+    <color name="transparent_white_percent_65">#A6ffffff</color>
+    <color name="transparent_white_percent_70">#B3ffffff</color>
+    <color name="transparent_white_percent_75">#BFffffff</color>
+    <color name="transparent_white_percent_80">#CCffffff</color>
+    <color name="transparent_white_percent_85">#D9ffffff</color>
+    <color name="transparent_white_percent_90">#E6ffffff</color>
+    <color name="transparent_white_percent_95">#F2ffffff</color>
+
 </resources>
