@@ -63,91 +63,14 @@
         android:layout_below="@id/rl_activity_main_adHolder"
         android:orientation="vertical">
 
-        <!--<android.support.v4.view.ViewPager-->
-        <!--android:id="@+id/vp_activity_main_catsPager"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="match_parent">-->
-
-
-        <!--</android.support.v4.view.ViewPager>-->
-
-        <LinearLayout
+        <android.support.v4.view.ViewPager
+            android:id="@+id/vp_activity_main_catsPager"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:orientation="horizontal">
-
-            <RelativeLayout
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_margin="5dp"
-                android:layout_weight="1"
-                >
-
-                <ImageView
-                    android:id="@+id/cat1"
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
-                   android:layout_centerInParent="true" />
-
-                <TextView
-                    android:id="@+id/cat1text"
-                    android:layout_width="match_parent"
-                    android:textColor="@color/black"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentBottom="true" />
+            android:layout_height="match_parent">
 
 
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_margin="5dp"
-                android:layout_weight="1"
-                >
-
-                <ImageView
-                    android:id="@+id/cat2"
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
-                    android:layout_centerInParent="true"
-                      />
-
-                <TextView
-                    android:id="@+id/cat2text"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/black"
-                    android:layout_alignParentBottom="true" />
-            </RelativeLayout>
-
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:orientation="horizontal">
-
-            <RelativeLayout
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_margin="5dp"
-                android:layout_weight="1"
-                android:background="@color/air_force_blue"></RelativeLayout>
-
-            <RelativeLayout
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_margin="5dp"
-                android:layout_weight="1"
-                android:background="@color/light_gray"></RelativeLayout>
-        </LinearLayout>
-
+        </android.support.v4.view.ViewPager>
 
     </LinearLayout>
-
 
 </RelativeLayout>
