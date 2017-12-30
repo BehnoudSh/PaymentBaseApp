@@ -26,6 +26,7 @@ import ir.chichand.chichand.Model.Response_Categories;
 import ir.chichand.chichand.NetworkServices.ApiCallbacks;
 import ir.chichand.chichand.NetworkServices.ApiHandler;
 import ir.chichand.chichand.R;
+import ir.chichand.chichand.Tools.PublicClass;
 import ir.chichand.chichand.Tools.ScreenUtils;
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
@@ -60,6 +61,9 @@ public class MainActivity extends AppCompatActivity {
         RelativeLayout.LayoutParams layoutParams =
                 new RelativeLayout.LayoutParams((int) ScreenUtils.ScreenSizesInPixel.x, (int) hieght);
         rl_adHolder.setLayoutParams(layoutParams);
+
+
+        PublicClass.category_item_hieght = (int) ScreenUtils.ScreenSizesInPixel.y - hieght - 150;
     }
 
     void getCategories() {

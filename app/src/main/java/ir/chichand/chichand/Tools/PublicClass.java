@@ -11,6 +11,7 @@ import java.util.List;
 
 public class PublicClass {
 
+    public static int category_item_hieght = 0;
 
 
     public static boolean checkNetworkStatus(Context activity) {
@@ -29,8 +30,6 @@ public class PublicClass {
 
         return internetStatus;
     }
-
-
 
 
 }
