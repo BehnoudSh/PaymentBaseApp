@@ -3,9 +3,15 @@ package ir.chichand.chichand.Activity;
 import android.content.Context;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.StaggeredGridLayoutManager;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
@@ -15,6 +21,7 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import ir.chichand.chichand.Adapters.CategoriesAdapter;
 import ir.chichand.chichand.Model.Response_Categories;
 import ir.chichand.chichand.NetworkServices.ApiCallbacks;
 import ir.chichand.chichand.NetworkServices.ApiHandler;
@@ -27,17 +34,9 @@ public class MainActivity extends AppCompatActivity {
     @BindView(R.id.rl_activity_main_adHolder)
     RelativeLayout rl_adHolder;
 
-    @BindView(R.id.cat1)
-    ImageView cat1;
+    @BindView(R.id.rv_activity_main_categoriesList)
+    RecyclerView rv_categoriesList;
 
-    @BindView(R.id.cat2)
-    ImageView cat2;
-
-    @BindView(R.id.cat1text)
-    TextView cat1text;
-
-    @BindView(R.id.cat2text)
-    TextView cat2text;
 
     @Override
     protected void attachBaseContext(Context newBase) {
@@ -83,27 +82,24 @@ public class MainActivity extends AppCompatActivity {
                         }
 
                 }
+                StaggeredGridLayoutManager mLayoutManager = new StaggeredGridLayoutManager(2,
+                        StaggeredGridLayoutManager.HORIZONTAL);
+                CategoriesAdapter userSuggestionAdapter = new CategoriesAdapter(temp, MainActivity.this, new CategoriesAdapter.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(Response_Categories item, int position) {
 
+                        Toast.makeText(MainActivity.this, item.getPersian_title(), Toast.LENGTH_LONG).show();
 
-                RequestOptions requestOptions = new RequestOptions();
-                requestOptions.placeholder(R.mipmap.ic_launcher);
-                requestOptions.fitCenter();
+                    }
 
+                });
+                rv_categoriesList.setLayoutManager(mLayoutManager);
+                rv_categoriesList.setItemAnimator(new DefaultItemAnimator());
+                rv_categoriesList.setAdapter(userSuggestionAdapter);
 
-                Glide.with(MainActivity.this)
-                        .applyDefaultRequestOptions(requestOptions)
-                        .load(temp.get(0).getCat_icon())
-                        .apply(requestOptions)
-                        .into(cat1);
-
-                Glide.with(MainActivity.this)
-                        .applyDefaultRequestOptions(requestOptions)
-                        .load(temp.get(1).getCat_icon())
-                        .apply(requestOptions)
-                        .into(cat2);
-
-                cat1text.setText(temp.get(0).getPersian_title());
-                cat2text.setText(temp.get(1).getPersian_title());
+                rv_categoriesList.setItemViewCacheSize(200);
+                rv_categoriesList.setDrawingCacheEnabled(true);
+                rv_categoriesList.setDrawingCacheQuality(View.DRAWING_CACHE_QUALITY_LOW);
 
 
             }
