@@ -6,13 +6,18 @@ import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 
+import java.util.ArrayList;
 import java.util.List;
+
+import ir.chichand.chichand.Models.Responses.Response_Categories;
 
 
 public class PublicClass {
 
     public static int category_item_hieght = 0;
 
+
+ public  static    List<Response_Categories> allCategories = new ArrayList<>();
 
     public static boolean checkNetworkStatus(Context activity) {
         ConnectivityManager connectivityManager = (ConnectivityManager) activity.getSystemService(Context.CONNECTIVITY_SERVICE);

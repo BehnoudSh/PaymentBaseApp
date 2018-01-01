@@ -20,7 +20,7 @@ public interface ApiInterface {
     Call<List<Response_Categories>> getCategories();
 
     @Headers("Content-Type: application/json")
-    @POST("Inquiry.php")
+    @POST("inquiry.php")
     Call<Response_Inquiry> getInquiry(@Body Request_Inquiry request);
 
 }

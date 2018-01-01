@@ -17,7 +17,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import ir.chichand.chichand.Adapters.CategoriesAdapter;
-import ir.chichand.chichand.CatLevel1Categories;
+import ir.chichand.chichand.Fragments.CatLevel1CategoriesFragment;
 import ir.chichand.chichand.Models.Responses.Response_Categories;
 import ir.chichand.chichand.NetworkServices.ApiCallbacks;
 import ir.chichand.chichand.NetworkServices.ApiHandler;
@@ -74,6 +74,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void getAllCategoriesSucceeded(List<Response_Categories> response) {
 
+                PublicClass.allCategories = response;
+
                 for (Response_Categories resp : response
                         ) {
                     if (resp.getCat_level() != null)
@@ -86,7 +88,7 @@ public class MainActivity extends AppCompatActivity {
                 }
                 StaggeredGridLayoutManager mLayoutManager = new StaggeredGridLayoutManager(2,
                         StaggeredGridLayoutManager.HORIZONTAL);
-                CategoriesAdapter userSuggestionAdapter = new CategoriesAdapter(temp, MainActivity.this, new CategoriesAdapter.OnItemClickListener() {
+                CategoriesAdapter categories_level_zeroAdapter = new CategoriesAdapter(temp, MainActivity.this, new CategoriesAdapter.OnItemClickListener() {
                     @Override
                     public void onItemClick(Response_Categories item, int position) {
 
@@ -97,11 +99,11 @@ public class MainActivity extends AppCompatActivity {
                             Intent intent = new Intent(MainActivity.this, CurrencyActivity.class);
                             startActivity(intent);
 
-                        } else if (0 < cat_id && cat_id < 1000) {
+                        } else if (cat_id == 0) {
 
                             FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
 
-                            fragmentTransaction.add(R.id.fl_activity_main_fragmentHolder, CatLevel1Categories.newInstance());
+                            fragmentTransaction.add(R.id.fl_activity_main_fragmentHolder, CatLevel1CategoriesFragment.newInstance());
 
                             fragmentTransaction.addToBackStack("CatLevel1CategoriesFragment");
 
@@ -114,7 +116,7 @@ public class MainActivity extends AppCompatActivity {
                 });
                 rv_categoriesList.setLayoutManager(mLayoutManager);
                 rv_categoriesList.setItemAnimator(new DefaultItemAnimator());
-                rv_categoriesList.setAdapter(userSuggestionAdapter);
+                rv_categoriesList.setAdapter(categories_level_zeroAdapter);
 
                 rv_categoriesList.setItemViewCacheSize(200);
                 rv_categoriesList.setDrawingCacheEnabled(true);
