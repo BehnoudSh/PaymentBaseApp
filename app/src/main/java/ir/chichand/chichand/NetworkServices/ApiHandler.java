@@ -4,7 +4,9 @@ import android.content.Context;
 
 import java.util.List;
 
-import ir.chichand.chichand.Model.Response_Categories;
+import ir.chichand.chichand.Models.Reqeusts.Request_Inquiry;
+import ir.chichand.chichand.Models.Responses.Response_Categories;
+import ir.chichand.chichand.Models.Responses.Response_Inquiry;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -30,6 +32,26 @@ public class ApiHandler {
             @Override
             public void onFailure(Call<List<Response_Categories>> call, Throwable t) {
                 callback.getAllCategoriesFailed();
+            }
+        });
+
+
+    }
+
+
+    public static void getInquiry(Context context, Request_Inquiry request, final ApiCallbacks.getInquiryInterface callback) {
+        Retrofit retrofit = ApiClient.getClient(context);
+        ApiInterface api = retrofit.create(ApiInterface.class);
+        Call<Response_Inquiry> call = api.getInquiry(request);
+        call.enqueue(new Callback<Response_Inquiry>() {
+            @Override
+            public void onResponse(Call<Response_Inquiry> call, Response<Response_Inquiry> response) {
+                callback.getInquirySucceeded(response.body());
+            }
+
+            @Override
+            public void onFailure(Call<Response_Inquiry> call, Throwable t) {
+                callback.getInquiryFailed();
             }
         });
 

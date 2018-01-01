@@ -6,7 +6,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -15,10 +14,9 @@ import com.bumptech.glide.request.RequestOptions;
 
 import java.util.List;
 
-import ir.chichand.chichand.Model.Response_Categories;
+import ir.chichand.chichand.Models.Responses.Response_Categories;
 import ir.chichand.chichand.R;
 import ir.chichand.chichand.Tools.PublicClass;
-import ir.chichand.chichand.Tools.ScreenUtils;
 
 /**
  * Created by tinabehnoud on 8/4/17.
@@ -59,12 +57,9 @@ public class CategoriesAdapter extends RecyclerView.Adapter<CategoriesAdapter.My
 
         RelativeLayout.LayoutParams layoutParams2 =
                 new RelativeLayout.LayoutParams(PublicClass.category_item_hieght / 4, PublicClass.category_item_hieght / 4);
-        layoutParams2.addRule(RelativeLayout.CENTER_IN_PARENT,myViewHolder.parent.getId());
+        layoutParams2.addRule(RelativeLayout.CENTER_IN_PARENT, myViewHolder.parent.getId());
 
         myViewHolder.img.setLayoutParams(layoutParams2);
-
-
-
 
         myViewHolder.title.setText(category.getPersian_title());
 

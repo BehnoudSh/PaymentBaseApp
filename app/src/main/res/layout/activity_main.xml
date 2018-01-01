@@ -71,4 +71,13 @@
 
     </LinearLayout>
 
+    <FrameLayout
+        android:id="@+id/fl_activity_main_fragmentHolder"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+
+        android:animateLayoutChanges="true">
+
+    </FrameLayout>
+
 </RelativeLayout>

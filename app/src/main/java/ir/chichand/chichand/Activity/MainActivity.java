@@ -1,20 +1,15 @@
 package ir.chichand.chichand.Activity;
 
 import android.content.Context;
+import android.content.Intent;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.RelativeLayout;
-import android.widget.TextView;
-import android.widget.Toast;
-
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.request.RequestOptions;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,7 +17,8 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import ir.chichand.chichand.Adapters.CategoriesAdapter;
-import ir.chichand.chichand.Model.Response_Categories;
+import ir.chichand.chichand.CatLevel1Categories;
+import ir.chichand.chichand.Models.Responses.Response_Categories;
 import ir.chichand.chichand.NetworkServices.ApiCallbacks;
 import ir.chichand.chichand.NetworkServices.ApiHandler;
 import ir.chichand.chichand.R;
@@ -83,6 +79,8 @@ public class MainActivity extends AppCompatActivity {
                     if (resp.getCat_level() != null)
                         if (resp.getCat_level().equals("0")) {
                             temp.add(resp);
+
+
                         }
 
                 }
@@ -92,8 +90,25 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onItemClick(Response_Categories item, int position) {
 
-                        Toast.makeText(MainActivity.this, item.getPersian_title(), Toast.LENGTH_LONG).show();
+                        int cat_id = Integer.parseInt(item.getCat_id());
 
+                        if (cat_id == 1000) {
+
+                            Intent intent = new Intent(MainActivity.this, CurrencyActivity.class);
+                            startActivity(intent);
+
+                        } else if (0 < cat_id && cat_id < 1000) {
+
+                            FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+
+                            fragmentTransaction.add(R.id.fl_activity_main_fragmentHolder, CatLevel1Categories.newInstance());
+
+                            fragmentTransaction.addToBackStack("CatLevel1CategoriesFragment");
+
+                            fragmentTransaction.commit();
+
+
+                        }
                     }
 
                 });
@@ -111,4 +126,6 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
+
+
 }
