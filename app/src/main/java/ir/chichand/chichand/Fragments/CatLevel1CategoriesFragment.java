@@ -4,6 +4,7 @@ package ir.chichand.chichand.Fragments;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.ShareCompat;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
@@ -32,10 +33,13 @@ public class CatLevel1CategoriesFragment extends Fragment {
     RecyclerView rv_categoriesList;
 
     private Unbinder unbinder;
-    public static CatLevel1CategoriesFragment newInstance() {
+
+
+    public static CatLevel1CategoriesFragment newInstance(int catleve0_id) {
 
         CatLevel1CategoriesFragment fragment = new CatLevel1CategoriesFragment();
         Bundle args = new Bundle();
+        args.putInt("catlevel0_id", catleve0_id);
         fragment.setArguments(args);
         return fragment;
 
@@ -57,11 +61,30 @@ public class CatLevel1CategoriesFragment extends Fragment {
         for (Response_Categories resp : PublicClass.allCategories
                 ) {
             if (resp.getCat_level() != null)
-                if (resp.getCat_level().equals("1")) {
-                    temp.add(resp);
 
+                if (getArguments().getInt("catlevel0_id") == 0)
+
+                {
+
+                    if (0 < Integer.parseInt(resp.getCat_id()) && Integer.parseInt(resp.getCat_id()) < 1000) {
+                        if (resp.getCat_level().equals("1")) {
+                            temp.add(resp);
+                        }
+                    }
 
                 }
+
+            if (getArguments().getInt("catlevel0_id") == 2000)
+
+            {
+
+                if (2000 < Integer.parseInt(resp.getCat_id())) {
+                    if (resp.getCat_level().equals("1")) {
+                        temp.add(resp);
+                    }
+                }
+
+            }
 
         }
 

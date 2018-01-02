@@ -1,5 +1,6 @@
 package ir.chichand.chichand.Activity;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v4.app.FragmentTransaction;
@@ -63,17 +64,21 @@ public class MainActivity extends AppCompatActivity {
     }
 
     void getCategories() {
+
+        final ProgressDialog dialog = ProgressDialog.show(this, "",
+                "در حال دریافت اطلاعات ...", true);
+
         final List<Response_Categories> temp = new ArrayList<>();
 
         ApiHandler.getAllCategories(this, new ApiCallbacks.getCategoriesInterface() {
             @Override
             public void getAllCategoriesFailed() {
-
+                dialog.dismiss();
             }
 
             @Override
             public void getAllCategoriesSucceeded(List<Response_Categories> response) {
-
+                dialog.dismiss();
                 PublicClass.allCategories = response;
 
                 for (Response_Categories resp : response
@@ -99,16 +104,15 @@ public class MainActivity extends AppCompatActivity {
                             Intent intent = new Intent(MainActivity.this, CurrencyActivity.class);
                             startActivity(intent);
 
-                        } else if (cat_id == 0) {
+                        } else {
 
                             FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
 
-                            fragmentTransaction.add(R.id.fl_activity_main_fragmentHolder, CatLevel1CategoriesFragment.newInstance());
+                            fragmentTransaction.add(R.id.fl_activity_main_fragmentHolder, CatLevel1CategoriesFragment.newInstance(cat_id));
 
                             fragmentTransaction.addToBackStack("CatLevel1CategoriesFragment");
 
                             fragmentTransaction.commit();
-
 
                         }
                     }

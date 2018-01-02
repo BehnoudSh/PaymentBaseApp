@@ -4,7 +4,7 @@
     android:layout_width="400dp"
     android:layout_height="400dp"
     android:layout_margin="10dp"
-
+android:background="@drawable/bg_currency_group"
     android:orientation="vertical">
 
     <TextView
