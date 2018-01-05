@@ -4,6 +4,7 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -17,6 +18,7 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import ir.chichand.chichand.Adapters.CatLevel0PagerAdapter;
 import ir.chichand.chichand.Adapters.CategoriesAdapter;
 import ir.chichand.chichand.Fragments.CatLevel1CategoriesFragment;
 import ir.chichand.chichand.Models.Responses.Response_Categories;
@@ -34,6 +36,10 @@ public class MainActivity extends AppCompatActivity {
 
     @BindView(R.id.rv_activity_main_categoriesList)
     RecyclerView rv_categoriesList;
+
+
+    @BindView(R.id.catlevel0pager)
+    ViewPager pager;
 
 
     @Override
@@ -86,6 +92,7 @@ public class MainActivity extends AppCompatActivity {
                     if (resp.getCat_level() != null)
                         if (resp.getCat_level().equals("0")) {
                             temp.add(resp);
+                            temp.add(resp);
 
 
                         }
@@ -125,6 +132,38 @@ public class MainActivity extends AppCompatActivity {
                 rv_categoriesList.setItemViewCacheSize(200);
                 rv_categoriesList.setDrawingCacheEnabled(true);
                 rv_categoriesList.setDrawingCacheQuality(View.DRAWING_CACHE_QUALITY_LOW);
+
+
+
+
+                CatLevel0PagerAdapter pagerAdapter = new CatLevel0PagerAdapter(MainActivity.this, temp, new CatLevel0PagerAdapter.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(Response_Categories item) {
+
+                        int cat_id = Integer.parseInt(item.getCat_id());
+
+                        if (cat_id == 1000) {
+
+                            Intent intent = new Intent(MainActivity.this, CurrencyActivity.class);
+                            startActivity(intent);
+
+                        } else {
+
+                            FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+
+                            fragmentTransaction.add(R.id.fl_activity_main_fragmentHolder, CatLevel1CategoriesFragment.newInstance(cat_id));
+
+                            fragmentTransaction.addToBackStack("CatLevel1CategoriesFragment");
+
+                            fragmentTransaction.commit();
+
+                        }
+                    }
+                });
+
+                pager.setOffscreenPageLimit(10);
+
+                pager.setAdapter(pagerAdapter);
 
 
             }
