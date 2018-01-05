@@ -27,6 +27,7 @@ import ir.chichand.chichand.NetworkServices.ApiHandler;
 import ir.chichand.chichand.R;
 import ir.chichand.chichand.Tools.PublicClass;
 import ir.chichand.chichand.Tools.ScreenUtils;
+import me.relex.circleindicator.CircleIndicator;
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 public class MainActivity extends AppCompatActivity {
@@ -40,6 +41,9 @@ public class MainActivity extends AppCompatActivity {
 
     @BindView(R.id.catlevel0pager)
     ViewPager pager;
+
+    @BindView(R.id.indicator)
+    CircleIndicator indicator;
 
 
     @Override
@@ -93,7 +97,10 @@ public class MainActivity extends AppCompatActivity {
                         if (resp.getCat_level().equals("0")) {
                             temp.add(resp);
                             temp.add(resp);
-
+                            temp.add(resp);
+                            temp.add(resp);
+                            temp.add(resp);
+                            temp.add(resp);
 
                         }
 
@@ -134,8 +141,6 @@ public class MainActivity extends AppCompatActivity {
                 rv_categoriesList.setDrawingCacheQuality(View.DRAWING_CACHE_QUALITY_LOW);
 
 
-
-
                 CatLevel0PagerAdapter pagerAdapter = new CatLevel0PagerAdapter(MainActivity.this, temp, new CatLevel0PagerAdapter.OnItemClickListener() {
                     @Override
                     public void onItemClick(Response_Categories item) {
@@ -164,6 +169,9 @@ public class MainActivity extends AppCompatActivity {
                 pager.setOffscreenPageLimit(10);
 
                 pager.setAdapter(pagerAdapter);
+
+                indicator.setViewPager(pager);
+
 
 
             }

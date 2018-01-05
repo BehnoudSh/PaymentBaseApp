@@ -2,6 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="#fafafa"
     android:orientation="vertical">
 
@@ -57,38 +58,43 @@
 
     </RelativeLayout>
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:background="#fafafa"
         android:layout_height="match_parent"
         android:layout_below="@id/rl_activity_main_adHolder"
+        android:background="#fafafa"
         android:orientation="vertical">
 
         <android.support.v7.widget.RecyclerView
-            android:background="#fafafa"
             android:id="@+id/rv_activity_main_categoriesList"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:visibility="gone"
-            android:padding="5dp" />
+            android:background="#fafafa"
+            android:padding="5dp"
+            android:visibility="gone" />
 
 
         <android.support.v4.view.ViewPager
-            android:layout_width="match_parent"
-            android:background="#fafafa"
-            android:padding="5dp"
             android:id="@+id/catlevel0pager"
-            android:layout_height="wrap_content">
-
-
-
-
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/indicator"
+            android:background="#fafafa"
+            android:padding="5dp">
 
 
         </android.support.v4.view.ViewPager>
 
+        <me.relex.circleindicator.CircleIndicator
+            android:id="@+id/indicator"
+            android:layout_width="match_parent"
+            app:ci_drawable="@color/black"
+            app:ci_drawable_unselected="@color/black"
+            android:layout_height="48dp"
+            android:layout_alignParentBottom="true" />
 
-    </LinearLayout>
+
+    </RelativeLayout>
 
     <FrameLayout
         android:id="@+id/fl_activity_main_fragmentHolder"
