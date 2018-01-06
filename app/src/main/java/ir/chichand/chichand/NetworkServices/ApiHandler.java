@@ -7,6 +7,7 @@ import java.util.List;
 import ir.chichand.chichand.Models.Reqeusts.Request_Inquiry;
 import ir.chichand.chichand.Models.Responses.Response_Categories;
 import ir.chichand.chichand.Models.Responses.Response_Inquiry;
+import ir.chichand.chichand.Models.Responses.Response_Others;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -58,5 +59,28 @@ public class ApiHandler {
 
     }
 
+
+    public static void getCatLevel1_Goods(Context context, String url, final ApiCallbacks.getCatLevel1_Goods callback) {
+
+        Retrofit retrofit = ApiClient.getClient(context);
+        ApiInterface api = retrofit.create(ApiInterface.class);
+        Call<Response_Others> call = api.getCatLevel1_Goods(url);
+        call.enqueue(new Callback<Response_Others>() {
+            @Override
+            public void onResponse(Call<Response_Others> call, Response<Response_Others> response) {
+                if (response.code() < 300)
+                    callback.getCatLevel0_GoodsSucceeded(response.body());
+                else
+                    callback.getCatLevel0_GoodsFailed();
+            }
+
+            @Override
+            public void onFailure(Call<Response_Others> call, Throwable t) {
+                callback.getCatLevel0_GoodsFailed();
+            }
+        });
+
+
+    }
 
 }

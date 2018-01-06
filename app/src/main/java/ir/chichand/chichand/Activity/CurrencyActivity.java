@@ -114,7 +114,7 @@ public class CurrencyActivity extends AppCompatActivity {
                             }
                         }
                     }
- 
+
                     parent.addView(linear);
 
                 }

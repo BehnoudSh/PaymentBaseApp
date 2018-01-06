@@ -16,7 +16,7 @@
         <activity
             android:name=".Activity.MainActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/Theme.AppCompat.NoActionBar"></activity>
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
         <activity
             android:name=".Activity.SplashActivity"
             android:theme="@style/Theme.AppCompat.NoActionBar">
@@ -29,7 +29,8 @@
         <activity
             android:name=".Activity.CurrencyActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/Theme.AppCompat.NoActionBar"></activity>
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
+        <activity android:name=".Activity.CatLevel2Activity"></activity>
     </application>
 
 </manifest>

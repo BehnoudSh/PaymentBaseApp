@@ -96,15 +96,9 @@ public class MainActivity extends AppCompatActivity {
                     if (resp.getCat_level() != null)
                         if (resp.getCat_level().equals("0")) {
                             temp.add(resp);
-                            temp.add(resp);
-                            temp.add(resp);
-                            temp.add(resp);
-
 
                         }
-
                 }
-
 
                 CatLevel0PagerAdapter pagerAdapter = new CatLevel0PagerAdapter(MainActivity.this, temp, new CatLevel0PagerAdapter.OnItemClickListener() {
                     @Override

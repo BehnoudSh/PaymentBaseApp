@@ -1,6 +1,7 @@
 package ir.chichand.chichand.Fragments;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -10,6 +11,7 @@ import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,6 +19,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
+import ir.chichand.chichand.Activity.CatLevel2Activity;
 import ir.chichand.chichand.Adapters.CategoriesAdapter;
 import ir.chichand.chichand.Models.Responses.Response_Categories;
 import ir.chichand.chichand.R;
@@ -77,12 +80,11 @@ public class CatLevel1CategoriesFragment extends Fragment {
 
             {
 
-                if (2000 < Integer.parseInt(resp.getCat_id())) {
+                if (2000 < Integer.parseInt(resp.getCat_id()) && Integer.parseInt(resp.getCat_id()) < 3000) {
                     if (resp.getCat_level().equals("1")) {
                         temp.add(resp);
                     }
                 }
-
             }
 
         }
@@ -94,6 +96,11 @@ public class CatLevel1CategoriesFragment extends Fragment {
 
                 int cat_id = Integer.parseInt(item.getCat_id());
 
+                Intent intent = new Intent(getActivity(), CatLevel2Activity.class);
+                intent.putExtra("cat_id", cat_id);
+                startActivity(intent);
+
+                // Toast.makeText(getContext(), cat_id + "", Toast.LENGTH_LONG).show();
 
             }
 

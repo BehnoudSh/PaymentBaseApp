@@ -40,4 +40,25 @@ public class ApiClient {
         return retrofit;
     }
 
+    public static Retrofit getClient_dynamicUrl(Context context,String url) {
+
+        if (retrofit == null) {
+            retrofit = new Retrofit.Builder()
+                    .baseUrl(url)
+                    .client(getOkHttpClient(context))
+                    .addConverterFactory(GsonConverterFactory.create())
+                    .build();
+        }
+
+        return retrofit;
+    }
+
+
+
+
+
+
+
+
+
 }
