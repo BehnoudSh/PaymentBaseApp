@@ -2,13 +2,11 @@ package ir.chichand.chichand.Activity;
 
 import android.app.ProgressDialog;
 import android.content.Context;
-import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
-import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -23,6 +21,7 @@ import butterknife.ButterKnife;
 import ir.chichand.chichand.Models.Reqeusts.Request_Inquiry;
 import ir.chichand.chichand.Models.Responses.Response_Inquiry;
 import ir.chichand.chichand.Models.Responses.Response_Inquiry_Data;
+import ir.chichand.chichand.Models.Responses.Response_Inquiry_Data_Group;
 import ir.chichand.chichand.NetworkServices.ApiCallbacks;
 import ir.chichand.chichand.NetworkServices.ApiHandler;
 import ir.chichand.chichand.R;
@@ -65,13 +64,14 @@ public class CurrencyActivity extends AppCompatActivity {
 
                 dialog.dismiss();
 
-                List<Response_Inquiry_Data> allPeople; // your list of all people
                 Map<String, List<Response_Inquiry_Data>> map = new HashMap<String, List<Response_Inquiry_Data>>();
                 for (Response_Inquiry_Data data : response.getData()) {
                     String key = String.valueOf(data.getGroup());
                     if (map.get(key) == null) {
                         map.put(key, new ArrayList<Response_Inquiry_Data>());
+
                     }
+
                     map.get(key).add(data);
                 }
 
@@ -79,17 +79,12 @@ public class CurrencyActivity extends AppCompatActivity {
                 for (List<Response_Inquiry_Data> group : map.values()
                         ) {
 
-                    LinearLayout linear = new LinearLayout(CurrencyActivity.this);
-                    linear.setOrientation(LinearLayout.VERTICAL);
-                    linear.setBackgroundResource(R.drawable.bg_currency_group);
+                    View groupView = CurrencyActivity.this.getLayoutInflater().inflate(R.layout.activity_currency_groups, null);
 
-                    int dp = (int) ScreenUtils.convertDpToPixel(10, CurrencyActivity.this);
+                    LinearLayout linear = (LinearLayout) groupView.findViewById(R.id.parent);
+                    TextView groupTitle = (TextView) groupView.findViewById(R.id.tv_activity_currency_groups_title);
 
-
-                    LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-                    params.setMargins(dp, dp, dp, dp);
-
-                    linear.setLayoutParams(params);
+                    int currentGroup = 0;
                     for (Response_Inquiry_Data item : group
                             ) {
 
@@ -98,31 +93,31 @@ public class CurrencyActivity extends AppCompatActivity {
                         ((TextView) (layout.findViewById(R.id.tv_item_currency_group_price))).setText(item.getPrice());
                         ((TextView) (layout.findViewById(R.id.tv_item_currency_group_title))).setText(item.getName());
 
+                        currentGroup = item.getGroup();
 
+                        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+                        params.setMargins((int) ScreenUtils.convertDpToPixel(5, CurrencyActivity.this),
+                                (int) ScreenUtils.convertDpToPixel(5, CurrencyActivity.this),
+                                (int) ScreenUtils.convertDpToPixel(5, CurrencyActivity.this),
+                                (int) ScreenUtils.convertDpToPixel(5, CurrencyActivity.this));
+                        linear.setLayoutParams(params);
                         linear.addView(layout);
 
-
                     }
+
+                    for (Response_Inquiry_Data_Group groupSpec : response.getData_group()
+                            ) {
+
+                        if (groupSpec != null) {
+                            if (groupSpec.getGroup() == currentGroup) {
+                                groupTitle.setText(groupSpec.getGroup_title());
+                            }
+                        }
+                    }
+ 
                     parent.addView(linear);
 
-
                 }
-
-
-//                List<Response_Inquiry_Data> davids = map.get("0");
-
-//
-//                for (Response_Inquiry_Data data : response.getData()
-//                        ) {
-//
-//
-//                    TextView tv = new TextView(CurrencyActivity.this);
-//                    tv.setText(data.getName() + ": " + data.getPrice());
-//                    tv.setTextColor(Color.BLACK);
-//                    parent.addView(tv);
-//
-//                }
-
 
             }
         });

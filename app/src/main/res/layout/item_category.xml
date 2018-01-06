@@ -5,7 +5,7 @@
     android:layout_margin="5dp"
     android:layout_height="100dp"
 
-    android:background="@drawable/bg_currency_group"
+    android:background="@drawable/bg_custom_elevation"
     android:orientation="vertical">
 
     <TextView
