@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -82,7 +83,7 @@ public class CurrencyActivity extends AppCompatActivity {
                     linear.setOrientation(LinearLayout.VERTICAL);
                     linear.setBackgroundResource(R.drawable.bg_currency_group);
 
-                    int dp = (int)ScreenUtils.convertDpToPixel(10, CurrencyActivity.this);
+                    int dp = (int) ScreenUtils.convertDpToPixel(10, CurrencyActivity.this);
 
 
                     LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);

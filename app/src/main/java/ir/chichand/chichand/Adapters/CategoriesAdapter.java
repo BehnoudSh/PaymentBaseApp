@@ -17,6 +17,7 @@ import java.util.List;
 import ir.chichand.chichand.Models.Responses.Response_Categories;
 import ir.chichand.chichand.R;
 import ir.chichand.chichand.Tools.PublicClass;
+import ir.chichand.chichand.Tools.ScreenUtils;
 
 /**
  * Created by tinabehnoud on 8/4/17.
@@ -51,30 +52,30 @@ public class CategoriesAdapter extends RecyclerView.Adapter<CategoriesAdapter.My
         myViewHolder.bind(category, _listener);
 
         RelativeLayout.LayoutParams layoutParams1 =
-                new RelativeLayout.LayoutParams(PublicClass.category_item_hieght / 2, PublicClass.category_item_hieght / 2);
+                new RelativeLayout.LayoutParams((int) (ScreenUtils.ScreenSizesInPixel.x / 2), ViewGroup.LayoutParams.WRAP_CONTENT);
+        layoutParams1.setMargins((int) ScreenUtils.convertDpToPixel(5, context),
+                (int) ScreenUtils.convertDpToPixel(5, context),
+                (int) ScreenUtils.convertDpToPixel(5, context),
+                (int) ScreenUtils.convertDpToPixel(5, context));
         myViewHolder.parent.setLayoutParams(layoutParams1);
 
 
         RelativeLayout.LayoutParams layoutParams2 =
-                new RelativeLayout.LayoutParams(PublicClass.category_item_hieght / 4, PublicClass.category_item_hieght / 4);
-        layoutParams2.addRule(RelativeLayout.CENTER_IN_PARENT, myViewHolder.parent.getId());
-
+                new RelativeLayout.LayoutParams((int) (ScreenUtils.ScreenSizesInPixel.x / 2), (int) (ScreenUtils.ScreenSizesInPixel.x / 2));
         myViewHolder.img.setLayoutParams(layoutParams2);
 
-        myViewHolder.title.setText(category.getPersian_title());
 
+        myViewHolder.title.setText(category.getPersian_title());
 
         RequestOptions requestOptions = new RequestOptions();
         requestOptions.placeholder(R.mipmap.ic_launcher);
         requestOptions.fitCenter();
-
 
         Glide.with(context)
                 .applyDefaultRequestOptions(requestOptions)
                 .load(category.getCat_icon())
                 .apply(requestOptions)
                 .into(myViewHolder.img);
-
 
     }
 

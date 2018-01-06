@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/rl_item_categories_parent"
-    android:layout_width="400dp"
-    android:layout_height="400dp"
-    android:layout_margin="10dp"
-android:background="@drawable/bg_currency_group"
+    android:layout_width="100dp"
+    android:layout_margin="5dp"
+    android:layout_height="100dp"
+
+    android:background="@drawable/bg_currency_group"
     android:orientation="vertical">
 
     <TextView
@@ -12,15 +13,17 @@ android:background="@drawable/bg_currency_group"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
+        android:layout_marginTop="10dp"
         android:gravity="center"
         android:text="testtesttest"
         android:textColor="@color/black" />
 
     <ImageView
         android:id="@+id/iv_item_categories_icon"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_centerInParent="true"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_above="@id/tv_item_categories_title"
+        android:padding="10dp"
         android:scaleType="fitCenter" />
 
 

@@ -14,7 +14,7 @@ import ir.chichand.chichand.Models.Responses.Response_Categories;
 
 public class PublicClass {
 
-    public static int category_item_hieght = 0;
+
 
 
  public  static    List<Response_Categories> allCategories = new ArrayList<>();

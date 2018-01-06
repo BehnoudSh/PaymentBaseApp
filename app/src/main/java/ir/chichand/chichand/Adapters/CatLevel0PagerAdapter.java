@@ -2,6 +2,10 @@ package ir.chichand.chichand.Adapters;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
+import android.graphics.drawable.Drawable;
 import android.support.v4.view.PagerAdapter;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -92,6 +96,12 @@ public class CatLevel0PagerAdapter extends PagerAdapter {
 
         try {
 
+            Drawable drawable1 = _context.getResources().getDrawable(android.R.drawable.dialog_holo_light_frame);
+            Drawable drawable2 = _context.getResources().getDrawable(android.R.drawable.dialog_holo_light_frame);
+            Drawable drawable3 = _context.getResources().getDrawable(android.R.drawable.dialog_holo_light_frame);
+            Drawable drawable4= _context.getResources().getDrawable(android.R.drawable.dialog_holo_light_frame);
+
+
             RequestOptions requestOptions = new RequestOptions();
             requestOptions.placeholder(R.mipmap.ic_launcher);
             requestOptions.fitCenter();
@@ -109,6 +119,8 @@ public class CatLevel0PagerAdapter extends PagerAdapter {
                     _listener.onItemClick(hashMap.get(position).get(0));
                 }
             });
+            drawable1.setColorFilter(new PorterDuffColorFilter(_context.getResources().getColor(R.color.holder1), PorterDuff.Mode.MULTIPLY));
+            Holder1.setBackgroundDrawable(drawable1);
 
             Title2.setText(hashMap.get(position).get(1).getPersian_title());
             Glide.with(_context)
@@ -122,6 +134,8 @@ public class CatLevel0PagerAdapter extends PagerAdapter {
                     _listener.onItemClick(hashMap.get(position).get(1));
                 }
             });
+            drawable2.setColorFilter(new PorterDuffColorFilter(_context.getResources().getColor(R.color.holder2), PorterDuff.Mode.MULTIPLY));
+            Holder2.setBackgroundDrawable(drawable2);
 
             Title3.setText(hashMap.get(position).get(2).getPersian_title());
             Glide.with(_context)
@@ -135,6 +149,8 @@ public class CatLevel0PagerAdapter extends PagerAdapter {
                     _listener.onItemClick(hashMap.get(position).get(2));
                 }
             });
+            drawable3.setColorFilter(new PorterDuffColorFilter(_context.getResources().getColor(R.color.holder3), PorterDuff.Mode.MULTIPLY));
+            Holder3.setBackgroundDrawable(drawable3);
 
             Title4.setText(hashMap.get(position).get(3).getPersian_title());
             Glide.with(_context)
@@ -148,6 +164,8 @@ public class CatLevel0PagerAdapter extends PagerAdapter {
                     _listener.onItemClick(hashMap.get(position).get(3));
                 }
             });
+            drawable4.setColorFilter(new PorterDuffColorFilter(_context.getResources().getColor(R.color.holder4), PorterDuff.Mode.MULTIPLY));
+            Holder4.setBackgroundDrawable(drawable4);
 
         } catch (Exception ex) {
         }

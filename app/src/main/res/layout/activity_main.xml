@@ -1,67 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="#fafafa"
     android:orientation="vertical">
 
 
     <RelativeLayout
-        android:id="@+id/rl_activity_main_adHolder"
-        android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:layout_alignParentTop="true">
-
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:scaleType="centerCrop"
-            android:src="@drawable/samplead" />
-
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentRight="true"
-            android:layout_margin="10dp"
-            android:background="@color/transparent_black_hex_4"
-            android:padding="5dp"
-            android:text="تنوعی از ابزارهای ایمنی"
-            android:textColor="@color/white" />
-
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true">
-
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@color/white"
-                android:src="@mipmap/ic_launcher" />
-
-
-        </LinearLayout>
-
-        <!--<android.support.v4.view.ViewPager-->
-        <!--android:id="@+id/vp_activity_main_adsPager"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="match_parent">-->
-
-
-        <!--</android.support.v4.view.ViewPager>-->
-
-    </RelativeLayout>
-
-    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/rl_activity_main_adHolder"
+        android:layout_above="@+id/rl_activity_main_adHolder"
+
         android:background="#fafafa"
         android:orientation="vertical">
 
@@ -88,10 +38,41 @@
         <me.relex.circleindicator.CircleIndicator
             android:id="@+id/indicator"
             android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:gravity="center"
+            app:ci_gravity="center"
+            android:layout_alignParentBottom="true"
             app:ci_drawable="@color/black"
-            app:ci_drawable_unselected="@color/black"
-            android:layout_height="48dp"
-            android:layout_alignParentBottom="true" />
+            app:ci_drawable_unselected="@color/black" />
+
+
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:id="@+id/rl_activity_main_adHolder"
+        android:layout_width="match_parent"
+
+        android:layout_height="100dp"
+        android:layout_alignParentBottom="true">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            android:src="@color/air_force_blue" />
+
+
+        <!--<TextView-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_alignParentBottom="true"-->
+        <!--android:layout_alignParentRight="true"-->
+        <!--android:layout_margin="10dp"-->
+        <!--android:background="@color/transparent_black_hex_4"-->
+        <!--android:padding="5dp"-->
+        <!--android:text="تنوعی از ابزارهای ایمنی"-->
+        <!--android:textColor="@color/white" />-->
 
 
     </RelativeLayout>

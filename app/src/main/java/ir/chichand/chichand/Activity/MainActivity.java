@@ -19,7 +19,6 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import ir.chichand.chichand.Adapters.CatLevel0PagerAdapter;
-import ir.chichand.chichand.Adapters.CategoriesAdapter;
 import ir.chichand.chichand.Fragments.CatLevel1CategoriesFragment;
 import ir.chichand.chichand.Models.Responses.Response_Categories;
 import ir.chichand.chichand.NetworkServices.ApiCallbacks;
@@ -56,8 +55,10 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
-        setInitialSizes();
+
         getCategories();
+
+        setInitialSizes();
 
 
     }
@@ -67,10 +68,9 @@ public class MainActivity extends AppCompatActivity {
         int hieght = (int) ((9 * ScreenUtils.ScreenSizesInPixel.x) / 16);
         RelativeLayout.LayoutParams layoutParams =
                 new RelativeLayout.LayoutParams((int) ScreenUtils.ScreenSizesInPixel.x, (int) hieght);
+        layoutParams.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
         rl_adHolder.setLayoutParams(layoutParams);
 
-
-        PublicClass.category_item_hieght = (int) ScreenUtils.ScreenSizesInPixel.y - hieght - 150;
     }
 
     void getCategories() {
@@ -99,46 +99,11 @@ public class MainActivity extends AppCompatActivity {
                             temp.add(resp);
                             temp.add(resp);
                             temp.add(resp);
-                            temp.add(resp);
-                            temp.add(resp);
+
 
                         }
 
                 }
-                StaggeredGridLayoutManager mLayoutManager = new StaggeredGridLayoutManager(2,
-                        StaggeredGridLayoutManager.HORIZONTAL);
-                CategoriesAdapter categories_level_zeroAdapter = new CategoriesAdapter(temp, MainActivity.this, new CategoriesAdapter.OnItemClickListener() {
-                    @Override
-                    public void onItemClick(Response_Categories item, int position) {
-
-                        int cat_id = Integer.parseInt(item.getCat_id());
-
-                        if (cat_id == 1000) {
-
-                            Intent intent = new Intent(MainActivity.this, CurrencyActivity.class);
-                            startActivity(intent);
-
-                        } else {
-
-                            FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-
-                            fragmentTransaction.add(R.id.fl_activity_main_fragmentHolder, CatLevel1CategoriesFragment.newInstance(cat_id));
-
-                            fragmentTransaction.addToBackStack("CatLevel1CategoriesFragment");
-
-                            fragmentTransaction.commit();
-
-                        }
-                    }
-
-                });
-                rv_categoriesList.setLayoutManager(mLayoutManager);
-                rv_categoriesList.setItemAnimator(new DefaultItemAnimator());
-                rv_categoriesList.setAdapter(categories_level_zeroAdapter);
-
-                rv_categoriesList.setItemViewCacheSize(200);
-                rv_categoriesList.setDrawingCacheEnabled(true);
-                rv_categoriesList.setDrawingCacheQuality(View.DRAWING_CACHE_QUALITY_LOW);
 
 
                 CatLevel0PagerAdapter pagerAdapter = new CatLevel0PagerAdapter(MainActivity.this, temp, new CatLevel0PagerAdapter.OnItemClickListener() {
@@ -171,7 +136,6 @@ public class MainActivity extends AppCompatActivity {
                 pager.setAdapter(pagerAdapter);
 
                 indicator.setViewPager(pager);
-
 
 
             }
