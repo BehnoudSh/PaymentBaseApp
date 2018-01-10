@@ -139,4 +139,13 @@
     <color name="transparent_white_percent_90">#E6ffffff</color>
     <color name="transparent_white_percent_95">#F2ffffff</color>
 
+
+
+    <color name="main_bg_color">#fafafa</color>
+
+
+    <color name="amirhosein_favorite">#ebebeb</color>
+
+
+
 </resources>

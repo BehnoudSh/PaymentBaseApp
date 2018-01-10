@@ -96,10 +96,10 @@ public class CatLevel0PagerAdapter extends PagerAdapter {
 
         try {
 
-            Drawable drawable1 = _context.getResources().getDrawable(android.R.drawable.dialog_holo_light_frame);
-            Drawable drawable2 = _context.getResources().getDrawable(android.R.drawable.dialog_holo_light_frame);
-            Drawable drawable3 = _context.getResources().getDrawable(android.R.drawable.dialog_holo_light_frame);
-            Drawable drawable4= _context.getResources().getDrawable(android.R.drawable.dialog_holo_light_frame);
+            // Drawable drawable1 = _context.getResources().getDrawable(android.R.drawable.dialog_holo_light_frame);
+            // Drawable drawable2 = _context.getResources().getDrawable(android.R.drawable.dialog_holo_light_frame);
+            // Drawable drawable3 = _context.getResources().getDrawable(android.R.drawable.dialog_holo_light_frame);
+            // Drawable drawable4= _context.getResources().getDrawable(android.R.drawable.dialog_holo_light_frame);
 
 
             RequestOptions requestOptions = new RequestOptions();
@@ -119,8 +119,9 @@ public class CatLevel0PagerAdapter extends PagerAdapter {
                     _listener.onItemClick(hashMap.get(position).get(0));
                 }
             });
-            drawable1.setColorFilter(new PorterDuffColorFilter(_context.getResources().getColor(R.color.holder1), PorterDuff.Mode.MULTIPLY));
-            Holder1.setBackgroundDrawable(drawable1);
+            Holder1.setBackgroundResource(R.color.holder1);
+            // drawable1.setColorFilter(new PorterDuffColorFilter(_context.getResources().getColor(R.color.holder1), PorterDuff.Mode.MULTIPLY));
+            // Holder1.setBackgroundDrawable(drawable1);
 
             Title2.setText(hashMap.get(position).get(1).getPersian_title());
             Glide.with(_context)
@@ -134,8 +135,9 @@ public class CatLevel0PagerAdapter extends PagerAdapter {
                     _listener.onItemClick(hashMap.get(position).get(1));
                 }
             });
-            drawable2.setColorFilter(new PorterDuffColorFilter(_context.getResources().getColor(R.color.holder2), PorterDuff.Mode.MULTIPLY));
-            Holder2.setBackgroundDrawable(drawable2);
+            Holder2.setBackgroundResource(R.color.holder2);
+            // drawable2.setColorFilter(new PorterDuffColorFilter(_context.getResources().getColor(R.color.holder2), PorterDuff.Mode.MULTIPLY));
+            // Holder2.setBackgroundDrawable(drawable2);
 
             Title3.setText(hashMap.get(position).get(2).getPersian_title());
             Glide.with(_context)
@@ -149,9 +151,9 @@ public class CatLevel0PagerAdapter extends PagerAdapter {
                     _listener.onItemClick(hashMap.get(position).get(2));
                 }
             });
-            drawable3.setColorFilter(new PorterDuffColorFilter(_context.getResources().getColor(R.color.holder3), PorterDuff.Mode.MULTIPLY));
-            Holder3.setBackgroundDrawable(drawable3);
-
+            // drawable3.setColorFilter(new PorterDuffColorFilter(_context.getResources().getColor(R.color.holder3), PorterDuff.Mode.MULTIPLY));
+            //  Holder3.setBackgroundDrawable(drawable3);
+            Holder3.setBackgroundResource(R.color.holder3);
             Title4.setText(hashMap.get(position).get(3).getPersian_title());
             Glide.with(_context)
                     .applyDefaultRequestOptions(requestOptions)
@@ -164,8 +166,9 @@ public class CatLevel0PagerAdapter extends PagerAdapter {
                     _listener.onItemClick(hashMap.get(position).get(3));
                 }
             });
-            drawable4.setColorFilter(new PorterDuffColorFilter(_context.getResources().getColor(R.color.holder4), PorterDuff.Mode.MULTIPLY));
-            Holder4.setBackgroundDrawable(drawable4);
+            Holder4.setBackgroundResource(R.color.holder4);
+            // drawable4.setColorFilter(new PorterDuffColorFilter(_context.getResources().getColor(R.color.holder4), PorterDuff.Mode.MULTIPLY));
+            //  Holder4.setBackgroundDrawable(drawable4);
 
         } catch (Exception ex) {
         }

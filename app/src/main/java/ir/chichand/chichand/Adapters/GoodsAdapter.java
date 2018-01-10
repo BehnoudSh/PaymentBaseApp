@@ -41,7 +41,7 @@ public class GoodsAdapter extends RecyclerView.Adapter<GoodsAdapter.MyViewHolder
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
         View itemView = LayoutInflater.from(viewGroup.getContext())
-                .inflate(R.layout.item_category, viewGroup, false);
+                .inflate(R.layout.item_goods, viewGroup, false);
 
         return new MyViewHolder(itemView);
     }
@@ -52,21 +52,9 @@ public class GoodsAdapter extends RecyclerView.Adapter<GoodsAdapter.MyViewHolder
         Response_Others_Result category = this.categoriesList.get(i);
         myViewHolder.bind(category, _listener);
 
-        RelativeLayout.LayoutParams layoutParams1 =
-                new RelativeLayout.LayoutParams((int) (ScreenUtils.ScreenSizesInPixel.x / 2), ViewGroup.LayoutParams.WRAP_CONTENT);
-        layoutParams1.setMargins((int) ScreenUtils.convertDpToPixel(5, context),
-                (int) ScreenUtils.convertDpToPixel(5, context),
-                (int) ScreenUtils.convertDpToPixel(5, context),
-                (int) ScreenUtils.convertDpToPixel(5, context));
-        myViewHolder.parent.setLayoutParams(layoutParams1);
-
-
-        RelativeLayout.LayoutParams layoutParams2 =
-                new RelativeLayout.LayoutParams((int) (ScreenUtils.ScreenSizesInPixel.x / 2), (int) (ScreenUtils.ScreenSizesInPixel.x / 2));
-        myViewHolder.img.setLayoutParams(layoutParams2);
-
-
-        myViewHolder.title.setText(category.getPersian_name());
+        myViewHolder.tv_storeName.setText(category.getShop_name());
+        myViewHolder.tv_price.setText(category.getPrice() + " ریال");
+        myViewHolder.tv_persianName.setText(category.getPersian_name());
 
         RequestOptions requestOptions = new RequestOptions();
         requestOptions.placeholder(R.mipmap.ic_launcher);
@@ -76,7 +64,7 @@ public class GoodsAdapter extends RecyclerView.Adapter<GoodsAdapter.MyViewHolder
                 .applyDefaultRequestOptions(requestOptions)
                 .load(category.getImage_url())
                 .apply(requestOptions)
-                .into(myViewHolder.img);
+                .into(myViewHolder.iv_img);
 
     }
 
@@ -87,15 +75,17 @@ public class GoodsAdapter extends RecyclerView.Adapter<GoodsAdapter.MyViewHolder
 
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
-        public TextView title;
-        public ImageView img;
-        public RelativeLayout parent;
+        public TextView tv_persianName;
+        public ImageView iv_img;
+        public TextView tv_storeName;
+        public TextView tv_price;
 
         public MyViewHolder(View view) {
             super(view);
-            title = (TextView) view.findViewById(R.id.tv_item_categories_title);
-            img = (ImageView) view.findViewById(R.id.iv_item_categories_icon);
-            parent = (RelativeLayout) view.findViewById(R.id.rl_item_categories_parent);
+            tv_persianName = (TextView) view.findViewById(R.id.tv_item_goods_persianName);
+            iv_img = (ImageView) view.findViewById(R.id.iv_item_goods_img);
+            tv_storeName = (TextView) view.findViewById(R.id.tv_item_goods_storeName);
+            tv_price = (TextView) view.findViewById(R.id.tv_item_goods_price);
 
         }
 

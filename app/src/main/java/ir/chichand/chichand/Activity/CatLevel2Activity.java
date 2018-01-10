@@ -1,12 +1,15 @@
 package ir.chichand.chichand.Activity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.View;
+import android.widget.LinearLayout;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -20,6 +23,7 @@ import ir.chichand.chichand.Models.Responses.Response_Others_Result;
 import ir.chichand.chichand.NetworkServices.ApiCallbacks;
 import ir.chichand.chichand.NetworkServices.ApiHandler;
 import ir.chichand.chichand.R;
+import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 public class CatLevel2Activity extends AppCompatActivity {
 
@@ -27,6 +31,11 @@ public class CatLevel2Activity extends AppCompatActivity {
 
     @BindView(R.id.rv_activity_cat_level2_List)
     RecyclerView rv_goodsList;
+
+    @Override
+    protected void attachBaseContext(Context newBase) {
+        super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,8 +73,7 @@ public class CatLevel2Activity extends AppCompatActivity {
                             });
 
 
-                            StaggeredGridLayoutManager mLayoutManager = new StaggeredGridLayoutManager(2,
-                                    StaggeredGridLayoutManager.VERTICAL);
+                            LinearLayoutManager mLayoutManager = new LinearLayoutManager(CatLevel2Activity.this);
                             rv_goodsList.setLayoutManager(mLayoutManager);
                             rv_goodsList.setItemAnimator(new DefaultItemAnimator());
                             rv_goodsList.setAdapter(GoodsAdapter);
