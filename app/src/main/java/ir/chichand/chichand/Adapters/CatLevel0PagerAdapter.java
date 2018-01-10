@@ -71,12 +71,12 @@ public class CatLevel0PagerAdapter extends PagerAdapter {
 
         ViewGroup itemView = (ViewGroup) mLayoutInflater.inflate(R.layout.item_catlevel0_pager, collection, false);
 
-//        itemView.bind(hashMap.get(position).get(0), _listener);
+//        itemView.bind(hashMap.get(position).get(0), clickListener);
 //
 //
 //
 //
-//        _listener.onItemClick(hashMap.get(position).get(0), getAdapterPosition());
+//        clickListener.onItemClick(hashMap.get(position).get(0), getAdapterPosition());
 
 
         RelativeLayout Holder1 = (RelativeLayout) itemView.findViewById(R.id.holder1);

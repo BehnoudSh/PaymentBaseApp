@@ -11,6 +11,9 @@ import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.View;
 import android.widget.LinearLayout;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import ir.chichand.chichand.Adapters.CategoriesAdapter;
@@ -32,6 +35,14 @@ public class CatLevel2Activity extends AppCompatActivity {
     @BindView(R.id.rv_activity_cat_level2_List)
     RecyclerView rv_goodsList;
 
+    GoodsAdapter GoodsAdapter;
+    LinearLayoutManager mLayoutManager = new LinearLayoutManager(CatLevel2Activity.this);
+    List<Response_Others_Result> food = new ArrayList<>();
+
+    String base_url = "";
+
+    int page = 0;
+
     @Override
     protected void attachBaseContext(Context newBase) {
         super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
@@ -44,6 +55,35 @@ public class CatLevel2Activity extends AppCompatActivity {
         ButterKnife.bind(this);
         cat_id = getIntent().getIntExtra("cat_id", 0);
 
+        getInquiry();
+
+
+        GoodsAdapter = new GoodsAdapter(food, CatLevel2Activity.this, new GoodsAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(Response_Others_Result item, int position) {
+
+            }
+        }, new GoodsAdapter.OnListEndedListener() {
+            @Override
+            public void onListEnded() {
+                getTorob(base_url);
+            }
+        });
+
+        rv_goodsList.setLayoutManager(mLayoutManager);
+        rv_goodsList.setItemAnimator(new DefaultItemAnimator());
+        rv_goodsList.setAdapter(GoodsAdapter);
+
+        rv_goodsList.setItemViewCacheSize(200);
+        rv_goodsList.setDrawingCacheEnabled(true);
+        rv_goodsList.setDrawingCacheQuality(View.DRAWING_CACHE_QUALITY_LOW);
+
+
+    }
+
+
+    void getInquiry() {
+
 
         ApiHandler.getInquiry(this, new Request_Inquiry(cat_id, ""), new ApiCallbacks.getInquiryInterface() {
             @Override
@@ -55,37 +95,36 @@ public class CatLevel2Activity extends AppCompatActivity {
             public void getInquirySucceeded(Response_Inquiry response) {
 
                 if (response.getHas_url() == 1) {
-                    ApiHandler.getCatLevel1_Goods(CatLevel2Activity.this, response.getUrl(), new ApiCallbacks.getCatLevel1_Goods() {
-                        @Override
-                        public void getCatLevel0_GoodsFailed() {
-
-                        }
-
-                        @Override
-                        public void getCatLevel0_GoodsSucceeded(Response_Others response) {
-
-
-                            GoodsAdapter GoodsAdapter = new GoodsAdapter(response.getResult(), CatLevel2Activity.this, new GoodsAdapter.OnItemClickListener() {
-                                @Override
-                                public void onItemClick(Response_Others_Result item, int position) {
-
-                                }
-                            });
-
-
-                            LinearLayoutManager mLayoutManager = new LinearLayoutManager(CatLevel2Activity.this);
-                            rv_goodsList.setLayoutManager(mLayoutManager);
-                            rv_goodsList.setItemAnimator(new DefaultItemAnimator());
-                            rv_goodsList.setAdapter(GoodsAdapter);
-
-                            rv_goodsList.setItemViewCacheSize(200);
-                            rv_goodsList.setDrawingCacheEnabled(true);
-                            rv_goodsList.setDrawingCacheQuality(View.DRAWING_CACHE_QUALITY_LOW);
-
-                        }
-                    });
+                    getTorob(response.getUrl());
+                    base_url = response.getUrl();
                 }
             }
         });
+
+
+    }
+
+    void getTorob(String url) {
+
+        ApiHandler.getCatLevel1_Goods(CatLevel2Activity.this, url, new ApiCallbacks.getCatLevel1_Goods() {
+            @Override
+            public void getCatLevel0_GoodsFailed() {
+
+            }
+
+            @Override
+            public void getCatLevel0_GoodsSucceeded(Response_Others response) {
+
+                food.addAll(response.getResult());
+
+                GoodsAdapter.notifyDataSetChanged();
+
+
+                base_url = base_url.replace("page=" + page, "page=" + String.valueOf(page + 1));
+                page++;
+            }
+        });
+
+
     }
 }

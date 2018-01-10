@@ -6,7 +6,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -14,11 +13,8 @@ import com.bumptech.glide.request.RequestOptions;
 
 import java.util.List;
 
-import ir.chichand.chichand.Models.Responses.Response_Categories;
-import ir.chichand.chichand.Models.Responses.Response_Others;
 import ir.chichand.chichand.Models.Responses.Response_Others_Result;
 import ir.chichand.chichand.R;
-import ir.chichand.chichand.Tools.ScreenUtils;
 
 /**
  * Created by tinabehnoud on 8/4/17.
@@ -29,12 +25,14 @@ public class GoodsAdapter extends RecyclerView.Adapter<GoodsAdapter.MyViewHolder
 
     private List<Response_Others_Result> categoriesList;
     private Context context;
-    OnItemClickListener _listener;
+    OnItemClickListener clickListener;
+    OnListEndedListener listEndedListener;
 
-    public GoodsAdapter(List<Response_Others_Result> categoriesList, Context context, OnItemClickListener listener) {
+    public GoodsAdapter(List<Response_Others_Result> categoriesList, Context context, OnItemClickListener listener, OnListEndedListener listendedlistener) {
         this.categoriesList = categoriesList;
         this.context = context;
-        this._listener = listener;
+        this.clickListener = listener;
+        this.listEndedListener = listendedlistener;
     }
 
 
@@ -50,7 +48,7 @@ public class GoodsAdapter extends RecyclerView.Adapter<GoodsAdapter.MyViewHolder
     public void onBindViewHolder(final MyViewHolder myViewHolder, int i) {
 
         Response_Others_Result category = this.categoriesList.get(i);
-        myViewHolder.bind(category, _listener);
+        myViewHolder.bind(category, clickListener);
 
         myViewHolder.tv_storeName.setText(category.getShop_name());
         myViewHolder.tv_price.setText(category.getPrice() + " ریال");
@@ -66,6 +64,10 @@ public class GoodsAdapter extends RecyclerView.Adapter<GoodsAdapter.MyViewHolder
                 .apply(requestOptions)
                 .into(myViewHolder.iv_img);
 
+        if (i == this.categoriesList.size() - 1) {
+
+            listEndedListener.onListEnded();
+        }
     }
 
     @Override
@@ -107,5 +109,10 @@ public class GoodsAdapter extends RecyclerView.Adapter<GoodsAdapter.MyViewHolder
     public interface OnItemClickListener {
         void onItemClick(Response_Others_Result item, int position);
     }
+
+    public interface OnListEndedListener {
+        void onListEnded();
+    }
+
 
 }
