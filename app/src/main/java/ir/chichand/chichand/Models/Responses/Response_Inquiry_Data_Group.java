@@ -16,9 +16,13 @@ public class Response_Inquiry_Data_Group implements Serializable {
     @SerializedName("group")
     private int group;
 
-    public Response_Inquiry_Data_Group(String group_title, int group) {
+    @SerializedName("group_currency")
+    private String group_currency;
+
+    public Response_Inquiry_Data_Group(String group_title, int group, String group_currency) {
         this.group_title = group_title;
         this.group = group;
+        this.group_currency = group_currency;
     }
 
     public String getGroup_title() {
@@ -35,5 +39,13 @@ public class Response_Inquiry_Data_Group implements Serializable {
 
     public void setGroup(int group) {
         this.group = group;
+    }
+
+    public String getGroup_currency() {
+        return group_currency;
+    }
+
+    public void setGroup_currency(String group_currency) {
+        this.group_currency = group_currency;
     }
 }

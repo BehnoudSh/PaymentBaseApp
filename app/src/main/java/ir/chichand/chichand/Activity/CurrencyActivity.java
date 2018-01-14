@@ -83,10 +83,11 @@ public class CurrencyActivity extends AppCompatActivity {
 
                     LinearLayout linear = (LinearLayout) groupView.findViewById(R.id.parent);
                     TextView groupTitle = (TextView) groupView.findViewById(R.id.tv_activity_currency_groups_title);
+                    TextView groupUnit = (TextView) groupView.findViewById(R.id.tv_activity_currency_groups_unitName);
 
                     int currentGroup = 0;
-                    for (Response_Inquiry_Data item : group
-                            ) {
+
+                    for (Response_Inquiry_Data item : group) {
 
                         View layout = CurrencyActivity.this.getLayoutInflater().inflate(R.layout.item_currency_group, null);
 
@@ -111,6 +112,7 @@ public class CurrencyActivity extends AppCompatActivity {
                         if (groupSpec != null) {
                             if (groupSpec.getGroup() == currentGroup) {
                                 groupTitle.setText(groupSpec.getGroup_title());
+                                groupUnit.setText("واحد: " + groupSpec.getGroup_currency());
                             }
                         }
                     }
