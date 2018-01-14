@@ -1,4 +1,4 @@
-package ir.chichand.chichand.Models.Reqeusts;
+package ir.chichand.chichand.Models.Requests;
 
 import com.google.gson.annotations.SerializedName;
 

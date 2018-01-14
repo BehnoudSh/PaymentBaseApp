@@ -11,7 +11,6 @@ import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,8 +18,8 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
-import ir.chichand.chichand.Activity.CatLevel2Activity;
-import ir.chichand.chichand.Adapters.CategoriesAdapter;
+import ir.chichand.chichand.Activity.GoodsActivity;
+import ir.chichand.chichand.Adapters.CatLevel1CategoriesAdapter;
 import ir.chichand.chichand.Models.Responses.Response_Categories;
 import ir.chichand.chichand.R;
 import ir.chichand.chichand.Tools.PublicClass;
@@ -90,13 +89,13 @@ public class CatLevel1CategoriesFragment extends Fragment {
         }
 
 
-        CategoriesAdapter categories_level_1Adapter = new CategoriesAdapter(temp, getActivity(), new CategoriesAdapter.OnItemClickListener() {
+        CatLevel1CategoriesAdapter categories_level_1Adapter = new CatLevel1CategoriesAdapter(temp, getActivity(), new CatLevel1CategoriesAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(Response_Categories item, int position) {
 
                 int cat_id = Integer.parseInt(item.getCat_id());
 
-                Intent intent = new Intent(getActivity(), CatLevel2Activity.class);
+                Intent intent = new Intent(getActivity(), GoodsActivity.class);
                 intent.putExtra("cat_id", cat_id);
                 startActivity(intent);
 

@@ -16,21 +16,20 @@ import java.util.List;
 
 import ir.chichand.chichand.Models.Responses.Response_Categories;
 import ir.chichand.chichand.R;
-import ir.chichand.chichand.Tools.PublicClass;
 import ir.chichand.chichand.Tools.ScreenUtils;
 
 /**
  * Created by tinabehnoud on 8/4/17.
  */
 
-public class CategoriesAdapter extends RecyclerView.Adapter<CategoriesAdapter.MyViewHolder> {
+public class CatLevel1CategoriesAdapter extends RecyclerView.Adapter<CatLevel1CategoriesAdapter.MyViewHolder> {
 
 
     private List<Response_Categories> categoriesList;
     private Context context;
     OnItemClickListener _listener;
 
-    public CategoriesAdapter(List<Response_Categories> categoriesList, Context context, OnItemClickListener listener) {
+    public CatLevel1CategoriesAdapter(List<Response_Categories> categoriesList, Context context, OnItemClickListener listener) {
         this.categoriesList = categoriesList;
         this.context = context;
         this._listener = listener;
@@ -99,7 +98,7 @@ public class CategoriesAdapter extends RecyclerView.Adapter<CategoriesAdapter.My
         }
 
 
-        public void bind(final Response_Categories item, final CategoriesAdapter.OnItemClickListener listener) {
+        public void bind(final Response_Categories item, final CatLevel1CategoriesAdapter.OnItemClickListener listener) {
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override

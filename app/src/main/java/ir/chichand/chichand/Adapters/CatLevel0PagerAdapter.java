@@ -199,7 +199,7 @@ public class CatLevel0PagerAdapter extends PagerAdapter {
         void onItemClick(Response_Categories item);
     }
 
-//    public void bind(final Response_Categories item, final CategoriesAdapter.OnItemClickListener listener) {
+//    public void bind(final Response_Categories item, final CatLevel1CategoriesAdapter.OnItemClickListener listener) {
 //
 //        itemView.setOnClickListener(new View.OnClickListener() {
 //            @Override

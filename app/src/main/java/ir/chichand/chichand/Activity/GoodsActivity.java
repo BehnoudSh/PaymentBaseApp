@@ -1,25 +1,20 @@
 package ir.chichand.chichand.Activity;
 
 import android.content.Context;
-import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.View;
-import android.widget.LinearLayout;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import ir.chichand.chichand.Adapters.CategoriesAdapter;
 import ir.chichand.chichand.Adapters.GoodsAdapter;
-import ir.chichand.chichand.Models.Reqeusts.Request_Inquiry;
-import ir.chichand.chichand.Models.Responses.Response_Categories;
+import ir.chichand.chichand.Models.Requests.Request_Inquiry;
 import ir.chichand.chichand.Models.Responses.Response_Inquiry;
 import ir.chichand.chichand.Models.Responses.Response_Others;
 import ir.chichand.chichand.Models.Responses.Response_Others_Result;
@@ -28,7 +23,7 @@ import ir.chichand.chichand.NetworkServices.ApiHandler;
 import ir.chichand.chichand.R;
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
-public class CatLevel2Activity extends AppCompatActivity {
+public class GoodsActivity extends AppCompatActivity {
 
     int cat_id = 0;
 
@@ -36,7 +31,7 @@ public class CatLevel2Activity extends AppCompatActivity {
     RecyclerView rv_goodsList;
 
     GoodsAdapter GoodsAdapter;
-    LinearLayoutManager mLayoutManager = new LinearLayoutManager(CatLevel2Activity.this);
+    LinearLayoutManager mLayoutManager = new LinearLayoutManager(GoodsActivity.this);
     List<Response_Others_Result> food = new ArrayList<>();
 
     String base_url = "";
@@ -58,7 +53,7 @@ public class CatLevel2Activity extends AppCompatActivity {
         getInquiry();
 
 
-        GoodsAdapter = new GoodsAdapter(food, CatLevel2Activity.this, new GoodsAdapter.OnItemClickListener() {
+        GoodsAdapter = new GoodsAdapter(food, GoodsActivity.this, new GoodsAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(Response_Others_Result item, int position) {
 
@@ -106,7 +101,7 @@ public class CatLevel2Activity extends AppCompatActivity {
 
     void getTorob(String url) {
 
-        ApiHandler.getCatLevel1_Goods(CatLevel2Activity.this, url, new ApiCallbacks.getCatLevel1_Goods() {
+        ApiHandler.getCatLevel1_Goods(GoodsActivity.this, url, new ApiCallbacks.getCatLevel1_Goods() {
             @Override
             public void getCatLevel0_GoodsFailed() {
 

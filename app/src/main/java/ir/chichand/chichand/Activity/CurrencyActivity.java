@@ -18,7 +18,7 @@ import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import ir.chichand.chichand.Models.Reqeusts.Request_Inquiry;
+import ir.chichand.chichand.Models.Requests.Request_Inquiry;
 import ir.chichand.chichand.Models.Responses.Response_Inquiry;
 import ir.chichand.chichand.Models.Responses.Response_Inquiry_Data;
 import ir.chichand.chichand.Models.Responses.Response_Inquiry_Data_Group;

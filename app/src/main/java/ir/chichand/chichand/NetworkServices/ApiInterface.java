@@ -3,7 +3,7 @@ package ir.chichand.chichand.NetworkServices;
 
 import java.util.List;
 
-import ir.chichand.chichand.Models.Reqeusts.Request_Inquiry;
+import ir.chichand.chichand.Models.Requests.Request_Inquiry;
 import ir.chichand.chichand.Models.Responses.Response_Categories;
 import ir.chichand.chichand.Models.Responses.Response_Inquiry;
 import ir.chichand.chichand.Models.Responses.Response_Others;
