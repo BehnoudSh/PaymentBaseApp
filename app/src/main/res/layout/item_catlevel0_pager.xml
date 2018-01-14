@@ -15,18 +15,18 @@
         <RelativeLayout
             android:id="@+id/holder1"
             android:layout_width="0dp"
-
             android:layout_height="match_parent"
             android:layout_margin="5dp"
-            android:layout_weight="1">
+            android:layout_weight="1"
+            android:padding="5dp">
 
             <ImageView
                 android:id="@+id/item1Img"
-                android:padding="10dp"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_above="@+id/item1Title"
-                android:scaleType="centerInside" />
+                android:padding="20dp"
+                android:scaleType="fitCenter" />
 
             <TextView
                 android:id="@+id/item1Title"
@@ -45,14 +45,16 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_margin="5dp"
-            android:layout_weight="1">
+            android:layout_weight="1"
+            android:padding="5dp">
 
             <ImageView
                 android:id="@+id/item2Img"
-                android:padding="10dp"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_above="@+id/item2Title" />
+                android:layout_above="@+id/item2Title"
+                android:padding="20dp"
+                android:scaleType="fitCenter" />
 
             <TextView
                 android:id="@+id/item2Title"
@@ -78,14 +80,16 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_margin="5dp"
-            android:layout_weight="1">
+            android:layout_weight="1"
+            android:padding="5dp">
 
             <ImageView
                 android:id="@+id/item3Img"
-                android:padding="10dp"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_above="@+id/item3Title" />
+                android:layout_above="@+id/item3Title"
+                android:padding="20dp"
+                android:scaleType="fitCenter" />
 
             <TextView
                 android:id="@+id/item3Title"
@@ -103,14 +107,16 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_margin="5dp"
-            android:layout_weight="1">
+            android:layout_weight="1"
+            android:padding="5dp">
 
             <ImageView
                 android:id="@+id/item4Img"
-                android:padding="10dp"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_above="@+id/item4Title" />
+                android:layout_above="@+id/item4Title"
+                android:padding="20dp"
+                android:scaleType="fitCenter" />
 
             <TextView
                 android:id="@+id/item4Title"
