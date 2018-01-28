@@ -29,7 +29,8 @@
             android:name=".Activity.CurrencyActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.NoActionBar" />
-        <activity android:name=".Activity.GoodsActivity"></activity>
+        <activity android:name=".Activity.GoodsActivity" />
+        <activity android:name=".Activity.NewsActivity"></activity>
     </application>
 
 </manifest>

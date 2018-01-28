@@ -25,9 +25,6 @@ import ir.chichand.chichand.R;
 import ir.chichand.chichand.Tools.PublicClass;
 
 
-/**
- * A simple {@link Fragment} subclass.
- */
 public class CatLevel1CategoriesFragment extends Fragment {
 
     @BindView(R.id.rv_fragment_cat_level1_categoriesList)
@@ -54,6 +51,8 @@ public class CatLevel1CategoriesFragment extends Fragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        int catlevel0_id = getArguments().getInt("catlevel0_id");
+
         StaggeredGridLayoutManager mLayoutManager = new StaggeredGridLayoutManager(2,
                 StaggeredGridLayoutManager.VERTICAL);
 
@@ -63,22 +62,15 @@ public class CatLevel1CategoriesFragment extends Fragment {
                 ) {
             if (resp.getCat_level() != null)
 
-                if (getArguments().getInt("catlevel0_id") == 0)
-
-                {
-
+                if (catlevel0_id == 0) {
                     if (0 < Integer.parseInt(resp.getCat_id()) && Integer.parseInt(resp.getCat_id()) < 1000) {
                         if (resp.getCat_level().equals("1")) {
                             temp.add(resp);
                         }
                     }
-
                 }
 
-            if (getArguments().getInt("catlevel0_id") == 2000)
-
-            {
-
+            if (catlevel0_id == 2000) {
                 if (2000 < Integer.parseInt(resp.getCat_id()) && Integer.parseInt(resp.getCat_id()) < 3000) {
                     if (resp.getCat_level().equals("1")) {
                         temp.add(resp);
@@ -92,6 +84,8 @@ public class CatLevel1CategoriesFragment extends Fragment {
         CatLevel1CategoriesAdapter categories_level_1Adapter = new CatLevel1CategoriesAdapter(temp, getActivity(), new CatLevel1CategoriesAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(Response_Categories item, int position) {
+
+                //todo inke cat level haye 1 be koja beravand
 
                 int cat_id = Integer.parseInt(item.getCat_id());
 

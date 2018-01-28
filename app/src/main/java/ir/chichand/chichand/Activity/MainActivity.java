@@ -117,6 +117,11 @@ public class MainActivity extends AppCompatActivity {
                             Intent intent = new Intent(MainActivity.this, CurrencyActivity.class);
                             startActivity(intent);
 
+                        } else if (cat_id == 3000) {
+
+                            Intent intent = new Intent(MainActivity.this, NewsActivity.class);
+                            startActivity(intent);
+
                         } else {
 
                             FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
