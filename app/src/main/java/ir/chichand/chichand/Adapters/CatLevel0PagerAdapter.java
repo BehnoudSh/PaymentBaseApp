@@ -113,7 +113,7 @@ public class CatLevel0PagerAdapter extends PagerAdapter {
                     _listener.onItemClick(hashMap.get(position).get(0));
                 }
             });
-            Holder1.setBackgroundResource(R.drawable.bg_rounded_holder1);
+            Holder1.setBackgroundResource(R.drawable.bg_rounded_color1);
 
 
             Title2.setText(hashMap.get(position).get(1).getPersian_title());
@@ -128,7 +128,7 @@ public class CatLevel0PagerAdapter extends PagerAdapter {
                     _listener.onItemClick(hashMap.get(position).get(1));
                 }
             });
-            Holder2.setBackgroundResource(R.drawable.bg_rounded_holder2);
+            Holder2.setBackgroundResource(R.drawable.bg_rounded_color2);
 
 
             Title3.setText(hashMap.get(position).get(2).getPersian_title());
@@ -143,7 +143,7 @@ public class CatLevel0PagerAdapter extends PagerAdapter {
                     _listener.onItemClick(hashMap.get(position).get(2));
                 }
             });
-            Holder3.setBackgroundResource(R.drawable.bg_rounded_holder3);
+            Holder3.setBackgroundResource(R.drawable.bg_rounded_color3);
 
 
             Title4.setText(hashMap.get(position).get(3).getPersian_title());
@@ -158,7 +158,7 @@ public class CatLevel0PagerAdapter extends PagerAdapter {
                     _listener.onItemClick(hashMap.get(position).get(3));
                 }
             });
-            Holder4.setBackgroundResource(R.drawable.bg_rounded_holder4);
+            Holder4.setBackgroundResource(R.drawable.bg_rounded_color4);
 
         } catch (Exception ex) {
         }
