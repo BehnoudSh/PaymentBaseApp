@@ -56,13 +56,12 @@
     <color name="alien_green">#6CC417</color>
 
 
-
     <color name="holder1">#C2185B</color>
     <color name="holder2">#4CAF50</color>
     <color name="holder3">#CDDC39</color>
     <color name="holder4">#009688</color>
-
-
+    <color name="holder5">#FFB74D</color>
+    <color name="holder6">#90A4AE</color>
 
 
     <!-- Black Transparent -->
@@ -140,12 +139,10 @@
     <color name="transparent_white_percent_95">#F2ffffff</color>
 
 
-
     <color name="main_bg_color">#fafafa</color>
 
 
     <color name="amirhosein_favorite">#ebebeb</color>
-
 
 
 </resources>

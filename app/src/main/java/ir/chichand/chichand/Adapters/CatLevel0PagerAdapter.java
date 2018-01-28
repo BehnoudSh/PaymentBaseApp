@@ -1,11 +1,15 @@
 package ir.chichand.chichand.Adapters;
 
+import android.app.Activity;
 import android.content.Context;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.view.PagerAdapter;
+import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -18,16 +22,17 @@ import java.util.List;
 
 import ir.chichand.chichand.Models.Responses.Response_Categories;
 import ir.chichand.chichand.R;
+import ir.chichand.chichand.Tools.ScreenUtils;
 
 public class CatLevel0PagerAdapter extends PagerAdapter {
 
     Context _context;
     LayoutInflater mLayoutInflater;
     HashMap<Integer, List<Response_Categories>> hashMap;
-    List<Response_Categories> daste4tayi;
+    List<Response_Categories> dasteNtayi;
     int hashmapIndex = 0;
     OnItemClickListener _listener;
-
+    int n = 0;
 
     public CatLevel0PagerAdapter(Context context, List<Response_Categories> allitems, OnItemClickListener _listener) {
 
@@ -39,25 +44,31 @@ public class CatLevel0PagerAdapter extends PagerAdapter {
 
         hashMap = new HashMap<Integer, List<Response_Categories>>();
 
+        if (getScreenSizeInInch() > 5)
+            n = 6;
+        else
+            n = 4;
+
+
         for (int i = 0; i < allitems.size(); i++) {
 
-            if ((i % 4) == 0) {
-                daste4tayi = new ArrayList<>();
+            if ((i % n) == 0) {
+                dasteNtayi = new ArrayList<>();
             }
 
-            daste4tayi.add(allitems.get(i));
+            dasteNtayi.add(allitems.get(i));
 
-            if ((i % 4) == 3) {
-                hashMap.put(hashmapIndex, daste4tayi);
+            if ((i % n) == (n - 1)) {
+                hashMap.put(hashmapIndex, dasteNtayi);
                 hashmapIndex++;
             }
 
-            if (daste4tayi.size() < 4) {
-                hashMap.put(hashmapIndex, daste4tayi);
+            if (dasteNtayi.size() < n) {
+                hashMap.put(hashmapIndex, dasteNtayi);
             }
 
             // if (i == allitems.size() - 1)
-            //     hashMap.put(hashmapIndex, daste4tayi);
+            //     hashMap.put(hashmapIndex, dasteNtayi);
 
         }
     }
@@ -79,7 +90,9 @@ public class CatLevel0PagerAdapter extends PagerAdapter {
         RelativeLayout Holder2 = (RelativeLayout) itemView.findViewById(R.id.holder2);
         RelativeLayout Holder3 = (RelativeLayout) itemView.findViewById(R.id.holder3);
         RelativeLayout Holder4 = (RelativeLayout) itemView.findViewById(R.id.holder4);
-
+        RelativeLayout Holder5 = (RelativeLayout) itemView.findViewById(R.id.holder5);
+        RelativeLayout Holder6 = (RelativeLayout) itemView.findViewById(R.id.holder6);
+        LinearLayout Holder5_6Holder = (LinearLayout) itemView.findViewById(R.id.holder5_6_holder);
 
         TextView Title1 = (TextView) itemView.findViewById(R.id.item1Title);
         ImageView Image1 = (ImageView) itemView.findViewById(R.id.item1Img);
@@ -89,6 +102,10 @@ public class CatLevel0PagerAdapter extends PagerAdapter {
         ImageView Image3 = (ImageView) itemView.findViewById(R.id.item3Img);
         TextView Title4 = (TextView) itemView.findViewById(R.id.item4Title);
         ImageView Image4 = (ImageView) itemView.findViewById(R.id.item4Img);
+        TextView Title5 = (TextView) itemView.findViewById(R.id.item5Title);
+        ImageView Image5 = (ImageView) itemView.findViewById(R.id.item5Img);
+        TextView Title6 = (TextView) itemView.findViewById(R.id.item6Title);
+        ImageView Image6 = (ImageView) itemView.findViewById(R.id.item6Img);
 
         try {
 
@@ -156,6 +173,42 @@ public class CatLevel0PagerAdapter extends PagerAdapter {
             });
             Holder4.setBackgroundResource(R.drawable.bg_rounded_color4);
 
+
+            if (n == 6) {
+                Title5.setText(hashMap.get(position).get(4).getPersian_title());
+                Glide.with(_context)
+                        .applyDefaultRequestOptions(requestOptions)
+                        .load(hashMap.get(position).get(4).getCat_icon())
+                        .apply(requestOptions)
+                        .into(Image5);
+                Holder5.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        _listener.onItemClick(hashMap.get(position).get(4));
+                    }
+                });
+                Holder5.setBackgroundResource(R.drawable.bg_rounded_color5);
+
+
+                Title6.setText(hashMap.get(position).get(5).getPersian_title());
+                Glide.with(_context)
+                        .applyDefaultRequestOptions(requestOptions)
+                        .load(hashMap.get(position).get(5).getCat_icon())
+                        .apply(requestOptions)
+                        .into(Image6);
+                Holder6.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        _listener.onItemClick(hashMap.get(position).get(5));
+                    }
+                });
+                Holder6.setBackgroundResource(R.drawable.bg_rounded_color6);
+            } else {
+
+                Holder5_6Holder.setVisibility(View.GONE);
+
+            }
+
         } catch (Exception ex) {
         }
 
@@ -197,6 +250,18 @@ public class CatLevel0PagerAdapter extends PagerAdapter {
 //            }
 //        });
 //    }
+
+    double getScreenSizeInInch() {
+
+        DisplayMetrics dm = new DisplayMetrics();
+        ((Activity) _context).getWindowManager().getDefaultDisplay().getMetrics(dm);
+        double x = Math.pow(ScreenUtils.ScreenSizesInPixel.x / dm.xdpi, 2);
+        double y = Math.pow(ScreenUtils.ScreenSizesInPixel.y / dm.ydpi, 2);
+        return Math.sqrt(x + y);
+
+
+    }
+
 
 }
 

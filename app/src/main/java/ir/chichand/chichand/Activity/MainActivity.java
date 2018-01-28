@@ -104,6 +104,9 @@ public class MainActivity extends AppCompatActivity {
                     if (resp.getCat_level() != null)
                         if (resp.getCat_level().equals("0")) {
                             temp.add(resp);
+                            temp.add(resp);
+                            temp.add(resp);
+                            temp.add(resp);
 
                         }
                 }
