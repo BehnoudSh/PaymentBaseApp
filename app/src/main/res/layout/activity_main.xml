@@ -39,11 +39,11 @@
             android:id="@+id/indicator"
             android:layout_width="match_parent"
             android:layout_height="20dp"
-            android:gravity="center"
-            app:ci_gravity="center"
             android:layout_alignParentBottom="true"
+            android:gravity="center"
             app:ci_drawable="@color/black"
-            app:ci_drawable_unselected="@color/black" />
+            app:ci_drawable_unselected="@color/black"
+            app:ci_gravity="center" />
 
 
     </RelativeLayout>
@@ -52,27 +52,21 @@
     <RelativeLayout
         android:id="@+id/rl_activity_main_adHolder"
         android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@color/transparent_black_percent_60">
 
-        android:layout_height="100dp"
-        android:layout_alignParentBottom="true">
-
-        <ImageView
+        <TextView
+            android:id="@+id/tv_activity_main_quote"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:scaleType="centerCrop"
-            android:src="@color/air_force_blue" />
-
-
-        <!--<TextView-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_alignParentBottom="true"-->
-        <!--android:layout_alignParentRight="true"-->
-        <!--android:layout_margin="10dp"-->
-        <!--android:background="@color/transparent_black_hex_4"-->
-        <!--android:padding="5dp"-->
-        <!--android:text="تنوعی از ابزارهای ایمنی"-->
-        <!--android:textColor="@color/white" />-->
+            android:layout_height="wrap_content"
+            android:ellipsize="marquee"
+            android:gravity="center_vertical"
+            android:marqueeRepeatLimit="-1"
+            android:padding="5dp"
+            android:singleLine="true"
+            android:textColor="@color/white"
+            android:textSize="11dp" />
 
 
     </RelativeLayout>
@@ -81,7 +75,6 @@
         android:id="@+id/fl_activity_main_fragmentHolder"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-
         android:animateLayoutChanges="true">
 
     </FrameLayout>

@@ -16,24 +16,40 @@
             android:id="@+id/holder1"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_margin="5dp"
+            android:layout_margin="15dp"
             android:layout_weight="1"
             android:padding="5dp">
 
-            <ImageView
-                android:id="@+id/item1Img"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_centerInParent="true"
+                android:layout_height="wrap_content"
 
-                android:padding="50dp"
-                android:scaleType="fitCenter" />
+                android:orientation="horizontal">
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.9" />
+
+                <ImageView
+                    android:id="@+id/item1Img"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1.2"
+                    android:scaleType="fitCenter" />
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.9" />
+            </LinearLayout>
 
             <TextView
                 android:id="@+id/item1Title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/item1Img"
+                android:layout_alignParentBottom="true"
+                android:layout_marginBottom="5dp"
                 android:gravity="center"
                 android:textColor="@color/gray_dolphin" />
 
@@ -44,23 +60,40 @@
             android:id="@+id/holder2"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_margin="5dp"
+            android:layout_margin="15dp"
             android:layout_weight="1"
             android:padding="5dp">
 
-            <ImageView
-                android:id="@+id/item2Img"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_above="@+id/item2Title"
-                android:padding="50dp"
-                android:scaleType="fitCenter" />
+                android:layout_height="wrap_content"
+
+                android:orientation="horizontal">
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.9" />
+
+                <ImageView
+                    android:id="@+id/item2Img"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1.2"
+                    android:scaleType="fitCenter" />
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.9" />
+            </LinearLayout>
 
             <TextView
                 android:id="@+id/item2Title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
+                android:layout_marginBottom="5dp"
                 android:gravity="center"
                 android:textColor="@color/gray_dolphin" />
 
@@ -79,23 +112,40 @@
             android:id="@+id/holder3"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_margin="5dp"
+            android:layout_margin="15dp"
             android:layout_weight="1"
             android:padding="5dp">
 
-            <ImageView
-                android:id="@+id/item3Img"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_above="@+id/item3Title"
-                android:padding="50dp"
-                android:scaleType="fitCenter" />
+                android:layout_height="wrap_content"
+
+                android:orientation="horizontal">
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.9" />
+
+                <ImageView
+                    android:id="@+id/item3Img"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1.2"
+                    android:scaleType="fitCenter" />
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.9" />
+            </LinearLayout>
 
             <TextView
                 android:id="@+id/item3Title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
+                android:layout_marginBottom="5dp"
                 android:gravity="center"
                 android:textColor="@color/gray_dolphin" />
 
@@ -106,23 +156,40 @@
             android:id="@+id/holder4"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_margin="5dp"
+            android:layout_margin="15dp"
             android:layout_weight="1"
             android:padding="5dp">
 
-            <ImageView
-                android:id="@+id/item4Img"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_above="@+id/item4Title"
-                android:padding="50dp"
-                android:scaleType="fitCenter" />
+                android:layout_height="wrap_content"
+
+                android:orientation="horizontal">
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.9" />
+
+                <ImageView
+                    android:id="@+id/item4Img"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1.2"
+                    android:scaleType="fitCenter" />
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.9" />
+            </LinearLayout>
 
             <TextView
                 android:id="@+id/item4Title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
+                android:layout_marginBottom="5dp"
                 android:gravity="center"
                 android:textColor="@color/gray_dolphin" />
 

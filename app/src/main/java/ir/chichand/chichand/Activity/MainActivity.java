@@ -12,6 +12,7 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.View;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -44,6 +45,9 @@ public class MainActivity extends AppCompatActivity {
     @BindView(R.id.indicator)
     CircleIndicator indicator;
 
+    @BindView(R.id.tv_activity_main_quote)
+    TextView tv_quote;
+
 
     @Override
     protected void attachBaseContext(Context newBase) {
@@ -58,14 +62,16 @@ public class MainActivity extends AppCompatActivity {
 
         getCategories();
 
-        setInitialSizes();
+        tv_quote.setText("ارغوان شاخه هم‌خون جدامانده‌ی من، آسمان تو چه رنگ است امروز، آفتابی است هوا یا گرفته است هنوز؟");
+        tv_quote.setSelected(true);
+        //setInitialSizes();
 
 
     }
 
 
     void setInitialSizes() {
-        int hieght = (int) ((9 * ScreenUtils.ScreenSizesInPixel.x) / 16);
+        int hieght = (int) ((3 * ScreenUtils.ScreenSizesInPixel.x) / 4);
         RelativeLayout.LayoutParams layoutParams =
                 new RelativeLayout.LayoutParams((int) ScreenUtils.ScreenSizesInPixel.x, (int) hieght);
         layoutParams.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
