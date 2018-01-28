@@ -6,7 +6,11 @@ import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.KeyEvent;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
+import android.widget.EditText;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,9 +34,12 @@ public class GoodsActivity extends AppCompatActivity {
     @BindView(R.id.rv_activity_cat_level2_List)
     RecyclerView rv_goodsList;
 
+    @BindView(R.id.et_activity_cat_level2_search)
+    EditText et_search;
+
     GoodsAdapter GoodsAdapter;
     LinearLayoutManager mLayoutManager = new LinearLayoutManager(GoodsActivity.this);
-    List<Response_Others_Result> food = new ArrayList<>();
+    List<Response_Others_Result> responseList = new ArrayList<>();
 
     String base_url = "";
 
@@ -50,10 +57,73 @@ public class GoodsActivity extends AppCompatActivity {
         ButterKnife.bind(this);
         cat_id = getIntent().getIntExtra("cat_id", 0);
 
-        getInquiry();
+        getInquiry("");
+
+        populateRecycler();
+
+        et_search.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                if (actionId == EditorInfo.IME_ACTION_SEARCH) {
+                    getInquiry(v.getText().toString());
+                }
+                return false;
+            }
+        });
+    }
+
+    void getInquiry(String searchword) {
+
+        if (responseList.size() != 0) {
+            responseList.clear();
+            GoodsAdapter.notifyDataSetChanged();
+        }
+
+        ApiHandler.getInquiry(this, new Request_Inquiry(cat_id, searchword), new ApiCallbacks.getInquiryInterface() {
+            @Override
+            public void onGetInquiryFailed() {
+
+            }
+
+            @Override
+            public void onGetInquirySucceeded(Response_Inquiry response) {
+
+                if (response.getHas_url() == 1) {
+                    getTorob(response.getUrl());
+                    base_url = response.getUrl();
+                }
+            }
+        });
 
 
-        GoodsAdapter = new GoodsAdapter(food, GoodsActivity.this, new GoodsAdapter.OnItemClickListener() {
+    }
+
+    void getTorob(String url) {
+
+        ApiHandler.getCatLevel1_Goods(GoodsActivity.this, url, new ApiCallbacks.getCatLevel1GoodsInterface() {
+            @Override
+            public void onGetCatLevel0_GoodsFailed() {
+
+            }
+
+            @Override
+            public void onGetCatLevel0_GoodsSucceeded(Response_Others response) {
+
+                responseList.addAll(response.getResult());
+
+                GoodsAdapter.notifyDataSetChanged();
+
+
+                base_url = base_url.replace("page=" + page, "page=" + String.valueOf(page + 1));
+                page++;
+            }
+        });
+
+
+    }
+
+    void populateRecycler() {
+        GoodsAdapter = new GoodsAdapter(responseList, GoodsActivity.this, new GoodsAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(Response_Others_Result item, int position) {
 
@@ -72,54 +142,6 @@ public class GoodsActivity extends AppCompatActivity {
         rv_goodsList.setItemViewCacheSize(200);
         rv_goodsList.setDrawingCacheEnabled(true);
         rv_goodsList.setDrawingCacheQuality(View.DRAWING_CACHE_QUALITY_LOW);
-
-
-    }
-
-
-    void getInquiry() {
-
-
-        ApiHandler.getInquiry(this, new Request_Inquiry(cat_id, ""), new ApiCallbacks.getInquiryInterface() {
-            @Override
-            public void getInquiryFailed() {
-
-            }
-
-            @Override
-            public void getInquirySucceeded(Response_Inquiry response) {
-
-                if (response.getHas_url() == 1) {
-                    getTorob(response.getUrl());
-                    base_url = response.getUrl();
-                }
-            }
-        });
-
-
-    }
-
-    void getTorob(String url) {
-
-        ApiHandler.getCatLevel1_Goods(GoodsActivity.this, url, new ApiCallbacks.getCatLevel1_Goods() {
-            @Override
-            public void getCatLevel0_GoodsFailed() {
-
-            }
-
-            @Override
-            public void getCatLevel0_GoodsSucceeded(Response_Others response) {
-
-                food.addAll(response.getResult());
-
-                GoodsAdapter.notifyDataSetChanged();
-
-
-                base_url = base_url.replace("page=" + page, "page=" + String.valueOf(page + 1));
-                page++;
-            }
-        });
-
 
     }
 }

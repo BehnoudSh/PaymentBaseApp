@@ -3,6 +3,7 @@ package ir.chichand.chichand.NetworkServices;
 import java.util.List;
 
 import ir.chichand.chichand.Models.Responses.Response_Categories;
+import ir.chichand.chichand.Models.Responses.Response_Config;
 import ir.chichand.chichand.Models.Responses.Response_Inquiry;
 import ir.chichand.chichand.Models.Responses.Response_Others;
 
@@ -13,23 +14,31 @@ import ir.chichand.chichand.Models.Responses.Response_Others;
 public class ApiCallbacks {
 
     public interface getCategoriesInterface {
-        void getAllCategoriesFailed();
 
-        void getAllCategoriesSucceeded(List<Response_Categories> response);
+        void onGetAllCategoriesFailed();
+
+        void onGetAllCategoriesSucceeded(List<Response_Categories> response);
     }
 
     public interface getInquiryInterface {
 
-        void getInquiryFailed();
+        void onGetInquiryFailed();
 
-        void getInquirySucceeded(Response_Inquiry response);
+        void onGetInquirySucceeded(Response_Inquiry response);
     }
 
-    public interface getCatLevel1_Goods {
+    public interface getCatLevel1GoodsInterface {
 
-        void getCatLevel0_GoodsFailed();
+        void onGetCatLevel0_GoodsFailed();
 
-        void getCatLevel0_GoodsSucceeded(Response_Others response);
+        void onGetCatLevel0_GoodsSucceeded(Response_Others response);
+    }
+
+    public interface getConfigInterface {
+
+        void onGetConfigFailed();
+
+        void onGetConfigSucceeded(Response_Config response);
 
     }
 

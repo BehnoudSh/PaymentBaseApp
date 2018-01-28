@@ -9,6 +9,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import butterknife.ButterKnife;
+import ir.chichand.chichand.Models.Responses.Response_Config;
+import ir.chichand.chichand.NetworkServices.ApiCallbacks;
+import ir.chichand.chichand.NetworkServices.ApiHandler;
 import ir.chichand.chichand.R;
 import ir.chichand.chichand.Tools.PublicClass;
 import ir.chichand.chichand.Tools.ScreenUtils;
@@ -16,9 +19,7 @@ import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 public class SplashActivity extends AppCompatActivity {
 
-
     private static int SPLASH_TIME_OUT = 1500;
-
     AlertDialog _dialogOffline;
 
     @Override
@@ -85,33 +86,47 @@ public class SplashActivity extends AppCompatActivity {
 
         super.onStart();
 
-
-
         if (PublicClass.checkNetworkStatus(SplashActivity.this)) {
 
-            new Handler().postDelayed(new Runnable() {
-                @Override
-                public void run() {
-
-
-
-                        Intent i = new Intent(SplashActivity.this, MainActivity.class);
-                        startActivity(i);
-                        overridePendingTransition(R.anim.come_in, R.anim.go_out);
-                        finish();
-
-
-
-
-
-                }
-            }, SPLASH_TIME_OUT);
-
+            getConfig();
 
         } else {
+
             makeOfflineDialog();
+
             _dialogOffline.show();
+
         }
+
     }
 
+
+    void getConfig() {
+
+        ApiHandler.getConfig(this, new ApiCallbacks.getConfigInterface() {
+            @Override
+            public void onGetConfigFailed() {
+
+            }
+
+            @Override
+            public void onGetConfigSucceeded(final Response_Config response) {
+
+//                new Handler().postDelayed(new Runnable() {
+//                    @Override
+//                    public void run() {
+
+
+                Intent i = new Intent(SplashActivity.this, MainActivity.class);
+                i.putExtra("daily_quote", response.getQuote());
+                startActivity(i);
+                overridePendingTransition(R.anim.come_in, R.anim.go_out);
+                finish();
+
+
+//                    }
+//                }, SPLASH_TIME_OUT);
+            }
+        });
+    }
 }

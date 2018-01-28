@@ -62,7 +62,7 @@ public class MainActivity extends AppCompatActivity {
 
         getCategories();
 
-        tv_quote.setText("ارغوان شاخه هم‌خون جدامانده‌ی من، آسمان تو چه رنگ است امروز، آفتابی است هوا یا گرفته است هنوز؟");
+        tv_quote.setText(getIntent().getStringExtra("daily_quote"));
         tv_quote.setSelected(true);
         //setInitialSizes();
 
@@ -88,12 +88,12 @@ public class MainActivity extends AppCompatActivity {
 
         ApiHandler.getAllCategories(this, new ApiCallbacks.getCategoriesInterface() {
             @Override
-            public void getAllCategoriesFailed() {
+            public void onGetAllCategoriesFailed() {
                 dialog.dismiss();
             }
 
             @Override
-            public void getAllCategoriesSucceeded(List<Response_Categories> response) {
+            public void onGetAllCategoriesSucceeded(List<Response_Categories> response) {
                 dialog.dismiss();
                 PublicClass.allCategories = response;
 

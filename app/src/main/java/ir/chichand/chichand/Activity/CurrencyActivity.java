@@ -52,7 +52,7 @@ public class CurrencyActivity extends AppCompatActivity {
 
         ApiHandler.getInquiry(this, request, new ApiCallbacks.getInquiryInterface() {
             @Override
-            public void getInquiryFailed() {
+            public void onGetInquiryFailed() {
                 dialog.dismiss();
                 Toast.makeText(CurrencyActivity.this, "بروز خطا در ارتباط", Toast.LENGTH_LONG).show();
                 finish();
@@ -60,7 +60,7 @@ public class CurrencyActivity extends AppCompatActivity {
             }
 
             @Override
-            public void getInquirySucceeded(Response_Inquiry response) {
+            public void onGetInquirySucceeded(Response_Inquiry response) {
 
                 dialog.dismiss();
 
