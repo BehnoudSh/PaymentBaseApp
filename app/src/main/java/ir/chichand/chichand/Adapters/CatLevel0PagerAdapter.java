@@ -61,8 +61,13 @@ public class CatLevel0PagerAdapter extends PagerAdapter {
                 hashmapIndex++;
             }
 
-            if (i == allitems.size() - 1)
+            if (daste4tayi.size() < 4) {
                 hashMap.put(hashmapIndex, daste4tayi);
+            }
+
+            // if (i == allitems.size() - 1)
+            //     hashMap.put(hashmapIndex, daste4tayi);
+
         }
     }
 
