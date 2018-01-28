@@ -3,6 +3,7 @@ package ir.chichand.chichand.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Parcelable;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
@@ -14,6 +15,7 @@ import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -119,7 +121,26 @@ public class MainActivity extends AppCompatActivity {
 
                         } else if (cat_id == 3000) {
 
+
+                            List<Response_Categories> news_cat_level1_list = new ArrayList<Response_Categories>();
+                            for (Response_Categories resp : PublicClass.allCategories) {
+
+                                if (3000 < Integer.parseInt(resp.getCat_id()) && Integer.parseInt(resp.getCat_id()) < 4000) {
+                                    if (resp.getCat_level().equals("1")) {
+                                        news_cat_level1_list.add(resp);
+                                    }
+                                }
+
+                            }
+
                             Intent intent = new Intent(MainActivity.this, NewsActivity.class);
+
+
+//                            Bundle b = new Bundle();
+//                            b.putSerializable("news_cat_level1_list", (Serializable) news_cat_level1_list);
+//                            intent.putExtras(b);
+                            intent.putExtra("news_cat_level1_list", (Serializable) news_cat_level1_list);
+
                             startActivity(intent);
 
                         } else {

@@ -4,46 +4,48 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 
+import java.util.List;
+
 import ir.chichand.chichand.Fragments.Fragment_News_Category;
+import ir.chichand.chichand.Models.Responses.Response_Categories;
 
 /**
  * Created by bSherafati on 1/28/2018.
  */
 
 public class NewsPagerAdapter extends FragmentStatePagerAdapter {
+    List<Response_Categories> news_cat_level1_list;
 
-    public NewsPagerAdapter(FragmentManager fm) {
+    public NewsPagerAdapter(FragmentManager fm, List<Response_Categories> news_cat_level1_list) {
         super(fm);
+        this.news_cat_level1_list = news_cat_level1_list;
     }
 
     @Override
     public Fragment getItem(int position) {
-        switch (position) {
-            case 0:
-                Fragment_News_Category newsCatFragment0 = new Fragment_News_Category();
-                return newsCatFragment0;
-            case 1:
-                Fragment_News_Category newsCatFragment1 = new Fragment_News_Category();
-                return newsCatFragment1;
-            default:
-                return null;
-        }
+
+        Fragment_News_Category newsCatFragment = new Fragment_News_Category();
+
+        return newsCatFragment;
+
     }
 
     @Override
     public int getCount() {
-        return 2;
+        return news_cat_level1_list.size();
     }
 
     @Override
     public CharSequence getPageTitle(int position) {
-        switch (position) {
-            case 0:
-                return "ورزشی";
-            case 1:
-                return "اقتصادی";
-            default:
-                return null;
-        }
+
+        return this.news_cat_level1_list.get(position).getPersian_title();
+
+//        for (Response_Categories cat_item : this.news_cat_level1_list
+//                ) {
+//
+//        }
+
+
+        //return null;
     }
 }
