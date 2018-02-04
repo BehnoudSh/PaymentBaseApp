@@ -5,6 +5,8 @@ import android.content.Context;
 import java.util.List;
 
 import ir.chichand.chichand.Models.Requests.Request_Inquiry;
+import ir.chichand.chichand.Models.Requests.Request_SearchBuses;
+import ir.chichand.chichand.Models.Requests.Request_SearchFlights;
 import ir.chichand.chichand.Models.Responses.Response_Categories;
 import ir.chichand.chichand.Models.Responses.Response_Config;
 import ir.chichand.chichand.Models.Responses.Response_Inquiry;
@@ -103,5 +105,27 @@ public class ApiHandler {
         });
 
 
+    }
+
+
+    public static void getBusCities(Context context, final ApiCallbacks.getBusCitiesInterface callback)
+
+    {
+    }
+
+    public static void getFlightCities(Context context, final ApiCallbacks.getFlightCitiesInterface callback)
+
+    {
+    }
+
+    public static void searchBuses(Context context, Request_SearchBuses request, final ApiCallbacks.searchBusesInterface callback)
+
+    {
+    }
+
+
+    public static void searchFlights(Context context, Request_SearchFlights request, final ApiCallbacks.searchFlightsInterface callback)
+
+    {
     }
 }
