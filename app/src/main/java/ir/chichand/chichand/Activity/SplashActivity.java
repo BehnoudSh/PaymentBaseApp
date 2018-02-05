@@ -3,7 +3,6 @@ package ir.chichand.chichand.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.os.Handler;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -13,7 +12,7 @@ import ir.chichand.chichand.Models.Responses.Response_Config;
 import ir.chichand.chichand.NetworkServices.ApiCallbacks;
 import ir.chichand.chichand.NetworkServices.ApiHandler;
 import ir.chichand.chichand.R;
-import ir.chichand.chichand.Tools.PublicClass;
+import ir.chichand.chichand.Tools.PublicTools;
 import ir.chichand.chichand.Tools.ScreenUtils;
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
@@ -54,7 +53,7 @@ public class SplashActivity extends AppCompatActivity {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
 
-                        if (PublicClass.checkNetworkStatus(SplashActivity.this)) {
+                        if (PublicTools.checkNetworkStatus(SplashActivity.this)) {
 
                             Intent i = new Intent(SplashActivity.this, MainActivity.class);
                             startActivity(i);
@@ -86,7 +85,7 @@ public class SplashActivity extends AppCompatActivity {
 
         super.onStart();
 
-        if (PublicClass.checkNetworkStatus(SplashActivity.this)) {
+        if (PublicTools.checkNetworkStatus(SplashActivity.this)) {
 
             getConfig();
 

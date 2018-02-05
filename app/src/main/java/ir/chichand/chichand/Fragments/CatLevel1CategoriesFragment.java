@@ -24,7 +24,6 @@ import ir.chichand.chichand.Activity.GoodsActivity;
 import ir.chichand.chichand.Adapters.CatLevel1CategoriesAdapter;
 import ir.chichand.chichand.Models.Responses.Response_Categories;
 import ir.chichand.chichand.R;
-import ir.chichand.chichand.Tools.PublicClass;
 import ir.chichand.chichand.Tools.PublicVariables;
 
 

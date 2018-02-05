@@ -5,6 +5,9 @@ import android.content.Context;
 import java.util.List;
 
 import ir.chichand.chichand.Models.Requests.Request_Inquiry;
+import ir.chichand.chichand.Models.Requests.Request_SearchBuses;
+import ir.chichand.chichand.Models.Requests.Request_SearchFlights;
+import ir.chichand.chichand.Models.Responses.Response_BusCity;
 import ir.chichand.chichand.Models.Responses.Response_Categories;
 import ir.chichand.chichand.Models.Responses.Response_Config;
 import ir.chichand.chichand.Models.Responses.Response_Inquiry;
@@ -106,24 +109,43 @@ public class ApiHandler {
     }
 
 
-//    public static void getBusCities(Context context, final ApiCallbacks.getBusCitiesInterface callback)
-//
-//    {
-//    }
-//
-//    public static void getFlightCities(Context context, final ApiCallbacks.getFlightCitiesInterface callback)
-//
-//    {
-//    }
-//
-//    public static void searchBuses(Context context, Request_SearchBuses request, final ApiCallbacks.searchBusesInterface callback)
-//
-//    {
-//    }
-//
-//
-//    public static void searchFlights(Context context, Request_SearchFlights request, final ApiCallbacks.searchFlightsInterface callback)
-//
-//    {
-//    }
+    public static void getBusCities(Context context, final ApiCallbacks.getBusCitiesInterface callback)
+
+    {
+        Retrofit retrofit = ApiClient.getClient(context);
+        ApiInterface api = retrofit.create(ApiInterface.class);
+        Call<List<Response_BusCity>> call = api.getBusCities();
+        call.enqueue(new Callback<List<Response_BusCity>>() {
+            @Override
+            public void onResponse(Call<List<Response_BusCity>> call, Response<List<Response_BusCity>> response) {
+                if (response.code() < 300)
+                    callback.onGetBusCitiesSucceeded(response.body());
+                else
+                    callback.onGetBusCitiesFailed("بروز خطا، دوباره تلاش کنید");
+            }
+
+            @Override
+            public void onFailure(Call<List<Response_BusCity>> call, Throwable t) {
+                callback.onGetBusCitiesFailed("بروز خطا در ارتباط، دوباره تلاش کنید");
+            }
+        });
+
+
+    }
+
+    public static void getFlightCities(Context context, final ApiCallbacks.getFlightCitiesInterface callback)
+
+    {
+    }
+
+    public static void searchBuses(Context context, Request_SearchBuses request, final ApiCallbacks.searchBusesInterface callback)
+
+    {
+    }
+
+
+    public static void searchFlights(Context context, Request_SearchFlights request, final ApiCallbacks.searchFlightsInterface callback)
+
+    {
+    }
 }

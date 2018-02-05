@@ -1,5 +1,7 @@
 package ir.chichand.chichand.Models.Responses;
 
+import android.support.annotation.NonNull;
+
 import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
@@ -8,7 +10,7 @@ import java.io.Serializable;
  * Created by bSherafati on 2/5/2018.
  */
 
-public class Response_BusCity implements Serializable{
+public class Response_BusCity implements Serializable, Comparable<Response_BusCity> {
 
     @SerializedName("ID")
     private int ID;
@@ -59,5 +61,10 @@ public class Response_BusCity implements Serializable{
 
     public void setProvincePersianName(String provincePersianName) {
         ProvincePersianName = provincePersianName;
+    }
+
+    @Override
+    public int compareTo(@NonNull Response_BusCity o) {
+        return getPersianName().compareTo(o.getPersianName());
     }
 }

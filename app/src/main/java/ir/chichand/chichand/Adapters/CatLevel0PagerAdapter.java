@@ -242,7 +242,7 @@ public class CatLevel0PagerAdapter extends PagerAdapter {
     }
 
     void handleEnabled(View view, Response_Categories category) {
-        if (category.getIsenabled().equals("0")) {
+        if (category.getIsenabled().equals("1")) {
 
             view.setAlpha(0.3f);
 
