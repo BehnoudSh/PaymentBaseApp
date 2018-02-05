@@ -4,15 +4,10 @@ package ir.chichand.chichand.NetworkServices;
 import java.util.List;
 
 import ir.chichand.chichand.Models.Requests.Request_Inquiry;
-import ir.chichand.chichand.Models.Requests.Request_SearchFlights;
 import ir.chichand.chichand.Models.Responses.Response_Categories;
 import ir.chichand.chichand.Models.Responses.Response_Config;
 import ir.chichand.chichand.Models.Responses.Response_Inquiry;
 import ir.chichand.chichand.Models.Responses.Response_Others;
-import ir.chichand.chichand.Models.Responses.Response_‌BusCity;
-import ir.chichand.chichand.Models.Responses.Response_‌FlightCity;
-import ir.chichand.chichand.Models.Responses.Response_‌SearchBuses;
-import ir.chichand.chichand.Models.Responses.Response_‌SearchFlights;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
@@ -36,19 +31,19 @@ public interface ApiInterface {
     @GET("config.php")
     Call<Response_Config> getConfig();
 
-    @GET("bus/domestic/cities.php")
-    Call<List<Response_‌BusCity>> getBusCities();
-
-    @GET("flight/domestic/cities.php")
-    Call<List<Response_‌FlightCity>> getFlightCities();
-
-    @Headers("Content-Type: application/json")
-    @POST("flight/domestic/searchflight.php")
-    Call<Response_‌SearchFlights> searchFlights(@Body Request_SearchFlights request);
-
-    @Headers("Content-Type: application/json")
-    @POST("bus/domestic/searchbus.php")
-    Call<Response_‌SearchBuses> searchBuses(@Body Request_SearchFlights request);
+//    @GET("bus/domestic/cities.php")
+//    Call<List<Response_‌BusCity>> getBusCities();
+//
+//    @GET("flight/domestic/cities.php")
+//    Call<List<Response_‌FlightCity>> getFlightCities();
+//
+//    @Headers("Content-Type: application/json")
+//    @POST("flight/domestic/searchflight.php")
+//    Call<Response_‌SearchFlights> searchFlights(@Body Request_SearchFlights request);
+//
+//    @Headers("Content-Type: application/json")
+//    @POST("bus/domestic/searchbus.php")
+//    Call<Response_‌SearchBuses> searchBuses(@Body Request_SearchFlights request);
 
 
 }

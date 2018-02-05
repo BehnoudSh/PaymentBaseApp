@@ -5,10 +5,10 @@ import com.google.gson.annotations.SerializedName;
 import java.io.Serializable;
 
 /**
- * Created by tinabehnoud on 12/29/17.
+ * Created by bSherafati on 2/5/2018.
  */
 
-public class Response_‌BusCity implements Serializable {
+public class Response_BusCity implements Serializable{
 
     @SerializedName("ID")
     private int ID;
@@ -22,7 +22,7 @@ public class Response_‌BusCity implements Serializable {
     @SerializedName("ProvincePersianName")
     private String ProvincePersianName;
 
-    public Response_‌BusCity(int ID, String code, String persianName, String provincePersianName) {
+    public Response_BusCity(int ID, String code, String persianName, String provincePersianName) {
         this.ID = ID;
         Code = code;
         PersianName = persianName;

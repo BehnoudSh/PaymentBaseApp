@@ -5,10 +5,10 @@ import com.google.gson.annotations.SerializedName;
 import java.io.Serializable;
 
 /**
- * Created by tinabehnoud on 12/29/17.
+ * Created by bSherafati on 2/5/2018.
  */
 
-public class Response_‌FlightCity implements Serializable {
+public class Response_FlightCity implements Serializable {
 
     @SerializedName("id")
     private int id;
@@ -22,8 +22,7 @@ public class Response_‌FlightCity implements Serializable {
     @SerializedName("airport")
     private String airport;
 
-
-    public Response_‌FlightCity(int id, String city, String iata, String airport) {
+    public Response_FlightCity(int id, String city, String iata, String airport) {
         this.id = id;
         this.city = city;
         this.iata = iata;

@@ -5,11 +5,10 @@ import com.google.gson.annotations.SerializedName;
 import java.io.Serializable;
 
 /**
- * Created by tinabehnoud on 12/29/17.
+ * Created by bSherafati on 2/5/2018.
  */
 
-public class Response_‌Bus implements Serializable {
-
+public class Response_Bus implements Serializable {
     @SerializedName("ID")
     private Long ID;
 
@@ -46,7 +45,7 @@ public class Response_‌Bus implements Serializable {
     @SerializedName("CompanyLogo")
     private String CompanyLogo;
 
-    public Response_‌Bus(Long ID, String busType, Long price, String midwayCity, String midwayCityCode, String originTerminalPersianName, String destinationTerminalPersianName, String companyPersianName, String departureTime, String departureDate, int availableSeatCount, String companyLogo) {
+    public Response_Bus(Long ID, String busType, Long price, String midwayCity, String midwayCityCode, String originTerminalPersianName, String destinationTerminalPersianName, String companyPersianName, String departureTime, String departureDate, int availableSeatCount, String companyLogo) {
         this.ID = ID;
         BusType = busType;
         Price = price;

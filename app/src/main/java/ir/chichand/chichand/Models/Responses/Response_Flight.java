@@ -5,10 +5,11 @@ import com.google.gson.annotations.SerializedName;
 import java.io.Serializable;
 
 /**
- * Created by tinabehnoud on 12/29/17.
+ * Created by bSherafati on 2/5/2018.
  */
 
-public class Response_‌Flight implements Serializable {
+public class Response_Flight implements Serializable {
+
 
     @SerializedName("departure")
     private String departure;
@@ -49,7 +50,7 @@ public class Response_‌Flight implements Serializable {
     @SerializedName("reference_url")
     private String reference_url;
 
-    public Response_‌Flight(String departure, String arrival, String departure_date, String departure_time, String arrival_date, String arrival_time, String airline, String flight_class, String flight_type, String price, String price_currency, String reference, String reference_url) {
+    public Response_Flight(String departure, String arrival, String departure_date, String departure_time, String arrival_date, String arrival_time, String airline, String flight_class, String flight_type, String price, String price_currency, String reference, String reference_url) {
         this.departure = departure;
         this.arrival = arrival;
         this.departure_date = departure_date;
