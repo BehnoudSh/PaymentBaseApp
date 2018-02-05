@@ -138,10 +138,6 @@ public class MainActivity extends AppCompatActivity {
 
                             Intent intent = new Intent(MainActivity.this, NewsActivity.class);
 
-
-//                            Bundle b = new Bundle();
-//                            b.putSerializable("news_cat_level1_list", (Serializable) news_cat_level1_list);
-//                            intent.putExtras(b);
                             intent.putExtra("news_cat_level1_list", (Serializable) news_cat_level1_list);
 
                             startActivity(intent);

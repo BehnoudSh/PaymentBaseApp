@@ -93,6 +93,10 @@ public class CatLevel1CategoriesFragment extends Fragment {
                 intent.putExtra("cat_id", cat_id);
                 startActivity(intent);
 
+
+
+            //    if (cat_id==)
+
                 // Toast.makeText(getContext(), cat_id + "", Toast.LENGTH_LONG).show();
 
             }
