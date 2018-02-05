@@ -4,6 +4,7 @@ package ir.chichand.chichand.NetworkServices;
 import java.util.List;
 
 import ir.chichand.chichand.Models.Requests.Request_Inquiry;
+import ir.chichand.chichand.Models.Requests.Request_SearchBuses;
 import ir.chichand.chichand.Models.Requests.Request_SearchFlights;
 import ir.chichand.chichand.Models.Responses.Response_BusCity;
 import ir.chichand.chichand.Models.Responses.Response_Categories;
@@ -48,7 +49,7 @@ public interface ApiInterface {
 
     @Headers("Content-Type: application/json")
     @POST("bus/domestic/searchbus.php")
-    Call<Response_SearchBuses> searchBuses(@Body Request_SearchFlights request);
+    Call<Response_SearchBuses> searchBuses(@Body Request_SearchBuses request);
 
 
 }

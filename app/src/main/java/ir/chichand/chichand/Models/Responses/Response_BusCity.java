@@ -17,6 +17,9 @@ public class Response_BusCity implements Serializable, Comparable<Response_BusCi
 
     @SerializedName("Code")
     private String Code;
+    @SerializedName("Name")
+    private String Name;
+
 
     @SerializedName("PersianName")
     private String PersianName;
@@ -24,9 +27,10 @@ public class Response_BusCity implements Serializable, Comparable<Response_BusCi
     @SerializedName("ProvincePersianName")
     private String ProvincePersianName;
 
-    public Response_BusCity(int ID, String code, String persianName, String provincePersianName) {
+    public Response_BusCity(int ID, String code, String name, String persianName, String provincePersianName) {
         this.ID = ID;
         Code = code;
+        Name = name;
         PersianName = persianName;
         ProvincePersianName = provincePersianName;
     }
@@ -61,6 +65,14 @@ public class Response_BusCity implements Serializable, Comparable<Response_BusCi
 
     public void setProvincePersianName(String provincePersianName) {
         ProvincePersianName = provincePersianName;
+    }
+
+    public String getName() {
+        return Name;
+    }
+
+    public void setName(String name) {
+        Name = name;
     }
 
     @Override

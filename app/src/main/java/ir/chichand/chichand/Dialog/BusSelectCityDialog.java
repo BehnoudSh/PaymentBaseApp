@@ -1,33 +1,36 @@
-package ir.chichand.chichand.Fragments;
+package ir.chichand.chichand.Dialog;
 
+import android.app.Dialog;
+import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.view.LayoutInflater;
+import android.view.Gravity;
 import android.view.View;
-import android.view.ViewGroup;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 
 import java.util.ArrayList;
-import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
+import ir.chichand.chichand.Activity.BusActivity;
 import ir.chichand.chichand.Adapters.Adapter_BusCities;
-import ir.chichand.chichand.Models.List_Serializable;
 import ir.chichand.chichand.Models.Responses.Response_BusCity;
 import ir.chichand.chichand.R;
+import ir.chichand.chichand.Tools.PublicVariables;
 
-public class BusSelectCityFragment extends Fragment {
+public class BusSelectCityDialog extends Dialog {
 
     @BindView(R.id.ll_actBusSelectCity_search_container)
     LinearLayout ll_search_container;
@@ -46,12 +49,12 @@ public class BusSelectCityFragment extends Fragment {
 
     private Unbinder unbinder;
 
-    selectCityInterface _listener ;
+
+    Context context;
+    selectCityInterface listener;
 
 
-
-
-    //    @Override
+//    @Override
 //    protected void onCreate(Bundle savedInstanceState) {
 //        super.onCreate(savedInstanceState);
 //
@@ -84,7 +87,7 @@ public class BusSelectCityFragment extends Fragment {
 //            @Override
 //            public void onClick(View v) {
 //                et_search.setText("");
-//                // Statics.hideKeyboard(BusSelectCityFragment.this,et_search);
+//                // Statics.hideKeyboard(BusSelectCityDialog.this,et_search);
 //            }
 //        });
 //
@@ -110,44 +113,76 @@ public class BusSelectCityFragment extends Fragment {
 //        // Statics.showKeyboard(this);
 //    }
 
+//    @Override
+//    public void onCreate(@Nullable Bundle savedInstanceState) {
+//        super.onCreate(savedInstanceState);
+//
+//
+//        Bundle bundle = this.getArguments();
+//        if (bundle != null) {
+//
+//            cities = (ArrayList<Response_BusCity>) getArguments().getSerializable("buscities");
+//
+//
+//        }
+//    }
+
+//    public static BusSelectCityDialog newInstance(ArrayList<Response_BusCity> buscities) {
+//        BusSelectCityDialog fragment = new BusSelectCityDialog();
+//        Bundle bundle = new Bundle();
+//
+//        bundle.putSerializable("buscities", new List_Serializable<Response_BusCity>(buscities));
+//
+//        fragment.setArguments(bundle);
+//
+//        return fragment;
+//    }
+
+//    @Override
+//    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+//        super.onViewCreated(view, savedInstanceState);
+//
+//
+//
+//
+//    }
+
     @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        this.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        this.getWindow().requestFeature(Window.FEATURE_NO_TITLE);
+        this.setContentView(R.layout.fragment_bus_selectcity);
+        this.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
 
-        Bundle bundle = this.getArguments();
-        if (bundle != null) {
+        WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
+        lp.copyFrom(this.getWindow().getAttributes());
+        lp.width = WindowManager.LayoutParams.MATCH_PARENT;
+        lp.height = WindowManager.LayoutParams.MATCH_PARENT;
+        lp.gravity = Gravity.CENTER;
 
-            cities = (ArrayList<Response_BusCity>) getArguments().getSerializable("buscities");
+        this.getWindow().setAttributes(lp);
 
-
-        }
-    }
-
-    public static BusSelectCityFragment newInstance(ArrayList<Response_BusCity> buscities) {
-        BusSelectCityFragment fragment = new BusSelectCityFragment();
-        Bundle bundle = new Bundle();
-
-        bundle.putSerializable("buscities", new List_Serializable<Response_BusCity>(buscities));
-
-        fragment.setArguments(bundle);
-
-        return fragment;
-    }
-
-    @Override
-    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
+        this.setCancelable(true);
+        unbinder = ButterKnife.bind(this);
 
 
-        layoutManager = new LinearLayoutManager(getActivity());
-        final Adapter_BusCities adapter = new Adapter_BusCities(cities, this, new Adapter_BusCities.OnItemClickListener() {
+        layoutManager = new LinearLayoutManager(context);
+
+        final Adapter_BusCities adapter = new Adapter_BusCities(cities, context, new Adapter_BusCities.OnItemClickListener() {
             @Override
             public void onItemClick(Response_BusCity city, int position) {
-                Intent intent = new Intent();
-                intent.putExtra("city", city);
-                setResult(0, intent);
-                getActivity().getSupportFragmentManager().popBackStack();
+                listener.onCitySelected(city);
+
+                if (cities.size() != 0)
+                    for (int i = 0; i < cities.size(); i++) {
+                        cities.remove(i);
+                    }
+
+
+                cities.addAll(PublicVariables.allBusCities);
+                BusSelectCityDialog.this.dismiss();
             }
 
             @Override
@@ -156,6 +191,7 @@ public class BusSelectCityFragment extends Fragment {
                 recyclerView.setVisibility(View.GONE);
             }
         });
+
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(layoutManager);
         if (cities == null || cities.size() == 0) {
@@ -167,7 +203,7 @@ public class BusSelectCityFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 et_search.setText("");
-                // Statics.hideKeyboard(BusSelectCityFragment.this,et_search);
+                // Statics.hideKeyboard(BusSelectCityDialog.this,et_search);
             }
         });
 
@@ -194,18 +230,19 @@ public class BusSelectCityFragment extends Fragment {
 
     }
 
-    @Nullable
-    @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View layout = inflater.inflate(R.layout.fragment_bus_selectcity, container, false);
-        unbinder = ButterKnife.bind(this, layout);
-        return layout;
-    }
 
     public interface selectCityInterface {
 
         void onCitySelected(Response_BusCity selectedcity);
 
+    }
+
+
+    public BusSelectCityDialog(Context context, ArrayList<Response_BusCity> cities, BusSelectCityDialog.selectCityInterface listener) {
+        super(context);
+        this.context = context;
+        this.listener = listener;
+        this.cities = cities;
     }
 
 }

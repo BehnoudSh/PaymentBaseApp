@@ -3,13 +3,18 @@ package ir.chichand.chichand.Activity;
 import android.app.DatePickerDialog;
 import android.content.Context;
 import android.content.Intent;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.mohamadamin.persianmaterialdatetimepicker.utils.PersianCalendar;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -17,16 +22,19 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import ir.chichand.chichand.Dialog.BusSearchResultDialog;
+import ir.chichand.chichand.Dialog.BusSelectCityDialog;
 import ir.chichand.chichand.Dialog.Dialog_LoadingWithMessage;
-import ir.chichand.chichand.Fragments.BusSelectCityFragment;
+import ir.chichand.chichand.Models.Requests.Request_SearchBuses;
 import ir.chichand.chichand.Models.Responses.Response_BusCity;
+import ir.chichand.chichand.Models.Responses.Response_SearchBuses;
 import ir.chichand.chichand.NetworkServices.ApiCallbacks;
 import ir.chichand.chichand.NetworkServices.ApiHandler;
 import ir.chichand.chichand.R;
 import ir.chichand.chichand.Tools.PublicVariables;
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
-public class BusActivity extends AppCompatActivity implements DatePickerDialog.OnDateSetListener {
+public class BusActivity extends AppCompatActivity {
 
     @BindView(R.id.tv_actionbar_title)
     TextView tv_actionbar_title;
@@ -40,15 +48,29 @@ public class BusActivity extends AppCompatActivity implements DatePickerDialog.O
     @BindView(R.id.tv_activity_bus_destination)
     TextView tv_destination;
 
+    @BindView(R.id.iv_deleteSource)
+    ImageView deleteSource;
+
+    @BindView(R.id.iv_deleteDestination)
+    ImageView deleteDestination;
+
+    @BindView(R.id.dateholder)
+    LinearLayout dateholder;
+
+    @BindView(R.id.searchBus)
+    Button datehsearchBusolder;
+
+    @BindView(R.id.datetimebus)
+    TextView datetimebus;
+
+
     Response_BusCity selectedSource;
 
     Response_BusCity selectedDestination;
 
-    final int CODE_CITY_SOURCE = 8888, CODE_CITY_DESTINATION = 8889;
-
     Dialog_LoadingWithMessage dialog_loading_with_message;
 
-    Intent cities_intent;
+    ArrayList<Response_BusCity> cities = new ArrayList<Response_BusCity>();
 
     @Override
     protected void attachBaseContext(Context newBase) {
@@ -65,27 +87,24 @@ public class BusActivity extends AppCompatActivity implements DatePickerDialog.O
         ButterKnife.bind(this);
 
         setupactionbar();
-//        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-//        Fragment_BusSearch busSearchFragment = Fragment_BusSearch.newInstance();
-//        fragmentTransaction.add(R.id.frame, busSearchFragment, "busSearchFragment");
-//        fragmentTransaction.addToBackStack("busSearchFragment");
-//        fragmentTransaction.commit();
 
 
         tv_source.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivityForResult(cities_intent, CODE_CITY_SOURCE);
-                overridePendingTransition(R.anim.come_in, R.anim.go_out);
-            }
-        });
-        tv_source.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-            @Override
-            public void onFocusChange(View v, boolean hasFocus) {
-                if (hasFocus) {
-                    startActivityForResult(cities_intent, CODE_CITY_SOURCE);
-                    overridePendingTransition(R.anim.come_in, R.anim.go_out);
-                }
+
+                BusSelectCityDialog selectCityDialog = new BusSelectCityDialog(BusActivity.this, cities, new BusSelectCityDialog.selectCityInterface() {
+                    @Override
+                    public void onCitySelected(Response_BusCity selectedcity) {
+
+                        selectedSource = selectedcity;
+                        tv_source.setText(selectedSource.getPersianName());
+                        tv_source.clearFocus();
+                        deleteSource.setVisibility(View.VISIBLE);
+                    }
+                });
+                selectCityDialog.show();
+
             }
         });
 
@@ -93,24 +112,81 @@ public class BusActivity extends AppCompatActivity implements DatePickerDialog.O
         tv_destination.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivityForResult(cities_intent, CODE_CITY_DESTINATION);
-                overridePendingTransition(R.anim.come_in, R.anim.go_out);
+
+
+                BusSelectCityDialog selectCityDialog = new BusSelectCityDialog(BusActivity.this, cities, new BusSelectCityDialog.selectCityInterface() {
+                    @Override
+                    public void onCitySelected(Response_BusCity selectedcity) {
+                        selectedDestination = selectedcity;
+                        tv_destination.setText(selectedDestination.getPersianName());
+                        tv_destination.clearFocus();
+                        deleteDestination.setVisibility(View.VISIBLE);
+                    }
+                });
+                selectCityDialog.show();
             }
         });
-        tv_destination.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+
+        deleteSource.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onFocusChange(View v, boolean hasFocus) {
-                if (hasFocus) {
-                    startActivityForResult(cities_intent, CODE_CITY_DESTINATION);
-                    overridePendingTransition(R.anim.come_in, R.anim.go_out);
-                }
+            public void onClick(View v) {
+                tv_source.setText("مبدا");
+                selectedSource = null;
+                deleteSource.setVisibility(View.INVISIBLE);
             }
         });
-        dialog_loading_with_message = new Dialog_LoadingWithMessage(this, "در حال دریافت لیست شهرها ...");
+
+        deleteDestination.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                tv_destination.setText("مقصد");
+                selectedDestination = null;
+                deleteDestination.setVisibility(View.INVISIBLE);
+            }
+        });
+
+
         getBusCities();
+
+        dateholder.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+//                PersianCalendar now = new PersianCalendar();
+//                DatePickerDialog datePickerDialog = DatePickerDialog.newInstance(new DatePickerDialog.OnDateSetListener() {
+//                                                                                     @Override
+//                                                                                     public void onDateSet(DatePickerDialog view, int year, int monthOfYear, int dayOfMonth) {
+//                                                                                         Toast.makeText(BusActivity.this, "" + year + "/" + monthOfYear + "/" + dayOfMonth, Toast.LENGTH_SHORT).show();
+//                                                                                     }
+//                                                                                 }, now.getPersianYear(),
+//                        now.getPersianMonth(),
+//                        now.getPersianDay());
+//
+//                datePickerDialog.setThemeDark(true);
+//                datePickerDialog.show(getFragmentManager(), "tpd");
+            }
+        });
+
+        datehsearchBusolder.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+            }
+        });
+
+        datehsearchBusolder.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                searchBuses();
+            }
+        });
+
+
     }
 
     void getBusCities() {
+        dialog_loading_with_message = new Dialog_LoadingWithMessage(this, "در حال دریافت لیست شهرها ...");
         dialog_loading_with_message.show();
 
         ApiHandler.getBusCities(this, new ApiCallbacks.getBusCitiesInterface() {
@@ -124,27 +200,38 @@ public class BusActivity extends AppCompatActivity implements DatePickerDialog.O
                 dialog_loading_with_message.dismiss();
                 PublicVariables.allBusCities = response;
 
-//                cities_intent = new Intent(BusActivity.this, BusSelectCityFragment.class);
-//                cities_intent.putExtra("cities",   response);
-
-                ArrayList<Response_BusCity> cities = new ArrayList<Response_BusCity>();
-
                 cities.addAll(response);
-
-                FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
                 Collections.sort(response);
-                BusSelectCityFragment passengerDetailsFragment = BusSelectCityFragment.newInstance(cities);
-                fragmentTransaction.add(R.id.frame, passengerDetailsFragment, "passenger_details");
-                fragmentTransaction.addToBackStack("passenger_details");
-                fragmentTransaction.commit();
+
             }
         });
     }
 
-    @Override
-    public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+    void searchBuses() {
+        dialog_loading_with_message = new Dialog_LoadingWithMessage(this, "در حال دریافت لیست اتوبوس‌ها ...");
+        dialog_loading_with_message.show();
+
+        Request_SearchBuses reqeust = new Request_SearchBuses(selectedSource.getCode(), selectedDestination.getCode(), selectedSource.getName(), selectedDestination.getName(), datetimebus.getText().toString());
+
+        ApiHandler.searchBuses(BusActivity.this, reqeust, new ApiCallbacks.searchBusesInterface() {
+            @Override
+            public void onSearchBusesFailed(String message) {
+                dialog_loading_with_message.dismiss();
+
+            }
+
+            @Override
+            public void onSearchBusesSucceeded(Response_SearchBuses response) {
+                dialog_loading_with_message.dismiss();
+
+                BusSearchResultDialog dialog = new BusSearchResultDialog(BusActivity.this, response);
+                dialog.show();
+            }
+        });
+
 
     }
+
 
     void setupactionbar() {
 
@@ -152,28 +239,6 @@ public class BusActivity extends AppCompatActivity implements DatePickerDialog.O
 
         actionbarholder.setBackgroundColor(getResources().getColor(R.color.holder3));
 
-    }
-
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        //  overridePendingTransition(R.anim.come_out,R.anim.go_in);
-        if ((requestCode == CODE_CITY_SOURCE || requestCode == CODE_CITY_DESTINATION) && data != null) {
-            Response_BusCity city = ((Response_BusCity) data.getSerializableExtra("city"));
-            if (city != null) {
-                switch (requestCode) {
-                    case CODE_CITY_SOURCE:
-                        selectedSource = city;
-                        tv_source.setText(selectedSource.getPersianName());
-                        tv_source.clearFocus();
-                        break;
-                    case CODE_CITY_DESTINATION:
-                        selectedDestination = city;
-                        tv_destination.setText(selectedDestination.getPersianName());
-                        tv_destination.clearFocus();
-                        break;
-                }
-            }
-        }
     }
 
 }

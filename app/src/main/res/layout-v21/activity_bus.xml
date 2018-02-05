@@ -46,11 +46,13 @@
                         android:padding="10dp">
 
                         <ImageView
+                            android:id="@+id/iv_deleteSource"
                             android:layout_width="20dp"
                             android:layout_height="20dp"
                             android:layout_gravity="center_vertical"
                             android:src="@drawable/ic_clear_edittext"
-                            android:tint="@color/gray_dolphin" />
+                            android:tint="@color/gray_dolphin"
+                            android:visibility="invisible" />
 
 
                         <TextView
@@ -85,11 +87,13 @@
                         android:padding="10dp">
 
                         <ImageView
+                            android:id="@+id/iv_deleteDestination"
                             android:layout_width="20dp"
                             android:layout_height="20dp"
                             android:layout_gravity="center_vertical"
                             android:src="@drawable/ic_clear_edittext"
-                            android:tint="@color/gray_dolphin" />
+                            android:tint="@color/gray_dolphin"
+                            android:visibility="invisible" />
 
 
                         <TextView
@@ -120,6 +124,7 @@
                     <!--android:background="@drawable/gradiant" />-->
 
                     <LinearLayout
+                        android:id="@+id/dateholder"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="20dp"
@@ -134,8 +139,9 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:gravity="center"
+                            android:id="@+id/datetimebus"
                             android:padding="10dp"
-                            android:text="تاریخ سفر"
+                            android:text="1396-11-23"
                             android:textColor="@color/gray_dolphin"
                             android:textSize="16dp" />
 
@@ -162,6 +168,13 @@
 
 
                     <!--android:textStyle="bold" />-->
+                    <Button
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:id="@+id/searchBus"
+                        android:padding="10dp"
+                        android:text="جستجو" />
 
                 </LinearLayout>
 
@@ -174,7 +187,10 @@
         <FrameLayout
             android:id="@+id/frame"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true" />
 
     </RelativeLayout>
 

@@ -12,6 +12,7 @@ import ir.chichand.chichand.Models.Responses.Response_Categories;
 import ir.chichand.chichand.Models.Responses.Response_Config;
 import ir.chichand.chichand.Models.Responses.Response_Inquiry;
 import ir.chichand.chichand.Models.Responses.Response_Others;
+import ir.chichand.chichand.Models.Responses.Response_SearchBuses;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -141,6 +142,25 @@ public class ApiHandler {
     public static void searchBuses(Context context, Request_SearchBuses request, final ApiCallbacks.searchBusesInterface callback)
 
     {
+
+        Retrofit retrofit = ApiClient.getClient(context);
+        ApiInterface api = retrofit.create(ApiInterface.class);
+        Call<Response_SearchBuses> call = api.searchBuses(request);
+        call.enqueue(new Callback<Response_SearchBuses>() {
+            @Override
+            public void onResponse(Call<Response_SearchBuses> call, Response<Response_SearchBuses> response) {
+                if (response.code() < 300)
+                    callback.onSearchBusesSucceeded(response.body());
+                else
+                    callback.onSearchBusesFailed("بروز خطا، دوباره تلاش کنید");
+            }
+
+            @Override
+            public void onFailure(Call<Response_SearchBuses> call, Throwable t) {
+                callback.onSearchBusesFailed("بروز خطا در ارتباط، دوباره تلاش کنید");
+            }
+        });
+
     }
 
 
