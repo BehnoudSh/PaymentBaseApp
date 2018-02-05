@@ -30,7 +30,9 @@
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.NoActionBar" />
         <activity android:name=".Activity.GoodsActivity" />
-        <activity android:name=".Activity.NewsActivity"></activity>
+        <activity android:name=".Activity.NewsActivity" />
+        <activity android:name=".Activity.BusActivity" />
+        <activity android:name=".Activity.FlightActivity"></activity>
     </application>
 
 </manifest>

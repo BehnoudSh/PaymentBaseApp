@@ -18,6 +18,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
+import ir.chichand.chichand.Activity.BusActivity;
 import ir.chichand.chichand.Activity.GoodsActivity;
 import ir.chichand.chichand.Adapters.CatLevel1CategoriesAdapter;
 import ir.chichand.chichand.Models.Responses.Response_Categories;
@@ -89,13 +90,20 @@ public class CatLevel1CategoriesFragment extends Fragment {
 
                 int cat_id = Integer.parseInt(item.getCat_id());
 
-                Intent intent = new Intent(getActivity(), GoodsActivity.class);
-                intent.putExtra("cat_id", cat_id);
-                startActivity(intent);
+                if (0 < cat_id && cat_id < 1000) {
+                    Intent intent = new Intent(getActivity(), GoodsActivity.class);
+                    intent.putExtra("cat_id", cat_id);
+                    startActivity(intent);
+                }
+
+                if (cat_id == 2007) {
+                    Intent intent = new Intent(getActivity(), BusActivity.class);
+                    intent.putExtra("cat_id", cat_id);
+                    startActivity(intent);
+                }
 
 
-
-            //    if (cat_id==)
+                //    if (cat_id==)
 
                 // Toast.makeText(getContext(), cat_id + "", Toast.LENGTH_LONG).show();
 
