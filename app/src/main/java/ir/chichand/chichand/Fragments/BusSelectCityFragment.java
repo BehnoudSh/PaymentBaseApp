@@ -46,7 +46,12 @@ public class BusSelectCityFragment extends Fragment {
 
     private Unbinder unbinder;
 
-//    @Override
+    selectCityInterface _listener ;
+
+
+
+
+    //    @Override
 //    protected void onCreate(Bundle savedInstanceState) {
 //        super.onCreate(savedInstanceState);
 //
@@ -124,6 +129,7 @@ public class BusSelectCityFragment extends Fragment {
         Bundle bundle = new Bundle();
 
         bundle.putSerializable("buscities", new List_Serializable<Response_BusCity>(buscities));
+
         fragment.setArguments(bundle);
 
         return fragment;
@@ -141,7 +147,7 @@ public class BusSelectCityFragment extends Fragment {
                 Intent intent = new Intent();
                 intent.putExtra("city", city);
                 setResult(0, intent);
-               getActivity().getSupportFragmentManager().popBackStack();
+                getActivity().getSupportFragmentManager().popBackStack();
             }
 
             @Override
@@ -195,4 +201,11 @@ public class BusSelectCityFragment extends Fragment {
         unbinder = ButterKnife.bind(this, layout);
         return layout;
     }
+
+    public interface selectCityInterface {
+
+        void onCitySelected(Response_BusCity selectedcity);
+
+    }
+
 }
