@@ -29,10 +29,22 @@
             android:name=".Activity.CurrencyActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.NoActionBar" />
-        <activity android:name=".Activity.GoodsActivity" />
-        <activity android:name=".Activity.NewsActivity" />
-        <activity android:name=".Activity.BusActivity" />
-        <activity android:name=".Activity.FlightActivity"></activity>
+        <activity
+            android:name=".Activity.GoodsActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
+        <activity
+            android:name=".Activity.NewsActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
+        <activity
+            android:name=".Activity.BusActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
+        <activity
+            android:name=".Activity.FlightActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.NoActionBar"></activity>
     </application>
 
 </manifest>

@@ -12,12 +12,14 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:padding="20dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
+                android:background="@drawable/bg_currency_groups"
                 android:gravity="center_vertical"
                 android:orientation="horizontal"
                 android:padding="20dp">
@@ -46,7 +48,7 @@
                         android:hint="مبدا"
                         android:imeOptions="actionDone"
                         android:inputType="text"
-                        android:nextFocusDown="@+id/et_activity_bus_destination"
+                        android:nextFocusDown="@+id/fragment_bus_search_destination"
                         android:textSize="16dp" />
                 </android.support.design.widget.TextInputLayout>
 
@@ -62,12 +64,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
+                android:background="@drawable/bg_currency_groups"
                 android:gravity="center_vertical"
                 android:orientation="horizontal"
                 android:padding="20dp">
 
                 <ImageView
-                    android:id="@+id/iv_activity_bus_clearDestination"
+                    android:id="@+id/iv_fragment_bus_search_clearDestination"
                     android:layout_width="20dp"
                     android:layout_height="20dp"
                     android:src="@drawable/ic_clear_edittext"
@@ -80,8 +83,7 @@
                     android:layout_weight="1">
 
                     <EditText
-                        android:id="@+id/et_activity_bus_destination"
-
+                        android:id="@+id/et_fragment_bus_search_destination"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="5dp"
@@ -103,16 +105,17 @@
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/ll_activity_bus_datePicked"
+                android:id="@+id/ll_fragment_bus_search_datePicked"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
+                android:background="@drawable/bg_currency_groups"
                 android:gravity="center_vertical"
                 android:orientation="horizontal"
                 android:padding="20dp">
 
                 <TextView
-                    android:id="@+id/tv_activity_bus_datePicked"
+                    android:id="@+id/tv_fragment_bus_search_datePicked"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="20dp"
@@ -130,7 +133,7 @@
 
 
             <Button
-                android:id="@+id/bt_activity_bus_search"
+                android:id="@+id/bt_fragment_bus_search_search"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="20dp"
