@@ -28,6 +28,7 @@ import ir.chichand.chichand.NetworkServices.ApiCallbacks;
 import ir.chichand.chichand.NetworkServices.ApiHandler;
 import ir.chichand.chichand.R;
 import ir.chichand.chichand.Tools.PublicClass;
+import ir.chichand.chichand.Tools.PublicVariables;
 import ir.chichand.chichand.Tools.ScreenUtils;
 import me.relex.circleindicator.CircleIndicator;
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
@@ -97,7 +98,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onGetAllCategoriesSucceeded(List<Response_Categories> response) {
                 dialog.dismiss();
-                PublicClass.allCategories = response;
+                PublicVariables.allCategories = response;
 
                 for (Response_Categories resp : response
                         ) {
@@ -126,7 +127,7 @@ public class MainActivity extends AppCompatActivity {
 
 
                             List<Response_Categories> news_cat_level1_list = new ArrayList<Response_Categories>();
-                            for (Response_Categories resp : PublicClass.allCategories) {
+                            for (Response_Categories resp : PublicVariables.allCategories) {
 
                                 if (3000 < Integer.parseInt(resp.getCat_id()) && Integer.parseInt(resp.getCat_id()) < 4000) {
                                     if (resp.getCat_level().equals("1")) {

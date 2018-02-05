@@ -25,6 +25,7 @@ import ir.chichand.chichand.Adapters.CatLevel1CategoriesAdapter;
 import ir.chichand.chichand.Models.Responses.Response_Categories;
 import ir.chichand.chichand.R;
 import ir.chichand.chichand.Tools.PublicClass;
+import ir.chichand.chichand.Tools.PublicVariables;
 
 
 public class CatLevel1CategoriesFragment extends Fragment {
@@ -60,7 +61,7 @@ public class CatLevel1CategoriesFragment extends Fragment {
 
         List<Response_Categories> temp = new ArrayList<>();
 
-        for (Response_Categories resp : PublicClass.allCategories
+        for (Response_Categories resp : PublicVariables.allCategories
                 ) {
             if (resp.getCat_level() != null)
 

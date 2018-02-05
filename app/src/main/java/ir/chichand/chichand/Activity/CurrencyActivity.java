@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -29,6 +30,12 @@ import ir.chichand.chichand.Tools.ScreenUtils;
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 public class CurrencyActivity extends AppCompatActivity {
+    @BindView(R.id.tv_actionbar_title)
+    TextView tv_actionbar_title;
+
+
+    @BindView(R.id.actionbarholder)
+    RelativeLayout actionbarholder;
 
     @BindView(R.id.parent)
     LinearLayout parent;
@@ -38,11 +45,23 @@ public class CurrencyActivity extends AppCompatActivity {
         super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
     }
 
+    void setupactionbar() {
+        {
+            tv_actionbar_title.setText("سکه و ارز");
+
+            actionbarholder.setBackgroundColor(getResources().getColor(R.color.holder2));
+        }
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_currency);
         ButterKnife.bind(this);
+
+        setupactionbar();
+
+
         Request_Inquiry request = new Request_Inquiry(1000, "");
 
 

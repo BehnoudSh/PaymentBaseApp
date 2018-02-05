@@ -37,21 +37,24 @@ public class BusActivity extends AppCompatActivity implements DatePickerDialog.O
         setContentView(R.layout.activity_bus);
         ButterKnife.bind(this);
 
-
+        setupactionbar();
 //        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
 //        Fragment_BusSearch busSearchFragment = Fragment_BusSearch.newInstance();
 //        fragmentTransaction.add(R.id.frame, busSearchFragment, "busSearchFragment");
 //        fragmentTransaction.addToBackStack("busSearchFragment");
 //        fragmentTransaction.commit();
 
-        tv_actionbar_title.setText("بلیت اتوبوس");
-
-        actionbarholder.setBackgroundColor(getResources().getColor(R.color.holder3));
 
     }
 
     @Override
     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
 
+    }
+
+    void setupactionbar() {
+        tv_actionbar_title.setText("بلیت اتوبوس");
+
+        actionbarholder.setBackgroundColor(getResources().getColor(R.color.holder3));
     }
 }

@@ -12,6 +12,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
@@ -127,7 +128,7 @@ public class CatLevel0PagerAdapter extends PagerAdapter {
                 }
             });
             Holder1.setBackgroundResource(R.drawable.bg_rounded_color1);
-
+            handleEnabled(Holder1, hashMap.get(position).get(0));
 
             Title2.setText(hashMap.get(position).get(1).getPersian_title());
             Glide.with(_context)
@@ -142,7 +143,7 @@ public class CatLevel0PagerAdapter extends PagerAdapter {
                 }
             });
             Holder2.setBackgroundResource(R.drawable.bg_rounded_color2);
-
+            handleEnabled(Holder2, hashMap.get(position).get(1));
 
             Title3.setText(hashMap.get(position).get(2).getPersian_title());
             Glide.with(_context)
@@ -157,7 +158,7 @@ public class CatLevel0PagerAdapter extends PagerAdapter {
                 }
             });
             Holder3.setBackgroundResource(R.drawable.bg_rounded_color3);
-
+            handleEnabled(Holder3, hashMap.get(position).get(2));
 
             Title4.setText(hashMap.get(position).get(3).getPersian_title());
             Glide.with(_context)
@@ -172,7 +173,7 @@ public class CatLevel0PagerAdapter extends PagerAdapter {
                 }
             });
             Holder4.setBackgroundResource(R.drawable.bg_rounded_color4);
-
+            handleEnabled(Holder4, hashMap.get(position).get(3));
 
             if (n == 6) {
                 Title5.setText(hashMap.get(position).get(4).getPersian_title());
@@ -188,7 +189,7 @@ public class CatLevel0PagerAdapter extends PagerAdapter {
                     }
                 });
                 Holder5.setBackgroundResource(R.drawable.bg_rounded_color5);
-
+                handleEnabled(Holder5, hashMap.get(position).get(4));
 
                 Title6.setText(hashMap.get(position).get(5).getPersian_title());
                 Glide.with(_context)
@@ -203,6 +204,8 @@ public class CatLevel0PagerAdapter extends PagerAdapter {
                     }
                 });
                 Holder6.setBackgroundResource(R.drawable.bg_rounded_color6);
+                handleEnabled(Holder6, hashMap.get(position).get(5));
+
             } else {
 
                 Holder5_6Holder.setVisibility(View.GONE);
@@ -236,6 +239,22 @@ public class CatLevel0PagerAdapter extends PagerAdapter {
 
     public interface OnItemClickListener {
         void onItemClick(Response_Categories item);
+    }
+
+    void handleEnabled(View view, Response_Categories category) {
+        if (category.getIsenabled().equals("0")) {
+
+            view.setAlpha(0.3f);
+
+            view.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Toast.makeText(_context, "به زودی", Toast.LENGTH_LONG).show();
+                }
+            });
+        } else
+            view.setAlpha(1f);
+
     }
 
 //    public void bind(final Response_Categories item, final CatLevel1CategoriesAdapter.OnItemClickListener listener) {

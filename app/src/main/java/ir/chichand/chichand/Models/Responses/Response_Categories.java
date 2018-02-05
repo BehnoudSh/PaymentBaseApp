@@ -25,12 +25,17 @@ public class Response_Categories implements Serializable {
     @SerializedName("cat_icon")
     private String cat_icon;
 
-    public Response_Categories(String id, String cat_id, String cat_level, String persian_title, String cat_icon) {
+    @SerializedName("isenabled")
+    private String isenabled;
+
+
+    public Response_Categories(String id, String cat_id, String cat_level, String persian_title, String cat_icon, String isenabled) {
         this.id = id;
         this.cat_id = cat_id;
         this.cat_level = cat_level;
         this.persian_title = persian_title;
         this.cat_icon = cat_icon;
+        this.isenabled = isenabled;
     }
 
     public String getId() {
@@ -71,5 +76,13 @@ public class Response_Categories implements Serializable {
 
     public void setCat_icon(String cat_icon) {
         this.cat_icon = cat_icon;
+    }
+
+    public String getIsenabled() {
+        return isenabled;
+    }
+
+    public void setIsenabled(String isenabled) {
+        this.isenabled = isenabled;
     }
 }

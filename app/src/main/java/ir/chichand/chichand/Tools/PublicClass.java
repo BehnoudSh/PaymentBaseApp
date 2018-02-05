@@ -17,8 +17,6 @@ public class PublicClass {
 
 
 
- public  static    List<Response_Categories> allCategories = new ArrayList<>();
-
     public static boolean checkNetworkStatus(Context activity) {
         ConnectivityManager connectivityManager = (ConnectivityManager) activity.getSystemService(Context.CONNECTIVITY_SERVICE);
         boolean internetStatus = false;

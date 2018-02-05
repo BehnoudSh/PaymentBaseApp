@@ -14,5 +14,9 @@
         android:background="#fafafa"
         android:orientation="vertical">
 
+        <include
+            android:id="@+id/activity_main_toolbar"
+            layout="@layout/actionbar" />
+
     </LinearLayout>
 </ScrollView>
