@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -33,10 +34,10 @@ public class CurrencyActivity extends AppCompatActivity {
     @BindView(R.id.tv_actionbar_title)
     TextView tv_actionbar_title;
 
-
     @BindView(R.id.actionbarholder)
     RelativeLayout actionbarholder;
-
+    @BindView(R.id.iv_actionbar_back)
+    ImageView iv_actionbar_back;
     @BindView(R.id.parent)
     LinearLayout parent;
 
@@ -47,9 +48,15 @@ public class CurrencyActivity extends AppCompatActivity {
 
     void setupactionbar() {
         {
-            tv_actionbar_title.setText("سکه و ارز");
+            tv_actionbar_title.setText("طلا و ارز");
 
             actionbarholder.setBackgroundColor(getResources().getColor(R.color.holder2));
+            iv_actionbar_back.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    finish();
+                }
+            });
         }
     }
 
