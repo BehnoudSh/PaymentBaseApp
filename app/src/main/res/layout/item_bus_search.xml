@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/rl_item_categories_parent"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="5dp"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical">
+
+
+            <TextView
+                android:id="@+id/tv_item_available_bus_companyName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:padding="5dp"
+                android:text="نام شرکت"
+                android:textColor="@color/gray_wolf"
+                android:textSize="11dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="horizontal"
+                android:paddingLeft="5dp">
+
+                <TextView
+                    android:id="@+id/tv_item_available_bus_availableSeatsCountValue"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:padding="5dp"
+                    android:text="52"
+                    android:textColor="@color/black"
+                    android:textSize="11dp" />
+
+                <TextView
+                    android:id="@+id/tv_item_available_bus_availableSeatsCount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_toRightOf="@+id/tv_item_available_bus_availableSeatsCountValue"
+                    android:gravity="center_vertical"
+                    android:text="تعداد صندلی‌ خالی:"
+                    android:textColor="@color/gray_dolphin"
+                    android:textSize="11dp" />
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tv_item_available_bus_busModel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical|right"
+                    android:text="مدل اتوبوس"
+                    android:textColor="@color/gray_dolphin"
+                    android:textSize="11dp" />
+
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:src="#ff0000" />
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:orientation="horizontal">
+
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1">
+
+                    <TextView
+                        android:id="@+id/tv_item_available_bus_departureTime"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="11:00"
+                        android:textColor="@color/black"
+                        android:textSize="11dp" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center_vertical|left"
+                        android:text="ساعت:"
+                        android:textColor="@color/gray_dolphin"
+                        android:textSize="11dp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1">
+
+                    <TextView
+                        android:id="@+id/tv_item_available_bus_price"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="۱۲۰۰۰۰"
+                        android:textColor="@color/black"
+                        android:textSize="11dp" />
+
+                    <TextView
+
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center_vertical|left"
+                        android:text="قیمت:"
+                        android:textColor="@color/gray_dolphin"
+                        android:textSize="11dp" />
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="horizontal">
+
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/tv_item_available_bus_destinationCity"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:padding="5dp"
+                        android:text="شهر مقصد"
+                        android:textColor="@color/black"
+                        android:textSize="14dp" />
+
+
+                    <TextView
+                        android:id="@+id/tv_item_available_bus_destinationTerminal"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:padding="5dp"
+                        android:text="ترمینال مقصد"
+                        android:textColor="@color/gray_dolphin"
+                        android:textSize="11dp" />
+                </LinearLayout>
+
+                <ImageView
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
+                    android:layout_gravity="center_vertical"
+                    android:src="@drawable/ic_arrow_left" />
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/tv_item_available_bus_sourceCity"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:padding="5dp"
+
+                        android:text="شهر مبدا"
+                        android:textColor="@color/black"
+                        android:textSize="11dp" />
+
+
+                    <TextView
+                        android:id="@+id/tv_item_available_bus_sourceTerminal"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:padding="5dp"
+                        android:text="ترمینال مبدا"
+                        android:textColor="@color/gray_dolphin"
+                        android:textSize="10dp" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+
+</LinearLayout>
+
+
+
+

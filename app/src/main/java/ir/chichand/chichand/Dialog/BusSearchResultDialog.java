@@ -24,6 +24,7 @@ import java.util.ArrayList;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
+import ir.chichand.chichand.Adapters.Adapter_AvailableBuses;
 import ir.chichand.chichand.Adapters.Adapter_BusCities;
 import ir.chichand.chichand.Adapters.Adapter_SearchBuses;
 import ir.chichand.chichand.Models.Responses.Response_BusCity;
@@ -77,7 +78,7 @@ public class BusSearchResultDialog extends Dialog {
 
         layoutManager = new LinearLayoutManager(context);
 
-        Adapter_SearchBuses adapter = new Adapter_SearchBuses(this.searchresult.getItems(), context);
+        Adapter_AvailableBuses adapter = new Adapter_AvailableBuses(this.searchresult.getItems(), context);
 
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(layoutManager);
