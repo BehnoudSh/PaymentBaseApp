@@ -25,7 +25,7 @@ public class Adapter_AvailableBuses extends RecyclerView.Adapter<Adapter_Availab
 
     private List<Response_Bus> busesList;
     private Context context;
-    OnItemClickListener _listener;
+
 
     public Adapter_AvailableBuses(List<Response_Bus> busesList, Context context ) {
         this.busesList = busesList;
@@ -46,7 +46,7 @@ public class Adapter_AvailableBuses extends RecyclerView.Adapter<Adapter_Availab
     public void onBindViewHolder(final MyViewHolder myViewHolder, int i) {
 
         Response_Bus bus = this.busesList.get(i);
-        myViewHolder.bind(bus, _listener);
+      //  myViewHolder.bind(bus, _listener);
 
         // Date date = Statics.dateConvertor(bus.getDepartureDate(),true);
 
