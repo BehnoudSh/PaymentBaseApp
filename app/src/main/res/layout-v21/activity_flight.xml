@@ -71,7 +71,7 @@
                             android:layout_width="30dp"
                             android:layout_height="30dp"
                             android:layout_gravity="center_vertical"
-                            android:src="@color/gray_dolphin" />
+                            android:src="@drawable/departures" />
 
 
                     </LinearLayout>
@@ -112,7 +112,7 @@
                             android:layout_width="30dp"
                             android:layout_height="30dp"
                             android:layout_gravity="center_vertical"
-                            android:src="@color/gray_dolphin" />
+                            android:src="@drawable/arrivals" />
 
 
                     </LinearLayout>
@@ -135,11 +135,11 @@
 
 
                         <TextView
+                            android:id="@+id/datetimebus"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:gravity="center"
-                            android:id="@+id/datetimebus"
                             android:padding="10dp"
                             android:text="1396-11-23"
                             android:textColor="@color/gray_dolphin"
@@ -169,10 +169,10 @@
 
                     <!--android:textStyle="bold" />-->
                     <Button
+                        android:id="@+id/searchBus"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
-                        android:id="@+id/searchBus"
                         android:padding="10dp"
                         android:text="جستجو" />
 
