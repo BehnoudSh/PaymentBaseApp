@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/gray_dolphin"
+    android:background="@drawable/backrepeat"
     android:orientation="vertical">
 
 
@@ -26,7 +26,9 @@
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rv_actBusSelectCity"
         android:layout_width="match_parent"
+
         android:layout_height="match_parent"
+        android:background="@drawable/backrepeat"
         android:fadeScrollbars="false"
         android:scrollbars="vertical" />
 

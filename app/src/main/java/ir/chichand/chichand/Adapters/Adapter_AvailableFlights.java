@@ -33,7 +33,7 @@ public class Adapter_AvailableFlights extends RecyclerView.Adapter<Adapter_Avail
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
         View itemView = LayoutInflater.from(viewGroup.getContext())
-                .inflate(R.layout.item_bus_search, viewGroup, false);
+                .inflate(R.layout.item_flight_search, viewGroup, false);
 
         return new MyViewHolder(itemView);
     }
@@ -43,18 +43,11 @@ public class Adapter_AvailableFlights extends RecyclerView.Adapter<Adapter_Avail
 
         Response_Flight flight = this.flightsList.get(i);
         //  myViewHolder.bind(bus, _listener);
-
-        // Date date = Statics.dateConvertor(bus.getDepartureDate(),true);
-
-        myViewHolder.tv_companyName.setText(flight.getAirline());
-//        myViewHolder.tv_busModel.setText(flight.getBusType());
-//        myViewHolder.tv_availableSeatsCount.setText(flight.getAvailableSeatCount() + "");
-//        myViewHolder.tv_sourceCity.setText(flight.getOriginTerminalPersianName());
-//
-//        myViewHolder.tv_destinationCity.setText(flight.getDestinationTerminalPersianName());
-//
-//        myViewHolder.tv_time.setText(flight.getDepartureTime());
-        myViewHolder.tv_price.setText(flight.getPrice() + " ریال");
+        myViewHolder.tv_flightAirline.setText(flight.getAirline());
+        myViewHolder.tv_flightPrice.setText(flight.getPrice());
+        myViewHolder.tv_flightArrivalTime.setText(flight.getArrival_time());
+        myViewHolder.tv_flightDepartureTime.setText(flight.getDeparture_time());
+        myViewHolder.tv_flightType.setText(flight.getFlight_type());
 
     }
 
@@ -65,31 +58,20 @@ public class Adapter_AvailableFlights extends RecyclerView.Adapter<Adapter_Avail
 
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
-        public TextView tv_companyName;
-        public TextView tv_busModel;
-        public TextView tv_availableSeatsCount;
-        public TextView tv_sourceCity;
-        public TextView tv_sourceTerminal;
-        public TextView tv_destinationCity;
-        public TextView tv_destinationTerminal;
-        public TextView tv_time;
-        public TextView tv_price;
-        public LinearLayout ll_additionalInfo;
-        public Button bt_seats;
-        public Button bt_ways;
+        public TextView tv_flightType;
+        public TextView tv_flightPrice;
+        public TextView tv_flightAirline;
+        public TextView tv_flightDepartureTime;
+        public TextView tv_flightArrivalTime;
 
 
         public MyViewHolder(View view) {
             super(view);
-            tv_companyName = (TextView) view.findViewById(R.id.tv_item_available_bus_companyName);
-            tv_busModel = (TextView) view.findViewById(R.id.tv_item_available_bus_busModel);
-            tv_availableSeatsCount = (TextView) view.findViewById(R.id.tv_item_available_bus_availableSeatsCountValue);
-            tv_sourceCity = (TextView) view.findViewById(R.id.tv_item_available_bus_sourceCity);
-            tv_sourceTerminal = (TextView) view.findViewById(R.id.tv_item_available_bus_sourceTerminal);
-            tv_destinationCity = (TextView) view.findViewById(R.id.tv_item_available_bus_destinationCity);
-            tv_destinationTerminal = (TextView) view.findViewById(R.id.tv_item_available_bus_destinationTerminal);
-            tv_time = (TextView) view.findViewById(R.id.tv_item_available_bus_departureTime);
-            tv_price = (TextView) view.findViewById(R.id.tv_item_available_bus_price);
+            tv_flightType = (TextView) view.findViewById(R.id.tv_item_flight_search_flight_type);
+            tv_flightPrice = (TextView) view.findViewById(R.id.tv_item_flight_search_flight_price);
+            tv_flightAirline = (TextView) view.findViewById(R.id.tv_item_flight_search_flight_airline);
+            tv_flightDepartureTime = (TextView) view.findViewById(R.id.tv_item_flight_search_flight_departureTime);
+            tv_flightArrivalTime = (TextView) view.findViewById(R.id.tv_item_flight_search_flight_arrivalTime);
 
 
         }
@@ -107,16 +89,6 @@ public class Adapter_AvailableFlights extends RecyclerView.Adapter<Adapter_Avail
                 }
             });
 
-
-            bt_seats.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-
-
-                    listener.onItemClick(item, getAdapterPosition());
-
-                }
-            });
         }
     }
 

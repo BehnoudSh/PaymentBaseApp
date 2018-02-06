@@ -37,7 +37,7 @@ public class FlightActivity extends AppCompatActivity {
 
     @BindView(R.id.iv_actionbar_back)
     ImageView iv_actionbar_back;
-    
+
     @BindView(R.id.tv_actionbar_title)
     TextView tv_actionbar_title;
 
