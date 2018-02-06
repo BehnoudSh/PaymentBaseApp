@@ -37,14 +37,9 @@ public class BusSearchResultDialog extends Dialog {
     @BindView(R.id.rv_actBusSelectCity)
     RecyclerView recyclerView;
 
-    @BindView(R.id.iv_actionbar_back)
-    ImageView iv_actionbar_back;
+    @BindView(R.id.iv_fragment_bus_searchresult_back)
+    ImageView back;
 
-    @BindView(R.id.tv_actionbar_title)
-    TextView tv_actionbar_title;
-
-    @BindView(R.id.actionbarholder)
-    RelativeLayout actionbarholder;
 
     Response_SearchBuses searchresult;
 
@@ -83,7 +78,12 @@ public class BusSearchResultDialog extends Dialog {
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(layoutManager);
 
-
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dismiss();
+            }
+        });
     }
 
 
@@ -95,7 +95,7 @@ public class BusSearchResultDialog extends Dialog {
 
     void setupactionbar() {
 //
-//        tv_actionbar_title.setText("نتیجه جستجو");
+        //tv_actionbar_title.setText("نتیجه جستجو");
 //
 //        actionbarholder.setBackgroundColor(context.getResources().getColor(R.color.holder3));
 //
