@@ -104,10 +104,7 @@ public class SplashActivity extends AppCompatActivity {
 
 
     void getConfig() {
-
-
-        AlarmReciever m = new AlarmReciever();
-        m.setAlarm(this);
+ 
 
 
 
