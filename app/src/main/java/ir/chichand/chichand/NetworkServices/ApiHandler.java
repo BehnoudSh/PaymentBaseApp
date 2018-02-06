@@ -10,9 +10,11 @@ import ir.chichand.chichand.Models.Requests.Request_SearchFlights;
 import ir.chichand.chichand.Models.Responses.Response_BusCity;
 import ir.chichand.chichand.Models.Responses.Response_Categories;
 import ir.chichand.chichand.Models.Responses.Response_Config;
+import ir.chichand.chichand.Models.Responses.Response_FlightCity;
 import ir.chichand.chichand.Models.Responses.Response_Inquiry;
 import ir.chichand.chichand.Models.Responses.Response_Others;
 import ir.chichand.chichand.Models.Responses.Response_SearchBuses;
+import ir.chichand.chichand.Models.Responses.Response_SearchFlights;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -137,6 +139,30 @@ public class ApiHandler {
     public static void getFlightCities(Context context, final ApiCallbacks.getFlightCitiesInterface callback)
 
     {
+
+        Retrofit retrofit = ApiClient.getClient(context);
+        ApiInterface api = retrofit.create(ApiInterface.class);
+        Call<List<Response_FlightCity>> call = api.getFlightCities();
+        call.enqueue(new Callback<List<Response_FlightCity>>() {
+            @Override
+            public void onResponse(Call<List<Response_FlightCity>> call, Response<List<Response_FlightCity>> response) {
+
+                if (response.code() < 300)
+                    callback.onGetFlightCitiesSucceeded(response.body());
+                else
+                    callback.onGetFlightCitiesFailed("بروز خطا، دوباره تلاش کنید");
+
+
+            }
+
+            @Override
+            public void onFailure(Call<List<Response_FlightCity>> call, Throwable t) {
+                callback.onGetFlightCitiesFailed("بروز خطا در ارتباط، دوباره تلاش کنید");
+
+            }
+        });
+
+
     }
 
     public static void searchBuses(Context context, Request_SearchBuses request, final ApiCallbacks.searchBusesInterface callback)
@@ -167,5 +193,26 @@ public class ApiHandler {
     public static void searchFlights(Context context, Request_SearchFlights request, final ApiCallbacks.searchFlightsInterface callback)
 
     {
+
+        Retrofit retrofit = ApiClient.getClient(context);
+        ApiInterface api = retrofit.create(ApiInterface.class);
+        Call<Response_SearchFlights> call = api.searchFlights(request);
+        call.enqueue(new Callback<Response_SearchFlights>() {
+            @Override
+            public void onResponse(Call<Response_SearchFlights> call, Response<Response_SearchFlights> response) {
+                if (response.code() < 300)
+                    callback.onSearchFlightsSucceeded(response.body());
+                else
+                    callback.onSearchFlightsFailed("بروز خطا، دوباره تلاش کنید");
+            }
+
+            @Override
+            public void onFailure(Call<Response_SearchFlights> call, Throwable t) {
+                callback.onSearchFlightsFailed("بروز خطا در ارتباط، دوباره تلاش کنید");
+
+            }
+        });
+
+
     }
 }

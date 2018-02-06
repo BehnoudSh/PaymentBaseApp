@@ -17,10 +17,12 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 import ir.chichand.chichand.Adapters.Adapter_AvailableBuses;
+import ir.chichand.chichand.Adapters.Adapter_AvailableFlights;
 import ir.chichand.chichand.Models.Responses.Response_SearchBuses;
+import ir.chichand.chichand.Models.Responses.Response_SearchFlights;
 import ir.chichand.chichand.R;
 
-public class BusSearchResultDialog extends Dialog {
+public class FlightSearchResultDialog extends Dialog {
 
     @BindView(R.id.rv_actBusSelectCity)
     RecyclerView recyclerView;
@@ -29,7 +31,7 @@ public class BusSearchResultDialog extends Dialog {
     ImageView back;
 
 
-    Response_SearchBuses searchresult;
+    Response_SearchFlights searchresult;
 
     RecyclerView.LayoutManager layoutManager;
 
@@ -61,7 +63,7 @@ public class BusSearchResultDialog extends Dialog {
 
         layoutManager = new LinearLayoutManager(context);
 
-        Adapter_AvailableBuses adapter = new Adapter_AvailableBuses(this.searchresult.getItems(), context);
+        Adapter_AvailableFlights adapter = new Adapter_AvailableFlights(this.searchresult.getAvailable_flight(), context);
 
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(layoutManager);
@@ -75,7 +77,7 @@ public class BusSearchResultDialog extends Dialog {
     }
 
 
-    public BusSearchResultDialog(Context context, Response_SearchBuses searchresult) {
+    public FlightSearchResultDialog(Context context, Response_SearchFlights searchresult) {
         super(context);
         this.context = context;
         this.searchresult = searchresult;

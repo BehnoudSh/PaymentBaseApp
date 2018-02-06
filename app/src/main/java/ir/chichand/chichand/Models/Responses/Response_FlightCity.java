@@ -1,5 +1,7 @@
 package ir.chichand.chichand.Models.Responses;
 
+import android.support.annotation.NonNull;
+
 import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
@@ -8,7 +10,7 @@ import java.io.Serializable;
  * Created by bSherafati on 2/5/2018.
  */
 
-public class Response_FlightCity implements Serializable {
+public class Response_FlightCity implements Serializable, Comparable<Response_FlightCity> {
 
     @SerializedName("id")
     private int id;
@@ -59,5 +61,10 @@ public class Response_FlightCity implements Serializable {
 
     public void setAirport(String airport) {
         this.airport = airport;
+    }
+
+    @Override
+    public int compareTo(@NonNull Response_FlightCity o) {
+        return getCity().compareTo(o.getCity());
     }
 }
