@@ -6,21 +6,26 @@
     android:orientation="vertical">
 
 
-    <TextView
-        android:id="@+id/tv_actBusSelectCity_empty"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text="موردی یافت نشد"
-        android:textColor="@color/white"
-        android:textSize="12dp"
-        android:visibility="gone" />
+    <include
+        android:id="@+id/activity_main_toolbar"
+        layout="@layout/actionbar" />
+
+
+    <!--<TextView-->
+    <!--android:id="@+id/tv_actBusSelectCity_empty"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:gravity="center"-->
+    <!--android:text="موردی یافت نشد"-->
+    <!--android:textColor="@color/white"-->
+    <!--android:textSize="12dp"-->
+    <!--android:visibility="gone" />-->
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rv_actBusSelectCity"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:fadeScrollbars="false"
-        android:scrollbars="vertical"></android.support.v7.widget.RecyclerView>
+        android:scrollbars="vertical" />
 
 </LinearLayout>

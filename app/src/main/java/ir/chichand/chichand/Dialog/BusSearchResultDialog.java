@@ -15,6 +15,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -42,9 +43,15 @@ public class BusSearchResultDialog extends Dialog {
 
     Context context;
 
+    @BindView(R.id.tv_actionbar_title)
+    TextView tv_actionbar_title;
+
+    @BindView(R.id.actionbarholder)
+    RelativeLayout actionbarholder;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setupactionbar();
 
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
         this.getWindow().requestFeature(Window.FEATURE_NO_TITLE);
@@ -79,5 +86,11 @@ public class BusSearchResultDialog extends Dialog {
         this.context = context;
         this.searchresult = searchresult;
     }
+    void setupactionbar() {
 
+        tv_actionbar_title.setText("بلیت اتوبوس");
+
+        actionbarholder.setBackgroundColor(getResources().getColor(R.color.holder3));
+
+    }
 }
