@@ -67,7 +67,7 @@ public class CatLevel1CategoriesAdapter extends RecyclerView.Adapter<CatLevel1Ca
         myViewHolder.title.setText(category.getPersian_title());
 
         RequestOptions requestOptions = new RequestOptions();
-        requestOptions.placeholder(R.mipmap.ic_launcher);
+        requestOptions.placeholder(R.drawable.playstoreicon);
         requestOptions.fitCenter();
 
         Glide.with(context)

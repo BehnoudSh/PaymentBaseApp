@@ -55,7 +55,7 @@ public class GoodsAdapter extends RecyclerView.Adapter<GoodsAdapter.MyViewHolder
         myViewHolder.tv_persianName.setText(category.getPersian_name());
 
         RequestOptions requestOptions = new RequestOptions();
-        requestOptions.placeholder(R.mipmap.ic_launcher);
+        requestOptions.placeholder(R.drawable.playstoreicon);
         requestOptions.fitCenter();
 
         Glide.with(context)

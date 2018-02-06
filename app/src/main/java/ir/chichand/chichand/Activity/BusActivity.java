@@ -35,7 +35,8 @@ import ir.chichand.chichand.Tools.PublicVariables;
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 public class BusActivity extends AppCompatActivity {
-
+    @BindView(R.id.iv_actionbar_back)
+    ImageView iv_actionbar_back;
     @BindView(R.id.tv_actionbar_title)
     TextView tv_actionbar_title;
 
@@ -238,7 +239,12 @@ public class BusActivity extends AppCompatActivity {
         tv_actionbar_title.setText("بلیت اتوبوس");
 
         actionbarholder.setBackgroundColor(getResources().getColor(R.color.holder3));
-
+        iv_actionbar_back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
     }
 
 }

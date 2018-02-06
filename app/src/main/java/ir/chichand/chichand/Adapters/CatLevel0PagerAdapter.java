@@ -111,7 +111,7 @@ public class CatLevel0PagerAdapter extends PagerAdapter {
         try {
 
             RequestOptions requestOptions = new RequestOptions();
-            requestOptions.placeholder(R.mipmap.ic_launcher);
+            requestOptions.placeholder(R.drawable.playstoreicon);
             requestOptions.fitCenter();
 
 

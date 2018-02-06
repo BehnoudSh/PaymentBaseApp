@@ -14,6 +14,7 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -35,6 +36,15 @@ public class BusSearchResultDialog extends Dialog {
     @BindView(R.id.rv_actBusSelectCity)
     RecyclerView recyclerView;
 
+    @BindView(R.id.iv_actionbar_back)
+    ImageView iv_actionbar_back;
+
+    @BindView(R.id.tv_actionbar_title)
+    TextView tv_actionbar_title;
+
+    @BindView(R.id.actionbarholder)
+    RelativeLayout actionbarholder;
+
     Response_SearchBuses searchresult;
 
     RecyclerView.LayoutManager layoutManager;
@@ -43,11 +53,6 @@ public class BusSearchResultDialog extends Dialog {
 
     Context context;
 
-    @BindView(R.id.tv_actionbar_title)
-    TextView tv_actionbar_title;
-
-    @BindView(R.id.actionbarholder)
-    RelativeLayout actionbarholder;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -86,11 +91,18 @@ public class BusSearchResultDialog extends Dialog {
         this.context = context;
         this.searchresult = searchresult;
     }
+
     void setupactionbar() {
-
-        tv_actionbar_title.setText("بلیت اتوبوس");
-
-        actionbarholder.setBackgroundColor(getResources().getColor(R.color.holder3));
-
+//
+//        tv_actionbar_title.setText("نتیجه جستجو");
+//
+//        actionbarholder.setBackgroundColor(context.getResources().getColor(R.color.holder3));
+//
+//        iv_actionbar_back.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                dismiss();
+//            }
+//        });
     }
 }
