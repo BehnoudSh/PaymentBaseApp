@@ -114,7 +114,7 @@ public class SplashActivity extends AppCompatActivity {
         if (alarmRunning == false) {
             PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 0, alarm, 0);
             AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
-            alarmManager.setRepeating(AlarmManager.ELAPSED_REALTIME_WAKEUP, SystemClock.elapsedRealtime(), 10000, pendingIntent);
+            alarmManager.setRepeating(AlarmManager.ELAPSED_REALTIME_WAKEUP, SystemClock.elapsedRealtime(), 5 * 60 * 1000, pendingIntent);
         }
 
 
