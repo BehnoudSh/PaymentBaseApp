@@ -1,13 +1,17 @@
 package ir.chichand.chichand.Activity;
 
+import android.app.AlarmManager;
+import android.app.PendingIntent;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.SystemClock;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import butterknife.ButterKnife;
+import ir.chichand.chichand.AlarmManager.AlarmReceiver;
 import ir.chichand.chichand.Models.Responses.Response_Config;
 import ir.chichand.chichand.NetworkServices.ApiCallbacks;
 import ir.chichand.chichand.NetworkServices.ApiHandler;
@@ -33,7 +37,6 @@ public class SplashActivity extends AppCompatActivity {
         ButterKnife.bind(this);
 
         setScreenUtils();
-
 
 
     }
@@ -104,36 +107,45 @@ public class SplashActivity extends AppCompatActivity {
 
 
     void getConfig() {
- 
 
 
+        Intent alarm = new Intent(this, AlarmReceiver.class);
+        boolean alarmRunning = (PendingIntent.getBroadcast(this, 0, alarm, PendingIntent.FLAG_NO_CREATE) != null);
+        if (alarmRunning == false) {
+            PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 0, alarm, 0);
+            AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+            alarmManager.setRepeating(AlarmManager.ELAPSED_REALTIME_WAKEUP, SystemClock.elapsedRealtime(), 10000, pendingIntent);
+        }
 
 
+        ApiHandler.getConfig(this, new ApiCallbacks.getConfigInterface()
 
-        ApiHandler.getConfig(this, new ApiCallbacks.getConfigInterface() {
-            @Override
-            public void onGetConfigFailed() {
+                {
+                    @Override
+                    public void onGetConfigFailed() {
 
-            }
+                    }
 
-            @Override
-            public void onGetConfigSucceeded(final Response_Config response) {
+                    @Override
+                    public void onGetConfigSucceeded(final Response_Config response) {
 
 //                new Handler().postDelayed(new Runnable() {
 //                    @Override
 //                    public void run() {
 
 
-                Intent i = new Intent(SplashActivity.this, MainActivity.class);
-                i.putExtra("daily_quote", response.getQuote());
-                startActivity(i);
-                overridePendingTransition(R.anim.come_in, R.anim.go_out);
-                finish();
+                        Intent i = new Intent(SplashActivity.this, MainActivity.class);
+                        i.putExtra("daily_quote", response.getQuote());
+                        startActivity(i);
+                        overridePendingTransition(R.anim.come_in, R.anim.go_out);
+                        finish();
 
 
 //                    }
 //                }, SPLASH_TIME_OUT);
-            }
-        });
+                    }
+                }
+
+        );
     }
 }
