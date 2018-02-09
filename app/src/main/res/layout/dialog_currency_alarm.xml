@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/gray_dolphin"
+    android:gravity="center"
+    android:orientation="vertical">
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:text="در صورتی‌ که قیمت" />
+
+
+    <Spinner
+        android:id="@+id/sp_dialog_currency_alarm_chooseCurrency"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"></Spinner>
+    <!--android:prompt="ارز را انتخاب کنید"-->
+
+    <Spinner
+        android:id="@+id/sp_dialog_currency_alarm_chooseType"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:layout_margin="10dp"></Spinner>
+    <!--android:prompt="نوع بررسی قیمت را انتخاب کنید"-->
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:hint="قیمت مورد نظر به ریال"
+        android:id="@+id/et_dialog_currency_alarm_amount"
+        android:inputType="numberDecimal"
+        android:padding="10dp" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:text="شد به من اطلاع بده." />
+
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:id="@+id/startAlarm"
+        android:text="شروع گوش‌به‌زنگ" />
+
+</LinearLayout>

@@ -20,4 +20,10 @@ public class PublicVariables {
     public static List<Response_BusCity> allBusCities = new ArrayList<>();
 
     public static List<Response_FlightCity> allFlightCities = new ArrayList<>();
+
+    public static String alarm_selectedCurrency = "";
+
+    public static String alarm_selectedType = "";
+
+    public static long alarm_selectedAmount = 0;
 }

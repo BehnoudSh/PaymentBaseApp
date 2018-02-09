@@ -2,6 +2,7 @@ package ir.chichand.chichand.Activity;
 
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -20,6 +21,7 @@ import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import ir.chichand.chichand.Dialog.CurrencyAlarmDialog;
 import ir.chichand.chichand.Models.Requests.Request_Inquiry;
 import ir.chichand.chichand.Models.Responses.Response_Inquiry;
 import ir.chichand.chichand.Models.Responses.Response_Inquiry_Data;
@@ -40,6 +42,10 @@ public class CurrencyActivity extends AppCompatActivity {
     ImageView iv_actionbar_back;
     @BindView(R.id.parent)
     LinearLayout parent;
+    @BindView(R.id.fab)
+    FloatingActionButton fab;
+
+    List<Response_Inquiry_Data> currencyList;
 
     @Override
     protected void attachBaseContext(Context newBase) {
@@ -87,6 +93,8 @@ public class CurrencyActivity extends AppCompatActivity {
 
             @Override
             public void onGetInquirySucceeded(Response_Inquiry response) {
+
+                currencyList = response.getData();
 
                 dialog.dismiss();
 
@@ -145,9 +153,20 @@ public class CurrencyActivity extends AppCompatActivity {
 
                     parent.addView(linear);
 
+
                 }
 
             }
         });
+
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                CurrencyAlarmDialog alarmDialog = new CurrencyAlarmDialog(CurrencyActivity.this, CurrencyActivity.this, currencyList);
+                alarmDialog.show();
+            }
+        });
+
+
     }
 }

@@ -39,7 +39,7 @@
         android:layout_margin="20dp"
         android:gravity="center"
         android:padding="10dp"
-        android:text="هفت رنگ"
+        android:text="هفت‌رنگ"
         android:textColor="@color/gray_dolphin"
         android:textSize="26dp"
         android:textStyle="bold" />

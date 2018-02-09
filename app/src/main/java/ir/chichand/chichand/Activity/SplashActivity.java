@@ -18,6 +18,7 @@ import ir.chichand.chichand.NetworkServices.ApiHandler;
 import ir.chichand.chichand.R;
 import ir.chichand.chichand.Tools.PublicTools;
 import ir.chichand.chichand.Tools.ScreenUtils;
+import ir.chichand.chichand.Tools.SharedPref;
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 public class SplashActivity extends AppCompatActivity {
@@ -37,6 +38,7 @@ public class SplashActivity extends AppCompatActivity {
         ButterKnife.bind(this);
 
         setScreenUtils();
+        SharedPref.getInstance().initSharedPref(getApplicationContext());
 
 
     }
@@ -109,13 +111,7 @@ public class SplashActivity extends AppCompatActivity {
     void getConfig() {
 
 
-        Intent alarm = new Intent(this, AlarmReceiver.class);
-        boolean alarmRunning = (PendingIntent.getBroadcast(this, 0, alarm, PendingIntent.FLAG_NO_CREATE) != null);
-        if (alarmRunning == false) {
-            PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 0, alarm, 0);
-            AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
-            alarmManager.setRepeating(AlarmManager.ELAPSED_REALTIME_WAKEUP, SystemClock.elapsedRealtime(), 5 * 60 * 1000, pendingIntent);
-        }
+
 
 
         ApiHandler.getConfig(this, new ApiCallbacks.getConfigInterface()

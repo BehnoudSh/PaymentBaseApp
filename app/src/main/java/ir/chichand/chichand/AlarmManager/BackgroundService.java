@@ -17,6 +17,12 @@ import ir.chichand.chichand.Models.Responses.Response_Inquiry_Data;
 import ir.chichand.chichand.NetworkServices.ApiCallbacks;
 import ir.chichand.chichand.NetworkServices.ApiHandler;
 import ir.chichand.chichand.R;
+import ir.chichand.chichand.Tools.PublicVariables;
+import ir.chichand.chichand.Tools.SharedPref;
+
+import static ir.chichand.chichand.Tools.SharedPref.getAmount;
+import static ir.chichand.chichand.Tools.SharedPref.getCurrencyName;
+import static ir.chichand.chichand.Tools.SharedPref.getCurrencyType;
 
 public class BackgroundService extends Service {
 
@@ -34,6 +40,8 @@ public class BackgroundService extends Service {
         this.context = this;
         this.isRunning = false;
         this.backgroundThread = new Thread(myTask);
+        SharedPref.getInstance().initSharedPref(this.context);
+
     }
 
     private Runnable myTask = new Runnable() {
@@ -48,10 +56,10 @@ public class BackgroundService extends Service {
                 @Override
                 public void onGetInquirySucceeded(Response_Inquiry response) {
 
-                    for (Response_Inquiry_Data data : response.getData()
-                            ) {
+                    for (Response_Inquiry_Data data : response.getData()) {
 
-                        if (data.getName().contains("دلار امریکا")) {
+                        if (data.getName().contains(getCurrencyName())) {
+
                             Intent intent = new Intent(context, SplashActivity.class);
                             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                             PendingIntent pendingIntent = PendingIntent.getActivity(context, 1410,
@@ -60,7 +68,7 @@ public class BackgroundService extends Service {
                             NotificationCompat.Builder notificationBuilder = new
                                     NotificationCompat.Builder(context)
                                     .setSmallIcon(R.mipmap.ic_launcher)
-                                    .setContentTitle("قیمت دلار امریکا")
+                                    .setContentTitle(getCurrencyName())
                                     .setContentText(data.getPrice().toString() + " ریال")
                                     .setAutoCancel(true)
                                     .setContentIntent(pendingIntent);
@@ -69,15 +77,26 @@ public class BackgroundService extends Service {
                                     (NotificationManager)
                                             getSystemService(Context.NOTIFICATION_SERVICE);
 
-                            notificationManager.notify(1410, notificationBuilder.build());
+                            if (getCurrencyType().equals("بیشتر از")) {
 
+                                if (Long.valueOf(data.getPrice().replace(",", "")) > getAmount())
+                                    notificationManager.notify(1410, notificationBuilder.build());
+
+                            } else if (getCurrencyType().equals("کمتر از")) {
+                                if (Long.valueOf(data.getPrice().replace(",", "")) < getAmount())
+
+                                    notificationManager.notify(1410, notificationBuilder.build());
+
+                            } else if (getCurrencyType().equals("برابر با")) {
+                                if (Long.valueOf(data.getPrice().replace(",", "")) == getAmount())
+
+                                    notificationManager.notify(1410, notificationBuilder.build());
+
+                            }
                         }
-
                     }
-
                 }
             });
-
 
             stopSelf();
         }
