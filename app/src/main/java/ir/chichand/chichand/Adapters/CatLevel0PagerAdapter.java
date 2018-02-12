@@ -242,14 +242,14 @@ public class CatLevel0PagerAdapter extends PagerAdapter {
     }
 
     void handleEnabled(View view, Response_Categories category) {
-        if (category.getIsenabled().equals("1")) {
+        if (category.getIsenabled().equals("0")) {
 
             view.setAlpha(0.3f);
 
             view.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Toast.makeText(_context, "به زودی", Toast.LENGTH_LONG).show();
+                    Toast.makeText(_context, "به زودی ...", Toast.LENGTH_LONG).show();
                 }
             });
         } else

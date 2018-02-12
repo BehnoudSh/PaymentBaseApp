@@ -120,7 +120,7 @@ public class CurrencyAlarmDialog extends Dialog {
                     if (alarmRunning == false) {
                         PendingIntent pendingIntent = PendingIntent.getBroadcast(context, 0, alarm, 0);
                         AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
-                        alarmManager.setRepeating(AlarmManager.ELAPSED_REALTIME_WAKEUP, SystemClock.elapsedRealtime(), 10000, pendingIntent);
+                        alarmManager.setRepeating(AlarmManager.ELAPSED_REALTIME_WAKEUP, SystemClock.elapsedRealtime(), 10 * 60 * 1000, pendingIntent);
                     }
 
                     setCurrencyType(PublicVariables.alarm_selectedType);
