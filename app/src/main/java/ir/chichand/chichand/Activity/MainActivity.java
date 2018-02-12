@@ -8,8 +8,15 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+
+import com.daimajia.androidanimations.library.Techniques;
+import com.daimajia.androidanimations.library.YoYo;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -29,6 +36,18 @@ import me.relex.circleindicator.CircleIndicator;
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 public class MainActivity extends AppCompatActivity {
+    @BindView(R.id.iv_actionbar_back)
+    ImageView iv_actionbar_back;
+
+    @BindView(R.id.tv_actionbar_title)
+    TextView tv_actionbar_title;
+
+    @BindView(R.id.actionbarholder)
+    RelativeLayout actionbarholder;
+
+    @BindView(R.id.toolbaricon)
+    ImageView toolbaricon;
+
 
     @BindView(R.id.rl_activity_main_adHolder)
     RelativeLayout rl_adHolder;
@@ -46,6 +65,7 @@ public class MainActivity extends AppCompatActivity {
     @BindView(R.id.tv_activity_main_quote)
     TextView tv_quote;
 
+    Animation.AnimationListener listener;
 
     @Override
     protected void attachBaseContext(Context newBase) {
@@ -63,8 +83,33 @@ public class MainActivity extends AppCompatActivity {
         tv_quote.setText(getIntent().getStringExtra("daily_quote"));
         tv_quote.setSelected(true);
         //setInitialSizes();
+        setupactionbar();
 
+        listener = new Animation.AnimationListener() {
+            @Override
+            public void onAnimationStart(Animation animation) {
+            }
 
+            @Override
+            public void onAnimationRepeat(Animation animation) {
+            }
+
+            @Override
+            public void onAnimationEnd(Animation animation) {
+                System.out.println("End Animation!");
+                //load_animations();
+            }
+        };
+
+        load_animations();
+
+    }
+
+    void load_animations() {
+        new AnimationUtils();
+        Animation rotation = AnimationUtils.loadAnimation(this, R.anim.rotate);
+        rotation.setAnimationListener(listener);
+        toolbaricon.startAnimation(rotation);
     }
 
 
@@ -161,9 +206,17 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+    }
+
+    void setupactionbar() {
+
+        tv_actionbar_title.setText("هفت‌رنگ");
+
+        //actionbarholder.setBackgroundColor(getResources().getColor(R.color.holder3));
+
+        iv_actionbar_back.setVisibility(View.GONE);
 
 
     }
-
 
 }

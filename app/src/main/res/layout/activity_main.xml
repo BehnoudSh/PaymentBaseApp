@@ -6,11 +6,15 @@
     android:background="@drawable/backrepeat"
     android:orientation="vertical">
 
+    <include
+        android:id="@+id/activity_main_toolbar"
+        layout="@layout/toolbar" />
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@+id/rl_activity_main_adHolder"
+        android:layout_below="@+id/activity_main_toolbar"
 
 
         android:orientation="vertical">
