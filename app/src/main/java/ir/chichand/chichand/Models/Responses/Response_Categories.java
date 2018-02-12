@@ -28,6 +28,8 @@ public class Response_Categories implements Serializable {
     @SerializedName("isenabled")
     private String isenabled;
 
+    private int bg_color;
+
 
     public Response_Categories(String id, String cat_id, String cat_level, String persian_title, String cat_icon, String isenabled) {
         this.id = id;
@@ -84,5 +86,13 @@ public class Response_Categories implements Serializable {
 
     public void setIsenabled(String isenabled) {
         this.isenabled = isenabled;
+    }
+
+    public int getBg_color() {
+        return bg_color;
+    }
+
+    public void setBg_color(int bg_color) {
+        this.bg_color = bg_color;
     }
 }

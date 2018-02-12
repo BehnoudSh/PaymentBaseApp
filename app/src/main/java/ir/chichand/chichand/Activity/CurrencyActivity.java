@@ -33,17 +33,25 @@ import ir.chichand.chichand.Tools.ScreenUtils;
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 public class CurrencyActivity extends AppCompatActivity {
+
+    @BindView(R.id.parent)
+    LinearLayout parent;
+
+    @BindView(R.id.fab)
+    FloatingActionButton fab;
+
+    @BindView(R.id.iv_actionbar_back)
+    ImageView iv_actionbar_back;
+
     @BindView(R.id.tv_actionbar_title)
     TextView tv_actionbar_title;
 
-    @BindView(R.id.actionbarholder)
-    RelativeLayout actionbarholder;
-    @BindView(R.id.iv_actionbar_back)
-    ImageView iv_actionbar_back;
-    @BindView(R.id.parent)
-    LinearLayout parent;
-    @BindView(R.id.fab)
-    FloatingActionButton fab;
+    @BindView(R.id.toolbaricon)
+    ImageView toolbaricon;
+
+    @BindView(R.id.toolbar)
+    android.support.v7.widget.Toolbar
+            toolbar;
 
     List<Response_Inquiry_Data> currencyList;
 
@@ -52,11 +60,10 @@ public class CurrencyActivity extends AppCompatActivity {
         super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
     }
 
-    void setupactionbar() {
+    void setupactionbar(int bg_color, String toolbar_title) {
         {
-            tv_actionbar_title.setText("طلا و ارز");
-
-            actionbarholder.setBackgroundColor(getResources().getColor(R.color.holder2));
+            tv_actionbar_title.setText(toolbar_title);
+            toolbar.setBackgroundColor(bg_color);
             iv_actionbar_back.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -72,15 +79,16 @@ public class CurrencyActivity extends AppCompatActivity {
         setContentView(R.layout.activity_currency);
         ButterKnife.bind(this);
 
-        setupactionbar();
 
+        int color = getIntent().getIntExtra("bg_color", getResources().getColor(R.color.colorPrimary));
+        String title = getIntent().getStringExtra("toolbar_title");
+
+        setupactionbar(color, title);
 
         Request_Inquiry request = new Request_Inquiry(1000, "");
 
-
         final ProgressDialog dialog = ProgressDialog.show(this, "",
                 "در حال دریافت اطلاعات ...", true);
-
 
         ApiHandler.getInquiry(this, request, new ApiCallbacks.getInquiryInterface() {
             @Override
@@ -109,9 +117,7 @@ public class CurrencyActivity extends AppCompatActivity {
                     map.get(key).add(data);
                 }
 
-
-                for (List<Response_Inquiry_Data> group : map.values()
-                        ) {
+                for (List<Response_Inquiry_Data> group : map.values()) {
 
                     View groupView = CurrencyActivity.this.getLayoutInflater().inflate(R.layout.activity_currency_groups, null);
 
@@ -153,9 +159,7 @@ public class CurrencyActivity extends AppCompatActivity {
 
                     parent.addView(linear);
 
-
                 }
-
             }
         });
 
@@ -166,7 +170,5 @@ public class CurrencyActivity extends AppCompatActivity {
                 alarmDialog.show();
             }
         });
-
-
     }
 }

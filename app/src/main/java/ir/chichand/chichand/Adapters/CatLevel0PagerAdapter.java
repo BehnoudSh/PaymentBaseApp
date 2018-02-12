@@ -129,6 +129,7 @@ public class CatLevel0PagerAdapter extends PagerAdapter {
             });
             Holder1.setBackgroundResource(R.drawable.bg_rounded_color1);
             handleEnabled(Holder1, hashMap.get(position).get(0));
+            hashMap.get(position).get(0).setBg_color(_context.getResources().getColor(R.color.holder1));
 
             Title2.setText(hashMap.get(position).get(1).getPersian_title());
             Glide.with(_context)
@@ -144,6 +145,7 @@ public class CatLevel0PagerAdapter extends PagerAdapter {
             });
             Holder2.setBackgroundResource(R.drawable.bg_rounded_color2);
             handleEnabled(Holder2, hashMap.get(position).get(1));
+            hashMap.get(position).get(1).setBg_color(_context.getResources().getColor(R.color.holder2));
 
             Title3.setText(hashMap.get(position).get(2).getPersian_title());
             Glide.with(_context)
@@ -159,6 +161,7 @@ public class CatLevel0PagerAdapter extends PagerAdapter {
             });
             Holder3.setBackgroundResource(R.drawable.bg_rounded_color3);
             handleEnabled(Holder3, hashMap.get(position).get(2));
+            hashMap.get(position).get(2).setBg_color(_context.getResources().getColor(R.color.holder3));
 
             Title4.setText(hashMap.get(position).get(3).getPersian_title());
             Glide.with(_context)
@@ -174,6 +177,7 @@ public class CatLevel0PagerAdapter extends PagerAdapter {
             });
             Holder4.setBackgroundResource(R.drawable.bg_rounded_color4);
             handleEnabled(Holder4, hashMap.get(position).get(3));
+            hashMap.get(position).get(3).setBg_color(_context.getResources().getColor(R.color.holder4));
 
             if (n == 6) {
                 Title5.setText(hashMap.get(position).get(4).getPersian_title());
@@ -190,6 +194,8 @@ public class CatLevel0PagerAdapter extends PagerAdapter {
                 });
                 Holder5.setBackgroundResource(R.drawable.bg_rounded_color5);
                 handleEnabled(Holder5, hashMap.get(position).get(4));
+                hashMap.get(position).get(4).setBg_color(_context.getResources().getColor(R.color.holder5));
+
 
                 Title6.setText(hashMap.get(position).get(5).getPersian_title());
                 Glide.with(_context)
@@ -205,6 +211,8 @@ public class CatLevel0PagerAdapter extends PagerAdapter {
                 });
                 Holder6.setBackgroundResource(R.drawable.bg_rounded_color6);
                 handleEnabled(Holder6, hashMap.get(position).get(5));
+                hashMap.get(position).get(5).setBg_color(_context.getResources().getColor(R.color.holder6));
+
 
             } else {
 

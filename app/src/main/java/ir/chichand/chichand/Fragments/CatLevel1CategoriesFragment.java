@@ -2,6 +2,7 @@ package ir.chichand.chichand.Fragments;
 
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -11,6 +12,9 @@ import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,14 +36,48 @@ public class CatLevel1CategoriesFragment extends Fragment {
     @BindView(R.id.rv_fragment_cat_level1_categoriesList)
     RecyclerView rv_categoriesList;
 
+    @BindView(R.id.iv_actionbar_back)
+    ImageView iv_actionbar_back;
+
+    @BindView(R.id.tv_actionbar_title)
+    TextView tv_actionbar_title;
+
+    @BindView(R.id.actionbarholder)
+    RelativeLayout actionbarholder;
+
+    @BindView(R.id.toolbaricon)
+    ImageView toolbaricon;
+
+    @BindView(R.id.toolbar)
+    android.support.v7.widget.Toolbar
+            toolbar;
+
+    void setupactionbar(String toolbartitle, int toolbar_bg_color) {
+
+        tv_actionbar_title.setText(toolbartitle);
+
+        toolbar.setBackgroundColor(toolbar_bg_color);
+
+        iv_actionbar_back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getActivity().getSupportFragmentManager().popBackStack();
+            }
+        });
+
+    }
+
+
     private Unbinder unbinder;
 
 
-    public static CatLevel1CategoriesFragment newInstance(int catleve0_id) {
+    public static CatLevel1CategoriesFragment newInstance(int catleve0_id, String toolbar_title, int toolbar_bg_color) {
 
         CatLevel1CategoriesFragment fragment = new CatLevel1CategoriesFragment();
         Bundle args = new Bundle();
         args.putInt("catlevel0_id", catleve0_id);
+        args.putString("toolbarTitle", toolbar_title);
+        args.putInt("toolbar_bg_color", toolbar_bg_color);
         fragment.setArguments(args);
         return fragment;
 
@@ -54,6 +92,10 @@ public class CatLevel1CategoriesFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         int catlevel0_id = getArguments().getInt("catlevel0_id");
+        String toolbar_title = getArguments().getString("toolbarTitle");
+        final int toolbar_bg_color = getArguments().getInt("toolbar_bg_color");
+
+        setupactionbar(toolbar_title, toolbar_bg_color);
 
         StaggeredGridLayoutManager mLayoutManager = new StaggeredGridLayoutManager(2,
                 StaggeredGridLayoutManager.VERTICAL);
@@ -92,6 +134,8 @@ public class CatLevel1CategoriesFragment extends Fragment {
                 if (0 < cat_id && cat_id < 1000) {
                     Intent intent = new Intent(getActivity(), GoodsActivity.class);
                     intent.putExtra("cat_id", cat_id);
+                    intent.putExtra("toolbar_title", item.getPersian_title());
+                    intent.putExtra("bg_color", toolbar_bg_color);
                     startActivity(intent);
                 } else if (cat_id == 2007) {
                     Intent intent = new Intent(getActivity(), BusActivity.class);

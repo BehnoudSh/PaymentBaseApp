@@ -3,11 +3,13 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+
+    android:background="@drawable/backrepeat">
 
     <include
         android:id="@+id/activity_main_toolbar"
-        layout="@layout/actionbar" />
+        layout="@layout/toolbar" />
 
 
     <RelativeLayout
@@ -17,7 +19,6 @@
 
 
         <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 

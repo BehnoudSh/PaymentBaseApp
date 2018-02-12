@@ -1,20 +1,22 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#fafafa"
-    android:padding="5dp"
     tools:context="ir.chichand.chichand.Fragments.CatLevel1CategoriesFragment">
 
+    <include
+        android:id="@+id/activity_main_toolbar"
+        layout="@layout/toolbar" />
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rv_fragment_cat_level1_categoriesList"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:layout_gravity="center">
-
+        android:layout_below="@+id/activity_main_toolbar"
+        android:layout_gravity="center"
+        android:padding="5dp">
 
     </android.support.v7.widget.RecyclerView>
 
-
-</FrameLayout>
+</RelativeLayout>

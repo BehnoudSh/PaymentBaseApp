@@ -48,6 +48,10 @@ public class MainActivity extends AppCompatActivity {
     @BindView(R.id.toolbaricon)
     ImageView toolbaricon;
 
+    @BindView(R.id.toolbar)
+    android.support.v7.widget.Toolbar
+            toolbar;
+
 
     @BindView(R.id.rl_activity_main_adHolder)
     RelativeLayout rl_adHolder;
@@ -64,6 +68,7 @@ public class MainActivity extends AppCompatActivity {
 
     @BindView(R.id.tv_activity_main_quote)
     TextView tv_quote;
+
 
     Animation.AnimationListener listener;
 
@@ -161,6 +166,8 @@ public class MainActivity extends AppCompatActivity {
                         if (cat_id == 1000) {
 
                             Intent intent = new Intent(MainActivity.this, CurrencyActivity.class);
+                            intent.putExtra("bg_color", item.getBg_color());
+                            intent.putExtra("toolbar_title", item.getPersian_title());
                             startActivity(intent);
 
                         } else if (cat_id == 3000) {
@@ -185,9 +192,10 @@ public class MainActivity extends AppCompatActivity {
 
                         } else {
 
+
                             FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
 
-                            fragmentTransaction.add(R.id.fl_activity_main_fragmentHolder, CatLevel1CategoriesFragment.newInstance(cat_id));
+                            fragmentTransaction.add(R.id.fl_activity_main_fragmentHolder, CatLevel1CategoriesFragment.newInstance(cat_id, item.getPersian_title(), item.getBg_color()));
 
                             fragmentTransaction.addToBackStack("CatLevel1CategoriesFragment");
 
@@ -212,7 +220,7 @@ public class MainActivity extends AppCompatActivity {
 
         tv_actionbar_title.setText("هفت‌رنگ");
 
-        //actionbarholder.setBackgroundColor(getResources().getColor(R.color.holder3));
+        toolbar.setBackgroundColor(getResources().getColor(R.color.transparent_black_percent_60));
 
         iv_actionbar_back.setVisibility(View.GONE);
 

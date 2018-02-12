@@ -4,9 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/backrepeat"
     android:orientation="vertical"
     tools:context="ir.chichand.chichand.Activity.GoodsActivity">
 
+    <include
+        android:id="@+id/activity_main_toolbar"
+        layout="@layout/toolbar" />
 
     <LinearLayout
 

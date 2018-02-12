@@ -10,6 +10,7 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -37,6 +38,19 @@ public class GoodsActivity extends AppCompatActivity {
     @BindView(R.id.et_activity_cat_level2_search)
     EditText et_search;
 
+    @BindView(R.id.iv_actionbar_back)
+    ImageView iv_actionbar_back;
+
+    @BindView(R.id.tv_actionbar_title)
+    TextView tv_actionbar_title;
+
+    @BindView(R.id.toolbaricon)
+    ImageView toolbaricon;
+
+    @BindView(R.id.toolbar)
+    android.support.v7.widget.Toolbar
+            toolbar;
+
     GoodsAdapter GoodsAdapter;
     LinearLayoutManager mLayoutManager = new LinearLayoutManager(GoodsActivity.this);
     List<Response_Others_Result> responseList = new ArrayList<>();
@@ -44,6 +58,19 @@ public class GoodsActivity extends AppCompatActivity {
     String base_url = "";
 
     int page = 0;
+
+    void setupactionbar(int bg_color, String toolbar_title) {
+        {
+            tv_actionbar_title.setText(toolbar_title);
+            toolbar.setBackgroundColor(bg_color);
+            iv_actionbar_back.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    finish();
+                }
+            });
+        }
+    }
 
     @Override
     protected void attachBaseContext(Context newBase) {
@@ -70,6 +97,8 @@ public class GoodsActivity extends AppCompatActivity {
                 return false;
             }
         });
+
+        setupactionbar(getIntent().getIntExtra("bg_color", getResources().getColor(R.color.colorPrimary)), getIntent().getStringExtra("toolbar_title"));
     }
 
     void getInquiry(String searchword) {
