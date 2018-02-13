@@ -9,7 +9,7 @@
         android:id="@+id/ll_actBusSelectCity_search_container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="20dp"
+        android:layout_margin="@dimen/large_gap"
 
         android:orientation="horizontal">
 
@@ -21,8 +21,8 @@
             android:background="?android:attr/selectableItemBackground"
             android:gravity="center"
             android:orientation="vertical"
-            android:paddingLeft="10dp"
-            android:paddingRight="10dp"
+            android:paddingLeft="@dimen/default_gap"
+            android:paddingRight="@dimen/default_gap"
             android:visibility="invisible">
 
             <ImageView
@@ -37,7 +37,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="@null"
-            android:drawablePadding="10dp"
+            android:drawablePadding="@dimen/default_gap"
             android:drawableRight="@drawable/ic_location"
             android:editable="false"
             android:gravity="right|center_vertical"
@@ -46,10 +46,10 @@
             android:inputType="text"
             android:maxLength="40"
             android:maxLines="1"
-            android:padding="8dp"
+            android:padding="@dimen/small_gap"
             android:singleLine="true"
             android:textColor="@color/white"
-            android:textSize="14dp"
+            android:textSize="@dimen/normal_txt_size"
             android:theme="@style/MyET" />
 
     </LinearLayout>
@@ -61,7 +61,7 @@
         android:gravity="center"
         android:text="موردی یافت نشد"
         android:textColor="@color/white"
-        android:textSize="12dp"
+        android:textSize="@dimen/normal_txt_size"
         android:visibility="gone" />
 
     <android.support.v7.widget.RecyclerView

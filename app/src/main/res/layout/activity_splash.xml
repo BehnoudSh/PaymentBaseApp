@@ -36,12 +36,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_margin="20dp"
+        android:layout_margin="@dimen/large_gap"
         android:gravity="center"
-        android:padding="10dp"
+        android:padding="@dimen/default_gap"
         android:text="هفت‌رنگ"
         android:textColor="@color/gray_dolphin"
-        android:textSize="26dp"
+        android:textSize="@dimen/very_large_text_size"
         android:textStyle="bold" />
 
 </RelativeLayout>

@@ -10,7 +10,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="10dp"
+        android:padding="@dimen/default_gap"
         android:text="در صورتی‌ که قیمت" />
 
 
@@ -18,7 +18,7 @@
         android:id="@+id/sp_dialog_currency_alarm_chooseCurrency"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"></Spinner>
+        android:layout_margin="@dimen/default_gap"></Spinner>
     <!--android:prompt="ارز را انتخاب کنید"-->
 
     <Spinner
@@ -26,7 +26,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
 
-        android:layout_margin="10dp"></Spinner>
+        android:layout_margin="@dimen/default_gap"></Spinner>
     <!--android:prompt="نوع بررسی قیمت را انتخاب کنید"-->
 
     <EditText
@@ -36,12 +36,12 @@
         android:hint="قیمت مورد نظر به ریال"
         android:id="@+id/et_dialog_currency_alarm_amount"
         android:inputType="numberDecimal"
-        android:padding="10dp" />
+        android:padding="@dimen/default_gap" />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="10dp"
+        android:padding="@dimen/default_gap"
         android:text="شد به من اطلاع بده." />
 
 

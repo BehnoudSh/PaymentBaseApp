@@ -6,21 +6,11 @@
     android:orientation="vertical">
 
 
-    <!--<TextView-->
-    <!--android:id="@+id/tv_actBusSelectCity_empty"-->
-    <!--android:layout_width="match_parent"-->
-    <!--android:layout_height="wrap_content"-->
-    <!--android:gravity="center"-->
-    <!--android:text="موردی یافت نشد"-->
-    <!--android:textColor="@color/white"-->
-    <!--android:textSize="12dp"-->
-    <!--android:visibility="gone" />-->
-
     <ImageView
         android:id="@+id/iv_fragment_bus_searchresult_back"
         android:layout_width="30dp"
         android:layout_height="30dp"
-        android:layout_margin="10dp"
+        android:layout_margin="@dimen/default_gap"
         android:src="@drawable/ic_arrow_left" />
 
     <android.support.v7.widget.RecyclerView

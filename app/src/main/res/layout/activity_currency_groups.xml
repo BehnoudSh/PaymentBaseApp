@@ -3,7 +3,7 @@
     android:id="@+id/parent"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="10dp"
+    android:layout_margin="@dimen/default_gap"
     android:background="@drawable/bg_currency_groups"
     android:orientation="vertical">
 
@@ -12,9 +12,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:padding="10dp"
+        android:padding="@dimen/default_gap"
         android:textColor="@color/gray_dolphin"
-        android:textSize="16dp"
+        android:textSize="@dimen/default_txt_size"
         android:textStyle="bold" />
 
     <LinearLayout
@@ -31,7 +31,7 @@
             android:gravity="center"
             android:padding="10dp"
             android:textColor="@color/gray_dolphin"
-            android:textSize="13dp"
+            android:textSize="@dimen/normal_txt_size"
             android:textStyle="bold" />
 
         <View

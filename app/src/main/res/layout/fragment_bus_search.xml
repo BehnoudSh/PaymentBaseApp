@@ -13,7 +13,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
-            android:padding="20dp">
+            android:padding="@dimen/large_gap">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -22,7 +22,7 @@
                 android:background="@drawable/bg_currency_groups"
                 android:gravity="center_vertical"
                 android:orientation="horizontal"
-                android:padding="20dp">
+                android:padding="@dimen/large_gap">
 
                 <ImageView
                     android:id="@+id/iv_fragment_bus_search_clearSource"
@@ -41,15 +41,15 @@
                         android:id="@+id/et_fragment_bus_search_source"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="5dp"
-                        android:layout_marginRight="5dp"
+                        android:layout_marginLeft="@dimen/small_gap"
+                        android:layout_marginRight="@dimen/small_gap"
                         android:layout_weight="1"
                         android:gravity="right"
                         android:hint="مبدا"
                         android:imeOptions="actionDone"
                         android:inputType="text"
                         android:nextFocusDown="@+id/fragment_bus_search_destination"
-                        android:textSize="16dp" />
+                        android:textSize="@dimen/default_txt_size" />
                 </android.support.design.widget.TextInputLayout>
 
 
@@ -63,7 +63,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="@dimen/large_gap"
                 android:background="@drawable/bg_currency_groups"
                 android:gravity="center_vertical"
                 android:orientation="horizontal"
@@ -86,14 +86,14 @@
                         android:id="@+id/et_fragment_bus_search_destination"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="5dp"
-                        android:layout_marginRight="5dp"
+                        android:layout_marginLeft="@dimen/small_gap"
+                        android:layout_marginRight="@dimen/small_gap"
                         android:layout_weight="1"
                         android:gravity="right"
                         android:hint="مقصد"
                         android:imeOptions="actionDone"
                         android:inputType="text"
-                        android:textSize="16dp" />
+                        android:textSize="@dimen/default_gap" />
 
                 </android.support.design.widget.TextInputLayout>
 
@@ -108,20 +108,20 @@
                 android:id="@+id/ll_fragment_bus_search_datePicked"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="@dimen/large_gap"
                 android:background="@drawable/bg_currency_groups"
                 android:gravity="center_vertical"
                 android:orientation="horizontal"
-                android:padding="20dp">
+                android:padding="@dimen/large_gap">
 
                 <TextView
                     android:id="@+id/tv_fragment_bus_search_datePicked"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginRight="20dp"
+                    android:layout_marginRight="@dimen/large_gap"
                     android:layout_weight="1"
                     android:text="تاریخ را انتخاب نمایید"
-                    android:textSize="14dp" />
+                    android:textSize="@dimen/normal_txt_size" />
 
                 <ImageView
                     android:layout_width="32dp"
@@ -136,12 +136,12 @@
                 android:id="@+id/bt_fragment_bus_search_search"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="20dp"
-                android:layout_marginLeft="20dp"
+                android:layout_marginBottom="@dimen/large_gap"
+                android:layout_marginLeft="@dimen/large_gap"
 
                 android:gravity="center"
                 android:text="جستجو"
-                android:textSize="20dp"
+                android:textSize="@dimen/large_text_size"
 
 
                 android:textStyle="bold" />

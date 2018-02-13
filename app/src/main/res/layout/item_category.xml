@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/rl_item_categories_parent"
     android:layout_width="100dp"
-    android:layout_margin="5dp"
+    android:layout_margin="@dimen/small_gap"
     android:layout_height="100dp"
 
     android:background="@drawable/bg_custom_elevation"
@@ -13,7 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="@dimen/default_gap"
         android:gravity="center"
         android:text="testtesttest"
         android:textColor="@color/black" />
@@ -23,7 +23,7 @@
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:layout_above="@id/tv_item_categories_title"
-        android:padding="10dp"
+        android:padding="@dimen/default_gap"
         android:scaleType="fitCenter" />
 
 

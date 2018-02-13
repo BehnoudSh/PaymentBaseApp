@@ -10,8 +10,8 @@
         android:id="@+id/tv_dlgLoadingMessage"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="20dp"
-        android:textSize="16dp"
+        android:layout_margin="@dimen/large_gap"
+        android:textSize="@dimen/default_txt_size"
         android:textColor="@color/white"
         android:gravity="center"
         android:visibility="visible"/>

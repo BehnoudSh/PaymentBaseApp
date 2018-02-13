@@ -11,6 +11,7 @@
 
     <dimen name="very_small_gap">1dp</dimen>
     <dimen name="small_gap">4dp</dimen>
+    <dimen name="default_gap">6dp</dimen>
     <dimen name="large_gap">15dp</dimen>
     <dimen name="very_large_gap">28dp</dimen>
     <dimen name="very_very_large_gap">45dp</dimen>

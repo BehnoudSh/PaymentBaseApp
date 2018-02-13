@@ -7,7 +7,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="10dp"
+        android:padding="@dimen/default_gap"
         android:id="@+id/tv_item_spinner_simple_title"
         android:textColor="@color/gray_dolphin" />
 </LinearLayout>
