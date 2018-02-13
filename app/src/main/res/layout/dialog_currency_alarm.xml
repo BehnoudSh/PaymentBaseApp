@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/gray_dolphin"
+    android:background="@color/white"
     android:gravity="center"
     android:orientation="vertical">
 
@@ -14,20 +14,57 @@
         android:text="در صورتی‌ که قیمت" />
 
 
-    <Spinner
-        android:id="@+id/sp_dialog_currency_alarm_chooseCurrency"
+    <!--<Spinner-->
+        <!--android:id="@+id/sp_dialog_currency_alarm_chooseCurrency"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_margin="@dimen/default_gap"></Spinner>-->
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/default_gap"></Spinner>
+        android:layout_marginTop="@dimen/small_gap"
+        android:background="@drawable/bg_spinner"
+        android:orientation="vertical"
+        android:paddingRight="@dimen/default_gap">
+
+        <android.support.v7.widget.AppCompatSpinner
+            android:id="@+id/sp_dialog_currency_alarm_chooseCurrency"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/small_gap"
+            android:spinnerMode="dropdown" />
+    </LinearLayout>
+
+
+
     <!--android:prompt="ارز را انتخاب کنید"-->
 
-    <Spinner
-        android:id="@+id/sp_dialog_currency_alarm_chooseType"
+    <!--<Spinner-->
+        <!--android:id="@+id/sp_dialog_currency_alarm_chooseType"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+
+        <!--android:layout_margin="@dimen/default_gap"></Spinner>-->
+    <!--android:prompt="نوع بررسی قیمت را انتخاب کنید"-->
+
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/small_gap"
+        android:background="@drawable/bg_spinner"
+        android:orientation="vertical"
+        android:paddingRight="@dimen/default_gap">
 
-        android:layout_margin="@dimen/default_gap"></Spinner>
-    <!--android:prompt="نوع بررسی قیمت را انتخاب کنید"-->
+        <android.support.v7.widget.AppCompatSpinner
+            android:id="@+id/sp_dialog_currency_alarm_chooseType"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/small_gap"
+            android:spinnerMode="dropdown" />
+    </LinearLayout>
+
 
     <EditText
         android:layout_width="match_parent"

@@ -10,11 +10,6 @@ import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.os.SystemClock;
 import android.support.annotation.NonNull;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.ScrollingTabContainerView;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.view.Gravity;
 import android.view.View;
 import android.view.Window;
@@ -23,10 +18,6 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.Spinner;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -35,11 +26,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
-import ir.chichand.chichand.Activity.CurrencyActivity;
-import ir.chichand.chichand.Adapters.Adapter_BusCities;
-import ir.chichand.chichand.Adapters.Adapter_Currency_Spinner;
 import ir.chichand.chichand.AlarmManager.AlarmReceiver;
-import ir.chichand.chichand.Models.Responses.Response_BusCity;
 import ir.chichand.chichand.Models.Responses.Response_Inquiry_Data;
 import ir.chichand.chichand.R;
 import ir.chichand.chichand.Tools.PublicVariables;
@@ -49,24 +36,22 @@ import static ir.chichand.chichand.Tools.SharedPref.setCurrencyName;
 import static ir.chichand.chichand.Tools.SharedPref.setCurrencyType;
 
 public class CurrencyAlarmDialog extends Dialog {
-
-
+    
     private Unbinder unbinder;
     List<Response_Inquiry_Data> currencyList;
     Context context;
 
     @BindView(R.id.sp_dialog_currency_alarm_chooseCurrency)
-    Spinner sp_currencySpinner;
+    android.support.v7.widget.AppCompatSpinner sp_currencySpinner;
 
     @BindView(R.id.sp_dialog_currency_alarm_chooseType)
-    Spinner sp_typeSpinner;
+    android.support.v7.widget.AppCompatSpinner sp_typeSpinner;
 
     @BindView(R.id.startAlarm)
     Button bt_startAlarm;
 
     @BindView(R.id.et_dialog_currency_alarm_amount)
     EditText alarm_amount;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,7 +67,6 @@ public class CurrencyAlarmDialog extends Dialog {
         lp.width = WindowManager.LayoutParams.MATCH_PARENT;
         lp.height = WindowManager.LayoutParams.MATCH_PARENT;
         lp.gravity = Gravity.CENTER;
-
         this.getWindow().setAttributes(lp);
 
         this.setCancelable(true);
@@ -90,16 +74,16 @@ public class CurrencyAlarmDialog extends Dialog {
 
 
         ArrayList<String> currencyListString = new ArrayList<>();
-
+        currencyListString.add("طلا یا ارز را انتخاب کنید ...");
         for (Response_Inquiry_Data item : this.currencyList
                 ) {
 
             currencyListString.add(item.getName());
         }
-
         populateCurrencySpinner(currencyListString);
 
         ArrayList<String> types = new ArrayList<>();
+        types.add("نوع بررسی را انتخاب کنید ...");
         types.add("بیشتر از");
         types.add("کمتر از");
         types.add("برابر با");
@@ -143,8 +127,8 @@ public class CurrencyAlarmDialog extends Dialog {
 
 
         ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(context,
-                android.R.layout.simple_spinner_item, currencyListString);
-        dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                R.layout.item_spinner_simple, currencyListString);
+        // dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         sp_currencySpinner.setAdapter(dataAdapter);
 
         sp_currencySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -163,9 +147,11 @@ public class CurrencyAlarmDialog extends Dialog {
     }
 
     void populateTypeSpinner(ArrayList<String> types) {
+
+
         ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(context,
-                android.R.layout.simple_spinner_item, types);
-        dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                R.layout.item_spinner_simple, types);
+        //  dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         sp_typeSpinner.setAdapter(dataAdapter);
         sp_typeSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
