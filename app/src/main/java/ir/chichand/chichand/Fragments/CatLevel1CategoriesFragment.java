@@ -15,6 +15,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -129,20 +130,30 @@ public class CatLevel1CategoriesFragment extends Fragment {
             @Override
             public void onItemClick(Response_Categories item, int position) {
 
-                int cat_id = Integer.parseInt(item.getCat_id());
+                if (item.getIsenabled().equals("1")) {
+                    int cat_id = Integer.parseInt(item.getCat_id());
 
-                if (0 < cat_id && cat_id < 1000) {
-                    Intent intent = new Intent(getActivity(), GoodsActivity.class);
-                    intent.putExtra("cat_id", cat_id);
-                    intent.putExtra("toolbar_title", item.getPersian_title());
-                    intent.putExtra("bg_color", toolbar_bg_color);
-                    startActivity(intent);
-                } else if (cat_id == 2007) {
-                    Intent intent = new Intent(getActivity(), BusActivity.class);
-                    startActivity(intent);
-                } else if (cat_id == 2001) {
-                    Intent intent = new Intent(getActivity(), FlightActivity.class);
-                    startActivity(intent);
+                    if (0 < cat_id && cat_id < 1000) {
+                        Intent intent = new Intent(getActivity(), GoodsActivity.class);
+                        intent.putExtra("cat_id", cat_id);
+                        intent.putExtra("toolbar_title", item.getPersian_title());
+                        intent.putExtra("bg_color", toolbar_bg_color);
+                        startActivity(intent);
+                    } else if (cat_id == 2007) {
+                        Intent intent = new Intent(getActivity(), BusActivity.class);
+                         intent.putExtra("toolbar_title", item.getPersian_title());
+                        intent.putExtra("bg_color", toolbar_bg_color);
+                        startActivity(intent);
+                    } else if (cat_id == 2001) {
+                        Intent intent = new Intent(getActivity(), FlightActivity.class);
+                         intent.putExtra("toolbar_title", item.getPersian_title());
+                        intent.putExtra("bg_color", toolbar_bg_color);
+                        startActivity(intent);
+                    }
+                } else {
+
+                    Toast.makeText(getActivity(), "به زودی ...", Toast.LENGTH_LONG).show();
+
                 }
 
             }

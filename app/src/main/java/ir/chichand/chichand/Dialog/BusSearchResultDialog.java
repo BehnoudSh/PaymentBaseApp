@@ -12,6 +12,8 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -25,8 +27,16 @@ public class BusSearchResultDialog extends Dialog {
     @BindView(R.id.rv_actBusSelectCity)
     RecyclerView recyclerView;
 
-    @BindView(R.id.iv_fragment_bus_searchresult_back)
-    ImageView back;
+    @BindView(R.id.iv_actionbar_back)
+    ImageView iv_actionbar_back;
+    @BindView(R.id.tv_actionbar_title)
+    TextView tv_actionbar_title;
+
+    @BindView(R.id.actionbarholder)
+    RelativeLayout actionbarholder;
+    @BindView(R.id.toolbar)
+    android.support.v7.widget.Toolbar
+            toolbar;
 
 
     Response_SearchBuses searchresult;
@@ -36,11 +46,11 @@ public class BusSearchResultDialog extends Dialog {
     private Unbinder unbinder;
 
     Context context;
+    int bg_color;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setupactionbar();
 
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
         this.getWindow().requestFeature(Window.FEATURE_NO_TITLE);
@@ -58,6 +68,7 @@ public class BusSearchResultDialog extends Dialog {
         this.setCancelable(true);
         unbinder = ButterKnife.bind(this);
 
+        setupactionbar(bg_color);
 
         layoutManager = new LinearLayoutManager(context);
 
@@ -66,32 +77,33 @@ public class BusSearchResultDialog extends Dialog {
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(layoutManager);
 
-        back.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                dismiss();
-            }
-        });
-    }
-
-
-    public BusSearchResultDialog(Context context, Response_SearchBuses searchresult) {
-        super(context);
-        this.context = context;
-        this.searchresult = searchresult;
-    }
-
-    void setupactionbar() {
-//
-        //tv_actionbar_title.setText("نتیجه جستجو");
-//
-//        actionbarholder.setBackgroundColor(context.getResources().getColor(R.color.holder3));
-//
-//        iv_actionbar_back.setOnClickListener(new View.OnClickListener() {
+       // back.setOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View v) {
 //                dismiss();
 //            }
 //        });
+    }
+
+
+    public BusSearchResultDialog(Context context, Response_SearchBuses searchresult,int bgcolor) {
+        super(context);
+        this.context = context;
+        this.searchresult = searchresult;
+        this.bg_color = bgcolor;
+    }
+
+    void setupactionbar(int color) {
+
+        tv_actionbar_title.setText("نتیجه جستجو");
+
+        actionbarholder.setBackgroundColor(color);
+
+        iv_actionbar_back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dismiss();
+            }
+        });
     }
 }

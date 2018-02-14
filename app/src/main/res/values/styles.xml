@@ -6,14 +6,28 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:popupMenuStyle">@style/PopupMenu</item>
+
     </style>
+
     <style name="MyET" parent="AppTheme">
         <item name="colorControlNormal">@color/colorAccent</item>
         <item name="colorControlActivated">@color/colorAccent</item>
         <item name="colorControlHighlight">@color/colorAccent</item>
         <item name="android:textColorHint">@color/transparent_white_hex_3</item>
         <item name="android:colorControlNormal" tools:targetApi="lollipop">@color/colorAccent</item>
-        <item name="android:colorControlActivated" tools:targetApi="lollipop">@color/colorAccent</item>
-        <item name="android:colorControlHighlight" tools:targetApi="lollipop">@color/colorAccent</item>
+        <item name="android:colorControlActivated" tools:targetApi="lollipop">@color/colorAccent
+        </item>
+        <item name="android:colorControlHighlight" tools:targetApi="lollipop">@color/colorAccent
+        </item>
     </style>
+
+
+    <style name="PopupMenu" parent="@android:style/Widget.PopupMenu">
+        <item name="android:popupBackground">@color/gray_dolphin</item>
+        <item name="android:radius">@dimen/small_gap</item>
+        <item name="android:gravity">center_vertical</item>
+    </style>
+
+
 </resources>

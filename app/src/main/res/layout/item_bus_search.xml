@@ -3,8 +3,10 @@
     android:id="@+id/rl_item_categories_parent"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="5dp"
-    android:orientation="vertical">
+    android:layout_margin="@dimen/default_gap"
+    android:background="@drawable/bg_currency_groups"
+    android:orientation="vertical"
+    android:padding="@dimen/small_gap">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -27,7 +29,7 @@
                 android:padding="5dp"
                 android:text="نام شرکت"
                 android:textColor="@color/gray_wolf"
-                android:textSize="11dp" />
+                android:textSize="@dimen/small_text_size" />
         </LinearLayout>
 
         <LinearLayout
@@ -52,7 +54,7 @@
                     android:padding="5dp"
                     android:text="52"
                     android:textColor="@color/black"
-                    android:textSize="11dp" />
+                    android:textSize="@dimen/normal_txt_size" />
 
                 <TextView
                     android:id="@+id/tv_item_available_bus_availableSeatsCount"
@@ -63,7 +65,7 @@
                     android:gravity="center_vertical"
                     android:text="تعداد صندلی‌ خالی:"
                     android:textColor="@color/gray_dolphin"
-                    android:textSize="11dp" />
+                    android:textSize="@dimen/small_text_size" />
             </RelativeLayout>
 
             <LinearLayout
@@ -81,12 +83,9 @@
                     android:gravity="center_vertical|right"
                     android:text="مدل اتوبوس"
                     android:textColor="@color/gray_dolphin"
-                    android:textSize="11dp" />
+                    android:textSize="@dimen/small_text_size" />
 
-                <ImageView
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:src="#ff0000" />
+
             </LinearLayout>
 
 
@@ -120,7 +119,7 @@
                         android:gravity="center"
                         android:text="11:00"
                         android:textColor="@color/black"
-                        android:textSize="11dp" />
+                        android:textSize="@dimen/normal_txt_size" />
 
                     <TextView
                         android:layout_width="0dp"
@@ -129,7 +128,7 @@
                         android:gravity="center_vertical|left"
                         android:text="ساعت:"
                         android:textColor="@color/gray_dolphin"
-                        android:textSize="11dp" />
+                        android:textSize="@dimen/small_text_size" />
 
                 </LinearLayout>
 
@@ -145,8 +144,8 @@
                         android:layout_weight="1"
                         android:gravity="center"
                         android:text="۱۲۰۰۰۰"
-                        android:textColor="@color/black"
-                        android:textSize="11dp" />
+                        android:textColor="@color/zibfitgreen"
+                        android:textSize="@dimen/normal_txt_size" />
 
                     <TextView
 
@@ -156,7 +155,7 @@
                         android:gravity="center_vertical|left"
                         android:text="قیمت:"
                         android:textColor="@color/gray_dolphin"
-                        android:textSize="11dp" />
+                        android:textSize="@dimen/small_text_size" />
 
                 </LinearLayout>
 
@@ -183,9 +182,10 @@
                         android:layout_weight="1"
                         android:gravity="center"
                         android:padding="5dp"
+
                         android:text="شهر مقصد"
-                        android:textColor="@color/black"
-                        android:textSize="14dp" />
+                        android:textColor="@color/colorPrimaryDark"
+                        android:textSize="@dimen/default_txt_size" />
 
 
                     <TextView
@@ -197,14 +197,17 @@
                         android:padding="5dp"
                         android:text="ترمینال مقصد"
                         android:textColor="@color/gray_dolphin"
-                        android:textSize="11dp" />
+                        android:textSize="11dp"
+                        android:visibility="gone" />
                 </LinearLayout>
 
                 <ImageView
                     android:layout_width="15dp"
                     android:layout_height="15dp"
+
+
                     android:layout_gravity="center_vertical"
-                    android:src="@drawable/ic_arrow_left" />
+                    android:src="@drawable/leftarrow" />
 
                 <LinearLayout
                     android:layout_width="0dp"
@@ -221,8 +224,9 @@
                         android:padding="5dp"
 
                         android:text="شهر مبدا"
-                        android:textColor="@color/black"
-                        android:textSize="11dp" />
+
+                        android:textColor="@color/colorPrimaryDark"
+                        android:textSize="@dimen/default_txt_size" />
 
 
                     <TextView
@@ -231,10 +235,12 @@
                         android:layout_height="0dp"
                         android:layout_weight="1"
                         android:gravity="center"
+
                         android:padding="5dp"
                         android:text="ترمینال مبدا"
                         android:textColor="@color/gray_dolphin"
-                        android:textSize="10dp" />
+                        android:textSize="10dp"
+                        android:visibility="gone" />
                 </LinearLayout>
 
             </LinearLayout>

@@ -51,7 +51,7 @@ public class CatLevel1CategoriesAdapter extends RecyclerView.Adapter<CatLevel1Ca
         myViewHolder.bind(category, _listener);
 
         RelativeLayout.LayoutParams layoutParams1 =
-                new RelativeLayout.LayoutParams((int) (ScreenUtils.ScreenSizesInPixel.x / 2), ViewGroup.LayoutParams.WRAP_CONTENT);
+                new RelativeLayout.LayoutParams((int) (ScreenUtils.ScreenSizesInPixel.x / 2), (int) (ScreenUtils.ScreenSizesInPixel.x / 2));
         layoutParams1.setMargins((int) ScreenUtils.convertDpToPixel(5, context),
                 (int) ScreenUtils.convertDpToPixel(5, context),
                 (int) ScreenUtils.convertDpToPixel(5, context),
@@ -59,9 +59,10 @@ public class CatLevel1CategoriesAdapter extends RecyclerView.Adapter<CatLevel1Ca
         myViewHolder.parent.setLayoutParams(layoutParams1);
 
 
-        RelativeLayout.LayoutParams layoutParams2 =
-                new RelativeLayout.LayoutParams((int) (ScreenUtils.ScreenSizesInPixel.x / 2), (int) (ScreenUtils.ScreenSizesInPixel.x / 2));
-        myViewHolder.img.setLayoutParams(layoutParams2);
+//        RelativeLayout.LayoutParams layoutParams2 =
+//                new RelativeLayout.LayoutParams((int) (ScreenUtils.ScreenSizesInPixel.x / 3), (int) (ScreenUtils.ScreenSizesInPixel.x / 3));
+//
+//        myViewHolder.img.setLayoutParams(layoutParams2);
 
 
         myViewHolder.title.setText(category.getPersian_title());
@@ -76,6 +77,11 @@ public class CatLevel1CategoriesAdapter extends RecyclerView.Adapter<CatLevel1Ca
                 .apply(requestOptions)
                 .into(myViewHolder.img);
 
+        if (category.getIsenabled().equals("0")) {
+
+            myViewHolder.parent.setAlpha(0.3f);
+
+        }
     }
 
     @Override

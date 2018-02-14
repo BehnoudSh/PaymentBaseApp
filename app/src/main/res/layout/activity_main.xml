@@ -19,6 +19,7 @@
 
         android:orientation="vertical">
 
+
         <android.support.v7.widget.RecyclerView
             android:id="@+id/rv_activity_main_categoriesList"
             android:layout_width="match_parent"
@@ -47,7 +48,16 @@
             app:ci_drawable_unselected="@color/black"
             app:ci_gravity="center" />
 
-
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/fab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/indicator"
+            android:layout_centerHorizontal="true"
+            android:layout_margin="@dimen/default_gap"
+            android:background="@color/colorPrimary"
+            android:src="@drawable/notification"
+            app:fabSize="normal" />
     </RelativeLayout>
 
 

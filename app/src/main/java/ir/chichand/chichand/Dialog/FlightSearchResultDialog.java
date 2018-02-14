@@ -12,6 +12,8 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -27,9 +29,18 @@ public class FlightSearchResultDialog extends Dialog {
     @BindView(R.id.rv_actBusSelectCity)
     RecyclerView recyclerView;
 
-    @BindView(R.id.iv_fragment_bus_searchresult_back)
-    ImageView back;
+    //    @BindView(R.id.iv_fragment_bus_searchresult_back)
+//    ImageView back;
+    @BindView(R.id.iv_actionbar_back)
+    ImageView iv_actionbar_back;
+    @BindView(R.id.tv_actionbar_title)
+    TextView tv_actionbar_title;
 
+    @BindView(R.id.actionbarholder)
+    RelativeLayout actionbarholder;
+    @BindView(R.id.toolbar)
+    android.support.v7.widget.Toolbar
+            toolbar;
 
     Response_SearchFlights searchresult;
 
@@ -38,11 +49,11 @@ public class FlightSearchResultDialog extends Dialog {
     private Unbinder unbinder;
 
     Context context;
+    int bgcolor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setupactionbar();
 
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
         this.getWindow().requestFeature(Window.FEATURE_NO_TITLE);
@@ -59,6 +70,7 @@ public class FlightSearchResultDialog extends Dialog {
 
         this.setCancelable(true);
         unbinder = ButterKnife.bind(this);
+        setupactionbar(bgcolor);
 
 
         layoutManager = new LinearLayoutManager(context);
@@ -68,32 +80,33 @@ public class FlightSearchResultDialog extends Dialog {
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(layoutManager);
 
-        back.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                dismiss();
-            }
-        });
-    }
-
-
-    public FlightSearchResultDialog(Context context, Response_SearchFlights searchresult) {
-        super(context);
-        this.context = context;
-        this.searchresult = searchresult;
-    }
-
-    void setupactionbar() {
-//
-        //tv_actionbar_title.setText("نتیجه جستجو");
-//
-//        actionbarholder.setBackgroundColor(context.getResources().getColor(R.color.holder3));
-//
-//        iv_actionbar_back.setOnClickListener(new View.OnClickListener() {
+//        back.setOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View v) {
 //                dismiss();
 //            }
 //        });
+    }
+
+
+    public FlightSearchResultDialog(Context context, Response_SearchFlights searchresult, int bgcolor) {
+        super(context);
+        this.context = context;
+        this.searchresult = searchresult;
+        this.bgcolor = bgcolor;
+    }
+
+    void setupactionbar(int color) {
+
+        tv_actionbar_title.setText("نتیجه جستجو");
+
+        toolbar.setBackgroundColor(color);
+
+        iv_actionbar_back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dismiss();
+            }
+        });
     }
 }

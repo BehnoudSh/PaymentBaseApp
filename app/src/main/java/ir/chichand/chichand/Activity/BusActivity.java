@@ -14,6 +14,9 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+
+import com.daimajia.androidanimations.library.Techniques;
+import com.daimajia.androidanimations.library.YoYo;
 import com.mohamadamin.persianmaterialdatetimepicker.utils.PersianCalendar;
 
 import java.util.ArrayList;
@@ -42,7 +45,9 @@ public class BusActivity extends AppCompatActivity {
 
     @BindView(R.id.actionbarholder)
     RelativeLayout actionbarholder;
-
+    @BindView(R.id.toolbar)
+    android.support.v7.widget.Toolbar
+            toolbar;
     @BindView(R.id.tv_activity_bus_source)
     TextView tv_source;
 
@@ -87,7 +92,7 @@ public class BusActivity extends AppCompatActivity {
 
         ButterKnife.bind(this);
 
-        setupactionbar();
+        setupactionbar(getIntent().getStringExtra("toolbar_title"), getIntent().getIntExtra("bg_color", getResources().getColor(R.color.colorPrimary)));
 
 
         tv_source.setOnClickListener(new View.OnClickListener() {
@@ -148,25 +153,29 @@ public class BusActivity extends AppCompatActivity {
 
 
         getBusCities();
+        final PersianCalendar persianCalendar = new PersianCalendar();
 
         dateholder.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-//                PersianCalendar now = new PersianCalendar();
-//                DatePickerDialog datePickerDialog = DatePickerDialog.newInstance(new DatePickerDialog.OnDateSetListener() {
-//                                                                                     @Override
-//                                                                                     public void onDateSet(DatePickerDialog view, int year, int monthOfYear, int dayOfMonth) {
-//                                                                                         Toast.makeText(BusActivity.this, "" + year + "/" + monthOfYear + "/" + dayOfMonth, Toast.LENGTH_SHORT).show();
-//                                                                                     }
-//                                                                                 }, now.getPersianYear(),
-//                        now.getPersianMonth(),
-//                        now.getPersianDay());
-//
-//                datePickerDialog.setThemeDark(true);
-//                datePickerDialog.show(getFragmentManager(), "tpd");
+                com.mohamadamin.persianmaterialdatetimepicker.date.DatePickerDialog datePickerDialog = com.mohamadamin.persianmaterialdatetimepicker.date.DatePickerDialog.newInstance(
+                        new com.mohamadamin.persianmaterialdatetimepicker.date.DatePickerDialog.OnDateSetListener() {
+                            @Override
+                            public void onDateSet(com.mohamadamin.persianmaterialdatetimepicker.date.DatePickerDialog view, int year, int monthOfYear, int dayOfMonth) {
+                                datetimebus.setText(year + "-" + (monthOfYear + 1) + "-" + dayOfMonth);
+                            }
+                        },
+                        persianCalendar.getPersianYear(),
+                        persianCalendar.getPersianMonth(),
+                        persianCalendar.getPersianDay()
+                );
+                datePickerDialog.setMinDate(persianCalendar);
+
+                datePickerDialog.show(getFragmentManager(), "Datepickerdialog");
             }
         });
+        datetimebus.setText(persianCalendar.getPersianYear() + "-" + (persianCalendar.getPersianMonth() + 1) + "-" + persianCalendar.getPersianDay());
 
         datehsearchBusolder.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -179,10 +188,44 @@ public class BusActivity extends AppCompatActivity {
         datehsearchBusolder.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                searchBuses();
+
+                if (validation())
+                    searchBuses(getIntent().getIntExtra("bg_color", getResources().getColor(R.color.colorPrimary)));
+
             }
         });
+    }
 
+
+    boolean validation() {
+
+        if (selectedSource == null) {
+
+            YoYo.with(Techniques.Shake)
+                    .duration(700)
+                    .playOn(tv_source);
+            return false;
+        }
+
+        if (selectedDestination == null) {
+            YoYo.with(Techniques.Shake)
+                    .duration(700)
+                    .playOn(tv_destination);
+            return false;
+        }
+
+        if (selectedSource.getID() == selectedDestination.getID()) {
+            YoYo.with(Techniques.Shake)
+                    .duration(700)
+                    .playOn(tv_source);
+            YoYo.with(Techniques.Shake)
+                    .duration(700)
+                    .playOn(tv_destination);
+            return false;
+        }
+
+
+        return true;
 
     }
 
@@ -208,7 +251,7 @@ public class BusActivity extends AppCompatActivity {
         });
     }
 
-    void searchBuses() {
+    void searchBuses(final int color) {
         dialog_loading_with_message = new Dialog_LoadingWithMessage(this, "در حال دریافت لیست اتوبوس‌ها ...");
         dialog_loading_with_message.show();
 
@@ -225,7 +268,7 @@ public class BusActivity extends AppCompatActivity {
             public void onSearchBusesSucceeded(Response_SearchBuses response) {
                 dialog_loading_with_message.dismiss();
 
-                BusSearchResultDialog dialog = new BusSearchResultDialog(BusActivity.this, response);
+                BusSearchResultDialog dialog = new BusSearchResultDialog(BusActivity.this, response, color);
                 dialog.show();
             }
         });
@@ -234,17 +277,19 @@ public class BusActivity extends AppCompatActivity {
     }
 
 
-    void setupactionbar() {
+    void setupactionbar(String title, int color) {
 
-        tv_actionbar_title.setText("بلیت اتوبوس");
+        tv_actionbar_title.setText(title);
 
-        actionbarholder.setBackgroundColor(getResources().getColor(R.color.holder3));
+        toolbar.setBackgroundColor(color);
+
         iv_actionbar_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 finish();
             }
         });
+
     }
 
 }
