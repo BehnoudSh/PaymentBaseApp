@@ -267,8 +267,8 @@ public class FlightActivity extends AppCompatActivity {
             @Override
             public void onSearchFlightsSucceeded(Response_SearchFlights response) {
                 dialog_loading_with_message.dismiss();
-
-                FlightSearchResultDialog dialog = new FlightSearchResultDialog(FlightActivity.this, response, color);
+                String title = selectedSource.getCity() + " به " + selectedDestination.getCity() + " \n " + datetimebus.getText();
+                FlightSearchResultDialog dialog = new FlightSearchResultDialog(FlightActivity.this, response, color, title);
                 dialog.show();
             }
         });

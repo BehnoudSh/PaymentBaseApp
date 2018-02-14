@@ -47,6 +47,7 @@ public class BusSearchResultDialog extends Dialog {
 
     Context context;
     int bg_color;
+    String title = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,7 +69,7 @@ public class BusSearchResultDialog extends Dialog {
         this.setCancelable(true);
         unbinder = ButterKnife.bind(this);
 
-        setupactionbar(bg_color);
+        setupactionbar(bg_color, title);
 
         layoutManager = new LinearLayoutManager(context);
 
@@ -77,7 +78,7 @@ public class BusSearchResultDialog extends Dialog {
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(layoutManager);
 
-       // back.setOnClickListener(new View.OnClickListener() {
+        // back.setOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View v) {
 //                dismiss();
@@ -86,16 +87,17 @@ public class BusSearchResultDialog extends Dialog {
     }
 
 
-    public BusSearchResultDialog(Context context, Response_SearchBuses searchresult,int bgcolor) {
+    public BusSearchResultDialog(Context context, Response_SearchBuses searchresult, int bgcolor, String title) {
         super(context);
         this.context = context;
         this.searchresult = searchresult;
         this.bg_color = bgcolor;
+        this.title = title;
     }
 
-    void setupactionbar(int color) {
+    void setupactionbar(int color, String title) {
 
-        tv_actionbar_title.setText("نتیجه جستجو");
+        tv_actionbar_title.setText(title);
 
         actionbarholder.setBackgroundColor(color);
 

@@ -267,8 +267,9 @@ public class BusActivity extends AppCompatActivity {
             @Override
             public void onSearchBusesSucceeded(Response_SearchBuses response) {
                 dialog_loading_with_message.dismiss();
+                String title = selectedSource.getPersianName() + " به " + selectedDestination.getPersianName() + " \n " + datetimebus.getText();
 
-                BusSearchResultDialog dialog = new BusSearchResultDialog(BusActivity.this, response, color);
+                BusSearchResultDialog dialog = new BusSearchResultDialog(BusActivity.this, response, color, title);
                 dialog.show();
             }
         });

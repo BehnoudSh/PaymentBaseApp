@@ -50,6 +50,7 @@ public class FlightSearchResultDialog extends Dialog {
 
     Context context;
     int bgcolor;
+    String title = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,7 +71,7 @@ public class FlightSearchResultDialog extends Dialog {
 
         this.setCancelable(true);
         unbinder = ButterKnife.bind(this);
-        setupactionbar(bgcolor);
+        setupactionbar(bgcolor,title);
 
 
         layoutManager = new LinearLayoutManager(context);
@@ -89,16 +90,18 @@ public class FlightSearchResultDialog extends Dialog {
     }
 
 
-    public FlightSearchResultDialog(Context context, Response_SearchFlights searchresult, int bgcolor) {
+    public FlightSearchResultDialog(Context context, Response_SearchFlights searchresult, int bgcolor, String title) {
         super(context);
         this.context = context;
         this.searchresult = searchresult;
         this.bgcolor = bgcolor;
+        this.title = title;
+
     }
 
-    void setupactionbar(int color) {
+    void setupactionbar(int color, String title) {
 
-        tv_actionbar_title.setText("نتیجه جستجو");
+        tv_actionbar_title.setText(title);
 
         toolbar.setBackgroundColor(color);
 
