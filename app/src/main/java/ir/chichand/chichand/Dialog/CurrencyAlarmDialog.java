@@ -6,6 +6,7 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.os.SystemClock;
@@ -18,7 +19,11 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
+
+import com.daimajia.androidanimations.library.Techniques;
+import com.daimajia.androidanimations.library.YoYo;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,6 +31,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
+import ir.chichand.chichand.Adapters.Adapter_simpleSpinner;
 import ir.chichand.chichand.AlarmManager.AlarmReceiver;
 import ir.chichand.chichand.Models.Responses.Response_Inquiry_Data;
 import ir.chichand.chichand.R;
@@ -36,7 +42,7 @@ import static ir.chichand.chichand.Tools.SharedPref.setCurrencyName;
 import static ir.chichand.chichand.Tools.SharedPref.setCurrencyType;
 
 public class CurrencyAlarmDialog extends Dialog {
-    
+
     private Unbinder unbinder;
     List<Response_Inquiry_Data> currencyList;
     Context context;
@@ -52,6 +58,13 @@ public class CurrencyAlarmDialog extends Dialog {
 
     @BindView(R.id.et_dialog_currency_alarm_amount)
     EditText alarm_amount;
+
+    @BindView(R.id.iv_dialog_currency_alarm_icon)
+    ImageView icon;
+
+    @BindView(R.id.iv_dialog_currency_alarm_closeDialog)
+    ImageView closeDialog;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,6 +84,14 @@ public class CurrencyAlarmDialog extends Dialog {
 
         this.setCancelable(true);
         unbinder = ButterKnife.bind(this);
+
+        YoYo.with(Techniques.Bounce)
+                .duration(2000)
+                .playOn(icon);
+
+
+        sp_typeSpinner.getBackground().setColorFilter(context.getResources().getColor(R.color.gray_dolphin), PorterDuff.Mode.SRC_ATOP);
+        sp_currencySpinner.getBackground().setColorFilter(context.getResources().getColor(R.color.gray_dolphin), PorterDuff.Mode.SRC_ATOP);
 
 
         ArrayList<String> currencyListString = new ArrayList<>();
@@ -93,9 +114,23 @@ public class CurrencyAlarmDialog extends Dialog {
             @Override
             public void onClick(View v) {
 
-                if (alarm_amount.getText().toString().equals(""))
-                    Toast.makeText(context, "مبلغ را وارد نمایید", Toast.LENGTH_SHORT).show();
-                else {
+                if (PublicVariables.alarm_selectedCurrency.equals("")) {
+                    Toast.makeText(context, "نوع ارز یا طلا را انتخاب کنید", Toast.LENGTH_SHORT).show();
+                    YoYo.with(Techniques.Shake)
+                            .duration(700)
+                            .playOn(sp_currencySpinner);
+                } else if (PublicVariables.alarm_selectedType.equals("")) {
+                    Toast.makeText(context, "نوع بررسی را انتخاب کنید", Toast.LENGTH_SHORT).show();
+                    YoYo.with(Techniques.Shake)
+                            .duration(700)
+                            .playOn(sp_typeSpinner);
+
+                } else if (alarm_amount.getText().toString().equals("")) {
+                    Toast.makeText(context, "قیمت را وارد نمایید", Toast.LENGTH_SHORT).show();
+                    YoYo.with(Techniques.Shake)
+                            .duration(700)
+                            .playOn(alarm_amount);
+                } else {
 
                     PublicVariables.alarm_selectedAmount = Long.valueOf(alarm_amount.getText().toString());
 
@@ -115,6 +150,13 @@ public class CurrencyAlarmDialog extends Dialog {
                 }
             }
         });
+
+        closeDialog.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dismiss();
+            }
+        });
     }
 
     public CurrencyAlarmDialog(@NonNull Context context, Context context1, List<Response_Inquiry_Data> currency_list) {
@@ -123,18 +165,17 @@ public class CurrencyAlarmDialog extends Dialog {
         currencyList = currency_list;
     }
 
-    void populateCurrencySpinner(ArrayList<String> currencyListString) {
+    void populateCurrencySpinner(final ArrayList<String> currencyListString) {
 
+        Adapter_simpleSpinner dataAdapter = new Adapter_simpleSpinner(context, currencyListString);
 
-        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(context,
-                R.layout.item_spinner_simple, currencyListString);
-        // dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         sp_currencySpinner.setAdapter(dataAdapter);
 
         sp_currencySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                PublicVariables.alarm_selectedCurrency = parent.getItemAtPosition(position).toString();
+                if (position != 0)
+                    PublicVariables.alarm_selectedCurrency = currencyListString.get(position);
             }
 
             @Override
@@ -142,21 +183,18 @@ public class CurrencyAlarmDialog extends Dialog {
 
             }
         });
-
-
     }
 
-    void populateTypeSpinner(ArrayList<String> types) {
+    void populateTypeSpinner(final ArrayList<String> types) {
 
+        Adapter_simpleSpinner dataAdapter = new Adapter_simpleSpinner(context, types);
 
-        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(context,
-                R.layout.item_spinner_simple, types);
-        //  dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         sp_typeSpinner.setAdapter(dataAdapter);
         sp_typeSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                PublicVariables.alarm_selectedType = parent.getItemAtPosition(position).toString();
+                if (position != 0)
+                    PublicVariables.alarm_selectedType = types.get(position);
             }
 
             @Override

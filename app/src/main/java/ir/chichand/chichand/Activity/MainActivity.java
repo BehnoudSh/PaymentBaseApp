@@ -33,6 +33,7 @@ import ir.chichand.chichand.Models.Responses.Response_Categories;
 import ir.chichand.chichand.NetworkServices.ApiCallbacks;
 import ir.chichand.chichand.NetworkServices.ApiHandler;
 import ir.chichand.chichand.R;
+import ir.chichand.chichand.Tools.PublicTools;
 import ir.chichand.chichand.Tools.PublicVariables;
 import ir.chichand.chichand.Tools.ScreenUtils;
 import me.relex.circleindicator.CircleIndicator;
@@ -152,8 +153,8 @@ public class MainActivity extends AppCompatActivity {
 
     void getCategories() {
 
-        final ProgressDialog dialog = ProgressDialog.show(this, "",
-                "در حال دریافت اطلاعات ...", true);
+        final ProgressDialog dialog = PublicTools.ProgressDialogInstance(this, "در حال دریافت لیست هفت‌رنگ");
+        dialog.show();
 
         final List<Response_Categories> temp = new ArrayList<>();
 

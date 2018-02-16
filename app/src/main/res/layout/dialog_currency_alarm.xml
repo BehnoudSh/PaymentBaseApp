@@ -1,92 +1,128 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/large_gap"
     android:background="@color/white"
     android:gravity="center"
     android:orientation="vertical">
 
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/small_gap"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="10dp"
+            android:id="@+id/iv_dialog_currency_alarm_closeDialog"
+
+            android:layout_height="10dp"
+            android:layout_marginLeft="@dimen/small_gap"
+            android:src="@drawable/cancel" />
+
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:padding="@dimen/default_gap"
+            android:text="تعیین گوش‌به‌زنگ برای طلا و ارز"
+            android:textColor="@color/gray_dolphin"
+            android:textSize="@dimen/small_text_size" />
+
+
+        <ImageView
+            android:id="@+id/iv_dialog_currency_alarm_icon"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:src="@drawable/notification"
+            android:tint="@color/gray_dolphin" />
+
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="@dimen/default_gap"
+        android:background="@drawable/gradiant" />
+
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="@dimen/default_gap"
-        android:text="در صورتی‌ که قیمت" />
+        android:text="در صورتی‌ که قیمت"
 
+        android:textColor="@color/gray_dolphin" />
 
-    <!--<Spinner-->
-        <!--android:id="@+id/sp_dialog_currency_alarm_chooseCurrency"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_margin="@dimen/default_gap"></Spinner>-->
+    <!--<LinearLayout-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_marginTop="@dimen/small_gap"-->
+    <!--android:orientation="vertical"-->
+    <!--android:paddingRight="@dimen/default_gap">-->
 
-    <LinearLayout
+    <android.support.v7.widget.AppCompatSpinner
+        android:id="@+id/sp_dialog_currency_alarm_chooseCurrency"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/small_gap"
-        android:background="@drawable/bg_spinner"
-        android:orientation="vertical"
-        android:paddingRight="@dimen/default_gap">
+        android:layout_marginRight="@dimen/large_gap"
+        android:padding="@dimen/small_gap"
+         android:spinnerMode="dropdown"
+        android:textColor="@color/gray_dolphin" />
+    <!--</LinearLayout>-->
 
-        <android.support.v7.widget.AppCompatSpinner
-            android:id="@+id/sp_dialog_currency_alarm_chooseCurrency"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="@dimen/small_gap"
-            android:spinnerMode="dropdown" />
-    </LinearLayout>
+    <!--<LinearLayout-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_marginTop="@dimen/small_gap"-->
+    <!--android:orientation="vertical"-->
+    <!--android:paddingRight="@dimen/default_gap">-->
 
-
-
-    <!--android:prompt="ارز را انتخاب کنید"-->
-
-    <!--<Spinner-->
-        <!--android:id="@+id/sp_dialog_currency_alarm_chooseType"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content"-->
-
-        <!--android:layout_margin="@dimen/default_gap"></Spinner>-->
-    <!--android:prompt="نوع بررسی قیمت را انتخاب کنید"-->
-
-
-    <LinearLayout
+    <android.support.v7.widget.AppCompatSpinner
+        android:id="@+id/sp_dialog_currency_alarm_chooseType"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/small_gap"
-        android:background="@drawable/bg_spinner"
-        android:orientation="vertical"
-        android:paddingRight="@dimen/default_gap">
+        android:layout_marginRight="@dimen/large_gap"
 
-        <android.support.v7.widget.AppCompatSpinner
-            android:id="@+id/sp_dialog_currency_alarm_chooseType"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="@dimen/small_gap"
-            android:spinnerMode="dropdown" />
-    </LinearLayout>
-
+        android:layout_marginTop="@dimen/default_gap"
+        android:padding="@dimen/small_gap"
+        android:spinnerMode="dropdown"
+        android:textColor="@color/gray_dolphin" />
+    <!--</LinearLayout>-->
 
     <EditText
+        android:id="@+id/et_dialog_currency_alarm_amount"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/large_gap"
+        android:layout_marginRight="@dimen/large_gap"
         android:gravity="center"
         android:hint="قیمت مورد نظر به ریال"
-        android:id="@+id/et_dialog_currency_alarm_amount"
         android:inputType="numberDecimal"
-        android:padding="@dimen/default_gap" />
+        android:padding="@dimen/default_gap"
+        android:textColor="@color/gray_dolphin"
+        android:textColorHint="@color/transparent_black_hex_4"
+        android:textSize="@dimen/default_txt_size" />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="@dimen/default_gap"
-        android:text="شد به من اطلاع بده." />
+        android:text="شد به من اطلاع بده."
 
+        android:textColor="@color/gray_dolphin" />
 
     <Button
+        android:id="@+id/startAlarm"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
-        android:id="@+id/startAlarm"
-        android:text="شروع گوش‌به‌زنگ" />
+
+        android:text="شروع گوش‌به‌زنگ"
+        android:textColor="@color/white" />
 
 </LinearLayout>
