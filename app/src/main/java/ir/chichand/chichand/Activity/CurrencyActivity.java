@@ -5,6 +5,7 @@ import android.content.Context;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.view.ContextThemeWrapper;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -29,6 +30,7 @@ import ir.chichand.chichand.Models.Responses.Response_Inquiry_Data_Group;
 import ir.chichand.chichand.NetworkServices.ApiCallbacks;
 import ir.chichand.chichand.NetworkServices.ApiHandler;
 import ir.chichand.chichand.R;
+import ir.chichand.chichand.Tools.PublicTools;
 import ir.chichand.chichand.Tools.ScreenUtils;
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
@@ -75,20 +77,22 @@ public class CurrencyActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_currency);
+
         ButterKnife.bind(this);
 
-
         int color = getIntent().getIntExtra("bg_color", getResources().getColor(R.color.colorPrimary));
+
         String title = getIntent().getStringExtra("toolbar_title");
 
         setupactionbar(color, title);
 
         Request_Inquiry request = new Request_Inquiry(1000, "");
 
-        final ProgressDialog dialog = ProgressDialog.show(this, "",
-                "در حال دریافت اطلاعات ...", true);
+        final ProgressDialog dialog = PublicTools.ProgressDialogInstance(this, "در حال دریافت آخرین نرخ طلا و ارز");
 
         ApiHandler.getInquiry(this, request, new ApiCallbacks.getInquiryInterface() {
             @Override
@@ -96,7 +100,6 @@ public class CurrencyActivity extends AppCompatActivity {
                 dialog.dismiss();
                 Toast.makeText(CurrencyActivity.this, "بروز خطا در ارتباط", Toast.LENGTH_LONG).show();
                 finish();
-
             }
 
             @Override

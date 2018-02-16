@@ -59,12 +59,6 @@ public class CatLevel1CategoriesAdapter extends RecyclerView.Adapter<CatLevel1Ca
         myViewHolder.parent.setLayoutParams(layoutParams1);
 
 
-//        RelativeLayout.LayoutParams layoutParams2 =
-//                new RelativeLayout.LayoutParams((int) (ScreenUtils.ScreenSizesInPixel.x / 3), (int) (ScreenUtils.ScreenSizesInPixel.x / 3));
-//
-//        myViewHolder.img.setLayoutParams(layoutParams2);
-
-
         myViewHolder.title.setText(category.getPersian_title());
 
         RequestOptions requestOptions = new RequestOptions();

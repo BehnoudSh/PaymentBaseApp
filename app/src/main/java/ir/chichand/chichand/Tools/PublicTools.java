@@ -1,6 +1,7 @@
 package ir.chichand.chichand.Tools;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
@@ -13,8 +14,6 @@ import ir.chichand.chichand.Models.Responses.Response_Categories;
 
 
 public class PublicTools {
-
-
 
 
     public static boolean checkNetworkStatus(Context activity) {
@@ -92,4 +91,10 @@ public class PublicTools {
                 ;
     }
 
+    public static ProgressDialog ProgressDialogInstance(Context context, String message) {
+        final ProgressDialog dialog = new ProgressDialog(context, ProgressDialog.THEME_HOLO_LIGHT);
+        dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+        dialog.setMessage(message);
+        return dialog;
+    }
 }
