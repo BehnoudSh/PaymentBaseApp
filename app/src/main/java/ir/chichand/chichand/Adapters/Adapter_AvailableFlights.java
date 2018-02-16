@@ -49,6 +49,12 @@ public class Adapter_AvailableFlights extends RecyclerView.Adapter<Adapter_Avail
         myViewHolder.tv_flightDepartureTime.setText(flight.getDeparture_time());
         myViewHolder.tv_flightType.setText(flight.getFlight_type());
 
+        if (flight.getFlight_type().trim().equals("چارتر"))
+            myViewHolder.tv_flightType.setBackgroundResource(R.drawable.bg_green_rounded);
+        else if (flight.getFlight_type().trim().equals("سیستمی"))
+            myViewHolder.tv_flightType.setBackgroundResource(R.drawable.bg_blue_rounded);
+
+
     }
 
     @Override

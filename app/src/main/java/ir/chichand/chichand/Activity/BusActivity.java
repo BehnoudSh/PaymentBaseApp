@@ -1,6 +1,7 @@
 package ir.chichand.chichand.Activity;
 
 import android.app.DatePickerDialog;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -34,6 +35,7 @@ import ir.chichand.chichand.Models.Responses.Response_SearchBuses;
 import ir.chichand.chichand.NetworkServices.ApiCallbacks;
 import ir.chichand.chichand.NetworkServices.ApiHandler;
 import ir.chichand.chichand.R;
+import ir.chichand.chichand.Tools.PublicTools;
 import ir.chichand.chichand.Tools.PublicVariables;
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
@@ -230,18 +232,19 @@ public class BusActivity extends AppCompatActivity {
     }
 
     void getBusCities() {
-        dialog_loading_with_message = new Dialog_LoadingWithMessage(this, "در حال دریافت لیست شهرها ...");
-        dialog_loading_with_message.show();
+        final ProgressDialog dialog = PublicTools.ProgressDialogInstance(this, "در حال دریافت لیست شهرها");
+        dialog.show();
 
         ApiHandler.getBusCities(this, new ApiCallbacks.getBusCitiesInterface() {
             @Override
             public void onGetBusCitiesFailed(String message) {
-                dialog_loading_with_message.dismiss();
+                dialog.dismiss();
+                finish();
             }
 
             @Override
             public void onGetBusCitiesSucceeded(List<Response_BusCity> response) {
-                dialog_loading_with_message.dismiss();
+                dialog.dismiss();
                 PublicVariables.allBusCities = response;
 
                 cities.addAll(response);
@@ -252,21 +255,23 @@ public class BusActivity extends AppCompatActivity {
     }
 
     void searchBuses(final int color) {
-        dialog_loading_with_message = new Dialog_LoadingWithMessage(this, "در حال دریافت لیست اتوبوس‌ها ...");
-        dialog_loading_with_message.show();
+        final ProgressDialog dialog = PublicTools.ProgressDialogInstance(this, "در حال دریافت لیست اتوبوس‌ها");
+        dialog.show();
 
-        Request_SearchBuses reqeust = new Request_SearchBuses(selectedSource.getCode(), selectedDestination.getCode(), selectedSource.getName(), selectedDestination.getName(), datetimebus.getText().toString());
+        Request_SearchBuses request = new Request_SearchBuses(selectedSource.getCode(), selectedDestination.getCode(), selectedSource.getName(), selectedDestination.getName(), datetimebus.getText().toString());
 
-        ApiHandler.searchBuses(BusActivity.this, reqeust, new ApiCallbacks.searchBusesInterface() {
+        ApiHandler.searchBuses(BusActivity.this, request, new ApiCallbacks.searchBusesInterface() {
             @Override
             public void onSearchBusesFailed(String message) {
-                dialog_loading_with_message.dismiss();
+                dialog.dismiss();
+                Toast.makeText(BusActivity.this, "بروز خطا، لطفا دوباره تلاش کنید", Toast.LENGTH_LONG).show();
+
 
             }
 
             @Override
             public void onSearchBusesSucceeded(Response_SearchBuses response) {
-                dialog_loading_with_message.dismiss();
+                dialog.dismiss();
                 String title = selectedSource.getPersianName() + " به " + selectedDestination.getPersianName() + " \n " + datetimebus.getText();
 
                 BusSearchResultDialog dialog = new BusSearchResultDialog(BusActivity.this, response, color, title);

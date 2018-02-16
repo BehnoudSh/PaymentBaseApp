@@ -6,6 +6,8 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,6 +16,19 @@ import ir.chichand.chichand.Models.Responses.Response_Categories;
 
 
 public class PublicTools {
+
+
+
+    public static void hideKeyboard(Activity context)
+    {
+
+        View view = context.getCurrentFocus();
+        if (view != null) {
+            InputMethodManager imm = (InputMethodManager)context.getSystemService(Context.INPUT_METHOD_SERVICE);
+            imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+        }
+
+    }
 
 
     public static boolean checkNetworkStatus(Context activity) {

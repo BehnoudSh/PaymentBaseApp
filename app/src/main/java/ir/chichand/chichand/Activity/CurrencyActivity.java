@@ -94,6 +94,8 @@ public class CurrencyActivity extends AppCompatActivity {
 
         final ProgressDialog dialog = PublicTools.ProgressDialogInstance(this, "در حال دریافت آخرین نرخ طلا و ارز");
 
+        dialog.show();
+
         ApiHandler.getInquiry(this, request, new ApiCallbacks.getInquiryInterface() {
             @Override
             public void onGetInquiryFailed() {

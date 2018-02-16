@@ -1,5 +1,6 @@
 package ir.chichand.chichand.Activity;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -9,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.daimajia.androidanimations.library.Techniques;
 import com.daimajia.androidanimations.library.YoYo;
@@ -34,6 +36,7 @@ import ir.chichand.chichand.Models.Responses.Response_SearchFlights;
 import ir.chichand.chichand.NetworkServices.ApiCallbacks;
 import ir.chichand.chichand.NetworkServices.ApiHandler;
 import ir.chichand.chichand.R;
+import ir.chichand.chichand.Tools.PublicTools;
 import ir.chichand.chichand.Tools.PublicVariables;
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
@@ -231,18 +234,21 @@ public class FlightActivity extends AppCompatActivity {
     }
 
     void getBusCities() {
-        dialog_loading_with_message = new Dialog_LoadingWithMessage(this, "در حال دریافت لیست شهرها ...");
-        dialog_loading_with_message.show();
+        final ProgressDialog dialog = PublicTools.ProgressDialogInstance(this, "در حال دریافت لیست شهرها");
+        dialog.show();
 
         ApiHandler.getFlightCities(this, new ApiCallbacks.getFlightCitiesInterface() {
             @Override
             public void onGetFlightCitiesFailed(String message) {
+                dialog.dismiss();
 
+                Toast.makeText(FlightActivity.this, "بروز خطا، لطفا دوباره تلاش کنید", Toast.LENGTH_LONG).show();
+                finish();
             }
 
             @Override
             public void onGetFlightCitiesSucceeded(List<Response_FlightCity> response) {
-                dialog_loading_with_message.dismiss();
+                dialog.dismiss();
                 PublicVariables.allFlightCities = response;
 
                 cities.addAll(response);
@@ -252,21 +258,22 @@ public class FlightActivity extends AppCompatActivity {
     }
 
     void searchFlights(final int color) {
-        dialog_loading_with_message = new Dialog_LoadingWithMessage(this, "در حال دریافت لیست پروازها ...");
-        dialog_loading_with_message.show();
+        final ProgressDialog dialog = PublicTools.ProgressDialogInstance(this, "در حال دریافت لیست پروازها");
+        dialog.show();
 
-        Request_SearchFlights reqeust = new Request_SearchFlights(selectedSource.getIata(), selectedDestination.getIata(), datetimebus.getText().toString());
+        Request_SearchFlights request = new Request_SearchFlights(selectedSource.getIata(), selectedDestination.getIata(), datetimebus.getText().toString());
 
-        ApiHandler.searchFlights(FlightActivity.this, reqeust, new ApiCallbacks.searchFlightsInterface() {
+        ApiHandler.searchFlights(FlightActivity.this, request, new ApiCallbacks.searchFlightsInterface() {
             @Override
             public void onSearchFlightsFailed(String message) {
-                dialog_loading_with_message.dismiss();
+                dialog.dismiss();
+                Toast.makeText(FlightActivity.this, "بروز خطا، لطفا دوباره تلاش کنید", Toast.LENGTH_LONG).show();
 
             }
 
             @Override
             public void onSearchFlightsSucceeded(Response_SearchFlights response) {
-                dialog_loading_with_message.dismiss();
+                dialog.dismiss();
                 String title = selectedSource.getCity() + " به " + selectedDestination.getCity() + " \n " + datetimebus.getText();
                 FlightSearchResultDialog dialog = new FlightSearchResultDialog(FlightActivity.this, response, color, title);
                 dialog.show();

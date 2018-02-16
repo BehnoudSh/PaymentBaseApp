@@ -16,6 +16,8 @@
 
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="@dimen/default_gap"
+        android:background="@drawable/bg_rounded_white_gray_stroke"
         android:orientation="horizontal">
 
         <EditText
@@ -32,9 +34,11 @@
             android:inputType="text"
             android:maxLength="40"
             android:maxLines="1"
-            android:padding="@dimen/small_gap"
+            android:paddingRight="@dimen/large_gap"
             android:singleLine="true"
-            android:textColor="@color/gray_dolphin" />
+            android:textColor="@color/gray_dolphin"
+            android:textColorHint="@color/transparent_black_hex_2"
+            android:textSize="@dimen/normal_txt_size" />
 
     </LinearLayout>
 

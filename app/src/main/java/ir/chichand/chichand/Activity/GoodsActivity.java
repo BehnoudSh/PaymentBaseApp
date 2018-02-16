@@ -1,5 +1,6 @@
 package ir.chichand.chichand.Activity;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -12,6 +13,7 @@ import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,6 +28,7 @@ import ir.chichand.chichand.Models.Responses.Response_Others_Result;
 import ir.chichand.chichand.NetworkServices.ApiCallbacks;
 import ir.chichand.chichand.NetworkServices.ApiHandler;
 import ir.chichand.chichand.R;
+import ir.chichand.chichand.Tools.PublicTools;
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 public class GoodsActivity extends AppCompatActivity {
@@ -83,8 +86,8 @@ public class GoodsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_cat_level2);
         ButterKnife.bind(this);
         cat_id = getIntent().getIntExtra("cat_id", 0);
-
         getInquiry("");
+        rv_goodsList.requestFocus();
 
         populateRecycler();
 
@@ -101,8 +104,11 @@ public class GoodsActivity extends AppCompatActivity {
         setupactionbar(getIntent().getIntExtra("bg_color", getResources().getColor(R.color.colorPrimary)), getIntent().getStringExtra("toolbar_title"));
     }
 
-    void getInquiry(String searchword) {
 
+    void getInquiry(String searchword) {
+        PublicTools.hideKeyboard(this);
+        final ProgressDialog dialog = PublicTools.ProgressDialogInstance(this, "در حال دریافت لیست کالاها");
+        dialog.show();
         if (responseList.size() != 0) {
             responseList.clear();
             GoodsAdapter.notifyDataSetChanged();
@@ -111,12 +117,14 @@ public class GoodsActivity extends AppCompatActivity {
         ApiHandler.getInquiry(this, new Request_Inquiry(cat_id, searchword), new ApiCallbacks.getInquiryInterface() {
             @Override
             public void onGetInquiryFailed() {
-
+                dialog.dismiss();
+                Toast.makeText(GoodsActivity.this, "بروز خطا، لطفا دوباره تلاش کنید", Toast.LENGTH_LONG).show();
+                finish();
             }
 
             @Override
             public void onGetInquirySucceeded(Response_Inquiry response) {
-
+                dialog.dismiss();
                 if (response.getHas_url() == 1) {
                     getTorob(response.getUrl());
                     base_url = response.getUrl();
@@ -128,6 +136,7 @@ public class GoodsActivity extends AppCompatActivity {
     }
 
     void getTorob(String url) {
+        PublicTools.hideKeyboard(this);
 
         ApiHandler.getCatLevel1_Goods(GoodsActivity.this, url, new ApiCallbacks.getCatLevel1GoodsInterface() {
             @Override
