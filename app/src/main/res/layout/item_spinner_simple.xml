@@ -9,7 +9,7 @@
         android:id="@+id/text1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-         android:background="@color/white"
+         android:background="@color/background_material_light"
         android:gravity="center_vertical"
         android:padding="15dp"
         android:textColor="@color/gray_dolphin"

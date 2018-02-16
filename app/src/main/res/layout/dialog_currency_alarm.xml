@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_margin="@dimen/large_gap"
     android:background="@color/white"
     android:gravity="center"
@@ -16,8 +17,8 @@
         android:orientation="horizontal">
 
         <ImageView
-            android:layout_width="10dp"
             android:id="@+id/iv_dialog_currency_alarm_closeDialog"
+            android:layout_width="10dp"
 
             android:layout_height="10dp"
             android:layout_marginLeft="@dimen/small_gap"
@@ -58,41 +59,28 @@
 
         android:textColor="@color/gray_dolphin" />
 
-    <!--<LinearLayout-->
-    <!--android:layout_width="match_parent"-->
-    <!--android:layout_height="wrap_content"-->
-    <!--android:layout_marginTop="@dimen/small_gap"-->
-    <!--android:orientation="vertical"-->
-    <!--android:paddingRight="@dimen/default_gap">-->
 
     <android.support.v7.widget.AppCompatSpinner
         android:id="@+id/sp_dialog_currency_alarm_chooseCurrency"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginRight="@dimen/large_gap"
         android:padding="@dimen/small_gap"
-         android:spinnerMode="dropdown"
+        android:spinnerMode="dropdown"
         android:textColor="@color/gray_dolphin" />
-    <!--</LinearLayout>-->
 
-    <!--<LinearLayout-->
-    <!--android:layout_width="match_parent"-->
-    <!--android:layout_height="wrap_content"-->
-    <!--android:layout_marginTop="@dimen/small_gap"-->
-    <!--android:orientation="vertical"-->
-    <!--android:paddingRight="@dimen/default_gap">-->
 
     <android.support.v7.widget.AppCompatSpinner
         android:id="@+id/sp_dialog_currency_alarm_chooseType"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginRight="@dimen/large_gap"
-
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
         android:layout_marginTop="@dimen/default_gap"
         android:padding="@dimen/small_gap"
         android:spinnerMode="dropdown"
         android:textColor="@color/gray_dolphin" />
-    <!--</LinearLayout>-->
 
     <EditText
         android:id="@+id/et_dialog_currency_alarm_amount"
