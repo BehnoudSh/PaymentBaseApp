@@ -14,6 +14,7 @@ import java.util.List;
 import ir.chichand.chichand.Models.Responses.Response_Bus;
 import ir.chichand.chichand.Models.Responses.Response_Flight;
 import ir.chichand.chichand.R;
+import ir.chichand.chichand.Tools.PublicTools;
 
 
 public class Adapter_AvailableFlights extends RecyclerView.Adapter<Adapter_AvailableFlights.MyViewHolder> {
@@ -44,7 +45,7 @@ public class Adapter_AvailableFlights extends RecyclerView.Adapter<Adapter_Avail
         Response_Flight flight = this.flightsList.get(i);
         //  myViewHolder.bind(bus, _listener);
         myViewHolder.tv_flightAirline.setText(flight.getAirline());
-        myViewHolder.tv_flightPrice.setText(flight.getPrice());
+        myViewHolder.tv_flightPrice.setText(PublicTools.getThousandSeperated(flight.getPrice()));
         myViewHolder.tv_flightArrivalTime.setText(flight.getArrival_time());
         myViewHolder.tv_flightDepartureTime.setText(flight.getDeparture_time());
         myViewHolder.tv_flightType.setText(flight.getFlight_type());

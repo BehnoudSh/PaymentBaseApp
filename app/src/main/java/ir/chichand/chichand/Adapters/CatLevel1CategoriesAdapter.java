@@ -48,6 +48,20 @@ public class CatLevel1CategoriesAdapter extends RecyclerView.Adapter<CatLevel1Ca
 
     @Override
     public void onBindViewHolder(final MyViewHolder myViewHolder, int i) {
+        if (bg_color == context.getResources().getColor(R.color.holder1))
+            myViewHolder.parent.setBackgroundResource(R.drawable.bg_rounded_holder1);
+        else if (bg_color == context.getResources().getColor(R.color.holder2))
+            myViewHolder.parent.setBackgroundResource(R.drawable.bg_rounded_holder2);
+        else if (bg_color == context.getResources().getColor(R.color.holder3))
+            myViewHolder.parent.setBackgroundResource(R.drawable.bg_rounded_holder3);
+        else if (bg_color == context.getResources().getColor(R.color.holder4))
+            myViewHolder.parent.setBackgroundResource(R.drawable.bg_rounded_holder4);
+        else if (bg_color == context.getResources().getColor(R.color.holder5))
+            myViewHolder.parent.setBackgroundResource(R.drawable.bg_rounded_holder5);
+        else if (bg_color == context.getResources().getColor(R.color.holder6))
+            myViewHolder.parent.setBackgroundResource(R.drawable.bg_rounded_holder6);
+
+
 
         Response_Categories category = this.categoriesList.get(i);
         myViewHolder.bind(category, _listener);
@@ -74,18 +88,6 @@ public class CatLevel1CategoriesAdapter extends RecyclerView.Adapter<CatLevel1Ca
                 .into(myViewHolder.img);
 
 
-        if (bg_color == context.getResources().getColor(R.color.holder1))
-            myViewHolder.parent.setBackgroundResource(R.drawable.bg_rounded_holder1);
-        else if (bg_color == context.getResources().getColor(R.color.holder2))
-            myViewHolder.parent.setBackgroundResource(R.drawable.bg_rounded_holder2);
-        else if (bg_color == context.getResources().getColor(R.color.holder3))
-            myViewHolder.parent.setBackgroundResource(R.drawable.bg_rounded_holder3);
-        else if (bg_color == context.getResources().getColor(R.color.holder4))
-            myViewHolder.parent.setBackgroundResource(R.drawable.bg_rounded_holder4);
-        else if (bg_color == context.getResources().getColor(R.color.holder5))
-            myViewHolder.parent.setBackgroundResource(R.drawable.bg_rounded_holder5);
-        else if (bg_color == context.getResources().getColor(R.color.holder6))
-            myViewHolder.parent.setBackgroundResource(R.drawable.bg_rounded_holder6);
 
 
         if (category.getIsenabled().equals("0")) {

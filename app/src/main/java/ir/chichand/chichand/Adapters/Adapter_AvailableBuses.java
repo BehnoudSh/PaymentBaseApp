@@ -18,6 +18,7 @@ import java.util.List;
 
 import ir.chichand.chichand.Models.Responses.Response_Bus;
 import ir.chichand.chichand.R;
+import ir.chichand.chichand.Tools.PublicTools;
 
 
 public class Adapter_AvailableBuses extends RecyclerView.Adapter<Adapter_AvailableBuses.MyViewHolder> {
@@ -27,7 +28,7 @@ public class Adapter_AvailableBuses extends RecyclerView.Adapter<Adapter_Availab
     private Context context;
 
 
-    public Adapter_AvailableBuses(List<Response_Bus> busesList, Context context ) {
+    public Adapter_AvailableBuses(List<Response_Bus> busesList, Context context) {
         this.busesList = busesList;
         this.context = context;
 
@@ -46,7 +47,7 @@ public class Adapter_AvailableBuses extends RecyclerView.Adapter<Adapter_Availab
     public void onBindViewHolder(final MyViewHolder myViewHolder, int i) {
 
         Response_Bus bus = this.busesList.get(i);
-      //  myViewHolder.bind(bus, _listener);
+        //  myViewHolder.bind(bus, _listener);
 
         // Date date = Statics.dateConvertor(bus.getDepartureDate(),true);
 
@@ -58,7 +59,7 @@ public class Adapter_AvailableBuses extends RecyclerView.Adapter<Adapter_Availab
         myViewHolder.tv_destinationCity.setText(bus.getDestinationTerminalPersianName());
 
         myViewHolder.tv_time.setText(bus.getDepartureTime());
-        myViewHolder.tv_price.setText(bus.getPrice() + " ریال");
+        myViewHolder.tv_price.setText(PublicTools.getThousandSeperated(bus.getPrice()) + " ریال");
 
     }
 

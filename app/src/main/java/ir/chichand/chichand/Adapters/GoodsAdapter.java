@@ -15,6 +15,7 @@ import java.util.List;
 
 import ir.chichand.chichand.Models.Responses.Response_Others_Result;
 import ir.chichand.chichand.R;
+import ir.chichand.chichand.Tools.PublicTools;
 
 /**
  * Created by tinabehnoud on 8/4/17.
@@ -51,7 +52,7 @@ public class GoodsAdapter extends RecyclerView.Adapter<GoodsAdapter.MyViewHolder
         myViewHolder.bind(category, clickListener);
 
         myViewHolder.tv_storeName.setText(category.getShop_name());
-        myViewHolder.tv_price.setText(category.getPrice() + " ریال");
+        myViewHolder.tv_price.setText(PublicTools.getThousandSeperated(category.getPrice()) + " ریال");
         myViewHolder.tv_persianName.setText(category.getPersian_name());
 
         RequestOptions requestOptions = new RequestOptions();

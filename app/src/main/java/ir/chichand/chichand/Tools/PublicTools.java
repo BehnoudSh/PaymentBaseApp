@@ -6,9 +6,11 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.text.TextUtils;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,18 +20,44 @@ import ir.chichand.chichand.Models.Responses.Response_Categories;
 public class PublicTools {
 
 
-
-    public static void hideKeyboard(Activity context)
-    {
+    public static void hideKeyboard(Activity context) {
 
         View view = context.getCurrentFocus();
         if (view != null) {
-            InputMethodManager imm = (InputMethodManager)context.getSystemService(Context.INPUT_METHOD_SERVICE);
+            InputMethodManager imm = (InputMethodManager) context.getSystemService(Context.INPUT_METHOD_SERVICE);
             imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
         }
 
     }
 
+
+    public static String getThousandSeperated(String input) {
+        return getDecimalFormat().format(removeThousandSeparated(input));
+    }
+
+    public static String getThousandSeperated(double input) {
+        return getDecimalFormat().format(input);
+    }
+
+    public static DecimalFormat getDecimalFormat() {
+        return new DecimalFormat("#,###");
+    }
+
+    public static long removeThousandSeparated(String value) {
+        if (TextUtils.isEmpty(value))
+            return 0;
+        char separator = getDecimalFormat().getDecimalFormatSymbols().getGroupingSeparator();
+        value = removePersianNumbers(value.replace(String.valueOf(separator), ""));
+        return Long.parseLong(value);
+    }
+
+    public static String removePersianNumbers(String value) {
+        char[] charMap = new char[]{'۰', '۱', '۲', '۳', '۴', '۵', '۶', '۷', '۸', '۹'};
+        for (int i = 0; i < charMap.length; i++) {
+            value = value.replace(charMap[i], String.valueOf(i).charAt(0));
+        }
+        return value;
+    }
 
     public static boolean checkNetworkStatus(Context activity) {
         ConnectivityManager connectivityManager = (ConnectivityManager) activity.getSystemService(Context.CONNECTIVITY_SERVICE);

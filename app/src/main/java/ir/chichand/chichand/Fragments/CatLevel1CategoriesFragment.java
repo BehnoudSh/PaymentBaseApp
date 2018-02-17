@@ -69,7 +69,7 @@ public class CatLevel1CategoriesFragment extends Fragment {
     }
 
     private Unbinder unbinder;
-    
+
     public static CatLevel1CategoriesFragment newInstance(int catleve0_id, String toolbar_title, int toolbar_bg_color) {
 
         CatLevel1CategoriesFragment fragment = new CatLevel1CategoriesFragment();
