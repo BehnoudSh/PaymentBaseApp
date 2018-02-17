@@ -68,10 +68,8 @@ public class CatLevel1CategoriesFragment extends Fragment {
 
     }
 
-
     private Unbinder unbinder;
-
-
+    
     public static CatLevel1CategoriesFragment newInstance(int catleve0_id, String toolbar_title, int toolbar_bg_color) {
 
         CatLevel1CategoriesFragment fragment = new CatLevel1CategoriesFragment();
@@ -126,7 +124,7 @@ public class CatLevel1CategoriesFragment extends Fragment {
         }
 
 
-        CatLevel1CategoriesAdapter categories_level_1Adapter = new CatLevel1CategoriesAdapter(temp, getActivity(), new CatLevel1CategoriesAdapter.OnItemClickListener() {
+        CatLevel1CategoriesAdapter categories_level_1Adapter = new CatLevel1CategoriesAdapter(temp, toolbar_bg_color, getActivity(), new CatLevel1CategoriesAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(Response_Categories item, int position) {
 
@@ -141,12 +139,12 @@ public class CatLevel1CategoriesFragment extends Fragment {
                         startActivity(intent);
                     } else if (cat_id == 2007) {
                         Intent intent = new Intent(getActivity(), BusActivity.class);
-                         intent.putExtra("toolbar_title", item.getPersian_title());
+                        intent.putExtra("toolbar_title", item.getPersian_title());
                         intent.putExtra("bg_color", toolbar_bg_color);
                         startActivity(intent);
                     } else if (cat_id == 2001) {
                         Intent intent = new Intent(getActivity(), FlightActivity.class);
-                         intent.putExtra("toolbar_title", item.getPersian_title());
+                        intent.putExtra("toolbar_title", item.getPersian_title());
                         intent.putExtra("bg_color", toolbar_bg_color);
                         startActivity(intent);
                     }
@@ -180,5 +178,4 @@ public class CatLevel1CategoriesFragment extends Fragment {
         unbinder = ButterKnife.bind(this, layout);
         return layout;
     }
-
 }

@@ -5,7 +5,7 @@
     android:layout_height="200dp"
     android:layout_margin="@dimen/small_gap"
 
-    android:background="@drawable/bg_custom_elevation"
+
     android:orientation="vertical">
 
     <TextView
