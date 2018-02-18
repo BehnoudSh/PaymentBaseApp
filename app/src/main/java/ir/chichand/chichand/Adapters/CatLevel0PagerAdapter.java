@@ -306,7 +306,7 @@ public class CatLevel0PagerAdapter extends PagerAdapter {
 
             return;
         }
-        
+
         view.setAlpha(1f);
 
     }
