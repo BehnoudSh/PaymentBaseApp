@@ -1,17 +1,13 @@
 package ir.chichand.chichand.Activity;
 
-import android.app.AlarmManager;
-import android.app.PendingIntent;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.os.SystemClock;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import butterknife.ButterKnife;
-import ir.chichand.chichand.AlarmManager.AlarmReceiver;
 import ir.chichand.chichand.Models.Responses.Response_Config;
 import ir.chichand.chichand.NetworkServices.ApiCallbacks;
 import ir.chichand.chichand.NetworkServices.ApiHandler;

@@ -27,6 +27,7 @@ import ir.chichand.chichand.Activity.BusActivity;
 import ir.chichand.chichand.Activity.FlightActivity;
 import ir.chichand.chichand.Activity.GoodsActivity;
 import ir.chichand.chichand.Adapters.CatLevel1CategoriesAdapter;
+import ir.chichand.chichand.BuildConfig;
 import ir.chichand.chichand.Models.Responses.Response_Categories;
 import ir.chichand.chichand.R;
 import ir.chichand.chichand.Tools.PublicVariables;
@@ -104,7 +105,7 @@ public class CatLevel1CategoriesFragment extends Fragment {
         for (Response_Categories resp : PublicVariables.allCategories
                 ) {
             if (resp.getCat_level() != null)
-
+                //  if (Integer.parseInt(resp.getMinversion()) == BuildConfig.VERSION_CODE) {
                 if (catlevel0_id == 0) {
                     if (0 < Integer.parseInt(resp.getCat_id()) && Integer.parseInt(resp.getCat_id()) < 1000) {
                         if (resp.getCat_level().equals("1")) {
@@ -120,7 +121,7 @@ public class CatLevel1CategoriesFragment extends Fragment {
                     }
                 }
             }
-
+            //    }
         }
 
 

@@ -4,15 +4,13 @@ package ir.chichand.chichand.AlarmManager;
  * Created by bSherafati on 2/7/2018.
  */
 
-import android.app.*;
 import android.content.*;
-import android.os.*;
 
-public class AlarmReceiver extends BroadcastReceiver {
+public class CurrencyAlarmReceiver extends BroadcastReceiver {
 
     @Override
     public void onReceive(Context context, Intent intent) {
-        Intent background = new Intent(context, BackgroundService.class);
+        Intent background = new Intent(context, CurrencyBackgroundService.class);
         context.startService(background);
     }
 

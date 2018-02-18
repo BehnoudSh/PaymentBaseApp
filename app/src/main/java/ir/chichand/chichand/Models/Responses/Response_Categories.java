@@ -28,16 +28,22 @@ public class Response_Categories implements Serializable {
     @SerializedName("isenabled")
     private String isenabled;
 
+    @SerializedName("minversion")
+    private String minversion;
+
+
     private int bg_color;
 
 
-    public Response_Categories(String id, String cat_id, String cat_level, String persian_title, String cat_icon, String isenabled) {
+    public Response_Categories(String id, String cat_id, String cat_level, String persian_title, String cat_icon, String isenabled, String minversion, int bg_color) {
         this.id = id;
         this.cat_id = cat_id;
         this.cat_level = cat_level;
         this.persian_title = persian_title;
         this.cat_icon = cat_icon;
         this.isenabled = isenabled;
+        this.minversion = minversion;
+        this.bg_color = bg_color;
     }
 
     public String getId() {
@@ -94,5 +100,13 @@ public class Response_Categories implements Serializable {
 
     public void setBg_color(int bg_color) {
         this.bg_color = bg_color;
+    }
+
+    public String getMinversion() {
+        return minversion;
+    }
+
+    public void setMinversion(String minversion) {
+        this.minversion = minversion;
     }
 }

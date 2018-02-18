@@ -6,7 +6,7 @@
         android:id="@+id/menu_share_location"
         android:icon="@drawable/notification"
         android:theme="@style/AppTheme"
-        android:title="گوش‌به‌زنگ‌ها"
+        android:title="خبر از ما"
         app:showAsAction="always" />
 
 </menu>

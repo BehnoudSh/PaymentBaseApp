@@ -2,6 +2,10 @@ package ir.chichand.chichand.Activity;
 
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.support.design.widget.FloatingActionButton;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -44,7 +48,8 @@ public class FlightActivity extends AppCompatActivity {
 
     @BindView(R.id.iv_actionbar_back)
     ImageView iv_actionbar_back;
-
+    @BindView(R.id.fab)
+    FloatingActionButton fab;
     @BindView(R.id.tv_actionbar_title)
     TextView tv_actionbar_title;
 
@@ -275,8 +280,29 @@ public class FlightActivity extends AppCompatActivity {
             public void onSearchFlightsSucceeded(Response_SearchFlights response) {
                 dialog.dismiss();
                 String title = selectedSource.getCity() + " به " + selectedDestination.getCity() + " \n " + datetimebus.getText();
-                FlightSearchResultDialog dialog = new FlightSearchResultDialog(FlightActivity.this, response, color, title);
-                dialog.show();
+                if (response.getAvailable_flight().size() != 0) {
+                    FlightSearchResultDialog dialog = new FlightSearchResultDialog(FlightActivity.this, response, color, title);
+                    dialog.show();
+                } else {
+
+
+                    final AlertDialog _dialogOffline = new AlertDialog.Builder(FlightActivity.this)
+                            .setMessage("از " + selectedSource.getCity() + " به " + selectedDestination.getCity() +
+                                    " در تاریخ " + datetimebus.getText() + " پروازی یافت نشد! ")
+                            .setCancelable(false)
+                            .setPositiveButton("باشه", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+
+
+                                }
+                            })
+
+                            .create();
+
+                    _dialogOffline.show();
+
+                }
             }
         });
     }
@@ -295,4 +321,6 @@ public class FlightActivity extends AppCompatActivity {
         });
 
     }
+
+
 }

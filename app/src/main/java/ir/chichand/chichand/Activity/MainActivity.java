@@ -28,6 +28,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import ir.chichand.chichand.Adapters.CatLevel0PagerAdapter;
+import ir.chichand.chichand.BuildConfig;
 import ir.chichand.chichand.Fragments.CatLevel1CategoriesFragment;
 import ir.chichand.chichand.Models.Responses.Response_Categories;
 import ir.chichand.chichand.NetworkServices.ApiCallbacks;
@@ -172,11 +173,9 @@ public class MainActivity extends AppCompatActivity {
                 for (Response_Categories resp : response
                         ) {
                     if (resp.getCat_level() != null)
-                        if (resp.getCat_level().equals("0")) {
+                        if (resp.getCat_level().equals("0") ) {
                             temp.add(resp);
-//                            temp.add(resp);
-//                            temp.add(resp);
-//                            temp.add(resp);
+
 
                         }
                 }

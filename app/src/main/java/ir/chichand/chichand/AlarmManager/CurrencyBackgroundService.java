@@ -24,7 +24,7 @@ import static ir.chichand.chichand.Tools.SharedPref.getAmount;
 import static ir.chichand.chichand.Tools.SharedPref.getCurrencyName;
 import static ir.chichand.chichand.Tools.SharedPref.getCurrencyType;
 
-public class BackgroundService extends Service {
+public class CurrencyBackgroundService extends Service {
 
     private boolean isRunning;
     private Context context;

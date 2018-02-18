@@ -4,6 +4,7 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
 
     <application
         android:name=".Application.AnalyticsApplication"
@@ -13,9 +14,16 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-        <service android:name=".AlarmManager.BackgroundService" />
+        <service android:name=".AlarmManager.CurrencyBackgroundService" />
 
-        <receiver android:name=".AlarmManager.AlarmReceiver" />
+        <receiver android:name=".AlarmManager.CurrencyAlarmReceiver" />
+
+        <receiver android:name=".AlarmManager.BootReceiver">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <category android:name="android.intent.category.HOME" />
+            </intent-filter>
+        </receiver>
 
         <activity
             android:name=".Activity.MainActivity"

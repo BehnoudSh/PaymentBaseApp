@@ -3,7 +3,10 @@ package ir.chichand.chichand.Activity;
 import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.support.design.widget.FloatingActionButton;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -44,7 +47,8 @@ public class BusActivity extends AppCompatActivity {
     ImageView iv_actionbar_back;
     @BindView(R.id.tv_actionbar_title)
     TextView tv_actionbar_title;
-
+    @BindView(R.id.fab)
+    FloatingActionButton fab;
     @BindView(R.id.actionbarholder)
     RelativeLayout actionbarholder;
     @BindView(R.id.toolbar)
@@ -274,8 +278,28 @@ public class BusActivity extends AppCompatActivity {
                 dialog.dismiss();
                 String title = selectedSource.getPersianName() + " به " + selectedDestination.getPersianName() + " \n " + datetimebus.getText();
 
-                BusSearchResultDialog dialog = new BusSearchResultDialog(BusActivity.this, response, color, title);
-                dialog.show();
+                if (response.getItems().size() != 0) {
+                    BusSearchResultDialog dialog = new BusSearchResultDialog(BusActivity.this, response, color, title);
+                    dialog.show();
+                } else {
+
+                    final AlertDialog _dialogOffline = new AlertDialog.Builder(BusActivity.this)
+                            .setMessage("از " + selectedSource.getPersianName() + " به " + selectedDestination.getPersianName() +
+                                    " در تاریخ " + datetimebus.getText() + " سرویسی یافت نشد! ")
+                            .setCancelable(false)
+                            .setPositiveButton("باشه", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+
+
+                                }
+                            })
+
+                            .create();
+
+                    _dialogOffline.show();
+
+                }
             }
         });
 

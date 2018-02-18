@@ -40,7 +40,7 @@ import static ir.chichand.chichand.Tools.SharedPref.setAmount;
 import static ir.chichand.chichand.Tools.SharedPref.setCurrencyName;
 import static ir.chichand.chichand.Tools.SharedPref.setCurrencyType;
 
-public class CurrencyAlarmDialog extends Dialog {
+public class FlightAlarmDialog extends Dialog {
 
     private Unbinder unbinder;
     List<Response_Inquiry_Data> currencyList;
@@ -71,7 +71,7 @@ public class CurrencyAlarmDialog extends Dialog {
 
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
         this.getWindow().requestFeature(Window.FEATURE_NO_TITLE);
-        this.setContentView(R.layout.dialog_currency_alarm);
+        this.setContentView(R.layout.dialog_flight_alarm);
         this.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
 
         WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
@@ -138,7 +138,7 @@ public class CurrencyAlarmDialog extends Dialog {
                     if (alarmRunning == false) {
                         PendingIntent pendingIntent = PendingIntent.getBroadcast(context, 0, alarm, 0);
                         AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
-                        alarmManager.setRepeating(AlarmManager.ELAPSED_REALTIME_WAKEUP, SystemClock.elapsedRealtime(), 5000, pendingIntent);
+                        alarmManager.setRepeating(AlarmManager.ELAPSED_REALTIME_WAKEUP, SystemClock.elapsedRealtime(), 10 * 60 * 1000, pendingIntent);
                     }
 
                     setCurrencyType(PublicVariables.alarm_selectedType);
@@ -158,7 +158,7 @@ public class CurrencyAlarmDialog extends Dialog {
         });
     }
 
-    public CurrencyAlarmDialog(@NonNull Context context, Context context1, List<Response_Inquiry_Data> currency_list) {
+    public FlightAlarmDialog(@NonNull Context context, Context context1, List<Response_Inquiry_Data> currency_list) {
         super(context);
         this.context = context1;
         currencyList = currency_list;

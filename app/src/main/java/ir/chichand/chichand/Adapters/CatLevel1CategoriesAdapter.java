@@ -8,12 +8,14 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 
 import java.util.List;
 
+import ir.chichand.chichand.BuildConfig;
 import ir.chichand.chichand.Models.Responses.Response_Categories;
 import ir.chichand.chichand.R;
 import ir.chichand.chichand.Tools.ScreenUtils;
@@ -62,7 +64,6 @@ public class CatLevel1CategoriesAdapter extends RecyclerView.Adapter<CatLevel1Ca
             myViewHolder.parent.setBackgroundResource(R.drawable.bg_rounded_holder6);
 
 
-
         Response_Categories category = this.categoriesList.get(i);
         myViewHolder.bind(category, _listener);
 
@@ -88,13 +89,35 @@ public class CatLevel1CategoriesAdapter extends RecyclerView.Adapter<CatLevel1Ca
                 .into(myViewHolder.img);
 
 
+        handleUpdate_enabled(myViewHolder.parent, category);
+    }
 
+    void handleUpdate_enabled(View view, Response_Categories category) {
+        if (Integer.parseInt(category.getMinversion()) > BuildConfig.VERSION_CODE) {
 
-        if (category.getIsenabled().equals("0")) {
+            view.setAlpha(0.3f);
+            view.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Toast.makeText(context, "نیازمند آپدیت از کافه‌بازار ...", Toast.LENGTH_LONG).show();
+                }
+            });
 
-            myViewHolder.parent.setAlpha(0.3f);
+        } else {
+            if (category.getIsenabled().equals("0")) {
+
+                view.setAlpha(0.3f);
+                view.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Toast.makeText(context, "در حال حاضر غیر فعال ...", Toast.LENGTH_LONG).show();
+                    }
+                });
+
+            }
 
         }
+
     }
 
     @Override
