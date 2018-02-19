@@ -173,10 +173,8 @@ public class MainActivity extends AppCompatActivity {
                 for (Response_Categories resp : response
                         ) {
                     if (resp.getCat_level() != null)
-                        if (resp.getCat_level().equals("0") ) {
+                        if (resp.getCat_level().equals("0") && resp.getVisibility().equals("1")) {
                             temp.add(resp);
-
-
                         }
                 }
 

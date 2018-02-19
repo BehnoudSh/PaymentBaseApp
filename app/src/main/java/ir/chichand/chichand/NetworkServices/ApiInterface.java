@@ -4,6 +4,7 @@ package ir.chichand.chichand.NetworkServices;
 import java.util.List;
 
 import ir.chichand.chichand.Models.Requests.Request_Inquiry;
+import ir.chichand.chichand.Models.Requests.Request_PhoneBill;
 import ir.chichand.chichand.Models.Requests.Request_SearchBuses;
 import ir.chichand.chichand.Models.Requests.Request_SearchFlights;
 import ir.chichand.chichand.Models.Responses.Response_BusCity;
@@ -12,6 +13,7 @@ import ir.chichand.chichand.Models.Responses.Response_Config;
 import ir.chichand.chichand.Models.Responses.Response_FlightCity;
 import ir.chichand.chichand.Models.Responses.Response_Inquiry;
 import ir.chichand.chichand.Models.Responses.Response_Others;
+import ir.chichand.chichand.Models.Responses.Response_PhoneBill;
 import ir.chichand.chichand.Models.Responses.Response_SearchBuses;
 import ir.chichand.chichand.Models.Responses.Response_SearchFlights;
 import retrofit2.Call;
@@ -51,5 +53,9 @@ public interface ApiInterface {
     @POST("bus/domestic/searchbus.php")
     Call<Response_SearchBuses> searchBuses(@Body Request_SearchBuses request);
 
+
+    @Headers("Content-Type: application/json")
+    @POST("billservice.php")
+    Call<Response_PhoneBill> estelamPhoneBill(@Body Request_PhoneBill request);
 
 }

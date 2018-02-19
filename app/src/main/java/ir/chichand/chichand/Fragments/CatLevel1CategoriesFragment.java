@@ -105,26 +105,25 @@ public class CatLevel1CategoriesFragment extends Fragment {
         for (Response_Categories resp : PublicVariables.allCategories
                 ) {
             if (resp.getCat_level() != null)
-                //  if (Integer.parseInt(resp.getMinversion()) == BuildConfig.VERSION_CODE) {
-                if (catlevel0_id == 0) {
-                    if (0 < Integer.parseInt(resp.getCat_id()) && Integer.parseInt(resp.getCat_id()) < 1000) {
-                        if (resp.getCat_level().equals("1")) {
-                            temp.add(resp);
+                if (resp.getVisibility().equals("1")) {
+                    if (catlevel0_id == 0) {
+                        if (0 < Integer.parseInt(resp.getCat_id()) && Integer.parseInt(resp.getCat_id()) < 1000) {
+                            if (resp.getCat_level().equals("1")) {
+                                temp.add(resp);
+                            }
                         }
                     }
-                }
 
-            if (catlevel0_id == 2000) {
-                if (2000 < Integer.parseInt(resp.getCat_id()) && Integer.parseInt(resp.getCat_id()) < 3000) {
-                    if (resp.getCat_level().equals("1")) {
-                        temp.add(resp);
+                    if (catlevel0_id == 2000) {
+                        if (2000 < Integer.parseInt(resp.getCat_id()) && Integer.parseInt(resp.getCat_id()) < 3000) {
+                            if (resp.getCat_level().equals("1")) {
+                                temp.add(resp);
+                            }
+                        }
                     }
+                    //    }
                 }
-            }
-            //    }
         }
-
-
         CatLevel1CategoriesAdapter categories_level_1Adapter = new CatLevel1CategoriesAdapter(temp, toolbar_bg_color, getActivity(), new CatLevel1CategoriesAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(Response_Categories item, int position) {
