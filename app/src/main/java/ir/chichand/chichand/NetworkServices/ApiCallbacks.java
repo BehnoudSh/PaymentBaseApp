@@ -8,6 +8,7 @@ import ir.chichand.chichand.Models.Responses.Response_Config;
 import ir.chichand.chichand.Models.Responses.Response_FlightCity;
 import ir.chichand.chichand.Models.Responses.Response_Inquiry;
 import ir.chichand.chichand.Models.Responses.Response_Others;
+import ir.chichand.chichand.Models.Responses.Response_PhoneBill;
 import ir.chichand.chichand.Models.Responses.Response_SearchBuses;
 import ir.chichand.chichand.Models.Responses.Response_SearchFlights;
 
@@ -84,5 +85,16 @@ public class ApiCallbacks {
 
 
     }
+
+    public interface estelamPhoneBillInterface {
+
+
+        void onestelamPhoneBillFailed(String message);
+
+        void onestelamPhoneBillSucceeded(Response_PhoneBill response);
+
+
+    }
+
 
 }

@@ -5,6 +5,7 @@ import android.content.Context;
 import java.util.List;
 
 import ir.chichand.chichand.Models.Requests.Request_Inquiry;
+import ir.chichand.chichand.Models.Requests.Request_PhoneBill;
 import ir.chichand.chichand.Models.Requests.Request_SearchBuses;
 import ir.chichand.chichand.Models.Requests.Request_SearchFlights;
 import ir.chichand.chichand.Models.Responses.Response_BusCity;
@@ -13,6 +14,7 @@ import ir.chichand.chichand.Models.Responses.Response_Config;
 import ir.chichand.chichand.Models.Responses.Response_FlightCity;
 import ir.chichand.chichand.Models.Responses.Response_Inquiry;
 import ir.chichand.chichand.Models.Responses.Response_Others;
+import ir.chichand.chichand.Models.Responses.Response_PhoneBill;
 import ir.chichand.chichand.Models.Responses.Response_SearchBuses;
 import ir.chichand.chichand.Models.Responses.Response_SearchFlights;
 import retrofit2.Call;
@@ -212,11 +214,31 @@ public class ApiHandler {
 
             }
         });
-
-
     }
 
-    public  static  void
+    public static void estelamPhoneBill(Context context, Request_PhoneBill request, final ApiCallbacks.estelamPhoneBillInterface callback) {
+        Retrofit retrofit = ApiClient.getClient(context);
+        ApiInterface api = retrofit.create(ApiInterface.class);
+        Call<Response_PhoneBill> call = api.estelamPhoneBill(request);
+        call.enqueue(new Callback<Response_PhoneBill>() {
+            @Override
+            public void onResponse(Call<Response_PhoneBill> call, Response<Response_PhoneBill> response) {
+                if (response.code() < 300)
 
+                    callback.onestelamPhoneBillSucceeded(response.body());
 
+                else
+
+                    callback.onestelamPhoneBillFailed("بروز خطا، دوباره تلاش کنید");
+
+            }
+
+            @Override
+            public void onFailure(Call<Response_PhoneBill> call, Throwable t) {
+
+                callback.onestelamPhoneBillFailed("بروز خطا در ارتباط، دوباره تلاش کنید");
+
+            }
+        });
+    }
 }
