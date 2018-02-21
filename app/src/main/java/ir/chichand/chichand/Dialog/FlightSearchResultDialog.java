@@ -2,9 +2,13 @@ package ir.chichand.chichand.Dialog;
 
 import android.app.Dialog;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.net.Uri;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.Gravity;
@@ -18,11 +22,15 @@ import android.widget.TextView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
+import ir.chichand.chichand.Activity.MainActivity;
+import ir.chichand.chichand.Activity.SplashActivity;
 import ir.chichand.chichand.Adapters.Adapter_AvailableBuses;
 import ir.chichand.chichand.Adapters.Adapter_AvailableFlights;
+import ir.chichand.chichand.Models.Responses.Response_Flight;
 import ir.chichand.chichand.Models.Responses.Response_SearchBuses;
 import ir.chichand.chichand.Models.Responses.Response_SearchFlights;
 import ir.chichand.chichand.R;
+import ir.chichand.chichand.Tools.PublicTools;
 
 public class FlightSearchResultDialog extends Dialog {
 
@@ -52,6 +60,9 @@ public class FlightSearchResultDialog extends Dialog {
     int bgcolor;
     String title = "";
 
+    AlertDialog _dialogOffline;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -71,22 +82,51 @@ public class FlightSearchResultDialog extends Dialog {
 
         this.setCancelable(true);
         unbinder = ButterKnife.bind(this);
-        setupactionbar(bgcolor,title);
-
+        setupactionbar(bgcolor, title);
 
         layoutManager = new LinearLayoutManager(context);
 
-        Adapter_AvailableFlights adapter = new Adapter_AvailableFlights(this.searchresult.getAvailable_flight(), context);
+        Adapter_AvailableFlights adapter = new Adapter_AvailableFlights(this.searchresult.getAvailable_flight(), context, new Adapter_AvailableFlights.OnItemClickListener() {
+            @Override
+            public void onItemClick(Response_Flight item, int position) {
+
+                makeReferenceDialog(item.getReference_url());
+
+                _dialogOffline.show();
+
+            }
+        });
 
         recyclerView.setAdapter(adapter);
+
         recyclerView.setLayoutManager(layoutManager);
 
-//        back.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                dismiss();
-//            }
-//        });
+    }
+
+    void makeReferenceDialog(final String referenceurl) {
+        _dialogOffline = new AlertDialog.Builder(context)
+                .setMessage("خرید بلیت از آژانس مورد نظر")
+                .setCancelable(false)
+                .setPositiveButton("بله", new OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                        Intent i = new Intent(Intent.ACTION_VIEW);
+                        i.setData(Uri.parse(referenceurl));
+                        context.startActivity(i);
+
+                    }
+                })
+                .setNegativeButton("بستن", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                        _dialogOffline.dismiss();
+
+                    }
+                })
+
+                .create();
     }
 
 

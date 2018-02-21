@@ -10,13 +10,46 @@
         android:id="@+id/activity_main_toolbar"
         layout="@layout/toolbar" />
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/rv_actBusSelectCity"
+    <LinearLayout
         android:layout_width="match_parent"
-
         android:layout_height="match_parent"
-        android:background="@drawable/backrepeat"
-        android:fadeScrollbars="false"
-        android:scrollbars="vertical" />
+        android:gravity="center"
+        android:orientation="vertical">
 
+        <LinearLayout
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/default_gap"
+            android:background="@drawable/bg_rounded_white_gray_stroke"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/et_activity_cat_level2_search"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:gravity="center"
+                android:hint="شماره تلفن را وارد کنید"
+                android:imeOptions="actionSearch"
+                android:inputType="phone"
+                android:maxLength="11"
+                android:maxLines="1"
+                android:padding="@dimen/large_gap"
+                android:singleLine="true"
+                android:textColor="@color/gray_dolphin"
+                android:textColorHint="@color/transparent_black_hex_2"
+                android:textSize="@dimen/normal_txt_size" />
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/estelamBill"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:layout_margin="@dimen/large_gap"
+            android:padding="@dimen/default_gap"
+            android:text="استعلام" />
+    </LinearLayout>
 </LinearLayout>

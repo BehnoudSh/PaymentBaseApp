@@ -28,6 +28,7 @@ import ir.chichand.chichand.Activity.FlightActivity;
 import ir.chichand.chichand.Activity.GoodsActivity;
 import ir.chichand.chichand.Adapters.CatLevel1CategoriesAdapter;
 import ir.chichand.chichand.BuildConfig;
+import ir.chichand.chichand.Dialog.EstelamPhoneBillDialog;
 import ir.chichand.chichand.Models.Responses.Response_Categories;
 import ir.chichand.chichand.R;
 import ir.chichand.chichand.Tools.PublicVariables;
@@ -147,6 +148,13 @@ public class CatLevel1CategoriesFragment extends Fragment {
                         intent.putExtra("toolbar_title", item.getPersian_title());
                         intent.putExtra("bg_color", toolbar_bg_color);
                         startActivity(intent);
+                    } else if (cat_id == 2004) {
+
+
+                        EstelamPhoneBillDialog dialog = new EstelamPhoneBillDialog(getActivity(), toolbar_bg_color, item.getPersian_title());
+                        dialog.show();
+
+
                     }
                 } else {
 

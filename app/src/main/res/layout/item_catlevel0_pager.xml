@@ -16,8 +16,7 @@
             android:id="@+id/holder1"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_margin="15dp"
-
+            android:layout_margin="@dimen/default_gap"
             android:layout_weight="1"
             android:padding="@dimen/small_gap">
 
@@ -50,10 +49,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
-                android:textSize="@dimen/normal_txt_size"
                 android:layout_marginBottom="@dimen/small_gap"
                 android:gravity="center"
-                android:textColor="@color/gray_dolphin" />
+                android:textColor="@color/gray_dolphin"
+                android:textSize="@dimen/normal_txt_size" />
 
 
         </RelativeLayout>
@@ -62,7 +61,7 @@
             android:id="@+id/holder2"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_margin="15dp"
+            android:layout_margin="@dimen/default_gap"
             android:layout_weight="1"
             android:padding="@dimen/small_gap">
 
@@ -96,8 +95,8 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
                 android:gravity="center"
-                android:textSize="@dimen/normal_txt_size"
-                android:textColor="@color/gray_dolphin" />
+                android:textColor="@color/gray_dolphin"
+                android:textSize="@dimen/normal_txt_size" />
 
 
         </RelativeLayout>
@@ -114,7 +113,7 @@
             android:id="@+id/holder3"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_margin="15dp"
+            android:layout_margin="@dimen/default_gap"
             android:layout_weight="1"
             android:padding="@dimen/small_gap">
 
@@ -149,8 +148,8 @@
                 android:layout_alignParentBottom="true"
                 android:layout_marginBottom="@dimen/small_gap"
                 android:gravity="center"
-                android:textSize="@dimen/normal_txt_size"
-                android:textColor="@color/gray_dolphin" />
+                android:textColor="@color/gray_dolphin"
+                android:textSize="@dimen/normal_txt_size" />
 
 
         </RelativeLayout>
@@ -159,7 +158,7 @@
             android:id="@+id/holder4"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_margin="15dp"
+            android:layout_margin="@dimen/default_gap"
             android:layout_weight="1"
             android:padding="@dimen/small_gap">
 
@@ -191,11 +190,11 @@
                 android:id="@+id/item4Title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="@dimen/normal_txt_size"
                 android:layout_alignParentBottom="true"
                 android:layout_marginBottom="@dimen/small_gap"
                 android:gravity="center"
-                android:textColor="@color/gray_dolphin" />
+                android:textColor="@color/gray_dolphin"
+                android:textSize="@dimen/normal_txt_size" />
 
 
         </RelativeLayout>
@@ -204,9 +203,9 @@
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/holder5_6_holder"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:id="@+id/holder5_6_holder"
         android:layout_weight="1"
         android:orientation="horizontal">
 
@@ -214,7 +213,7 @@
             android:id="@+id/holder5"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_margin="15dp"
+            android:layout_margin="@dimen/default_gap"
             android:layout_weight="1"
             android:padding="@dimen/small_gap">
 
@@ -247,10 +246,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
-                android:textSize="@dimen/normal_txt_size"
                 android:layout_marginBottom="@dimen/small_gap"
                 android:gravity="center"
-                android:textColor="@color/gray_dolphin" />
+                android:textColor="@color/gray_dolphin"
+                android:textSize="@dimen/normal_txt_size" />
 
 
         </RelativeLayout>
@@ -259,7 +258,7 @@
             android:id="@+id/holder6"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_margin="15dp"
+            android:layout_margin="@dimen/default_gap"
             android:layout_weight="1"
             android:padding="@dimen/small_gap">
 
@@ -292,10 +291,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
-                android:textSize="@dimen/normal_txt_size"
                 android:layout_marginBottom="@dimen/small_gap"
                 android:gravity="center"
-                android:textColor="@color/gray_dolphin" />
+                android:textColor="@color/gray_dolphin"
+                android:textSize="@dimen/normal_txt_size" />
 
 
         </RelativeLayout>

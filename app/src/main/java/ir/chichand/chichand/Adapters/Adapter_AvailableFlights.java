@@ -22,11 +22,13 @@ public class Adapter_AvailableFlights extends RecyclerView.Adapter<Adapter_Avail
 
     private List<Response_Flight> flightsList;
     private Context context;
+    OnItemClickListener _listener;
 
 
-    public Adapter_AvailableFlights(List<Response_Flight> busesList, Context context) {
+    public Adapter_AvailableFlights(List<Response_Flight> busesList, Context context, OnItemClickListener listener) {
         this.flightsList = busesList;
         this.context = context;
+        this._listener = listener;
 
     }
 
@@ -43,7 +45,7 @@ public class Adapter_AvailableFlights extends RecyclerView.Adapter<Adapter_Avail
     public void onBindViewHolder(final MyViewHolder myViewHolder, int i) {
 
         Response_Flight flight = this.flightsList.get(i);
-        //  myViewHolder.bind(bus, _listener);
+        myViewHolder.bind(flight, _listener);
         myViewHolder.tv_flightAirline.setText(flight.getAirline());
         myViewHolder.tv_flightPrice.setText(PublicTools.getThousandSeperated(flight.getPrice()));
         myViewHolder.tv_flightArrivalTime.setText(flight.getArrival_time());
