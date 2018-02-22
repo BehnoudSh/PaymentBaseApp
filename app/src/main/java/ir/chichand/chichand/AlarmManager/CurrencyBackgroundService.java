@@ -88,7 +88,7 @@ public class CurrencyBackgroundService extends Service {
                             } else if (getCurrencyType().equals("برابر با")) {
                                 if (Long.valueOf(data.getPrice().replace(",", "")) == getCurrencyAmount())
 
-                                    notificationManager.notify(1410, notificationBuilder.build());
+                                    notificationManager.notify(1402, notificationBuilder.build());
 
                             }
                         }

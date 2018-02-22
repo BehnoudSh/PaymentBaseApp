@@ -95,7 +95,7 @@ public class FlightBackgroundService extends Service {
                             (NotificationManager)
                                     getSystemService(Context.NOTIFICATION_SERVICE);
 
-                    notificationManager.notify(1410, notificationBuilder.build());
+                    notificationManager.notify(1401, notificationBuilder.build());
 
 
                 }
