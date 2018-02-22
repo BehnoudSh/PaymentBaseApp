@@ -3,6 +3,7 @@ package ir.chichand.chichand.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
@@ -74,6 +75,9 @@ public class MainActivity extends AppCompatActivity {
     @BindView(R.id.tv_activity_main_quote)
     TextView tv_quote;
 
+    @BindView(R.id.fab)
+    FloatingActionButton fab;
+
 
     Animation.AnimationListener listener;
 
@@ -94,6 +98,16 @@ public class MainActivity extends AppCompatActivity {
         tv_quote.setSelected(true);
         //setInitialSizes();
         setupactionbar();
+
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent(MainActivity.this, AlarmListActivity.class);
+                startActivity(intent);
+
+            }
+        });
 
         listener = new Animation.AnimationListener() {
             @Override

@@ -62,6 +62,15 @@ public class BusBackgroundService extends Service {
     private Runnable myTask = new Runnable() {
         public void run() {
 
+            if (getBusDepartureCode().equals("")
+                    || getBusArrivalCode().equals("")
+                    || getBusDepartureName().equals("")
+                    || getBusArrivalName().equals("")
+                    || getBusDepartureDate().equals("")
+                    || getBusSourceDestination().equals("")
+                    || getBusAmount() == 0)
+                return;
+
 
             Request_SearchBuses request = new Request_SearchBuses(getBusDepartureCode(),
                     getBusArrivalCode(),

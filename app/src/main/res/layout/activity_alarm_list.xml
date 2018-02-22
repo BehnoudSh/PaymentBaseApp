@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+
+    <LinearLayout xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context="ir.chichand.chichand.Activity.AlarmListActivity">
+
+        <include
+            android:id="@+id/activity_main_toolbar"
+            layout="@layout/toolbar" />
+
+        <LinearLayout
+            android:id="@+id/ll_activity_alarm_list_busAlarmHolder"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/small_gap"
+            android:background="@drawable/bg_currency_groups"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:padding="@dimen/default_gap">
+
+            <ImageView
+                android:id="@+id/iv_activity_alarm_list_stopBus"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@drawable/delete" />
+
+            <TextView
+                android:id="@+id/tv_activity_alarm_list_busItem"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:padding="@dimen/default_gap"
+                android:text="اگر در تاریختاریختاریختاریختاریختاریختاریختاریختاریختاریختاریختاریختاریختاریختاریختاریختاریختاریختاریختاریختاریختاریختاریختاریختاریختاریختاریختاریختاریختاریختاریختاریختاریختاریختاریختاریخ "
+                android:textStyle="bold" />
+
+
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/bussideview"
+                android:tint="@color/gray_dolphin" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_activity_alarm_list_flightAlarmHolder"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/small_gap"
+
+            android:background="@drawable/bg_currency_groups"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:padding="@dimen/default_gap">
+
+            <ImageView
+                android:id="@+id/iv_activity_alarm_list_stopFlight"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@drawable/delete" />
+
+            <TextView
+                android:id="@+id/tv_activity_alarm_list_flightItem"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:padding="@dimen/default_gap"
+                android:text="اگر در تاریختاریختاریختاریختاریختاریختاریختاریختاریختاریختاریختاریختاریختاریختاریختاریختاریختاریختاریختاریختاریختاریختاریختاریختاریختاریختاریختاریختاریختاریختاریختاریختاریختاریختاریختاریخ "
+                android:textStyle="bold" />
+
+
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/departures"
+
+                android:tint="@color/gray_dolphin" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_activity_alarm_list_currencyAlarmHolder"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/small_gap"
+
+            android:background="@drawable/bg_currency_groups"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:padding="@dimen/default_gap">
+
+            <ImageView
+                android:id="@+id/iv_activity_alarm_list_stopCurrency"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@drawable/delete" />
+
+            <TextView
+                android:id="@+id/tv_activity_alarm_list_currencyItem"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:padding="@dimen/default_gap"
+                android:text="اگر در تاریختاریختاریختاریختاریختاریختاریختاریختاریختاریختاریختاریختاریختاریختاریختاریختاریختاریختاریختاریختاریختاریختاریختاریختاریختاریختاریختاریختاریختاریختاریختاریختاریختاریختاریختاریخ "
+                android:textStyle="bold" />
+
+
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/money"
+
+                android:tint="@color/gray_dolphin" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+</ScrollView>

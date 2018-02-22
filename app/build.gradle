@@ -26,6 +26,10 @@ dependencies {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
 
+    //    compile 'com.alirezaafkar:sundatepicker:2.0.8'
+//    compile 'com.github.hamsaadev:Persian-Date-Picker-Dialog:V1.2'
+
+
     compile 'com.scottyab:secure-preferences-lib:0.1.4'
     compile 'com.android.support:multidex:1.0.1'
     compile 'com.android.support:appcompat-v7:25.3.1'
@@ -42,11 +46,9 @@ dependencies {
     compile 'com.mohamadamin:persianmaterialdatetimepicker:1.2.1'
     compile 'com.daimajia.easing:library:2.0@aar'
     compile 'com.daimajia.androidanimations:library:2.3@aar'
-//    compile 'com.alirezaafkar:sundatepicker:2.0.8'
-//    compile 'com.github.hamsaadev:Persian-Date-Picker-Dialog:V1.2'
-
-
+    compile 'com.android.support.constraint:constraint-layout:1.0.2'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.0.0'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.5.1'
 }
+
 

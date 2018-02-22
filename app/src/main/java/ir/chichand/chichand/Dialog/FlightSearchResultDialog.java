@@ -105,7 +105,7 @@ public class FlightSearchResultDialog extends Dialog {
 
     void makeReferenceDialog(final String referenceurl) {
         _dialogOffline = new AlertDialog.Builder(context)
-                .setMessage("خرید بلیت از آژانس مورد نظر")
+                .setMessage("خرید بلیط از آژانس مورد نظر")
                 .setCancelable(false)
                 .setPositiveButton("بله", new OnClickListener() {
                     @Override

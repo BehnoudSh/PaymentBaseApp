@@ -57,6 +57,13 @@ public class FlightBackgroundService extends Service {
     private Runnable myTask = new Runnable() {
         public void run() {
 
+            if (getFlightSourceDestination().equals("")
+                    || getFlightDeparture().equals("")
+                    || getFlightArrival().equals("")
+                    || getFlightDepartureDate().equals("")
+                    || getFlightAmount() == 0)
+                return;
+
 
             Request_SearchFlights request = new Request_SearchFlights(getFlightDeparture(), getFlightArrival(), getFlightDepartureDate());
             ApiHandler.searchFlights(context, request, new ApiCallbacks.searchFlightsInterface() {

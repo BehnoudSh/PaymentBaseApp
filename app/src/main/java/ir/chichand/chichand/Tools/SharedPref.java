@@ -5,10 +5,10 @@ import android.content.SharedPreferences;
 
 import com.securepreferences.SecurePreferences;
 
-
 public class SharedPref {
 
     Context mContext;
+
     public SharedPreferences mPreferences;
 
     private static SharedPref reference = null;
@@ -29,7 +29,7 @@ public class SharedPref {
         mPreferences = new SecurePreferences(mContext);
     }
 
-    //region currencyAlarmManager
+    //region CurrencyAlarmManager
     public static String getCurrencyName() {
         return SharedPref.getInstance().mPreferences.getString("currencyName", "");
 
@@ -59,7 +59,6 @@ public class SharedPref {
         SharedPref.getInstance().mPreferences.edit().putLong("currencyAmount", amount).apply();
     }
     //endregion
-
 
     //region FlightAlarmManager
     public static String getFlightSourceDestination() {
@@ -110,6 +109,8 @@ public class SharedPref {
     }
 
     //endregion
+
+    //region BusAlarmManager
     public static String getBusSourceDestination() {
         return SharedPref.getInstance().mPreferences.getString("busSourceDestination", "");
 

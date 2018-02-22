@@ -18,6 +18,11 @@ import ir.chichand.chichand.NetworkServices.ApiHandler;
 import ir.chichand.chichand.R;
 import ir.chichand.chichand.Tools.SharedPref;
 
+import static ir.chichand.chichand.Tools.SharedPref.getBusArrivalCode;
+import static ir.chichand.chichand.Tools.SharedPref.getBusArrivalName;
+import static ir.chichand.chichand.Tools.SharedPref.getBusDepartureCode;
+import static ir.chichand.chichand.Tools.SharedPref.getBusDepartureDate;
+import static ir.chichand.chichand.Tools.SharedPref.getBusDepartureName;
 import static ir.chichand.chichand.Tools.SharedPref.getCurrencyAmount;
 import static ir.chichand.chichand.Tools.SharedPref.getCurrencyName;
 import static ir.chichand.chichand.Tools.SharedPref.getCurrencyType;
@@ -44,6 +49,13 @@ public class CurrencyBackgroundService extends Service {
 
     private Runnable myTask = new Runnable() {
         public void run() {
+
+
+            if (getCurrencyType().equals("")
+                    || getCurrencyAmount() == 0
+                    || getCurrencyName().equals(""))
+                return;
+
 
             ApiHandler.getInquiry(context, new Request_Inquiry(1000, ""), new ApiCallbacks.getInquiryInterface() {
                 @Override
