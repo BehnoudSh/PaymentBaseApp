@@ -32,6 +32,7 @@ import static ir.chichand.chichand.Tools.SharedPref.getBusArrivalName;
 import static ir.chichand.chichand.Tools.SharedPref.getBusDepartureCode;
 import static ir.chichand.chichand.Tools.SharedPref.getBusDepartureDate;
 import static ir.chichand.chichand.Tools.SharedPref.getBusDepartureName;
+import static ir.chichand.chichand.Tools.SharedPref.getBusSourceDestination;
 import static ir.chichand.chichand.Tools.SharedPref.getCurrencyAmount;
 import static ir.chichand.chichand.Tools.SharedPref.getCurrencyName;
 import static ir.chichand.chichand.Tools.SharedPref.getCurrencyType;
@@ -94,7 +95,7 @@ public class BusBackgroundService extends Service {
                     NotificationCompat.Builder notificationBuilder = new
                             NotificationCompat.Builder(context)
                             .setSmallIcon(R.mipmap.ic_launcher)
-                            .setContentTitle(getFlightSourceDestination())
+                            .setContentTitle(getBusSourceDestination())
                             .setContentText(counter + " سرویس اتوبوس با قیمت کمتر از " + PublicTools.getThousandSeperated(getBusAmount()) + " ریال یافت شد ")
                             .setAutoCancel(true)
                             .setContentIntent(pendingIntent);

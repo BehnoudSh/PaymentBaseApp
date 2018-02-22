@@ -92,7 +92,7 @@ public class BusAlarmDialog extends Dialog {
 
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
         this.getWindow().requestFeature(Window.FEATURE_NO_TITLE);
-        this.setContentView(R.layout.dialog_flight_alarm);
+        this.setContentView(R.layout.dialog_bus_alarm);
         this.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
 
         WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
