@@ -30,7 +30,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:padding="@dimen/default_gap"
-            android:text="خبر بلیت پرواز از ما"
+            android:text="خبر بهترین قیمت بلیط هواپیما از ما"
             android:textColor="@color/gray_dolphin"
             android:textSize="@dimen/small_text_size" />
 
