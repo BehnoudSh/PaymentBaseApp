@@ -29,7 +29,7 @@ public class SharedPref {
         mPreferences = new SecurePreferences(mContext);
     }
 
-
+    //region currencyAlarmManager
     public static String getCurrencyName() {
         return SharedPref.getInstance().mPreferences.getString("currencyName", "");
 
@@ -50,13 +50,59 @@ public class SharedPref {
     }
 
 
-    public static Long getAmount() {
-        return SharedPref.getInstance().mPreferences.getLong("amount", 0);
+    public static Long getCurrencyAmount() {
+        return SharedPref.getInstance().mPreferences.getLong("currencyAmount", 0);
 
     }
 
-    public static void setAmount(Long amount) {
-        SharedPref.getInstance().mPreferences.edit().putLong("amount", amount).apply();
+    public static void setCurrencyAmount(Long amount) {
+        SharedPref.getInstance().mPreferences.edit().putLong("currencyAmount", amount).apply();
     }
+    //endregion
+
+
+    //region FlightAlarmManager
+    public static String getFlightDeparture() {
+        return SharedPref.getInstance().mPreferences.getString("flightDeparture", "");
+
+    }
+
+    public static void setFlightDeparture(String currencyname) {
+        SharedPref.getInstance().mPreferences.edit().putString("flightDeparture", currencyname).apply();
+    }
+
+    public static String getFlightArrival() {
+        return SharedPref.getInstance().mPreferences.getString("flightArrival", "");
+
+    }
+
+    public static void setFlightArriavl(String currencyname) {
+        SharedPref.getInstance().mPreferences.edit().putString("flightArrival", currencyname).apply();
+    }
+
+    public static String getFlightDepartureDate() {
+        return SharedPref.getInstance().mPreferences.getString("flightDepartureDate", "");
+
+    }
+
+    public static void setFlightDepartureDate(String currencyname) {
+        SharedPref.getInstance().mPreferences.edit().putString("flightDepartureDate", currencyname).apply();
+    }
+
+
+    public static Long getFlightAmount() {
+        return SharedPref.getInstance().mPreferences.getLong("flightAmount", 0);
+
+    }
+
+    public static void setFlightAmount(Long amount) {
+        SharedPref.getInstance().mPreferences.edit().putLong("flightAmount", amount).apply();
+    }
+
+    //endregion
+
+    //region BusAlarmManager
+
+    //endregion
 
 }

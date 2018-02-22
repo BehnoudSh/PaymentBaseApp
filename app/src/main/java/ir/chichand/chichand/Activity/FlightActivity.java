@@ -29,6 +29,7 @@ import butterknife.ButterKnife;
 import ir.chichand.chichand.Dialog.BusSearchResultDialog;
 import ir.chichand.chichand.Dialog.BusSelectCityDialog;
 import ir.chichand.chichand.Dialog.Dialog_LoadingWithMessage;
+import ir.chichand.chichand.Dialog.FlightAlarmDialog;
 import ir.chichand.chichand.Dialog.FlightSearchResultDialog;
 import ir.chichand.chichand.Dialog.FlightSelectCityDialog;
 import ir.chichand.chichand.Models.Requests.Request_SearchBuses;
@@ -84,8 +85,6 @@ public class FlightActivity extends AppCompatActivity {
     Response_FlightCity selectedSource;
 
     Response_FlightCity selectedDestination;
-
-    Dialog_LoadingWithMessage dialog_loading_with_message;
 
 
     @Override
@@ -203,6 +202,20 @@ public class FlightActivity extends AppCompatActivity {
             }
         });
 
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if (validation()) {
+                    FlightAlarmDialog dialog = new FlightAlarmDialog(FlightActivity.this, FlightActivity.this,
+                            "پرواز " + selectedSource.getCity() + " به " + selectedDestination.getCity(),
+                            "در تاریخ " + datetimebus.getText().toString() + " کمتر از ",
+                            selectedSource.getIata(), selectedDestination.getIata(), datetimebus.getText().toString());
+                    dialog.show();
+
+                }
+            }
+        });
 
     }
 

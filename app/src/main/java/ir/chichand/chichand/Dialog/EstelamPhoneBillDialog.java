@@ -1,6 +1,7 @@
 package ir.chichand.chichand.Dialog;
 
 import android.app.Dialog;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -106,16 +107,22 @@ public class EstelamPhoneBillDialog extends Dialog {
                     return;
                 }
 
+
+                final ProgressDialog dialog = PublicTools.ProgressDialogInstance(context, "در حال استعلام مبلغ قبض تلفن ثابت");
+                dialog.show();
+
                 Request_PhoneBill request = new Request_PhoneBill(et_phoneNumber.getText().toString().trim());
 
                 ApiHandler.estelamPhoneBill(context, request, new ApiCallbacks.estelamPhoneBillInterface() {
                     @Override
                     public void onestelamPhoneBillFailed(String message) {
+                        dialog.dismiss();
                         Toast.makeText(context, message, Toast.LENGTH_LONG).show();
                     }
 
                     @Override
                     public void onestelamPhoneBillSucceeded(Response_PhoneBill response) {
+                        dialog.dismiss();
 
                         String message = "دوره " + response.getData().get(0).getCycle()
                                 + "\n"

@@ -18,12 +18,24 @@
 
         <receiver android:name=".AlarmManager.CurrencyAlarmReceiver" />
 
-        <receiver android:name=".AlarmManager.BootReceiver">
+        <receiver android:name=".AlarmManager.CurrencyBootReceiver">
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
                 <category android:name="android.intent.category.HOME" />
             </intent-filter>
         </receiver>
+
+        <service android:name=".AlarmManager.FlightBackgroundService" />
+
+        <receiver android:name=".AlarmManager.FlightAlarmReceiver" />
+
+        <receiver android:name=".AlarmManager.FlightBootReceiver">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <category android:name="android.intent.category.HOME" />
+            </intent-filter>
+        </receiver>
+
 
         <activity
             android:name=".Activity.MainActivity"

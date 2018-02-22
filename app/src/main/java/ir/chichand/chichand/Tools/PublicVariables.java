@@ -26,4 +26,6 @@ public class PublicVariables {
     public static String alarm_selectedType = "";
 
     public static long alarm_selectedAmount = 0;
+
+    public static long AlarmInterval = 10000; //10 seconds
 }

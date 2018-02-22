@@ -7,11 +7,13 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.SystemClock;
 
+import static ir.chichand.chichand.Tools.PublicVariables.AlarmInterval;
+
 /**
  * Created by tinabehnoud on 2/19/18.
  */
 
-public class BootReceiver extends BroadcastReceiver {
+public class CurrencyBootReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
         //  execute when Boot Completed
@@ -21,7 +23,7 @@ public class BootReceiver extends BroadcastReceiver {
         if (alarmRunning == false) {
             PendingIntent pendingIntent = PendingIntent.getBroadcast(context, 0, alarm, 0);
             AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
-            alarmManager.setRepeating(AlarmManager.ELAPSED_REALTIME_WAKEUP, SystemClock.elapsedRealtime(),   5000, pendingIntent);
+            alarmManager.setRepeating(AlarmManager.ELAPSED_REALTIME_WAKEUP, SystemClock.elapsedRealtime(),   AlarmInterval, pendingIntent);
         }
 
 

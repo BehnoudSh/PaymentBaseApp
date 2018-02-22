@@ -36,7 +36,8 @@ import ir.chichand.chichand.Models.Responses.Response_Inquiry_Data;
 import ir.chichand.chichand.R;
 import ir.chichand.chichand.Tools.PublicVariables;
 
-import static ir.chichand.chichand.Tools.SharedPref.setAmount;
+import static ir.chichand.chichand.Tools.PublicVariables.AlarmInterval;
+import static ir.chichand.chichand.Tools.SharedPref.setCurrencyAmount;
 import static ir.chichand.chichand.Tools.SharedPref.setCurrencyName;
 import static ir.chichand.chichand.Tools.SharedPref.setCurrencyType;
 
@@ -138,12 +139,12 @@ public class BusAlarmDialog extends Dialog {
                     if (alarmRunning == false) {
                         PendingIntent pendingIntent = PendingIntent.getBroadcast(context, 0, alarm, 0);
                         AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
-                        alarmManager.setRepeating(AlarmManager.ELAPSED_REALTIME_WAKEUP, SystemClock.elapsedRealtime(), 10 * 60 * 1000, pendingIntent);
+                        alarmManager.setRepeating(AlarmManager.ELAPSED_REALTIME_WAKEUP, SystemClock.elapsedRealtime(), AlarmInterval, pendingIntent);
                     }
 
                     setCurrencyType(PublicVariables.alarm_selectedType);
                     setCurrencyName(PublicVariables.alarm_selectedCurrency);
-                    setAmount(PublicVariables.alarm_selectedAmount);
+                    setCurrencyAmount(PublicVariables.alarm_selectedAmount);
 
                     dismiss();
                 }

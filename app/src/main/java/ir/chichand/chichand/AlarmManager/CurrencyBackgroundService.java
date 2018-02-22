@@ -8,7 +8,6 @@ import android.app.*;
 import android.content.*;
 import android.os.*;
 import android.support.v4.app.NotificationCompat;
-import android.widget.Toast;
 
 import ir.chichand.chichand.Activity.SplashActivity;
 import ir.chichand.chichand.Models.Requests.Request_Inquiry;
@@ -17,10 +16,9 @@ import ir.chichand.chichand.Models.Responses.Response_Inquiry_Data;
 import ir.chichand.chichand.NetworkServices.ApiCallbacks;
 import ir.chichand.chichand.NetworkServices.ApiHandler;
 import ir.chichand.chichand.R;
-import ir.chichand.chichand.Tools.PublicVariables;
 import ir.chichand.chichand.Tools.SharedPref;
 
-import static ir.chichand.chichand.Tools.SharedPref.getAmount;
+import static ir.chichand.chichand.Tools.SharedPref.getCurrencyAmount;
 import static ir.chichand.chichand.Tools.SharedPref.getCurrencyName;
 import static ir.chichand.chichand.Tools.SharedPref.getCurrencyType;
 
@@ -79,16 +77,16 @@ public class CurrencyBackgroundService extends Service {
 
                             if (getCurrencyType().equals("بیشتر از")) {
 
-                                if (Long.valueOf(data.getPrice().replace(",", "")) > getAmount())
+                                if (Long.valueOf(data.getPrice().replace(",", "")) > getCurrencyAmount())
                                     notificationManager.notify(1410, notificationBuilder.build());
 
                             } else if (getCurrencyType().equals("کمتر از")) {
-                                if (Long.valueOf(data.getPrice().replace(",", "")) < getAmount())
+                                if (Long.valueOf(data.getPrice().replace(",", "")) < getCurrencyAmount())
 
                                     notificationManager.notify(1410, notificationBuilder.build());
 
                             } else if (getCurrencyType().equals("برابر با")) {
-                                if (Long.valueOf(data.getPrice().replace(",", "")) == getAmount())
+                                if (Long.valueOf(data.getPrice().replace(",", "")) == getCurrencyAmount())
 
                                     notificationManager.notify(1410, notificationBuilder.build());
 
