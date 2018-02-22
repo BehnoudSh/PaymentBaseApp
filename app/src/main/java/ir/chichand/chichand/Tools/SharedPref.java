@@ -72,7 +72,6 @@ public class SharedPref {
     }
 
 
-
     public static String getFlightDeparture() {
         return SharedPref.getInstance().mPreferences.getString("flightDeparture", "");
 
@@ -111,8 +110,69 @@ public class SharedPref {
     }
 
     //endregion
+    public static String getBusSourceDestination() {
+        return SharedPref.getInstance().mPreferences.getString("busSourceDestination", "");
 
-    //region BusAlarmManager
+    }
+
+    public static void setBusSourceDestination(String currencyname) {
+        SharedPref.getInstance().mPreferences.edit().putString("busSourceDestination", currencyname).apply();
+    }
+
+    public static String getBusDepartureCode() {
+        return SharedPref.getInstance().mPreferences.getString("busDepartureCode", "");
+
+    }
+
+    public static void setBusDepartureCode(String currencyname) {
+        SharedPref.getInstance().mPreferences.edit().putString("busDepartureCode", currencyname).apply();
+    }
+
+    public static String getBusArrivalCode() {
+        return SharedPref.getInstance().mPreferences.getString("busArrivalCode", "");
+
+    }
+
+    public static void setBusArrivalCode(String currencyname) {
+        SharedPref.getInstance().mPreferences.edit().putString("busArrivalCode", currencyname).apply();
+    }
+
+    public static String getBusDepartureName() {
+        return SharedPref.getInstance().mPreferences.getString("busDepartureName", "");
+
+    }
+
+    public static void setBusDepartureName(String currencyname) {
+        SharedPref.getInstance().mPreferences.edit().putString("busDepartureName", currencyname).apply();
+    }
+
+    public static String getBusArrivalName() {
+        return SharedPref.getInstance().mPreferences.getString("busArrivalName", "");
+
+    }
+
+    public static void setBusArrivalName(String currencyname) {
+        SharedPref.getInstance().mPreferences.edit().putString("busArrivalName", currencyname).apply();
+    }
+
+    public static Long getBusAmount() {
+        return SharedPref.getInstance().mPreferences.getLong("busAmount", 0);
+
+    }
+
+    public static void setBusAmount(Long amount) {
+        SharedPref.getInstance().mPreferences.edit().putLong("busAmount", amount).apply();
+    }
+
+    public static String getBusDepartureDate() {
+        return SharedPref.getInstance().mPreferences.getString("busDepartureDate", "");
+
+    }
+
+    public static void setBusDepartureDate(String currencyname) {
+        SharedPref.getInstance().mPreferences.edit().putString("busDepartureDate", currencyname).apply();
+    }
+
 
     //endregion
 

@@ -60,27 +60,25 @@
         android:textColor="@color/gray_dolphin" />
 
 
-    <android.support.v7.widget.AppCompatSpinner
-        android:id="@+id/sp_dialog_currency_alarm_chooseCurrency"
+    <TextView
+        android:id="@+id/tv_dialog_flight_alarm_sourceDestination"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginRight="@dimen/large_gap"
-        android:padding="@dimen/small_gap"
-        android:spinnerMode="dropdown"
-        android:textColor="@color/gray_dolphin"
-        app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
+        android:gravity="center"
+        android:padding="@dimen/default_gap"
+
+        android:text="بلیت اتوبوس تهران به طالقان"
+        android:textColor="@color/gray_dolphin" />
 
 
-    <android.support.v7.widget.AppCompatSpinner
-        android:id="@+id/sp_dialog_currency_alarm_chooseType"
+    <TextView
+        android:id="@+id/tv_dialog_flight_alarm_dateTime"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginRight="@dimen/large_gap"
-        android:layout_marginTop="@dimen/default_gap"
-        android:padding="@dimen/small_gap"
-        android:spinnerMode="dropdown"
-        android:textColor="@color/gray_dolphin"
-        app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
+        android:gravity="center"
+        android:padding="@dimen/default_gap"
+        android:text="در تاریخ ۲-۱۲-۹۵ کمتر از"
+        android:textColor="@color/gray_dolphin" />
 
     <EditText
         android:id="@+id/et_dialog_currency_alarm_amount"

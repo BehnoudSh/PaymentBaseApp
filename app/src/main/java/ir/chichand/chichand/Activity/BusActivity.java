@@ -29,9 +29,12 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import ir.chichand.chichand.AlarmManager.BusAlarmReceiver;
+import ir.chichand.chichand.Dialog.BusAlarmDialog;
 import ir.chichand.chichand.Dialog.BusSearchResultDialog;
 import ir.chichand.chichand.Dialog.BusSelectCityDialog;
 import ir.chichand.chichand.Dialog.Dialog_LoadingWithMessage;
+import ir.chichand.chichand.Dialog.FlightAlarmDialog;
 import ir.chichand.chichand.Models.Requests.Request_SearchBuses;
 import ir.chichand.chichand.Models.Responses.Response_BusCity;
 import ir.chichand.chichand.Models.Responses.Response_SearchBuses;
@@ -41,6 +44,8 @@ import ir.chichand.chichand.R;
 import ir.chichand.chichand.Tools.PublicTools;
 import ir.chichand.chichand.Tools.PublicVariables;
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
+
+import static ir.chichand.chichand.Tools.SharedPref.setFlightSourceDestination;
 
 public class BusActivity extends AppCompatActivity {
     @BindView(R.id.iv_actionbar_back)
@@ -198,6 +203,32 @@ public class BusActivity extends AppCompatActivity {
                 if (validation())
                     searchBuses(getIntent().getIntExtra("bg_color", getResources().getColor(R.color.colorPrimary)));
 
+            }
+        });
+
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                fab.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                        if (validation()) {
+
+                            BusAlarmDialog dialog = new BusAlarmDialog(BusActivity.this, BusActivity.this,
+                                    "اتوبوس " + selectedSource.getPersianName() + " به " + selectedDestination.getPersianName(),
+                                    "در تاریخ " + "\n" + datetimebus.getText().toString() + "\n" + " کمتر از ",
+                                    selectedSource, selectedDestination, datetimebus.getText().toString()
+
+
+                            );
+
+
+                            dialog.show();
+
+                        }
+                    }
+                });
             }
         });
     }

@@ -36,6 +36,16 @@
             </intent-filter>
         </receiver>
 
+        <service android:name=".AlarmManager.BusBackgroundService" />
+
+        <receiver android:name=".AlarmManager.BusAlarmReceiver" />
+
+        <receiver android:name=".AlarmManager.BusBootReceiver">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <category android:name="android.intent.category.HOME" />
+            </intent-filter>
+        </receiver>
 
         <activity
             android:name=".Activity.MainActivity"

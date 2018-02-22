@@ -211,7 +211,7 @@ public class FlightActivity extends AppCompatActivity {
                 if (validation()) {
                     FlightAlarmDialog dialog = new FlightAlarmDialog(FlightActivity.this, FlightActivity.this,
                             "پرواز " + selectedSource.getCity() + " به " + selectedDestination.getCity(),
-                            "در تاریخ " + datetimebus.getText().toString() + " کمتر از ",
+                            "در تاریخ " + "\n" + datetimebus.getText().toString() + "\n" + " کمتر از ",
                             selectedSource.getIata(), selectedDestination.getIata(), datetimebus.getText().toString());
                     setFlightSourceDestination("پرواز " + selectedSource.getCity() + " به " + selectedDestination.getCity());
                     dialog.show();
