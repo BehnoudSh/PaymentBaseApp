@@ -22,6 +22,7 @@ import ir.chichand.chichand.Models.Responses.Response_SearchFlights;
 import ir.chichand.chichand.NetworkServices.ApiCallbacks;
 import ir.chichand.chichand.NetworkServices.ApiHandler;
 import ir.chichand.chichand.R;
+import ir.chichand.chichand.Tools.PublicTools;
 import ir.chichand.chichand.Tools.SharedPref;
 
 import static ir.chichand.chichand.Tools.SharedPref.getCurrencyAmount;
@@ -86,7 +87,7 @@ public class FlightBackgroundService extends Service {
                             NotificationCompat.Builder(context)
                             .setSmallIcon(R.mipmap.ic_launcher)
                             .setContentTitle(getFlightSourceDestination())
-                            .setContentText(counter + " پرواز با قیمت کمتر از " + getFlightAmount() + " یافت شد ")
+                            .setContentText(counter + " پرواز با قیمت کمتر از " + PublicTools.getThousandSeperated(getFlightAmount()) + " ریال یافت شد ")
                             .setAutoCancel(true)
                             .setContentIntent(pendingIntent);
 
