@@ -206,29 +206,23 @@ public class BusActivity extends AppCompatActivity {
             }
         });
 
+
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                fab.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
+                if (validation()) {
 
-                        if (validation()) {
-
-                            BusAlarmDialog dialog = new BusAlarmDialog(BusActivity.this, BusActivity.this,
-                                    "اتوبوس " + selectedSource.getPersianName() + " به " + selectedDestination.getPersianName(),
-                                    "در تاریخ " + "\n" + datetimebus.getText().toString() + "\n" + " کمتر از ",
-                                    selectedSource, selectedDestination, datetimebus.getText().toString()
+                    BusAlarmDialog dialog = new BusAlarmDialog(BusActivity.this, BusActivity.this,
+                            "اتوبوس " + selectedSource.getPersianName() + " به " + selectedDestination.getPersianName(),
+                            "در تاریخ " + "\n" + datetimebus.getText().toString() + "\n" + " کمتر از ",
+                            selectedSource, selectedDestination, datetimebus.getText().toString()
 
 
-                            );
+                    );
 
 
-                            dialog.show();
-
-                        }
-                    }
-                });
+                    dialog.show();
+                }
             }
         });
     }

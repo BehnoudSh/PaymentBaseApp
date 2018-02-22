@@ -86,26 +86,26 @@ public class BusBackgroundService extends Service {
                             counter++;
                     }
 
+                    if (counter != 0) {
+                        Intent intent = new Intent(context, SplashActivity.class);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                        PendingIntent pendingIntent = PendingIntent.getActivity(context, 1410,
+                                intent, PendingIntent.FLAG_ONE_SHOT);
 
-                    Intent intent = new Intent(context, SplashActivity.class);
-                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                    PendingIntent pendingIntent = PendingIntent.getActivity(context, 1410,
-                            intent, PendingIntent.FLAG_ONE_SHOT);
+                        NotificationCompat.Builder notificationBuilder = new
+                                NotificationCompat.Builder(context)
+                                .setSmallIcon(R.mipmap.ic_launcher)
+                                .setContentTitle(getBusSourceDestination())
+                                .setContentText(counter + " سرویس اتوبوس با قیمت کمتر از " + PublicTools.getThousandSeperated(getBusAmount()) + " ریال یافت شد ")
+                                .setAutoCancel(true)
+                                .setContentIntent(pendingIntent);
 
-                    NotificationCompat.Builder notificationBuilder = new
-                            NotificationCompat.Builder(context)
-                            .setSmallIcon(R.mipmap.ic_launcher)
-                            .setContentTitle(getBusSourceDestination())
-                            .setContentText(counter + " سرویس اتوبوس با قیمت کمتر از " + PublicTools.getThousandSeperated(getBusAmount()) + " ریال یافت شد ")
-                            .setAutoCancel(true)
-                            .setContentIntent(pendingIntent);
+                        NotificationManager notificationManager =
+                                (NotificationManager)
+                                        getSystemService(Context.NOTIFICATION_SERVICE);
 
-                    NotificationManager notificationManager =
-                            (NotificationManager)
-                                    getSystemService(Context.NOTIFICATION_SERVICE);
-
-                    notificationManager.notify(1403, notificationBuilder.build());
-
+                        notificationManager.notify(1403, notificationBuilder.build());
+                    }
                 }
             });
 
