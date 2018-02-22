@@ -31,6 +31,7 @@ import static ir.chichand.chichand.Tools.SharedPref.getFlightAmount;
 import static ir.chichand.chichand.Tools.SharedPref.getFlightArrival;
 import static ir.chichand.chichand.Tools.SharedPref.getFlightDeparture;
 import static ir.chichand.chichand.Tools.SharedPref.getFlightDepartureDate;
+import static ir.chichand.chichand.Tools.SharedPref.getFlightSourceDestination;
 
 public class FlightBackgroundService extends Service {
 
@@ -84,7 +85,7 @@ public class FlightBackgroundService extends Service {
                     NotificationCompat.Builder notificationBuilder = new
                             NotificationCompat.Builder(context)
                             .setSmallIcon(R.mipmap.ic_launcher)
-                            .setContentTitle("پرواز " + getFlightDeparture() + " به " + getFlightArrival())
+                            .setContentTitle(getFlightSourceDestination())
                             .setContentText(counter + " پرواز با قیمت کمتر از " + getFlightAmount() + " یافت شد ")
                             .setAutoCancel(true)
                             .setContentIntent(pendingIntent);

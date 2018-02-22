@@ -62,6 +62,17 @@ public class SharedPref {
 
 
     //region FlightAlarmManager
+    public static String getFlightSourceDestination() {
+        return SharedPref.getInstance().mPreferences.getString("flightSourceDestination", "");
+
+    }
+
+    public static void setFlightSourceDestination(String currencyname) {
+        SharedPref.getInstance().mPreferences.edit().putString("flightSourceDestination", currencyname).apply();
+    }
+
+
+
     public static String getFlightDeparture() {
         return SharedPref.getInstance().mPreferences.getString("flightDeparture", "");
 

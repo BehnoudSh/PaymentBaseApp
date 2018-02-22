@@ -45,6 +45,8 @@ import ir.chichand.chichand.Tools.PublicTools;
 import ir.chichand.chichand.Tools.PublicVariables;
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
+import static ir.chichand.chichand.Tools.SharedPref.setFlightSourceDestination;
+
 public class FlightActivity extends AppCompatActivity {
 
     @BindView(R.id.iv_actionbar_back)
@@ -211,6 +213,7 @@ public class FlightActivity extends AppCompatActivity {
                             "پرواز " + selectedSource.getCity() + " به " + selectedDestination.getCity(),
                             "در تاریخ " + datetimebus.getText().toString() + " کمتر از ",
                             selectedSource.getIata(), selectedDestination.getIata(), datetimebus.getText().toString());
+                    setFlightSourceDestination("پرواز " + selectedSource.getCity() + " به " + selectedDestination.getCity());
                     dialog.show();
 
                 }
