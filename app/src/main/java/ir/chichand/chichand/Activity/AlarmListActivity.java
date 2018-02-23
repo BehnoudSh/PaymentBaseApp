@@ -16,6 +16,7 @@ import android.widget.TextView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import ir.chichand.chichand.R;
+import ir.chichand.chichand.Tools.PublicTools;
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 import static ir.chichand.chichand.Tools.SharedPref.getBusAmount;
@@ -202,9 +203,9 @@ public class AlarmListActivity extends AppCompatActivity {
             _dialogOffline.show();
         } else {
 
-            tv_busItem.setText(getBusAmount() + "");
-            tv_flightItem.setText(getFlightAmount() + "");
-            tv_currencyItem.setText(getCurrencyAmount() + "");
+            tv_busItem.setText("اگر در تاریخ " + getBusDepartureDate() + " برای " + getBusSourceDestination() + " بلیط با قیمت کمتر از " + PublicTools.getThousandSeperated(getBusAmount()) + " ریال یافتی خبرم کن");
+            tv_flightItem.setText("اگر در تاریخ " + getFlightDepartureDate() + " برای " + getFlightSourceDestination() + " بلیط با قیمت کمتر از " + PublicTools.getThousandSeperated(getFlightAmount()) + " ریال یافتی خبرم کن");
+            tv_currencyItem.setText("اگر " + getCurrencyName() + " " + getCurrencyType() + " " + PublicTools.getThousandSeperated(getCurrencyAmount()) + " ریال شد خبرم کن ");
 
         }
     }
