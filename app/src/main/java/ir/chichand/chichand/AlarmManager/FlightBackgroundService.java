@@ -9,6 +9,8 @@ import android.app.PendingIntent;
 import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
+import android.media.RingtoneManager;
+import android.net.Uri;
 import android.os.IBinder;
 import android.support.v4.app.NotificationCompat;
 
@@ -102,6 +104,9 @@ public class FlightBackgroundService extends Service {
                         NotificationManager notificationManager =
                                 (NotificationManager)
                                         getSystemService(Context.NOTIFICATION_SERVICE);
+
+                        Uri alarmSound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+                        notificationBuilder.setSound(alarmSound);
 
                         notificationManager.notify(1401, notificationBuilder.build());
                     }

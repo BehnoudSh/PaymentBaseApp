@@ -6,6 +6,8 @@ package ir.chichand.chichand.AlarmManager;
 
 import android.app.*;
 import android.content.*;
+import android.media.RingtoneManager;
+import android.net.Uri;
 import android.os.*;
 import android.support.v4.app.NotificationCompat;
 
@@ -86,6 +88,11 @@ public class CurrencyBackgroundService extends Service {
                             NotificationManager notificationManager =
                                     (NotificationManager)
                                             getSystemService(Context.NOTIFICATION_SERVICE);
+
+
+                            Uri alarmSound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+                            notificationBuilder.setSound(alarmSound);
+
 
                             if (getCurrencyType().equals("بیشتر از")) {
 

@@ -16,7 +16,7 @@
             android:id="@+id/holder1"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_margin="@dimen/default_gap"
+            android:layout_margin="@dimen/small_gap"
             android:layout_weight="1"
             android:padding="@dimen/small_gap">
 
@@ -61,7 +61,7 @@
             android:id="@+id/holder2"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_margin="@dimen/default_gap"
+            android:layout_margin="@dimen/small_gap"
             android:layout_weight="1"
             android:padding="@dimen/small_gap">
 
@@ -113,7 +113,7 @@
             android:id="@+id/holder3"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_margin="@dimen/default_gap"
+            android:layout_margin="@dimen/small_gap"
             android:layout_weight="1"
             android:padding="@dimen/small_gap">
 
@@ -158,7 +158,7 @@
             android:id="@+id/holder4"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_margin="@dimen/default_gap"
+            android:layout_margin="@dimen/small_gap"
             android:layout_weight="1"
             android:padding="@dimen/small_gap">
 
@@ -213,7 +213,7 @@
             android:id="@+id/holder5"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_margin="@dimen/default_gap"
+            android:layout_margin="@dimen/small_gap"
             android:layout_weight="1"
             android:padding="@dimen/small_gap">
 
@@ -258,7 +258,7 @@
             android:id="@+id/holder6"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_margin="@dimen/default_gap"
+            android:layout_margin="@dimen/small_gap"
             android:layout_weight="1"
             android:padding="@dimen/small_gap">
 

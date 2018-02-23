@@ -52,7 +52,7 @@ public class GoodsAdapter extends RecyclerView.Adapter<GoodsAdapter.MyViewHolder
         myViewHolder.bind(category, clickListener);
 
         myViewHolder.tv_storeName.setText(category.getShop_name());
-        myViewHolder.tv_price.setText(PublicTools.getThousandSeperated(category.getPrice()) + " ریال");
+        myViewHolder.tv_price.setText(PublicTools.getThousandSeperated(category.getPrice()));
         myViewHolder.tv_persianName.setText(category.getPersian_name());
 
         RequestOptions requestOptions = new RequestOptions();

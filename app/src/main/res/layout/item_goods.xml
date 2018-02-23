@@ -7,7 +7,6 @@
     android:background="@drawable/bg_custom_elevation"
     android:orientation="vertical">
 
-
     <ImageView
         android:id="@+id/iv_item_goods_img"
         android:layout_width="100dp"
@@ -30,11 +29,11 @@
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/small_gap"
 
-            android:gravity="center_vertical"
+            android:gravity="center_vertical|right"
             android:padding="@dimen/small_gap"
             android:text="dfssdfgdsgdsgdsgdsgdgsdgdsgsddgsgdsgddsggsdgdsdgsgsddgsgsddgsgdsgdsgdsgdssdggsdgdsgds"
             android:textColor="@color/gray_dolphin"
-            android:textSize="@dimen/normal_txt_size" />
+            android:textSize="@dimen/small_text_size" />
 
         <TextView
             android:id="@+id/tv_item_goods_storeName"
@@ -42,30 +41,43 @@
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/small_gap"
             android:gravity="center_vertical"
-
             android:padding="@dimen/small_gap"
             android:text="dfssdfgdsgdsgdsgdsgdgsdgdsgsddgsgdsgddsggsdgdsdgsgsddgsgsddgsgdsgdsgdsgdssdggsdgdsgds"
-
             android:textColor="@color/gray_dolphin"
-            android:textSize="@dimen/small_text_size" />
 
-        <TextView
-            android:id="@+id/tv_item_goods_price"
+            android:textSize="@dimen/small_text_size"
+            android:visibility="gone" />
+
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/small_gap"
-            android:gravity="center_vertical"
+            android:gravity="center"
+            android:orientation="horizontal">
 
-            android:padding="@dimen/small_gap"
-            android:text="dfssdfgdsgdsgdsgdsgdgsdgdsgsddgsgdsgddsggsdgdsdgsgsddgsgsddgsgdsgdsgdsgdssdggsdgdsgds"
 
-            android:textColor="@color/gray_dolphin"
-            android:textSize="@dimen/normal_txt_size" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/small_gap"
+                android:gravity="center_vertical"
+                android:text="تومان"
 
+                android:textColor="@color/transparent_black_hex_10"
+                android:textSize="@dimen/very_small_text_size" />
+
+            <TextView
+                android:id="@+id/tv_item_goods_price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="19842424"
+                android:textColor="@color/transparent_black_hex_12"
+                android:textSize="@dimen/default_txt_size"
+                android:textStyle="bold" />
+        </LinearLayout>
 
     </LinearLayout>
-
-
 
 
 </RelativeLayout>

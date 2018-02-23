@@ -14,8 +14,7 @@
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_below="@+id/activity_main_toolbar"
-        android:layout_gravity="center"
-        android:padding="@dimen/small_gap">
+        android:layout_gravity="center">
 
     </android.support.v7.widget.RecyclerView>
 
