@@ -261,21 +261,6 @@ public class CatLevel0PagerAdapter extends PagerAdapter {
         void onItemClick(Response_Categories item);
     }
 
-//    void handleEnabled(View view, Response_Categories category) {
-//        if (category.getIsenabled().equals("0")) {
-//
-//            view.setAlpha(0.3f);
-//
-//            view.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View v) {
-//                    Toast.makeText(_context, "در حال حاضر غیر فعال ...", Toast.LENGTH_LONG).show();
-//                }
-//            });
-//        } else
-//            view.setAlpha(1f);
-//
-//    }
 
     void handleUpdateNedded(View view, Response_Categories category) {
 
@@ -285,7 +270,7 @@ public class CatLevel0PagerAdapter extends PagerAdapter {
             view.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Toast.makeText(_context, "نیازمند آپدیت از کافه‌بازار ...", Toast.LENGTH_LONG).show();
+                    Toast.makeText(_context, "برای استفاده از این ویژگی لطفا هفت‌رنگ را از کافه‌بازار به‌روزرسانی کنید", Toast.LENGTH_LONG).show();
                 }
             });
 
@@ -293,37 +278,26 @@ public class CatLevel0PagerAdapter extends PagerAdapter {
         }
 
 
-        if (Integer.parseInt(category.getMinversion()) < BuildConfig.VERSION_CODE && category.getIsenabled().equals("0")) {
+        if (Integer.parseInt(category.getMinversion()) <= BuildConfig.VERSION_CODE) {
 
-            view.setAlpha(0.3f);
+            if (category.getIsenabled().equals("0")) {
+                view.setAlpha(0.3f);
 
-            view.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Toast.makeText(_context, "در حال حاضر غیر فعال ...", Toast.LENGTH_LONG).show();
-                }
-            });
+                view.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Toast.makeText(_context, "در حال حاضر غیر فعال ...", Toast.LENGTH_LONG).show();
+                    }
+                });
 
-            return;
+                return;
+            }
         }
 
         view.setAlpha(1f);
 
     }
 
-
-//    public void bind(final Response_Categories item, final CatLevel1CategoriesAdapter.OnItemClickListener listener) {
-//
-//        itemView.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//
-//
-//                listener.onItemClick(item, getAdapterPosition());
-//
-//            }
-//        });
-//    }
 
     double getScreenSizeInInch() {
 
