@@ -2,7 +2,11 @@ package ir.haftrang.haftrang.Adapters;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.net.Uri;
 import android.support.v4.view.PagerAdapter;
+import android.support.v7.app.AlertDialog;
 import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,9 +24,12 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import ir.haftrang.haftrang.Activity.MainActivity;
+import ir.haftrang.haftrang.Activity.SplashActivity;
 import ir.haftrang.haftrang.BuildConfig;
 import ir.haftrang.haftrang.Models.Responses.Response_Categories;
 import ir.haftrang.haftrang.R;
+import ir.haftrang.haftrang.Tools.PublicTools;
 import ir.haftrang.haftrang.Tools.ScreenUtils;
 
 public class CatLevel0PagerAdapter extends PagerAdapter {
@@ -34,6 +41,7 @@ public class CatLevel0PagerAdapter extends PagerAdapter {
     int hashmapIndex = 0;
     OnItemClickListener _listener;
     int n = 0;
+
 
     public CatLevel0PagerAdapter(Context context, List<Response_Categories> allitems, OnItemClickListener _listener) {
 
@@ -260,6 +268,25 @@ public class CatLevel0PagerAdapter extends PagerAdapter {
         void onItemClick(Response_Categories item);
     }
 
+    void makeCafeBazaarDialog() {
+        AlertDialog _dialogOffline = new AlertDialog.Builder(_context)
+                .setMessage("برای استفاده از این ویژگی لطفا هفت\u200Cرنگ را از کافه\u200Cبازار به\u200Cروزرسانی کنید")
+                .setCancelable(false)
+                .setPositiveButton("دریافت نسخه جدید از بازار", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                        String url = "http://cafebazaar.ir/app/?id=ir.haftrang.haftrang";
+                        Intent i = new Intent(Intent.ACTION_VIEW);
+                        i.setData(Uri.parse(url));
+                        _context.startActivity(i);
+
+                    }
+                })
+
+                .create();
+        _dialogOffline.show();
+    }
 
     void handleUpdateNedded(View view, Response_Categories category) {
 
@@ -269,13 +296,14 @@ public class CatLevel0PagerAdapter extends PagerAdapter {
             view.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Toast.makeText(_context, "برای استفاده از این ویژگی لطفا هفت‌رنگ را از کافه‌بازار به‌روزرسانی کنید", Toast.LENGTH_LONG).show();
+
+                    makeCafeBazaarDialog();
+
                 }
             });
 
             return;
         }
-
 
         if (Integer.parseInt(category.getMinversion()) <= BuildConfig.VERSION_CODE) {
 
@@ -297,7 +325,6 @@ public class CatLevel0PagerAdapter extends PagerAdapter {
 
     }
 
-
     double getScreenSizeInInch() {
 
         DisplayMetrics dm = new DisplayMetrics();
@@ -306,9 +333,6 @@ public class CatLevel0PagerAdapter extends PagerAdapter {
         double y = Math.pow(ScreenUtils.ScreenSizesInPixel.y / dm.ydpi, 2);
         return Math.sqrt(x + y);
 
-
     }
-
-
 }
 

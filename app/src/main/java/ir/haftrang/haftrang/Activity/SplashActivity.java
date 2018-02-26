@@ -61,7 +61,7 @@ public class SplashActivity extends AppCompatActivity {
 
                             Intent i = new Intent(SplashActivity.this, MainActivity.class);
                             startActivity(i);
-                            overridePendingTransition(R.anim.come_in, R.anim.go_out);
+                          //  overridePendingTransition(R.anim.come_in, R.anim.go_out);
                             finish();
 
                         } else {
@@ -129,7 +129,7 @@ public class SplashActivity extends AppCompatActivity {
                         Intent i = new Intent(SplashActivity.this, MainActivity.class);
                         i.putExtra("daily_quote", response.getQuote());
                         startActivity(i);
-                        overridePendingTransition(R.anim.come_in, R.anim.go_out);
+                     //   overridePendingTransition(R.anim.come_in, R.anim.go_out);
                         finish();
 
 

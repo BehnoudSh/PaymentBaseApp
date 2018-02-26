@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "1074325163907",
+    "firebase_url": "https://haftrang-96395.firebaseio.com",
+    "project_id": "haftrang-96395",
+    "storage_bucket": "haftrang-96395.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1074325163907:android:3c710b45a172c2a8",
+        "android_client_info": {
+          "package_name": "ir.haftrang.haftrang"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1074325163907-q673ls98r2dkl87ighcnam7klio9mh02.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBd1mXuHh1TmQoT-vqWzcHoRbqTMSWuVec"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
