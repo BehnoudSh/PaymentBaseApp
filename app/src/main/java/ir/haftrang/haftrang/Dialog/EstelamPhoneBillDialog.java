@@ -116,15 +116,20 @@ public class EstelamPhoneBillDialog extends Dialog {
                     @Override
                     public void onestelamPhoneBillSucceeded(Response_PhoneBill response) {
                         dialog.dismiss();
-
-                        String message = "دوره " + response.getData().get(0).getCycle()
-                                + "\n"
-                                + "مبلغ " + PublicTools.getThousandSeperated(response.getData().get(0).getPrice()) + " ریال "
-                                + "\n"
-                                + "شناسه قبض " + response.getData().get(0).getBill_id()
-                                + "\n"
-                                + "شناسه پرداخت " + response.getData().get(0).getPay_id();
-
+                        String message = "";
+                        if (!response.getData().get(0).getPrice().equals("0")) {
+                            message = "دوره " + response.getData().get(0).getCycle()
+                                    + "\n"
+                                    + "مبلغ " + PublicTools.getThousandSeperated(response.getData().get(0).getPrice()) + " ریال "
+                                    + "\n"
+                                    + "شناسه قبض " + response.getData().get(0).getBill_id()
+                                    + "\n"
+                                    + "شناسه پرداخت " + response.getData().get(0).getPay_id();
+                        } else {
+                            message = "دوره " + response.getData().get(0).getCycle()
+                                    + "\n"
+                                    + "مبلغ " + PublicTools.getThousandSeperated(response.getData().get(0).getPrice()) + " ریال ";
+                        }
 
                         makeOfflineDialog(message);
 

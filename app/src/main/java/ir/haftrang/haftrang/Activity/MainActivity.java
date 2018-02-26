@@ -174,7 +174,7 @@ public class MainActivity extends AppCompatActivity {
                         ) {
                     if (resp.getCat_level() != null)
                         if (resp.getCat_level().equals("0") && resp.getVisibility().equals("1")) {
-                            resp.setMinversion("2");
+
                             temp.add(resp);
                         }
                 }
