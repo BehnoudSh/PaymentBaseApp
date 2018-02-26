@@ -177,4 +177,17 @@ public class SharedPref {
 
     //endregion
 
+
+    public static Boolean getHelpState() {
+        return SharedPref.getInstance().mPreferences.getBoolean("help", false);
+
+
+    }
+
+    public static void setHelpState( ) {
+
+
+        SharedPref.getInstance().mPreferences.edit().putBoolean("help", true).apply();
+    }
+
 }
