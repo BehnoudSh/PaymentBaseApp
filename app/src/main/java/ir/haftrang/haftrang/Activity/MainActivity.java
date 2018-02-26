@@ -233,6 +233,8 @@ public class MainActivity extends AppCompatActivity {
 
                 indicator.setViewPager(pager);
 
+                if (pagerAdapter.getCount() == 1)
+                    indicator.setVisibility(View.INVISIBLE);
 
             }
         });

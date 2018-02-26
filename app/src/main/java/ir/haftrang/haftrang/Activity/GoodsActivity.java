@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -53,6 +54,11 @@ public class GoodsActivity extends AppCompatActivity {
     @BindView(R.id.toolbar)
     android.support.v7.widget.Toolbar
             toolbar;
+
+    @BindView(R.id.pb_activity_cat_level2_loader)
+    ProgressBar
+            pb_loader;
+
 
     GoodsAdapter GoodsAdapter;
     LinearLayoutManager mLayoutManager = new LinearLayoutManager(GoodsActivity.this);
@@ -137,27 +143,26 @@ public class GoodsActivity extends AppCompatActivity {
 
     void getTorob(String url) {
         PublicTools.hideKeyboard(this);
-
+        pb_loader.setVisibility(View.VISIBLE);
         ApiHandler.getCatLevel1_Goods(GoodsActivity.this, url, new ApiCallbacks.getCatLevel1GoodsInterface() {
             @Override
             public void onGetCatLevel0_GoodsFailed() {
+                pb_loader.setVisibility(View.GONE);
 
             }
 
             @Override
             public void onGetCatLevel0_GoodsSucceeded(Response_Others response) {
+                pb_loader.setVisibility(View.GONE);
 
                 responseList.addAll(response.getResult());
 
                 GoodsAdapter.notifyDataSetChanged();
 
-
                 base_url = base_url.replace("page=" + page, "page=" + String.valueOf(page + 1));
                 page++;
             }
         });
-
-
     }
 
     void populateRecycler() {
