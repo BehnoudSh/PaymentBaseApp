@@ -8,7 +8,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        tools:context="ir.chichand.chichand.Activity.AlarmListActivity">
+        tools:context="ir.haftrang.haftrang.Activity.AlarmListActivity">
 
         <include
             android:id="@+id/activity_main_toolbar"
