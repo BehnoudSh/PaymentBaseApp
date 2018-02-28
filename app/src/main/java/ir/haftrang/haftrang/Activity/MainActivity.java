@@ -321,6 +321,13 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
+
+
+        if (getSupportFragmentManager().getBackStackEntryCount() > 0) {
+            getSupportFragmentManager().popBackStack();
+            return;
+        }
+
         Snackbar.make(parent, "برای خروج، دکمه را لمس نمایید", 1500)
                 .setAction("خروج", new View.OnClickListener() {
                     @Override
