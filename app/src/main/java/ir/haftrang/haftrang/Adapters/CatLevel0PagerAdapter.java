@@ -270,9 +270,9 @@ public class CatLevel0PagerAdapter extends PagerAdapter {
 
     void makeCafeBazaarDialog() {
         final AlertDialog _dialogOffline = new AlertDialog.Builder(_context)
-                .setMessage("برای استفاده از این قسمت لطفا هفت\u200Cرنگ را از کافه\u200Cبازار به\u200Cروزرسانی کنید")
+                .setMessage("برای استفاده از این قسمت لطفا هفت\u200Cرنگ را به\u200Cروزرسانی کنید")
                 .setCancelable(true)
-                .setPositiveButton("دریافت نسخه جدید از بازار", new DialogInterface.OnClickListener() {
+                .setPositiveButton("دریافت نسخه جدید", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
 

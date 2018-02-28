@@ -1,6 +1,10 @@
 package ir.haftrang.haftrang.Adapters;
 
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.net.Uri;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -99,7 +103,7 @@ public class CatLevel1CategoriesAdapter extends RecyclerView.Adapter<CatLevel1Ca
             view.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Toast.makeText(context, "نیازمند آپدیت از کافه‌بازار ...", Toast.LENGTH_LONG).show();
+                    makeCafeBazaarDialog();
                 }
             });
 
@@ -118,6 +122,32 @@ public class CatLevel1CategoriesAdapter extends RecyclerView.Adapter<CatLevel1Ca
 
         }
 
+    }
+
+    void makeCafeBazaarDialog() {
+        final AlertDialog _dialogOffline = new AlertDialog.Builder(context)
+                .setMessage("برای استفاده از این قسمت لطفا هفت\u200Cرنگ را به\u200Cروزرسانی کنید")
+                .setCancelable(true)
+                .setPositiveButton("دریافت نسخه جدید", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                        String url = "http://cafebazaar.ir/app/?id=ir.haftrang.haftrang";
+                        Intent i = new Intent(Intent.ACTION_VIEW);
+                        i.setData(Uri.parse(url));
+                        context.startActivity(i);
+
+                    }
+                })
+                .setNegativeButton("فعلا بیخیال", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                })
+
+                .create();
+        _dialogOffline.show();
     }
 
     @Override
