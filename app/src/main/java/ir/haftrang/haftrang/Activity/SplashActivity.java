@@ -26,6 +26,7 @@ public class SplashActivity extends AppCompatActivity {
     private static int SPLASH_TIME_OUT = 1500;
     AlertDialog _dialogOffline;
     AlertDialog _dialogForceUpdate;
+    AlertDialog _dialogConfigError;
     Handler handler = new Handler();
     Animation.AnimationListener listener;
 
@@ -42,6 +43,7 @@ public class SplashActivity extends AppCompatActivity {
         load_animations();
         setScreenUtils();
         SharedPref.getInstance().initSharedPref(getApplicationContext());
+        _dialogConfigError = makeErrorDialog();
         listener = new Animation.AnimationListener() {
             @Override
             public void onAnimationStart(Animation animation) {
@@ -146,7 +148,7 @@ public class SplashActivity extends AppCompatActivity {
                         {
                             @Override
                             public void onGetConfigFailed() {
-
+                                _dialogConfigError.show();
                             }
 
                             @Override
@@ -174,7 +176,7 @@ public class SplashActivity extends AppCompatActivity {
     }
 
     AlertDialog makeCafeBazaarDialog(final String url) {
-        _dialogOffline = new AlertDialog.Builder(this)
+        AlertDialog _dialog = new AlertDialog.Builder(this)
                 .setMessage("نسخه جدید هفت‌رنگ را دریافت نمایید")
                 .setCancelable(false)
                 .setPositiveButton("دریافت نسخه جدید", new DialogInterface.OnClickListener() {
@@ -189,6 +191,30 @@ public class SplashActivity extends AppCompatActivity {
                     }
                 })
                 .create();
-        return _dialogOffline;
+        return _dialog;
+    }
+
+    AlertDialog makeErrorDialog() {
+        AlertDialog _dialog = new AlertDialog.Builder(this)
+                .setMessage("بروز خطا در دریافت اطلاعات از هفت‌رنگ")
+                .setCancelable(false)
+                .setPositiveButton("تلاش دوباره", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+
+                        getConfig();
+
+                    }
+                })
+                .setNegativeButton("خروج", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        finish();
+                    }
+                })
+
+                .create();
+        return _dialog;
     }
 }
