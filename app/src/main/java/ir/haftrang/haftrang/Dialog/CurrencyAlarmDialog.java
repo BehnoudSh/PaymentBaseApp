@@ -4,13 +4,16 @@ import android.app.AlarmManager;
 import android.app.Dialog;
 import android.app.PendingIntent;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.ColorDrawable;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.SystemClock;
 import android.support.annotation.NonNull;
+import android.support.v7.app.AlertDialog;
 import android.view.Gravity;
 import android.view.View;
 import android.view.Window;
@@ -34,6 +37,7 @@ import ir.haftrang.haftrang.Adapters.Adapter_simpleSpinner;
 import ir.haftrang.haftrang.AlarmManager.CurrencyAlarmReceiver;
 import ir.haftrang.haftrang.Models.Responses.Response_Inquiry_Data;
 import ir.haftrang.haftrang.R;
+import ir.haftrang.haftrang.Tools.PublicTools;
 import ir.haftrang.haftrang.Tools.PublicVariables;
 
 import static ir.haftrang.haftrang.Tools.PublicVariables.AlarmInterval;
@@ -149,6 +153,41 @@ public class CurrencyAlarmDialog extends Dialog {
                     dismiss();
                     Toast.makeText(context, "خبر طلا و ارز از ما", Toast.LENGTH_SHORT).show();
 
+
+                    Response_Inquiry_Data selectedCurrency = new Response_Inquiry_Data();
+                    for (Response_Inquiry_Data currency : currencyList) {
+                        if (currency.getName().equals(PublicVariables.alarm_selectedCurrency))
+                            selectedCurrency = currency;
+
+                    }
+
+                    if (PublicVariables.alarm_selectedType.equals("برابر با")) {
+
+                        if (Long.valueOf(selectedCurrency.getPrice().replace(",", "")) != PublicVariables.alarm_selectedAmount) {
+
+                            showAlarmDialog("الان قیمت " + selectedCurrency.getName() + " برابر با " + PublicTools.getThousandSeperated(PublicVariables.alarm_selectedAmount) + " ریال نیست ولی ما پیوسته در حال بررسی قیمت هستیم و شما را مطلع خواهیم ساخت.");
+                        } else {
+
+                            showAlarmDialog("همین الان قیمت " + selectedCurrency.getName() + " برابر با " + PublicTools.getThousandSeperated(PublicVariables.alarm_selectedAmount) + " ریال هست.");
+
+                        }
+
+                    } else if (PublicVariables.alarm_selectedType.equals("بیشتر از")) {
+                        if (Long.valueOf(selectedCurrency.getPrice().replace(",", "")) < PublicVariables.alarm_selectedAmount) {
+                            showAlarmDialog("الان قیمت " + selectedCurrency.getName() + " بیشتر از " + PublicTools.getThousandSeperated(PublicVariables.alarm_selectedAmount) + " ریال نیست ولی ما پیوسته در حال بررسی قیمت هستیم و شما را مطلع خواهیم ساخت.");
+
+                        } else {
+                            showAlarmDialog("همین الان قیمت " + selectedCurrency.getName() + " بیشتر از " + PublicTools.getThousandSeperated(PublicVariables.alarm_selectedAmount) + " ریال هست.");
+
+                        }
+                    } else if (PublicVariables.alarm_selectedType.equals("کمتر از")) {
+                        if (Long.valueOf(selectedCurrency.getPrice().replace(",", "")) > PublicVariables.alarm_selectedAmount) {
+                            showAlarmDialog("الان قیمت " + selectedCurrency.getName() + " کمتر از " + PublicTools.getThousandSeperated(PublicVariables.alarm_selectedAmount) + " ریال نیست ولی ما پیوسته در حال بررسی قیمت هستیم و شما را مطلع خواهیم ساخت.");
+                        } else {
+                            showAlarmDialog("همین الان قیمت " + selectedCurrency.getName() + " کمتر از " + PublicTools.getThousandSeperated(PublicVariables.alarm_selectedAmount) + " ریال هست.");
+
+                        }
+                    }
                 }
             }
         });
@@ -160,6 +199,24 @@ public class CurrencyAlarmDialog extends Dialog {
             }
         });
     }
+
+
+    void showAlarmDialog(final String message) {
+        AlertDialog _dialog = new AlertDialog.Builder(context)
+                .setMessage(message)
+                .setCancelable(true)
+                .setPositiveButton("باشه", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                        dialog.dismiss();
+
+                    }
+                })
+                .create();
+        _dialog.show();
+    }
+
 
     public CurrencyAlarmDialog(@NonNull Context context, Context context1, List<Response_Inquiry_Data> currency_list) {
         super(context);

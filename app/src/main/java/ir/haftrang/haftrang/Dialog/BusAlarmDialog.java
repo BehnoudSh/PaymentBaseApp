@@ -17,6 +17,8 @@ import android.os.SystemClock;
 import android.support.annotation.NonNull;
 import android.support.v4.app.NotificationCompat;
 import android.support.v7.app.AlertDialog;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.Gravity;
 import android.view.View;
 import android.view.Window;
@@ -30,6 +32,7 @@ import android.widget.Toast;
 import com.daimajia.androidanimations.library.Techniques;
 import com.daimajia.androidanimations.library.YoYo;
 
+import java.text.NumberFormat;
 import java.util.List;
 
 import butterknife.BindView;
@@ -63,7 +66,7 @@ public class BusAlarmDialog extends Dialog {
     private Unbinder unbinder;
     List<Response_Inquiry_Data> currencyList;
     Context context;
-
+//    private String current = "";
     @BindView(R.id.startAlarm)
     Button bt_startAlarm;
 
@@ -110,6 +113,36 @@ public class BusAlarmDialog extends Dialog {
 
         this.setCancelable(true);
         unbinder = ButterKnife.bind(this);
+
+//        alarm_amount.addTextChangedListener(new TextWatcher() {
+//            @Override
+//            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+//
+//            }
+//
+//            @Override
+//            public void onTextChanged(CharSequence s, int start, int before, int count) {
+//                if (!s.toString().equals(current)) {
+//                    alarm_amount.removeTextChangedListener(this);
+//
+//                    String cleanString = s.toString().replaceAll("[$,.]", "");
+//
+//                    double parsed = Double.parseDouble(cleanString);
+//                    String formatted = NumberFormat.getCurrencyInstance().format((parsed / 100));
+//
+//                    current = formatted;
+//                    alarm_amount.setText(formatted);
+//                    alarm_amount.setSelection(formatted.length());
+//
+//                    alarm_amount.addTextChangedListener(this);
+//                }
+//            }
+//
+//            @Override
+//            public void afterTextChanged(Editable s) {
+//
+//            }
+//        });
 
         YoYo.with(Techniques.Bounce)
                 .duration(2000)

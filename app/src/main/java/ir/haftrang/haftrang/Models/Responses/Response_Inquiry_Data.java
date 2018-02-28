@@ -21,6 +21,10 @@ public class Response_Inquiry_Data implements Serializable {
     @SerializedName("group")
     private int group;
 
+    public Response_Inquiry_Data( ) {
+
+    }
+
     public Response_Inquiry_Data(String name, String price, int group) {
         this.name = name;
         this.price = price;

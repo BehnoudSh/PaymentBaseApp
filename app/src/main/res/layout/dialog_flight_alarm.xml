@@ -89,6 +89,8 @@
         android:gravity="center"
         android:hint="قیمت مورد نظر به ریال"
         android:inputType="numberDecimal"
+        android:maxLength="10"
+
         android:padding="@dimen/default_gap"
         android:textColor="@color/gray_dolphin"
         android:textColorHint="@color/transparent_black_hex_4"
