@@ -5,9 +5,13 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.Handler;
 import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.view.GravityCompat;
 import android.support.v4.view.ViewPager;
+import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -48,6 +52,9 @@ public class MainActivity extends AppCompatActivity {
     @BindView(R.id.iv_actionbar_back)
     ImageView iv_actionbar_back;
 
+    @BindView(R.id.parent)
+    RelativeLayout parent;
+
     @BindView(R.id.tv_actionbar_title)
     TextView tv_actionbar_title;
 
@@ -85,6 +92,8 @@ public class MainActivity extends AppCompatActivity {
     Animation.AnimationListener listener;
 
     AlertDialog _dialogError;
+
+    boolean doubleBackToExitPressedOnce = true;
 
     @Override
     protected void attachBaseContext(Context newBase) {
@@ -307,5 +316,25 @@ public class MainActivity extends AppCompatActivity {
                         setHelpState();
                     }
                 });
+    }
+
+
+    @Override
+    public void onBackPressed() {
+        Snackbar.make(parent, "برای خروج، دکمه را لمس نمایید", 1500)
+                .setAction("خروج", new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        finish();
+                    }
+                }).show();
+
+        new Handler().postDelayed(new Runnable() {
+
+            @Override
+            public void run() {
+                doubleBackToExitPressedOnce = false;
+            }
+        }, 1500);
     }
 }
