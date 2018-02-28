@@ -335,15 +335,15 @@ public class MainActivity extends AppCompatActivity {
                     public void onClick(View view) {
                         finish();
 
-                        try {
-                            new Thread(new Runnable() {
-                                @Override
-                                public void run() {
-                                    Glide.get(MainActivity.this).clearDiskCache();
-                                }
-                            }).start();
-                        } catch (Exception ex) {
-                        }
+//                        try {
+//                            new Thread(new Runnable() {
+//                                @Override
+//                                public void run() {
+//                                    Glide.get(MainActivity.this).clearMemory();
+//                                }
+//                            }).start();
+//                        } catch (Exception ex) {
+//                        }
 
                     }
                 }).show();
