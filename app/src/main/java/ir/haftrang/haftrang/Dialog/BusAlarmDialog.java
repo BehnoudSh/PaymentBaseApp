@@ -2,14 +2,21 @@ package ir.haftrang.haftrang.Dialog;
 
 import android.app.AlarmManager;
 import android.app.Dialog;
+import android.app.NotificationManager;
 import android.app.PendingIntent;
+import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.media.RingtoneManager;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.SystemClock;
 import android.support.annotation.NonNull;
+import android.support.v4.app.NotificationCompat;
+import android.support.v7.app.AlertDialog;
 import android.view.Gravity;
 import android.view.View;
 import android.view.Window;
@@ -28,12 +35,21 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
+import ir.haftrang.haftrang.Activity.SplashActivity;
 import ir.haftrang.haftrang.AlarmManager.BusAlarmReceiver;
+import ir.haftrang.haftrang.Models.Requests.Request_SearchBuses;
+import ir.haftrang.haftrang.Models.Responses.Response_Bus;
 import ir.haftrang.haftrang.Models.Responses.Response_BusCity;
 import ir.haftrang.haftrang.Models.Responses.Response_Inquiry_Data;
+import ir.haftrang.haftrang.Models.Responses.Response_SearchBuses;
+import ir.haftrang.haftrang.NetworkServices.ApiCallbacks;
+import ir.haftrang.haftrang.NetworkServices.ApiHandler;
 import ir.haftrang.haftrang.R;
+import ir.haftrang.haftrang.Tools.PublicTools;
 
 import static ir.haftrang.haftrang.Tools.PublicVariables.AlarmInterval;
+import static ir.haftrang.haftrang.Tools.SharedPref.getBusAmount;
+import static ir.haftrang.haftrang.Tools.SharedPref.getBusSourceDestination;
 import static ir.haftrang.haftrang.Tools.SharedPref.setBusAmount;
 import static ir.haftrang.haftrang.Tools.SharedPref.setBusArrivalCode;
 import static ir.haftrang.haftrang.Tools.SharedPref.setBusArrivalName;
@@ -105,45 +121,122 @@ public class BusAlarmDialog extends Dialog {
 
         bt_startAlarm.setOnClickListener(new View.OnClickListener() {
 
-            @Override
-            public void onClick(View v) {
-                if (alarm_amount.getText().toString().equals("")) {
-                    Toast.makeText(context, "قیمت را وارد نمایید", Toast.LENGTH_SHORT).show();
-                    YoYo.with(Techniques.Shake)
-                            .duration(700)
-                            .playOn(alarm_amount);
-                    return;
-                }
+                                             @Override
+                                             public void onClick(View v) {
+                                                 if (alarm_amount.getText().toString().equals("")) {
+                                                     Toast.makeText(context, "قیمت را وارد نمایید", Toast.LENGTH_SHORT).show();
+                                                     YoYo.with(Techniques.Shake)
+                                                             .duration(700)
+                                                             .playOn(alarm_amount);
+                                                     return;
+                                                 }
 
-                Intent alarm = new Intent(context, BusAlarmReceiver.class);
-                boolean alarmRunning = (PendingIntent.getBroadcast(context, 0, alarm, PendingIntent.FLAG_NO_CREATE) != null);
-                if (alarmRunning == false) {
-                    PendingIntent pendingIntent = PendingIntent.getBroadcast(context, 0, alarm, 0);
-                    AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
-                    alarmManager.setRepeating(AlarmManager.ELAPSED_REALTIME_WAKEUP, SystemClock.elapsedRealtime(), AlarmInterval, pendingIntent);
-                }
+                                                 Intent alarm = new Intent(context, BusAlarmReceiver.class);
+                                                 boolean alarmRunning = (PendingIntent.getBroadcast(context, 0, alarm, PendingIntent.FLAG_NO_CREATE) != null);
+                                                 if (alarmRunning == false) {
+                                                     PendingIntent pendingIntent = PendingIntent.getBroadcast(context, 0, alarm, 0);
+                                                     AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
+                                                     alarmManager.setRepeating(AlarmManager.ELAPSED_REALTIME_WAKEUP, SystemClock.elapsedRealtime(), AlarmInterval, pendingIntent);
+                                                 }
 
-                setBusDepartureCode(selectedSource.getCode());
-                setBusArrivalCode(selectedDestination.getCode());
-                setBusArrivalName(selectedDestination.getName());
-                setBusDepartureName(selectedSource.getName());
-                setBusDepartureDate(datetime);
-                setBusSourceDestination(sourceDestination);
-                setBusAmount(Long.valueOf(alarm_amount.getText().toString().trim()));
+                                                 setBusDepartureCode(selectedSource.getCode());
+                                                 setBusArrivalCode(selectedDestination.getCode());
+                                                 setBusArrivalName(selectedDestination.getName());
+                                                 setBusDepartureName(selectedSource.getName());
+                                                 setBusDepartureDate(datetime);
+                                                 setBusSourceDestination(sourceDestination);
+                                                 setBusAmount(Long.valueOf(alarm_amount.getText().toString().trim()));
 
 
-                dismiss();
+                                                 dismiss();
 
-                Toast.makeText(context, "خبر بلیط اتوبوس از ما", Toast.LENGTH_SHORT).show();
-            }
-        });
+                                                 Toast.makeText(context, "خبر بلیط اتوبوس از ما", Toast.LENGTH_SHORT).show();
 
-        closeDialog.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                dismiss();
-            }
-        });
+                                                 final ProgressDialog dialog = PublicTools.ProgressDialogInstance(context, "در حال بررسی سرویس درخواستی شما");
+                                                 dialog.show();
+
+                                                 Request_SearchBuses request = new Request_SearchBuses(selectedSource.getCode(), selectedDestination.getCode(), selectedSource.getName(), selectedDestination.getName(), datetime);
+                                                 ApiHandler.searchBuses(context, request, new ApiCallbacks.searchBusesInterface() {
+                                                             @Override
+                                                             public void onSearchBusesFailed(String message) {
+
+                                                                 dialog.dismiss();
+
+                                                                 AlertDialog _dialog = new AlertDialog.Builder(context)
+                                                                         .setMessage("در حال حاضر مشکلی در ارتباط با سرور پیش آمد، اما ما پیوسته در حال بررسی بلیط\u200Cها خواهیم بود و شما را مطلع خواهیم ساخت")
+                                                                         .setCancelable(false)
+                                                                         .setPositiveButton("باشه", new DialogInterface.OnClickListener() {
+                                                                             @Override
+                                                                             public void onClick(DialogInterface dialog, int which) {
+
+                                                                                 dialog.dismiss();
+                                                                             }
+                                                                         })
+                                                                         .create();
+                                                                 _dialog.show();
+
+                                                             }
+
+                                                             @Override
+                                                             public void onSearchBusesSucceeded(Response_SearchBuses response) {
+                                                                 dialog.dismiss();
+                                                                 int counter = 0;
+
+                                                                 for (Response_Bus bus : response.getItems()
+                                                                         ) {
+                                                                     if (bus.getPrice() < getBusAmount())
+                                                                         counter++;
+                                                                 }
+
+                                                                 if (counter != 0) {
+
+                                                                     AlertDialog _dialog = new AlertDialog.Builder(context)
+                                                                             .setMessage(counter + " سرویس اتوبوس با قیمت کمتر از " + PublicTools.getThousandSeperated(getBusAmount()) + " ریال یافت شد ")
+                                                                             .setCancelable(false)
+                                                                             .setPositiveButton("باشه", new DialogInterface.OnClickListener() {
+                                                                                 @Override
+                                                                                 public void onClick(DialogInterface dialog, int which) {
+
+                                                                                     dialog.dismiss();
+                                                                                 }
+                                                                             })
+                                                                             .create();
+                                                                     _dialog.show();
+
+
+                                                                 } else {
+
+                                                                     AlertDialog _dialog = new AlertDialog.Builder(context)
+                                                                             .setMessage("در حال حاضر بلیطی منطبق با خواسته\u200Cی شما یافت نشد اما ما پیوسته در حال بررسی بلیط\u200Cها خواهیم بود و شما را مطلع خواهیم ساخت")
+                                                                             .setCancelable(false)
+                                                                             .setPositiveButton("باشه", new DialogInterface.OnClickListener() {
+                                                                                 @Override
+                                                                                 public void onClick(DialogInterface dialog, int which) {
+
+                                                                                     dialog.dismiss();
+                                                                                 }
+                                                                             })
+                                                                             .create();
+                                                                     _dialog.show();
+
+                                                                 }
+                                                             }
+                                                         }
+                                                 );
+                                             }
+                                         }
+        );
+
+        closeDialog.setOnClickListener(new View.OnClickListener()
+
+                                       {
+                                           @Override
+                                           public void onClick(View v) {
+                                               dismiss();
+                                           }
+                                       }
+
+        );
     }
 
     public BusAlarmDialog(@NonNull Context context, Context context1, String source_destination, String date_time, Response_BusCity selectedsource, Response_BusCity selecteddestination, String datetime) {
