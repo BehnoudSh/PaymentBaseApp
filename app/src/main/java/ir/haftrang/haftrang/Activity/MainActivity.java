@@ -23,6 +23,7 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.getkeepsafe.taptargetview.TapTarget;
 import com.getkeepsafe.taptargetview.TapTargetView;
 
@@ -333,6 +334,17 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onClick(View view) {
                         finish();
+
+                        try {
+                            new Thread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    Glide.get(MainActivity.this).clearDiskCache();
+                                }
+                            }).start();
+                        } catch (Exception ex) {
+                        }
+
                     }
                 }).show();
 
@@ -343,5 +355,7 @@ public class MainActivity extends AppCompatActivity {
                 doubleBackToExitPressedOnce = false;
             }
         }, 1500);
+
+
     }
 }

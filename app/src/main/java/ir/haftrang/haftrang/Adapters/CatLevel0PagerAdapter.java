@@ -146,7 +146,7 @@ public class CatLevel0PagerAdapter extends PagerAdapter {
                     .load(hashMap.get(position).get(1).getCat_icon())
                     .apply(requestOptions)
                     .into(Image2);
-            Holder2.setOnClickListener(new View.OnClickListener() {
+             Holder2.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     _listener.onItemClick(hashMap.get(position).get(1));
