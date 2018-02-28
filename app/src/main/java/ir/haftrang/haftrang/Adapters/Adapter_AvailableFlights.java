@@ -45,6 +45,7 @@ public class Adapter_AvailableFlights extends RecyclerView.Adapter<Adapter_Avail
         myViewHolder.bind(flight, _listener);
         myViewHolder.tv_flightAirline.setText(flight.getAirline());
         myViewHolder.tv_flightPrice.setText(PublicTools.getThousandSeperated(flight.getPrice()));
+        myViewHolder.tv_flightCurrency.setText(flight.getPrice_currency());
         myViewHolder.tv_flightArrivalTime.setText(flight.getArrival_time());
         myViewHolder.tv_flightDepartureTime.setText(flight.getDeparture_time());
         myViewHolder.tv_flightType.setText(flight.getFlight_type());
@@ -69,7 +70,7 @@ public class Adapter_AvailableFlights extends RecyclerView.Adapter<Adapter_Avail
         public TextView tv_flightAirline;
         public TextView tv_flightDepartureTime;
         public TextView tv_flightArrivalTime;
-
+        public TextView tv_flightCurrency;
 
         public MyViewHolder(View view) {
             super(view);
@@ -78,7 +79,7 @@ public class Adapter_AvailableFlights extends RecyclerView.Adapter<Adapter_Avail
             tv_flightAirline = (TextView) view.findViewById(R.id.tv_item_flight_search_flight_airline);
             tv_flightDepartureTime = (TextView) view.findViewById(R.id.tv_item_flight_search_flight_departureTime);
             tv_flightArrivalTime = (TextView) view.findViewById(R.id.tv_item_flight_search_flight_arrivalTime);
-
+            tv_flightCurrency = (TextView) view.findViewById(R.id.tv_item_flight_search_flight_currency);
 
         }
 

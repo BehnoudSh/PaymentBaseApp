@@ -38,12 +38,14 @@
             android:padding="@dimen/default_gap">
 
             <TextView
-                android:id="@+id/textView"
+
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="right|center_vertical"
                 android:padding="@dimen/small_gap"
-                android:text="ریال"
+
+                android:id="@+id/tv_item_flight_search_flight_currency"
+
                 android:textColor="@color/gray_wolf"
                 android:textSize="@dimen/small_text_size"
                 android:textStyle="bold" />
