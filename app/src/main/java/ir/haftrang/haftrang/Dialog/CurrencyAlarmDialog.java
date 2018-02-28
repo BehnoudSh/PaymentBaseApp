@@ -147,6 +147,8 @@ public class CurrencyAlarmDialog extends Dialog {
                     setCurrencyAmount(PublicVariables.alarm_selectedAmount);
 
                     dismiss();
+                    Toast.makeText(context, "خبر طلا و ارز از ما", Toast.LENGTH_SHORT).show();
+
                 }
             }
         });

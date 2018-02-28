@@ -134,6 +134,7 @@ public class BusAlarmDialog extends Dialog {
 
                 dismiss();
 
+                Toast.makeText(context, "خبر بلیط اتوبوس از ما", Toast.LENGTH_SHORT).show();
             }
         });
 

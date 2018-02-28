@@ -127,6 +127,9 @@ public class FlightAlarmDialog extends Dialog {
 
                 dismiss();
 
+                Toast.makeText(context, "خبر بلیط هواپیما از ما", Toast.LENGTH_SHORT).show();
+
+
             }
         });
 
