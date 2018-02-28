@@ -155,12 +155,18 @@ public class GoodsActivity extends AppCompatActivity {
             public void onGetCatLevel0_GoodsSucceeded(Response_Others response) {
                 pb_loader.setVisibility(View.GONE);
 
-                responseList.addAll(response.getResult());
+                if (response.getResult().size() != 0) {
+                    responseList.addAll(response.getResult());
 
-                GoodsAdapter.notifyDataSetChanged();
+                    GoodsAdapter.notifyDataSetChanged();
 
-                base_url = base_url.replace("page=" + page, "page=" + String.valueOf(page + 1));
-                page++;
+                    base_url = base_url.replace("page=" + page, "page=" + String.valueOf(page + 1));
+                    page++;
+                } else {
+
+                    Toast.makeText(GoodsActivity.this, "جستجوی شما نتیجه‌ای در بر نداشت", Toast.LENGTH_LONG).show();
+
+                }
             }
         });
     }
