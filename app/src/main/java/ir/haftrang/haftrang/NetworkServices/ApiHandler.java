@@ -126,7 +126,7 @@ public class ApiHandler {
                 if (response.code() < 300)
                     callback.onGetBusCitiesSucceeded(response.body());
                 else
-                    callback.onGetBusCitiesFailed("بروز خطا، دوباره تلاش کنید");
+                    callback.onGetBusCitiesFailed("بروز خطا در ارتباط، دوباره تلاش کنید");
             }
 
             @Override
@@ -152,7 +152,7 @@ public class ApiHandler {
                 if (response.code() < 300)
                     callback.onGetFlightCitiesSucceeded(response.body());
                 else
-                    callback.onGetFlightCitiesFailed("بروز خطا، دوباره تلاش کنید");
+                    callback.onGetFlightCitiesFailed("بروز خطا در ارتباط، دوباره تلاش کنید");
 
 
             }
@@ -180,7 +180,7 @@ public class ApiHandler {
                 if (response.code() < 300)
                     callback.onSearchBusesSucceeded(response.body());
                 else
-                    callback.onSearchBusesFailed("بروز خطا، دوباره تلاش کنید");
+                    callback.onSearchBusesFailed("بروز خطا در ارتباط، دوباره تلاش کنید");
             }
 
             @Override
@@ -205,7 +205,7 @@ public class ApiHandler {
                 if (response.code() < 300)
                     callback.onSearchFlightsSucceeded(response.body());
                 else
-                    callback.onSearchFlightsFailed("بروز خطا، دوباره تلاش کنید");
+                    callback.onSearchFlightsFailed("بروز خطا در ارتباط، دوباره تلاش کنید");
             }
 
             @Override
@@ -229,7 +229,7 @@ public class ApiHandler {
 
                 else
 
-                    callback.onestelamPhoneBillFailed("بروز خطا، دوباره تلاش کنید");
+                    callback.onestelamPhoneBillFailed("بروز خطا در ارتباط، دوباره تلاش کنید");
 
             }
 

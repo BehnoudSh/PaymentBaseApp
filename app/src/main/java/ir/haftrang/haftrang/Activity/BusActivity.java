@@ -261,6 +261,7 @@ public class BusActivity extends AppCompatActivity {
             @Override
             public void onGetBusCitiesFailed(String message) {
                 dialog.dismiss();
+                Toast.makeText(BusActivity.this, "بروز خطا در ارتباط، دوباره تلاش کنید", Toast.LENGTH_LONG).show();
                 finish();
             }
 
@@ -286,7 +287,7 @@ public class BusActivity extends AppCompatActivity {
             @Override
             public void onSearchBusesFailed(String message) {
                 dialog.dismiss();
-                Toast.makeText(BusActivity.this, "بروز خطا، لطفا دوباره تلاش کنید", Toast.LENGTH_LONG).show();
+                Toast.makeText(BusActivity.this, "بروز خطا در ارتباط، دوباره تلاش کنید", Toast.LENGTH_LONG).show();
 
 
             }

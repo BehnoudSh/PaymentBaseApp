@@ -98,7 +98,7 @@ public class CurrencyActivity extends AppCompatActivity {
             @Override
             public void onGetInquiryFailed() {
                 dialog.dismiss();
-                Toast.makeText(CurrencyActivity.this, "بروز خطا در ارتباط", Toast.LENGTH_LONG).show();
+                Toast.makeText(CurrencyActivity.this, "بروز خطا در ارتباط، دوباره تلاش کنید", Toast.LENGTH_LONG).show();
                 finish();
             }
 

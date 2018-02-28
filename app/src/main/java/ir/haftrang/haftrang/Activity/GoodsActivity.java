@@ -124,7 +124,7 @@ public class GoodsActivity extends AppCompatActivity {
             @Override
             public void onGetInquiryFailed() {
                 dialog.dismiss();
-                Toast.makeText(GoodsActivity.this, "بروز خطا، لطفا دوباره تلاش کنید", Toast.LENGTH_LONG).show();
+                Toast.makeText(GoodsActivity.this, "بروز خطا در ارتباط، دوباره تلاش کنید", Toast.LENGTH_LONG).show();
                 finish();
             }
 

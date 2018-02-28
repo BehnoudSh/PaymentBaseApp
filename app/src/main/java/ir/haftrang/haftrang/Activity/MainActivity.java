@@ -3,10 +3,12 @@ package ir.haftrang.haftrang.Activity;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
@@ -82,6 +84,8 @@ public class MainActivity extends AppCompatActivity {
 
     Animation.AnimationListener listener;
 
+    AlertDialog _dialogError;
+
     @Override
     protected void attachBaseContext(Context newBase) {
         super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
@@ -92,7 +96,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
-
+        _dialogError = makeErrorDialog();
         getCategories();
 
         tv_quote.setText(getIntent().getStringExtra("daily_quote"));
@@ -152,6 +156,28 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    AlertDialog makeErrorDialog() {
+        AlertDialog _dialog = new AlertDialog.Builder(this)
+                .setMessage("بروز خطا در دریافت لیست خدمات هفت‌رنگ")
+                .setCancelable(false)
+                .setPositiveButton("تلاش دوباره", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                        getCategories();
+                    }
+                })
+                .setNegativeButton("خروج", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        finish();
+                    }
+                })
+
+                .create();
+        return _dialog;
+    }
+
     void getCategories() {
 
         final ProgressDialog dialog = PublicTools.ProgressDialogInstance(this, "در حال دریافت لیست هفت‌رنگ");
@@ -163,6 +189,10 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onGetAllCategoriesFailed() {
                 dialog.dismiss();
+
+
+                _dialogError.show();
+
             }
 
             @Override

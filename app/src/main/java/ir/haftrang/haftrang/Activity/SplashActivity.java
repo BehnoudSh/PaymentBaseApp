@@ -23,7 +23,7 @@ import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 public class SplashActivity extends AppCompatActivity {
 
-    private static int SPLASH_TIME_OUT = 1500;
+
     AlertDialog _dialogOffline;
     AlertDialog _dialogForceUpdate;
     AlertDialog _dialogConfigError;
@@ -203,7 +203,16 @@ public class SplashActivity extends AppCompatActivity {
                     public void onClick(DialogInterface dialog, int which) {
 
 
-                        getConfig();
+                        if (PublicTools.checkNetworkStatus(SplashActivity.this)) {
+
+                            getConfig();
+
+                        } else {
+
+                            makeOfflineDialog();
+                            _dialogOffline.show();
+
+                        }
 
                     }
                 })

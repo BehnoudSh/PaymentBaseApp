@@ -53,6 +53,7 @@
             android:theme="@style/Theme.AppCompat.NoActionBar" />
         <activity
             android:name="ir.haftrang.haftrang.Activity.SplashActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

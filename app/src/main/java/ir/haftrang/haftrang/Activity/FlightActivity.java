@@ -256,7 +256,7 @@ public class FlightActivity extends AppCompatActivity {
             public void onGetFlightCitiesFailed(String message) {
                 dialog.dismiss();
 
-                Toast.makeText(FlightActivity.this, "بروز خطا، لطفا دوباره تلاش کنید", Toast.LENGTH_LONG).show();
+                Toast.makeText(FlightActivity.this, "بروز خطا در ارتباط، دوباره تلاش کنید", Toast.LENGTH_LONG).show();
                 finish();
             }
 
@@ -281,7 +281,7 @@ public class FlightActivity extends AppCompatActivity {
             @Override
             public void onSearchFlightsFailed(String message) {
                 dialog.dismiss();
-                Toast.makeText(FlightActivity.this, "بروز خطا، لطفا دوباره تلاش کنید", Toast.LENGTH_LONG).show();
+                Toast.makeText(FlightActivity.this, "بروز خطا در ارتباط، دوباره تلاش کنید", Toast.LENGTH_LONG).show();
 
             }
 
