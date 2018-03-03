@@ -32,6 +32,16 @@
                 android:background="#fafafa"
                 android:orientation="vertical">
 
+                <TextView
+                    android:id="@+id/datelastupdated"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/small_gap"
+                    android:gravity="center"
+                    android:padding="@dimen/small_gap"
+                    android:textColor="@color/gray_dolphin"
+                    android:textSize="@dimen/small_text_size" />
+
 
             </LinearLayout>
 

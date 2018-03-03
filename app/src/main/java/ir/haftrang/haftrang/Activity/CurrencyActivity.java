@@ -52,6 +52,9 @@ public class CurrencyActivity extends AppCompatActivity {
     @BindView(R.id.toolbar)
     android.support.v7.widget.Toolbar
             toolbar;
+    @BindView(R.id.datelastupdated)
+    TextView tv_datelastupdated;
+
 
     List<Response_Inquiry_Data> currencyList;
 
@@ -108,6 +111,8 @@ public class CurrencyActivity extends AppCompatActivity {
                 currencyList = response.getData();
 
                 dialog.dismiss();
+
+                tv_datelastupdated.setText("تاریخ آخرین به‌روزرسانی: " + response.getData_last_update());
 
                 Map<String, List<Response_Inquiry_Data>> map = new HashMap<String, List<Response_Inquiry_Data>>();
                 for (Response_Inquiry_Data data : response.getData()) {
