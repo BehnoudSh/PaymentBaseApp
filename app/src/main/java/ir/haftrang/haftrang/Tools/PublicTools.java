@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 
 import java.text.DecimalFormat;
+import java.text.NumberFormat;
 
 
 public class PublicTools {
@@ -32,6 +33,14 @@ public class PublicTools {
 
     public static String getThousandSeperated(double input) {
         return getDecimalFormat().format(input);
+    }
+
+    public final static String getFormattedNumber(Long value) {
+        if (value < 1000)
+            return String.valueOf(value);
+        NumberFormat myFormat = NumberFormat.getInstance();
+        myFormat.setGroupingUsed(true);
+        return myFormat.format(value);
     }
 
     public static DecimalFormat getDecimalFormat() {

@@ -50,6 +50,7 @@ import ir.haftrang.haftrang.NetworkServices.ApiHandler;
 import ir.haftrang.haftrang.R;
 import ir.haftrang.haftrang.Tools.PublicTools;
 
+import static ir.haftrang.haftrang.Tools.PublicTools.getFormattedNumber;
 import static ir.haftrang.haftrang.Tools.PublicVariables.AlarmInterval;
 import static ir.haftrang.haftrang.Tools.SharedPref.getBusAmount;
 import static ir.haftrang.haftrang.Tools.SharedPref.getBusSourceDestination;
@@ -66,7 +67,7 @@ public class BusAlarmDialog extends Dialog {
     private Unbinder unbinder;
     List<Response_Inquiry_Data> currencyList;
     Context context;
-//    private String current = "";
+    //    private String current = "";
     @BindView(R.id.startAlarm)
     Button bt_startAlarm;
 
@@ -270,6 +271,34 @@ public class BusAlarmDialog extends Dialog {
                                        }
 
         );
+
+
+        alarm_amount.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                try {
+                    alarm_amount.removeTextChangedListener(this);
+                    String currentText = editable.toString().trim();
+                    currentText = currentText.replaceAll("٬", "").replaceAll(",", "").replaceAll("،", "");
+                    if (currentText.length() > 0) {
+                        alarm_amount.setText(getFormattedNumber(Long.valueOf(currentText)));
+                        alarm_amount.setSelection(alarm_amount.getText().length());
+                    }
+                    alarm_amount.addTextChangedListener(this);
+                } catch (Exception ex) {
+                }
+            }
+        });
+
+
     }
 
     public BusAlarmDialog(@NonNull Context context, Context context1, String source_destination, String date_time, Response_BusCity selectedsource, Response_BusCity selecteddestination, String datetime) {

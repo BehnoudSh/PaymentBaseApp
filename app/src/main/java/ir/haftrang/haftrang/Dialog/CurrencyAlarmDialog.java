@@ -14,6 +14,8 @@ import android.os.Bundle;
 import android.os.SystemClock;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AlertDialog;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.Gravity;
 import android.view.View;
 import android.view.Window;
@@ -40,6 +42,7 @@ import ir.haftrang.haftrang.R;
 import ir.haftrang.haftrang.Tools.PublicTools;
 import ir.haftrang.haftrang.Tools.PublicVariables;
 
+import static ir.haftrang.haftrang.Tools.PublicTools.getFormattedNumber;
 import static ir.haftrang.haftrang.Tools.PublicVariables.AlarmInterval;
 import static ir.haftrang.haftrang.Tools.SharedPref.setCurrencyAmount;
 import static ir.haftrang.haftrang.Tools.SharedPref.setCurrencyName;
@@ -196,6 +199,31 @@ public class CurrencyAlarmDialog extends Dialog {
             @Override
             public void onClick(View v) {
                 dismiss();
+            }
+        });
+
+        alarm_amount.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                try {
+                    alarm_amount.removeTextChangedListener(this);
+                    String currentText = editable.toString().trim();
+                    currentText = currentText.replaceAll("٬", "").replaceAll(",", "").replaceAll("،", "");
+                    if (currentText.length() > 0) {
+                        alarm_amount.setText(getFormattedNumber(Long.valueOf(currentText)));
+                        alarm_amount.setSelection(alarm_amount.getText().length());
+                    }
+                    alarm_amount.addTextChangedListener(this);
+                } catch (Exception ex) {
+                }
             }
         });
     }
