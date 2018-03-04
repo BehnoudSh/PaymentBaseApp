@@ -179,7 +179,7 @@ public class BusAlarmDialog extends Dialog {
                                                  setBusDepartureName(selectedSource.getName());
                                                  setBusDepartureDate(datetime);
                                                  setBusSourceDestination(sourceDestination);
-                                                 setBusAmount(Long.valueOf(alarm_amount.getText().toString().trim()));
+                                                 setBusAmount(Long.valueOf(alarm_amount.getText().toString().trim().replace(",","")));
 
 
                                                  dismiss();

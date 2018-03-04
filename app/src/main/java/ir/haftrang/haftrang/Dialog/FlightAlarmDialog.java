@@ -142,7 +142,7 @@ public class FlightAlarmDialog extends Dialog {
                 setFlightDeparture(sourceiata);
                 setFlightArriavl(destinationiata);
                 setFlightDepartureDate(datetime);
-                setFlightAmount(Long.valueOf(alarm_amount.getText().toString().trim()));
+                setFlightAmount(Long.valueOf(alarm_amount.getText().toString().trim().replace(",","")));
 
 
                 dismiss();

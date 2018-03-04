@@ -139,7 +139,7 @@ public class CurrencyAlarmDialog extends Dialog {
                             .playOn(alarm_amount);
                 } else {
 
-                    PublicVariables.alarm_selectedAmount = Long.valueOf(alarm_amount.getText().toString().trim());
+                    PublicVariables.alarm_selectedAmount = Long.valueOf(alarm_amount.getText().toString().trim().replace(",",""));
 
                     Intent alarm = new Intent(context, CurrencyAlarmReceiver.class);
                     boolean alarmRunning = (PendingIntent.getBroadcast(context, 0, alarm, PendingIntent.FLAG_NO_CREATE) != null);
