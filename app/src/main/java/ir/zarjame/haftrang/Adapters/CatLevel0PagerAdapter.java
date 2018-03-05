@@ -273,7 +273,7 @@ public class CatLevel0PagerAdapter extends PagerAdapter {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
 
-                        String url = "http://cafebazaar.ir/app/?id=ir.haftrang.haftrang";
+                        String url = "http://cafebazaar.ir/app/?id=ir.zarjame.haftrang";
                         Intent i = new Intent(Intent.ACTION_VIEW);
                         i.setData(Uri.parse(url));
                         _context.startActivity(i);

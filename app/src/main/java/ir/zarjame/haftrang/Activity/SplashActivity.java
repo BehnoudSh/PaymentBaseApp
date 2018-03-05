@@ -185,7 +185,7 @@ public class SplashActivity extends AppCompatActivity {
 
 
                         Intent i = new Intent(Intent.ACTION_VIEW);
-                        i.setData(Uri.parse("http://cafebazaar.ir/app/?id=ir.haftrang.haftrang"));
+                        i.setData(Uri.parse("http://cafebazaar.ir/app/?id=ir.zarjame.haftrang"));
                         startActivity(i);
 
                     }

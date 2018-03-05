@@ -132,7 +132,7 @@ public class CatLevel1CategoriesAdapter extends RecyclerView.Adapter<CatLevel1Ca
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
 
-                        String url = "http://cafebazaar.ir/app/?id=ir.haftrang.haftrang";
+                        String url = "http://cafebazaar.ir/app/?id=ir.zarjame.haftrang";
                         Intent i = new Intent(Intent.ACTION_VIEW);
                         i.setData(Uri.parse(url));
                         context.startActivity(i);
