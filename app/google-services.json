@@ -1,27 +1,27 @@
 {
   "project_info": {
-    "project_number": "1074325163907",
-    "firebase_url": "https://haftrang-96395.firebaseio.com",
-    "project_id": "haftrang-96395",
-    "storage_bucket": "haftrang-96395.appspot.com"
+    "project_number": "656833313144",
+    "firebase_url": "https://haftrang2-3e964.firebaseio.com",
+    "project_id": "haftrang2-3e964",
+    "storage_bucket": "haftrang2-3e964.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:1074325163907:android:3c710b45a172c2a8",
+        "mobilesdk_app_id": "1:656833313144:android:6dd2952d77ad07b1",
         "android_client_info": {
-          "package_name": "ir.haftrang.haftrang"
+          "package_name": "ir.zarjame.haftrang"
         }
       },
       "oauth_client": [
         {
-          "client_id": "1074325163907-q673ls98r2dkl87ighcnam7klio9mh02.apps.googleusercontent.com",
+          "client_id": "656833313144-9ve246a0bnpnkktpap8u56hi0veluimk.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBd1mXuHh1TmQoT-vqWzcHoRbqTMSWuVec"
+          "current_key": "AIzaSyBHFbf6Ld9-0mNNnjD3vf_uCUConHIpqcc"
         }
       ],
       "services": {

@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#fafafa"
-    tools:context="ir.haftrang.haftrang.Fragments.CatLevel1CategoriesFragment">
+    tools:context="ir.zarjame.haftrang.Fragments.CatLevel1CategoriesFragment">
 
     <include
         android:id="@+id/activity_main_toolbar"
