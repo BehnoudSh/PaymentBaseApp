@@ -142,6 +142,7 @@ public class PublicTools {
         final ProgressDialog dialog = new ProgressDialog(context, ProgressDialog.THEME_HOLO_LIGHT);
         dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
         dialog.setMessage(message);
+        dialog.setCancelable(false);
         return dialog;
     }
 }

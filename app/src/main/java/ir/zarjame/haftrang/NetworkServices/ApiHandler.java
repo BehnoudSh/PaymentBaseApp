@@ -8,6 +8,7 @@ import ir.zarjame.haftrang.Models.Requests.Request_Inquiry;
 import ir.zarjame.haftrang.Models.Requests.Request_PhoneBill;
 import ir.zarjame.haftrang.Models.Requests.Request_SearchBuses;
 import ir.zarjame.haftrang.Models.Requests.Request_SearchFlights;
+import ir.zarjame.haftrang.Models.Responses.Response_AllCars;
 import ir.zarjame.haftrang.Models.Responses.Response_BusCity;
 import ir.zarjame.haftrang.Models.Responses.Response_Categories;
 import ir.zarjame.haftrang.Models.Responses.Response_Config;
@@ -241,4 +242,35 @@ public class ApiHandler {
             }
         });
     }
+
+
+    public static void getCarPrices(Context context, final ApiCallbacks.getCarsInterface callback) {
+        Retrofit retrofit = ApiClient.getClient(context);
+        ApiInterface api = retrofit.create(ApiInterface.class);
+        Call<Response_AllCars> call = api.getCarPrices();
+
+
+        call.enqueue(new Callback<Response_AllCars>() {
+            @Override
+            public void onResponse(Call<Response_AllCars> call, Response<Response_AllCars> response) {
+                if (response.code() < 300)
+
+                    callback.onGetCarPricesSucceeded(response.body());
+
+                else
+
+                    callback.onGetCarPricesFailed("بروز خطا در ارتباط، دوباره تلاش کنید");
+            }
+
+            @Override
+            public void onFailure(Call<Response_AllCars> call, Throwable t) {
+                callback.onGetCarPricesFailed("بروز خطا در ارتباط، دوباره تلاش کنید");
+
+            }
+        });
+
+
+    }
+
+
 }

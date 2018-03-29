@@ -31,6 +31,7 @@ import ir.zarjame.haftrang.Dialog.BusSearchResultDialog;
 import ir.zarjame.haftrang.Dialog.BusSelectCityDialog;
 import ir.zarjame.haftrang.Dialog.Dialog_LoadingWithMessage;
 import ir.zarjame.haftrang.Models.Requests.Request_SearchBuses;
+import ir.zarjame.haftrang.Models.Responses.Response_CarList;
 import ir.zarjame.haftrang.Models.Responses.Response_BusCity;
 import ir.zarjame.haftrang.Models.Responses.Response_SearchBuses;
 import ir.zarjame.haftrang.NetworkServices.ApiCallbacks;

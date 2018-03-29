@@ -32,6 +32,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import ir.zarjame.haftrang.Adapters.CatLevel0PagerAdapter;
 import ir.zarjame.haftrang.Fragments.CatLevel1CategoriesFragment;
+import ir.zarjame.haftrang.Models.Responses.Response_AllCars;
 import ir.zarjame.haftrang.Models.Responses.Response_Categories;
 import ir.zarjame.haftrang.NetworkServices.ApiCallbacks;
 import ir.zarjame.haftrang.NetworkServices.ApiHandler;
@@ -140,7 +141,6 @@ public class MainActivity extends AppCompatActivity {
 
         load_animations();
 
-
         if (!getHelpState())
             showHelp(MainActivity.this, fab, "مدیریت خبرهای ما", "در طلا و ارز و بلیط اتوبوس و پرواز می‌تونید از ما بخواهید که خبرتون کنیم! در صفحه مربوطه حتما یه نگاهی بهش بیندازید.");
 
@@ -207,6 +207,10 @@ public class MainActivity extends AppCompatActivity {
                 dialog.dismiss();
                 PublicVariables.allCategories = response;
 
+                // TODO: 3/30/18 hardcode
+                PublicVariables.allCategories.add(new Response_Categories("2", "50000", "0", "قیمت خودرو هاردکد", "", "1", "1", "1", getResources().getColor(R.color.holder1)));
+
+
                 for (Response_Categories resp : response
                         ) {
                     if (resp.getCat_level() != null)
@@ -215,6 +219,7 @@ public class MainActivity extends AppCompatActivity {
                             temp.add(resp);
                         }
                 }
+
 
                 CatLevel0PagerAdapter pagerAdapter = new CatLevel0PagerAdapter(MainActivity.this, temp, new CatLevel0PagerAdapter.OnItemClickListener() {
                     @Override
@@ -247,6 +252,17 @@ public class MainActivity extends AppCompatActivity {
 
                             intent.putExtra("news_cat_level1_list", (Serializable) news_cat_level1_list);
 
+                            startActivity(intent);
+
+                        }
+// TODO: 3/30/18 hardcode
+                        if (cat_id == 50000)
+
+                        {
+
+                            Intent intent = new Intent(MainActivity.this, CarPricesActivity.class);
+                            intent.putExtra("bg_color", item.getBg_color());
+                            intent.putExtra("toolbar_title", item.getPersian_title());
                             startActivity(intent);
 
                         } else {

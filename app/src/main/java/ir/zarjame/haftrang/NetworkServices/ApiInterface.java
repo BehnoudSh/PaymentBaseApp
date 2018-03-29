@@ -7,6 +7,7 @@ import ir.zarjame.haftrang.Models.Requests.Request_Inquiry;
 import ir.zarjame.haftrang.Models.Requests.Request_PhoneBill;
 import ir.zarjame.haftrang.Models.Requests.Request_SearchBuses;
 import ir.zarjame.haftrang.Models.Requests.Request_SearchFlights;
+import ir.zarjame.haftrang.Models.Responses.Response_AllCars;
 import ir.zarjame.haftrang.Models.Responses.Response_BusCity;
 import ir.zarjame.haftrang.Models.Responses.Response_Categories;
 import ir.zarjame.haftrang.Models.Responses.Response_Config;
@@ -58,4 +59,7 @@ public interface ApiInterface {
     @POST("billservice.php")
     Call<Response_PhoneBill> estelamPhoneBill(@Body Request_PhoneBill request);
 
+
+    @GET("car.php")
+    Call<Response_AllCars> getCarPrices();
 }

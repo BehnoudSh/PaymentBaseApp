@@ -2,6 +2,8 @@ package ir.zarjame.haftrang.NetworkServices;
 
 import java.util.List;
 
+import ir.zarjame.haftrang.Models.Responses.Response_AllCars;
+import ir.zarjame.haftrang.Models.Responses.Response_CarList;
 import ir.zarjame.haftrang.Models.Responses.Response_BusCity;
 import ir.zarjame.haftrang.Models.Responses.Response_Categories;
 import ir.zarjame.haftrang.Models.Responses.Response_Config;
@@ -17,6 +19,13 @@ import ir.zarjame.haftrang.Models.Responses.Response_SearchFlights;
  */
 
 public class ApiCallbacks {
+    public interface getCarsInterface {
+
+        void onGetCarPricesFailed(String message);
+
+        void onGetCarPricesSucceeded(Response_AllCars response);
+    }
+
 
     public interface getCategoriesInterface {
 
