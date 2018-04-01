@@ -208,7 +208,7 @@ public class MainActivity extends AppCompatActivity {
                 PublicVariables.allCategories = response;
 
                 // TODO: 3/30/18 hardcode
-                PublicVariables.allCategories.add(new Response_Categories("2", "50000", "0", "قیمت خودرو هاردکد", "", "1", "1", "1", getResources().getColor(R.color.holder1)));
+                //  PublicVariables.allCategories.add(new Response_Categories("2", "50000", "0", "قیمت خودرو هاردکد", "", "1", "1", "1", getResources().getColor(R.color.holder1)));
 
 
                 for (Response_Categories resp : response
@@ -254,9 +254,7 @@ public class MainActivity extends AppCompatActivity {
 
                             startActivity(intent);
 
-                        }
-// TODO: 3/30/18 hardcode
-                        if (cat_id == 50000)
+                        } else if (cat_id == 4000)
 
                         {
 
@@ -278,7 +276,8 @@ public class MainActivity extends AppCompatActivity {
 
                         }
                     }
-                });
+                }
+                );
 
                 pager.setOffscreenPageLimit(10);
 

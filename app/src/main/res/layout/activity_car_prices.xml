@@ -14,7 +14,11 @@
         android:id="@+id/rv_activity_car_prices_companyList"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/activity_main_toolbar" />
+        android:layout_below="@+id/activity_main_toolbar"
+        android:fadeScrollbars="false"
+        android:scrollbarSize="5dp"
+        android:scrollbarThumbVertical="@color/transparent_black_hex_4"
+        android:scrollbars="vertical" />
 
 
 </RelativeLayout>

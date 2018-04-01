@@ -20,7 +20,15 @@
 
         <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+
+
+            android:layout_height="match_parent"
+            android:fadeScrollbars="false"
+            android:scrollbarSize="5dp"
+            android:scrollbarThumbVertical="@color/transparent_black_hex_4"
+
+
+            android:scrollbars="vertical">
 
 
             <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"

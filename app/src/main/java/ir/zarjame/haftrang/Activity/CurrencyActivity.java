@@ -70,7 +70,7 @@ public class CurrencyActivity extends AppCompatActivity {
             iv_actionbar_back.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    finish();
+                    CurrencyActivity.this.finish();
                 }
             });
         }

@@ -18,10 +18,10 @@
 
         <ImageView
             android:id="@+id/iv_dialog_currency_alarm_closeDialog"
-            android:layout_width="10dp"
-
-            android:layout_height="10dp"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:layout_marginLeft="@dimen/small_gap"
+            android:padding="20dp"
             android:src="@drawable/cancel" />
 
 
@@ -55,8 +55,11 @@
         android:id="@+id/rv_activity_car_prices_companyList"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-
-        android:layout_marginTop="@dimen/default_gap" />
+        android:layout_marginTop="@dimen/default_gap"
+        android:fadeScrollbars="false"
+        android:scrollbarSize="5dp"
+        android:scrollbarThumbVertical="@color/transparent_black_hex_4"
+        android:scrollbars="vertical" />
 
 
 </LinearLayout>
