@@ -22,6 +22,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import ir.zarjame.haftrang.Adapters.GoodsAdapter;
+import ir.zarjame.haftrang.Dialog.GoodsImageDialog;
 import ir.zarjame.haftrang.Models.Requests.Request_Inquiry;
 import ir.zarjame.haftrang.Models.Responses.Response_Inquiry;
 import ir.zarjame.haftrang.Models.Responses.Response_Others;
@@ -175,6 +176,11 @@ public class GoodsActivity extends AppCompatActivity {
         GoodsAdapter = new GoodsAdapter(responseList, GoodsActivity.this, new GoodsAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(Response_Others_Result item, int position) {
+
+
+                GoodsImageDialog dialog = new GoodsImageDialog(GoodsActivity.this, item.getImage_url());
+                dialog.show();
+
 
             }
         }, new GoodsAdapter.OnListEndedListener() {

@@ -16,6 +16,15 @@
         android:gravity="center"
         android:orientation="vertical">
 
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="استعلام مبلغ قبض تلفن ثابت فعلا مخصوص به تهران است و لازم است شماره تلفن را به همراه پیش شماره ۰۲۱ وارد نمایید."
+            android:textColor="@color/gray_dolphin"
+            android:gravity="center"
+            android:textSize="@dimen/default_txt_size"
+            android:textStyle="bold" />
+
         <LinearLayout
 
             android:layout_width="match_parent"
@@ -24,6 +33,7 @@
             android:background="@drawable/bg_rounded_white_gray_stroke"
             android:gravity="center_vertical"
             android:orientation="horizontal">
+
 
             <EditText
                 android:id="@+id/et_activity_cat_level2_search"

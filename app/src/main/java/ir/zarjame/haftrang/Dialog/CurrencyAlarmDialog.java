@@ -138,7 +138,7 @@ public class CurrencyAlarmDialog extends Dialog {
                             .playOn(alarm_amount);
                 } else {
 
-                    PublicVariables.alarm_selectedAmount = Long.valueOf(alarm_amount.getText().toString().trim().replace(",",""));
+                    PublicVariables.alarm_selectedAmount = Long.valueOf(alarm_amount.getText().toString().trim().replace(",", ""));
 
                     Intent alarm = new Intent(context, CurrencyAlarmReceiver.class);
                     boolean alarmRunning = (PendingIntent.getBroadcast(context, 0, alarm, PendingIntent.FLAG_NO_CREATE) != null);
@@ -153,7 +153,7 @@ public class CurrencyAlarmDialog extends Dialog {
                     setCurrencyAmount(PublicVariables.alarm_selectedAmount);
 
                     dismiss();
-                    Toast.makeText(context, "خبر طلا و ارز از ما", Toast.LENGTH_SHORT).show();
+                    // Toast.makeText(context, "خبر طلا و ارز از ما", Toast.LENGTH_SHORT).show();
 
 
                     Response_Inquiry_Data selectedCurrency = new Response_Inquiry_Data();
@@ -167,26 +167,26 @@ public class CurrencyAlarmDialog extends Dialog {
 
                         if (Long.valueOf(selectedCurrency.getPrice().replace(",", "")) != PublicVariables.alarm_selectedAmount) {
 
-                            showAlarmDialog("الان قیمت " + selectedCurrency.getName() + " برابر با " + PublicTools.getThousandSeperated(PublicVariables.alarm_selectedAmount) + " ریال نیست ولی ما پیوسته در حال بررسی قیمت هستیم و شما را مطلع خواهیم ساخت.");
+                            showAlarmDialog("در حال حاضر قیمت " + selectedCurrency.getName() + " برابر با " + PublicTools.getThousandSeperated(PublicVariables.alarm_selectedAmount) + " ریال نیست ولی ما پیوسته در حال بررسی قیمت هستیم و شما را مطلع خواهیم ساخت.");
                         } else {
 
-                            showAlarmDialog("همین الان قیمت " + selectedCurrency.getName() + " برابر با " + PublicTools.getThousandSeperated(PublicVariables.alarm_selectedAmount) + " ریال هست.");
+                            showAlarmDialog("در حال حاضر قیمت " + selectedCurrency.getName() + " برابر با " + PublicTools.getThousandSeperated(PublicVariables.alarm_selectedAmount) + " ریال هست.");
 
                         }
 
                     } else if (PublicVariables.alarm_selectedType.equals("بیشتر از")) {
                         if (Long.valueOf(selectedCurrency.getPrice().replace(",", "")) < PublicVariables.alarm_selectedAmount) {
-                            showAlarmDialog("الان قیمت " + selectedCurrency.getName() + " بیشتر از " + PublicTools.getThousandSeperated(PublicVariables.alarm_selectedAmount) + " ریال نیست ولی ما پیوسته در حال بررسی قیمت هستیم و شما را مطلع خواهیم ساخت.");
+                            showAlarmDialog("در حال حاضر قیمت " + selectedCurrency.getName() + " کمتر از " + PublicTools.getThousandSeperated(PublicVariables.alarm_selectedAmount) + " ریال هست ولی ما پیوسته در حال بررسی قیمت هستیم و شما را مطلع خواهیم ساخت.");
 
                         } else {
-                            showAlarmDialog("همین الان قیمت " + selectedCurrency.getName() + " بیشتر از " + PublicTools.getThousandSeperated(PublicVariables.alarm_selectedAmount) + " ریال هست.");
+                            showAlarmDialog("در حال حاضر قیمت " + selectedCurrency.getName() + " بیشتر از " + PublicTools.getThousandSeperated(PublicVariables.alarm_selectedAmount) + " ریال هست.");
 
                         }
                     } else if (PublicVariables.alarm_selectedType.equals("کمتر از")) {
                         if (Long.valueOf(selectedCurrency.getPrice().replace(",", "")) > PublicVariables.alarm_selectedAmount) {
-                            showAlarmDialog("الان قیمت " + selectedCurrency.getName() + " کمتر از " + PublicTools.getThousandSeperated(PublicVariables.alarm_selectedAmount) + " ریال نیست ولی ما پیوسته در حال بررسی قیمت هستیم و شما را مطلع خواهیم ساخت.");
+                            showAlarmDialog("در حال حاضر قیمت " + selectedCurrency.getName() + " بیشتر از " + PublicTools.getThousandSeperated(PublicVariables.alarm_selectedAmount) + " ریال هست ولی ما پیوسته در حال بررسی قیمت هستیم و شما را مطلع خواهیم ساخت.");
                         } else {
-                            showAlarmDialog("همین الان قیمت " + selectedCurrency.getName() + " کمتر از " + PublicTools.getThousandSeperated(PublicVariables.alarm_selectedAmount) + " ریال هست.");
+                            showAlarmDialog("در حال حاضر قیمت " + selectedCurrency.getName() + " کمتر از " + PublicTools.getThousandSeperated(PublicVariables.alarm_selectedAmount) + " ریال هست.");
 
                         }
                     }
