@@ -104,7 +104,8 @@
         <activity
             android:name=".Activity.CarPricesActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/Theme.AppCompat.NoActionBar"/>
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
+        <activity android:name=".Activity.WeatherActivity"></activity>
     </application>
 
 </manifest>
