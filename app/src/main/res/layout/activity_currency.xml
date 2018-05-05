@@ -4,39 +4,30 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-
     android:background="@drawable/backrepeat">
 
     <include
         android:id="@+id/activity_main_toolbar"
         layout="@layout/toolbar" />
 
-
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@+id/activity_main_toolbar">
 
-
         <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
             android:layout_width="match_parent"
-
-
             android:layout_height="match_parent"
             android:fadeScrollbars="false"
             android:scrollbarSize="5dp"
             android:scrollbarThumbVertical="@color/transparent_black_hex_4"
-
-
             android:scrollbars="vertical">
 
 
             <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 android:id="@+id/parent"
-
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-
                 android:background="#fafafa"
                 android:orientation="vertical">
 
