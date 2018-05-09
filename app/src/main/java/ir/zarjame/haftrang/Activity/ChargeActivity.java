@@ -3,6 +3,7 @@ package ir.zarjame.haftrang.Activity;
 import android.content.Context;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.CardView;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -28,6 +29,15 @@ public class ChargeActivity extends AppCompatActivity {
     @BindView(R.id.toolbaricon)
     ImageView toolbaricon;
 
+    @BindView(R.id.card_view_irancell)
+    CardView irancell_cardview;
+
+    @BindView(R.id.card_view_mci)
+    CardView mci_cardview;
+
+    @BindView(R.id.card_view_rightel)
+    CardView rightel_cardview;
+
     @Override
     protected void attachBaseContext(Context newBase) {
         super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
@@ -45,6 +55,27 @@ public class ChargeActivity extends AppCompatActivity {
         String title = getIntent().getStringExtra("toolbar_title");
 
         setupactionbar(color, title);
+
+        irancell_cardview.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
+        mci_cardview.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+        rightel_cardview.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                
+            }
+        });
+
 
     }
 
