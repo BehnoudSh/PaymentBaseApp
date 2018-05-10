@@ -1,0 +1,107 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/backrepeat"
+    android:clickable="true"
+    android:fillViewport="true"
+    android:orientation="vertical"
+    tools:context="ir.zarjame.haftrang.Fragments.ChargeConfirmFragment">
+
+    <LinearLayout
+        android:id="@+id/ll_parent"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/rightelgradiant"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:padding="@dimen/default_gap"
+            android:paddingBottom="@dimen/large_gap"
+            android:paddingTop="@dimen/large_gap"
+            android:text="شارژ سیم‌کارت اعتباری"
+            android:textColor="@color/gray_wolf"
+            android:textSize="@dimen/default_txt_size"
+            android:textStyle="bold" />
+
+
+        <EditText
+            android:id="@+id/et_mobile"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/large_gap"
+            android:layout_marginLeft="@dimen/large_gap"
+            android:layout_marginRight="@dimen/large_gap"
+            android:digits="0123456789"
+            android:gravity="center"
+            android:hint="شماره موبایل"
+            android:inputType="phone"
+            android:maxLength="11"
+            android:padding="@dimen/default_gap"
+            android:textColor="@color/gray_dolphin"
+            android:textColorHint="@color/transparent_black_hex_4"
+            android:textSize="@dimen/default_txt_size" />
+
+        <EditText
+            android:id="@+id/et_priceirancell"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/large_gap"
+            android:layout_marginLeft="@dimen/large_gap"
+            android:layout_marginRight="@dimen/large_gap"
+            android:gravity="center"
+            android:hint="مبلغ: حداقل ۵,۰۰۰ ریال و حداکثر ۲,۰۰۰,۰۰۰ ریال"
+            android:inputType="numberDecimal"
+            android:maxLength="10"
+            android:visibility="gone"
+            android:padding="@dimen/default_gap"
+            android:textColor="@color/gray_dolphin"
+            android:textColorHint="@color/transparent_black_hex_4"
+            android:textSize="@dimen/default_txt_size" />
+
+        <android.support.v7.widget.AppCompatSpinner
+            android:id="@+id/sp_price"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:layout_margin="@dimen/large_gap"
+            android:padding="@dimen/small_gap"
+            android:spinnerMode="dropdown"
+            android:textColor="@color/gray_dolphin"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
+
+
+        <EditText
+            android:id="@+id/et_email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/large_gap"
+            android:layout_marginLeft="@dimen/large_gap"
+            android:layout_marginRight="@dimen/large_gap"
+            android:gravity="center"
+            android:hint="آدرس ایمیل (اختیاری)"
+            android:inputType="textEmailAddress"
+            android:padding="@dimen/default_gap"
+            android:textColor="@color/gray_dolphin"
+            android:textColorHint="@color/transparent_black_hex_4"
+            android:textSize="@dimen/default_txt_size"
+            android:visibility="gone" />
+
+
+        <Button
+            android:id="@+id/btn_confirm"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+
+            android:text="تایید"
+            android:textColor="@color/white" />
+    </LinearLayout>
+
+
+</ScrollView>

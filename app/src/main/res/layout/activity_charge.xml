@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/backrepeat"
-
     android:orientation="vertical">
 
     <include
@@ -14,6 +13,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_below="@+id/activity_main_toolbar"
         android:orientation="vertical"
         android:padding="@dimen/default_gap">
 
@@ -131,4 +131,12 @@
         </android.support.v7.widget.CardView>
     </LinearLayout>
 
-</LinearLayout>
+    <FrameLayout
+        android:id="@+id/fragmentholder"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/activity_main_toolbar"
+        android:animateLayoutChanges="true">
+
+    </FrameLayout>
+</RelativeLayout>
