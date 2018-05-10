@@ -116,15 +116,15 @@ public class ChargeConfirmFragment extends Fragment {
             sp_price.getBackground().setColorFilter(getActivity().getResources().getColor(R.color.gray_dolphin), PorterDuff.Mode.SRC_ATOP);
 
             ArrayList<String> types = new ArrayList<>();
-            types.add("مبلغ شارژ را انتخاب کنید ...");
+            types.add("مبلغ شارژ را انتخاب کنید (ریال) ...");
 
-            if (!types.equals("RTL!"))
-                types.add("۱۰,۰۰۰ ریال");
+            if (!type.equals("RTL!"))
+                types.add("۱۰,۰۰۰");
 
-            types.add("۲۰,۰۰۰ ریال");
-            types.add("۵۰,۰۰۰ ریال");
-            types.add("۱۰۰,۰۰۰ ریال");
-            types.add("۲۰۰,۰۰۰ ریال");
+            types.add("۲۰,۰۰۰");
+            types.add("۵۰,۰۰۰");
+            types.add("۱۰۰,۰۰۰");
+            types.add("۲۰۰,۰۰۰");
 
             populateTypeSpinner(types);
 
@@ -185,7 +185,7 @@ public class ChargeConfirmFragment extends Fragment {
 
     boolean validation() {
 
-        if (et_mobile.getText().equals("")) {
+        if (et_mobile.getText().length() == 0) {
             Toast.makeText(getActivity(), "شماره موبایل را وارد نمایید", Toast.LENGTH_SHORT).show();
             YoYo.with(Techniques.Shake)
                     .duration(700)
@@ -206,7 +206,7 @@ public class ChargeConfirmFragment extends Fragment {
 
         if (operator.equals(IRANCELL.getStringValueEnglish())) {
             if (type.equals("MTN") || type.equals("MTN!") || type.equals("MTN#")) {
-                if (!et_mobile.getText().toString().startsWith("090") || !et_mobile.getText().toString().startsWith("093")) {
+                if (!et_mobile.getText().toString().startsWith("090") && !et_mobile.getText().toString().startsWith("093")) {
                     Toast.makeText(getActivity(), "شماره موبایل ایرانسل صحیح نیست", Toast.LENGTH_SHORT).show();
                     YoYo.with(Techniques.Shake)
                             .duration(700)
@@ -258,7 +258,7 @@ public class ChargeConfirmFragment extends Fragment {
         } else if (operator.equals(MCI.getStringValueEnglish())) {
 
 
-            if (!et_mobile.getText().toString().startsWith("091") || !et_mobile.getText().toString().startsWith("0990")) {
+            if (!et_mobile.getText().toString().startsWith("091") && !et_mobile.getText().toString().startsWith("0990")) {
                 Toast.makeText(getActivity(), "شماره موبایل همراه اول صحیح نیست", Toast.LENGTH_SHORT).show();
                 YoYo.with(Techniques.Shake)
                         .duration(700)
@@ -277,8 +277,8 @@ public class ChargeConfirmFragment extends Fragment {
             }
 
         } else if (operator.equals(RIGHTEL.getStringValueEnglish())) {
-            if (!et_mobile.getText().toString().startsWith("0921") || !et_mobile.getText().toString().startsWith("0922")) {
-                Toast.makeText(getActivity(), "شماره موبایل همراه اول صحیح نیست", Toast.LENGTH_SHORT).show();
+            if (!et_mobile.getText().toString().startsWith("0921") && !et_mobile.getText().toString().startsWith("0922")) {
+                Toast.makeText(getActivity(), "شماره موبایل رایتل صحیح نیست", Toast.LENGTH_SHORT).show();
                 YoYo.with(Techniques.Shake)
                         .duration(700)
                         .playOn(et_mobile);
