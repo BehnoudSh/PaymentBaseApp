@@ -283,7 +283,13 @@ public class ApiHandler {
         call.enqueue(new Callback<Response_Charge>() {
             @Override
             public void onResponse(Call<Response_Charge> call, Response<Response_Charge> response) {
-                callback.onGetChargeSucceeded(response.body());
+                if (response.code() < 300) {
+                    if (response.body().getStatus().equals("Success"))
+                        callback.onGetChargeSucceeded(response.body());
+                    else
+                        callback.onGetChargeFailed();
+                } else
+                    callback.onGetChargeFailed();
             }
 
             @Override

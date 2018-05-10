@@ -1,6 +1,7 @@
 package ir.zarjame.haftrang.Fragments;
 
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.PorterDuff;
 import android.net.Uri;
@@ -36,6 +37,7 @@ import ir.zarjame.haftrang.Models.Responses.Response_Charge;
 import ir.zarjame.haftrang.NetworkServices.ApiCallbacks;
 import ir.zarjame.haftrang.NetworkServices.ApiHandler;
 import ir.zarjame.haftrang.R;
+import ir.zarjame.haftrang.Tools.PublicTools;
 import ir.zarjame.haftrang.Tools.PublicVariables;
 
 import static ir.zarjame.haftrang.Models.Operators.IRANCELL;
@@ -223,15 +225,19 @@ public class ChargeConfirmFragment extends Fragment {
                             "Android",
                             "json",
                             "json");
+                    final ProgressDialog dialog = PublicTools.ProgressDialogInstance(getActivity(), "در حال دریافت اطلاعات ...");
 
+                    dialog.show();
                     ApiHandler.charge(getActivity(), request, new ApiCallbacks.getChargeResponseInterface() {
                         @Override
                         public void onGetChargeFailed() {
-                            int a = 10;
+                            dialog.dismiss();
+                            Toast.makeText(getActivity(), "بروز خطا. دوباره تلاش کنید", Toast.LENGTH_SHORT).show();
                         }
 
                         @Override
                         public void onGetChargeSucceeded(Response_Charge response) {
+                            dialog.dismiss();
                             Intent i = new Intent(Intent.ACTION_VIEW);
                             i.setData(Uri.parse(response.getPaymentInfo().getUrl()));
                             startActivity(i);

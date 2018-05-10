@@ -105,9 +105,17 @@ public class ChargeActivity extends AppCompatActivity {
             iv_actionbar_back.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    ChargeActivity.this.finish();
+
+                    if (getSupportFragmentManager().getBackStackEntryCount() > 0)
+                        getSupportFragmentManager().popBackStack();
+                    else
+                        finish();
+
+
                 }
             });
         }
     }
+
+
 }

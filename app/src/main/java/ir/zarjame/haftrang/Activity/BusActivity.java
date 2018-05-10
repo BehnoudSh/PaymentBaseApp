@@ -29,8 +29,7 @@ import butterknife.ButterKnife;
 import ir.zarjame.haftrang.Dialog.BusAlarmDialog;
 import ir.zarjame.haftrang.Dialog.BusSearchResultDialog;
 import ir.zarjame.haftrang.Dialog.BusSelectCityDialog;
-import ir.zarjame.haftrang.Dialog.Dialog_LoadingWithMessage;
-import ir.zarjame.haftrang.Models.Requests.Request_SearchBuses;
+ import ir.zarjame.haftrang.Models.Requests.Request_SearchBuses;
 import ir.zarjame.haftrang.Models.Responses.Response_CarList;
 import ir.zarjame.haftrang.Models.Responses.Response_BusCity;
 import ir.zarjame.haftrang.Models.Responses.Response_SearchBuses;
@@ -79,7 +78,7 @@ public class BusActivity extends AppCompatActivity {
 
     Response_BusCity selectedDestination;
 
-    Dialog_LoadingWithMessage dialog_loading_with_message;
+
 
     ArrayList<Response_BusCity> cities = new ArrayList<Response_BusCity>();
 
