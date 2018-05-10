@@ -131,12 +131,12 @@ public class ChargeConfirmFragment extends Fragment {
             types.add("مبلغ شارژ را انتخاب کنید (تومان) ...");
 
             if (!type.equals("RTL!"))
-                types.add("۱۰,۰۰۰");
+                types.add("۱,۰۰۰");
 
+            types.add("۲,۰۰۰");
+            types.add("۵,۰۰۰");
+            types.add("۱۰,۰۰۰");
             types.add("۲۰,۰۰۰");
-            types.add("۵۰,۰۰۰");
-            types.add("۱۰۰,۰۰۰");
-            types.add("۲۰۰,۰۰۰");
 
             populateTypeSpinner(types);
 
