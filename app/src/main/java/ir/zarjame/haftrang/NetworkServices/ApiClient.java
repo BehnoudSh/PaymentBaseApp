@@ -17,6 +17,7 @@ public class ApiClient {
     public static final String BASE_URL_BACKEND = "http://api.zarjame.ir/";
 
     private static Retrofit retrofit = null;
+    private static Retrofit retrofit_charge = null;
 
     private static OkHttpClient getOkHttpClient(Context context) {
         OkHttpClient.Builder builder = new OkHttpClient.Builder();
@@ -40,7 +41,20 @@ public class ApiClient {
         return retrofit;
     }
 
-    public static Retrofit getClient_dynamicUrl(Context context,String url) {
+    public static Retrofit getClient_chargereseller(Context context) {
+
+        if (retrofit_charge == null) {
+            retrofit_charge = new Retrofit.Builder()
+                    .baseUrl("https://chr724.ir/services/v3/EasyCharge/")
+                    .client(getOkHttpClient(context))
+                    .addConverterFactory(GsonConverterFactory.create())
+                    .build();
+        }
+
+        return retrofit_charge;
+    }
+
+    public static Retrofit getClient_dynamicUrl(Context context, String url) {
 
         if (retrofit == null) {
             retrofit = new Retrofit.Builder()
@@ -52,13 +66,6 @@ public class ApiClient {
 
         return retrofit;
     }
-
-
-
-
-
-
-
 
 
 }

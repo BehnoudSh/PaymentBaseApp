@@ -4,6 +4,7 @@ import android.content.Context;
 
 import java.util.List;
 
+import ir.zarjame.haftrang.Models.Requests.Request_Charge;
 import ir.zarjame.haftrang.Models.Requests.Request_Inquiry;
 import ir.zarjame.haftrang.Models.Requests.Request_PhoneBill;
 import ir.zarjame.haftrang.Models.Requests.Request_SearchBuses;
@@ -11,6 +12,7 @@ import ir.zarjame.haftrang.Models.Requests.Request_SearchFlights;
 import ir.zarjame.haftrang.Models.Responses.Response_AllCars;
 import ir.zarjame.haftrang.Models.Responses.Response_BusCity;
 import ir.zarjame.haftrang.Models.Responses.Response_Categories;
+import ir.zarjame.haftrang.Models.Responses.Response_Charge;
 import ir.zarjame.haftrang.Models.Responses.Response_Config;
 import ir.zarjame.haftrang.Models.Responses.Response_FlightCity;
 import ir.zarjame.haftrang.Models.Responses.Response_Inquiry;
@@ -273,4 +275,21 @@ public class ApiHandler {
     }
 
 
+    public static void charge(Context context, Request_Charge request, final ApiCallbacks.getChargeResponseInterface callback) {
+        Retrofit retrofit = ApiClient.getClient_chargereseller(context);
+        ApiInterface api = retrofit.create(ApiInterface.class);
+        Call<Response_Charge> call = api.charge(request);
+
+        call.enqueue(new Callback<Response_Charge>() {
+            @Override
+            public void onResponse(Call<Response_Charge> call, Response<Response_Charge> response) {
+                callback.onGetChargeSucceeded(response.body());
+            }
+
+            @Override
+            public void onFailure(Call<Response_Charge> call, Throwable t) {
+                callback.onGetChargeFailed();
+            }
+        });
+    }
 }

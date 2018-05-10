@@ -6,6 +6,7 @@ import ir.zarjame.haftrang.Models.Responses.Response_AllCars;
 import ir.zarjame.haftrang.Models.Responses.Response_CarList;
 import ir.zarjame.haftrang.Models.Responses.Response_BusCity;
 import ir.zarjame.haftrang.Models.Responses.Response_Categories;
+import ir.zarjame.haftrang.Models.Responses.Response_Charge;
 import ir.zarjame.haftrang.Models.Responses.Response_Config;
 import ir.zarjame.haftrang.Models.Responses.Response_FlightCity;
 import ir.zarjame.haftrang.Models.Responses.Response_Inquiry;
@@ -53,6 +54,14 @@ public class ApiCallbacks {
         void onGetConfigFailed();
 
         void onGetConfigSucceeded(Response_Config response);
+
+    }
+
+    public interface getChargeResponseInterface {
+
+        void onGetChargeFailed();
+
+        void onGetChargeSucceeded(Response_Charge response);
 
     }
 

@@ -1,10 +1,14 @@
 package ir.zarjame.haftrang.Fragments;
 
 
+import android.content.Intent;
 import android.graphics.PorterDuff;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,12 +31,17 @@ import butterknife.ButterKnife;
 import butterknife.Unbinder;
 import ir.zarjame.haftrang.Adapters.Adapter_simpleSpinner;
 import ir.zarjame.haftrang.Models.Operators;
+import ir.zarjame.haftrang.Models.Requests.Request_Charge;
+import ir.zarjame.haftrang.Models.Responses.Response_Charge;
+import ir.zarjame.haftrang.NetworkServices.ApiCallbacks;
+import ir.zarjame.haftrang.NetworkServices.ApiHandler;
 import ir.zarjame.haftrang.R;
 import ir.zarjame.haftrang.Tools.PublicVariables;
 
 import static ir.zarjame.haftrang.Models.Operators.IRANCELL;
 import static ir.zarjame.haftrang.Models.Operators.MCI;
 import static ir.zarjame.haftrang.Models.Operators.RIGHTEL;
+import static ir.zarjame.haftrang.Tools.PublicTools.getFormattedNumber;
 
 
 public class ChargeConfirmFragment extends Fragment {
@@ -107,6 +116,7 @@ public class ChargeConfirmFragment extends Fragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        et_mobile.requestFocus();
 
         if (operator.equals(IRANCELL.getStringValueEnglish())) {
             et_priceirancell.setVisibility(View.VISIBLE);
@@ -116,7 +126,7 @@ public class ChargeConfirmFragment extends Fragment {
             sp_price.getBackground().setColorFilter(getActivity().getResources().getColor(R.color.gray_dolphin), PorterDuff.Mode.SRC_ATOP);
 
             ArrayList<String> types = new ArrayList<>();
-            types.add("مبلغ شارژ را انتخاب کنید (ریال) ...");
+            types.add("مبلغ شارژ را انتخاب کنید (تومان) ...");
 
             if (!type.equals("RTL!"))
                 types.add("۱۰,۰۰۰");
@@ -128,9 +138,7 @@ public class ChargeConfirmFragment extends Fragment {
 
             populateTypeSpinner(types);
 
-
         }
-
 
         if (operator.equals(IRANCELL.getStringValueEnglish())) {
             ll_parent.setBackgroundResource(R.drawable.irancellgradiant);
@@ -168,20 +176,71 @@ public class ChargeConfirmFragment extends Fragment {
 
         }
 
+        et_priceirancell.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                try {
+
+
+                    et_priceirancell.removeTextChangedListener(this);
+                    String currentText = editable.toString().trim();
+                    currentText = currentText.replaceAll("٬", "").replaceAll(",", "").replaceAll("،", "");
+                    if (currentText.length() > 0) {
+                        et_priceirancell.setText(getFormattedNumber(Long.valueOf(currentText)));
+                        et_priceirancell.setSelection(et_priceirancell.getText().length());
+                    }
+                    et_priceirancell.addTextChangedListener(this);
+
+                    selectedPrice = editable.toString().replace(",", "");
+
+                } catch (Exception ex) {
+                }
+            }
+        });
+
 
         btn_confirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (validation()) {
 
-                    Toast.makeText(getActivity(), "OK", Toast.LENGTH_SHORT).show();
+                    Request_Charge request = new Request_Charge(type,
+                            selectedPrice.replace(",", ""),
+                            et_mobile.getText().toString(),
+                            "",
+                            "5a4f6a5c-3200-4811-9ada-503d5bef3768",
+                            "www.zarjame.ir",
+                            "Mellat",
+                            true,
+                            "Android",
+                            "json",
+                            "json");
 
+                    ApiHandler.charge(getActivity(), request, new ApiCallbacks.getChargeResponseInterface() {
+                        @Override
+                        public void onGetChargeFailed() {
+                            int a = 10;
+                        }
+
+                        @Override
+                        public void onGetChargeSucceeded(Response_Charge response) {
+                            Intent i = new Intent(Intent.ACTION_VIEW);
+                            i.setData(Uri.parse(response.getPaymentInfo().getUrl()));
+                            startActivity(i);
+                        }
+                    });
                 }
-
             }
         });
     }
-
 
     boolean validation() {
 
@@ -235,8 +294,8 @@ public class ChargeConfirmFragment extends Fragment {
                 return false;
             }
 
-            if (Integer.parseInt(et_priceirancell.getText().toString()) < 5000) {
-                Toast.makeText(getActivity(), "مبلغ شارژ ایرانسل حداقل ۵,۰۰۰ ریال می‌باشد", Toast.LENGTH_SHORT).show();
+            if (Integer.parseInt(selectedPrice) < 500) {
+                Toast.makeText(getActivity(), "مبلغ شارژ ایرانسل حداقل ۵۰۰ تومان می‌باشد", Toast.LENGTH_SHORT).show();
                 YoYo.with(Techniques.Shake)
                         .duration(700)
                         .playOn(et_priceirancell);
@@ -245,8 +304,8 @@ public class ChargeConfirmFragment extends Fragment {
             }
 
 
-            if (Integer.parseInt(et_priceirancell.getText().toString()) > 2000000) {
-                Toast.makeText(getActivity(), "مبلغ شارژ ایرانسل حداکثر ۲,۰۰۰,۰۰۰ ریال می‌باشد", Toast.LENGTH_SHORT).show();
+            if (Integer.parseInt(selectedPrice) > 200000) {
+                Toast.makeText(getActivity(), "مبلغ شارژ ایرانسل حداکثر ۲۰۰,۰۰۰ تومان می‌باشد", Toast.LENGTH_SHORT).show();
                 YoYo.with(Techniques.Shake)
                         .duration(700)
                         .playOn(et_priceirancell);

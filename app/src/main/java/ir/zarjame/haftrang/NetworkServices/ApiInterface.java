@@ -3,6 +3,7 @@ package ir.zarjame.haftrang.NetworkServices;
 
 import java.util.List;
 
+import ir.zarjame.haftrang.Models.Requests.Request_Charge;
 import ir.zarjame.haftrang.Models.Requests.Request_Inquiry;
 import ir.zarjame.haftrang.Models.Requests.Request_PhoneBill;
 import ir.zarjame.haftrang.Models.Requests.Request_SearchBuses;
@@ -10,6 +11,7 @@ import ir.zarjame.haftrang.Models.Requests.Request_SearchFlights;
 import ir.zarjame.haftrang.Models.Responses.Response_AllCars;
 import ir.zarjame.haftrang.Models.Responses.Response_BusCity;
 import ir.zarjame.haftrang.Models.Responses.Response_Categories;
+import ir.zarjame.haftrang.Models.Responses.Response_Charge;
 import ir.zarjame.haftrang.Models.Responses.Response_Config;
 import ir.zarjame.haftrang.Models.Responses.Response_FlightCity;
 import ir.zarjame.haftrang.Models.Responses.Response_Inquiry;
@@ -62,4 +64,10 @@ public interface ApiInterface {
 
     @GET("car.php")
     Call<Response_AllCars> getCarPrices();
+
+
+    @Headers("Content-Type: application/json")
+    @POST("topup")
+    Call<Response_Charge> charge(@Body Request_Charge request);
+
 }
