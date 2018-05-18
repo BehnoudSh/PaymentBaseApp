@@ -3,10 +3,9 @@ package ir.zarjame.haftrang.NetworkServices;
 import java.util.List;
 
 import ir.zarjame.haftrang.Models.Responses.Response_AllCars;
-import ir.zarjame.haftrang.Models.Responses.Response_CarList;
 import ir.zarjame.haftrang.Models.Responses.Response_BusCity;
 import ir.zarjame.haftrang.Models.Responses.Response_Categories;
-import ir.zarjame.haftrang.Models.Responses.Response_Charge;
+import ir.zarjame.haftrang.Models.Responses.Response_ChargeReseller;
 import ir.zarjame.haftrang.Models.Responses.Response_Config;
 import ir.zarjame.haftrang.Models.Responses.Response_FlightCity;
 import ir.zarjame.haftrang.Models.Responses.Response_Inquiry;
@@ -59,9 +58,17 @@ public class ApiCallbacks {
 
     public interface getChargeResponseInterface {
 
-        void onGetChargeFailed();
+        void onGetChargeFailed(String message);
 
-        void onGetChargeSucceeded(Response_Charge response);
+        void onGetChargeSucceeded(Response_ChargeReseller response);
+
+    }
+
+    public interface getBillResponseInterface {
+
+        void onGetBillFailed(String message);
+
+        void onGetBillSucceeded(Response_ChargeReseller response);
 
     }
 

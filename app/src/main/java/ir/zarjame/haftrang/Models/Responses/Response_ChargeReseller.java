@@ -9,7 +9,7 @@ import java.util.List;
  * Created by bSherafati on 2/19/2018.
  */
 
-public class Response_Charge implements Serializable
+public class Response_ChargeReseller implements Serializable
 
 {
 
@@ -22,12 +22,16 @@ public class Response_Charge implements Serializable
     @SerializedName("paymentInfo")
     private Response_Charge_PaymentInfo paymentInfo;
 
-    public Response_Charge(String status, String orderHash, Response_Charge_PaymentInfo paymentInfo) {
+    @SerializedName("errorMessage")
+    private String errorMessage;
+
+
+    public Response_ChargeReseller(String status, String orderHash, Response_Charge_PaymentInfo paymentInfo, String errorMessage) {
         this.status = status;
         this.orderHash = orderHash;
         this.paymentInfo = paymentInfo;
+        this.errorMessage = errorMessage;
     }
-
 
     public String getStatus() {
         return status;
@@ -51,6 +55,14 @@ public class Response_Charge implements Serializable
 
     public void setPaymentInfo(Response_Charge_PaymentInfo paymentInfo) {
         this.paymentInfo = paymentInfo;
+    }
+
+    public String getErrorMessage() {
+        return errorMessage;
+    }
+
+    public void setErrorMessage(String errorMessage) {
+        this.errorMessage = errorMessage;
     }
 }
 

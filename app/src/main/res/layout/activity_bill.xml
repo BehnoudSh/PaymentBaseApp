@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    android:background="@drawable/backrepeat"
+    tools:context="ir.zarjame.haftrang.Activity.BillActivity">
+
+    <include
+        android:id="@+id/activity_main_toolbar"
+        layout="@layout/toolbar" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/activity_main_toolbar"
+        android:orientation="vertical">
+
+        <EditText
+            android:id="@+id/et_billId"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/large_gap"
+            android:layout_marginLeft="@dimen/large_gap"
+            android:layout_marginRight="@dimen/large_gap"
+            android:background="@color/transparent_black_hex_1"
+            android:digits="0123456789"
+            android:gravity="center"
+            android:hint="شناسه قبض"
+            android:inputType="numberDecimal"
+            android:maxLength="13"
+            android:padding="@dimen/default_gap"
+            android:textColor="@color/gray_dolphin"
+            android:textColorHint="@color/transparent_black_hex_4"
+            android:textSize="@dimen/default_txt_size" />
+
+        <EditText
+            android:id="@+id/et_payId"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/large_gap"
+            android:layout_marginLeft="@dimen/large_gap"
+            android:layout_marginRight="@dimen/large_gap"
+            android:background="@color/transparent_black_hex_1"
+            android:digits="0123456789"
+            android:gravity="center"
+            android:hint="شناسه پرداخت"
+            android:inputType="numberDecimal"
+            android:maxLength="13"
+            android:padding="@dimen/default_gap"
+            android:textColor="@color/gray_dolphin"
+            android:textColorHint="@color/transparent_black_hex_4"
+            android:textSize="@dimen/default_txt_size" />
+
+        <Button
+            android:id="@+id/btn_confirm"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:text="تایید"
+            android:textColor="@color/white" />
+    </LinearLayout>
+
+
+</RelativeLayout>

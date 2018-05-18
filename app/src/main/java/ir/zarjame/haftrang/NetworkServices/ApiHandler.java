@@ -4,6 +4,7 @@ import android.content.Context;
 
 import java.util.List;
 
+import ir.zarjame.haftrang.Models.Requests.Request_Bill;
 import ir.zarjame.haftrang.Models.Requests.Request_Charge;
 import ir.zarjame.haftrang.Models.Requests.Request_Inquiry;
 import ir.zarjame.haftrang.Models.Requests.Request_PhoneBill;
@@ -12,7 +13,7 @@ import ir.zarjame.haftrang.Models.Requests.Request_SearchFlights;
 import ir.zarjame.haftrang.Models.Responses.Response_AllCars;
 import ir.zarjame.haftrang.Models.Responses.Response_BusCity;
 import ir.zarjame.haftrang.Models.Responses.Response_Categories;
-import ir.zarjame.haftrang.Models.Responses.Response_Charge;
+import ir.zarjame.haftrang.Models.Responses.Response_ChargeReseller;
 import ir.zarjame.haftrang.Models.Responses.Response_Config;
 import ir.zarjame.haftrang.Models.Responses.Response_FlightCity;
 import ir.zarjame.haftrang.Models.Responses.Response_Inquiry;
@@ -278,24 +279,49 @@ public class ApiHandler {
     public static void charge(Context context, Request_Charge request, final ApiCallbacks.getChargeResponseInterface callback) {
         Retrofit retrofit = ApiClient.getClient_chargereseller(context);
         ApiInterface api = retrofit.create(ApiInterface.class);
-        Call<Response_Charge> call = api.charge(request);
+        Call<Response_ChargeReseller> call = api.charge(request);
 
-        call.enqueue(new Callback<Response_Charge>() {
+        call.enqueue(new Callback<Response_ChargeReseller>() {
             @Override
-            public void onResponse(Call<Response_Charge> call, Response<Response_Charge> response) {
+            public void onResponse(Call<Response_ChargeReseller> call, Response<Response_ChargeReseller> response) {
                 if (response.code() < 300) {
                     if (response.body().getStatus().equals("Success"))
                         callback.onGetChargeSucceeded(response.body());
                     else
-                        callback.onGetChargeFailed();
+                        callback.onGetChargeFailed(response.body().getErrorMessage());
                 } else
-                    callback.onGetChargeFailed();
+                    callback.onGetChargeFailed("بروز خطا در ارتباط، دوباره تلاش کنید");
             }
 
             @Override
-            public void onFailure(Call<Response_Charge> call, Throwable t) {
-                callback.onGetChargeFailed();
+            public void onFailure(Call<Response_ChargeReseller> call, Throwable t) {
+                callback.onGetChargeFailed("بروز خطا در ارتباط، دوباره تلاش کنید");
             }
         });
     }
+
+    public static void bill(Context context, Request_Bill request, final ApiCallbacks.getBillResponseInterface callback) {
+        Retrofit retrofit = ApiClient.getClient_chargereseller(context);
+        ApiInterface api = retrofit.create(ApiInterface.class);
+        Call<Response_ChargeReseller> call = api.bill(request);
+
+        call.enqueue(new Callback<Response_ChargeReseller>() {
+            @Override
+            public void onResponse(Call<Response_ChargeReseller> call, Response<Response_ChargeReseller> response) {
+                if (response.code() < 300) {
+                    if (response.body().getStatus().equals("Success"))
+                        callback.onGetBillSucceeded(response.body());
+                    else
+                        callback.onGetBillFailed(response.body().getErrorMessage());
+                } else
+                    callback.onGetBillFailed("بروز خطا در ارتباط، دوباره تلاش کنید");
+            }
+
+            @Override
+            public void onFailure(Call<Response_ChargeReseller> call, Throwable t) {
+                callback.onGetBillFailed("بروز خطا در ارتباط، دوباره تلاش کنید");
+            }
+        });
+    }
+
 }

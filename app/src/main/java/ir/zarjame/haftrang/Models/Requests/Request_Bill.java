@@ -8,19 +8,16 @@ import java.io.Serializable;
  * Created by tinabehnoud on 5/10/18.
  */
 
-public class Request_Charge implements Serializable {
+public class Request_Bill implements Serializable {
 
-    @SerializedName("type")
-    private String type;
+    @SerializedName("billId")
+    private String billId;
 
-    @SerializedName("amount")
-    private String amount;
+    @SerializedName("paymentId")
+    private String paymentId;
 
     @SerializedName("cellphone")
     private String cellphone;
-
-    @SerializedName("email")
-    private String email;
 
     @SerializedName("webserviceId")
     private String webserviceId;
@@ -43,14 +40,10 @@ public class Request_Charge implements Serializable {
     @SerializedName("secondOutputType")
     private String secondOutputType;
 
-
-
-
-    public Request_Charge(String type, String amount, String cellphone, String email, String webserviceId, String redirectUrl, String issuer, boolean redirectToPage, String scriptVersion, String firstOutputType, String secondOutputType) {
-        this.type = type;
-        this.amount = amount;
+    public Request_Bill(String billId, String paymentId, String cellphone, String webserviceId, String redirectUrl, String issuer, boolean redirectToPage, String scriptVersion, String firstOutputType, String secondOutputType) {
+        this.billId = billId;
+        this.paymentId = paymentId;
         this.cellphone = cellphone;
-        this.email = email;
         this.webserviceId = webserviceId;
         this.redirectUrl = redirectUrl;
         this.issuer = issuer;
@@ -60,20 +53,20 @@ public class Request_Charge implements Serializable {
         this.secondOutputType = secondOutputType;
     }
 
-    public String getType() {
-        return type;
+    public String getBillId() {
+        return billId;
     }
 
-    public void setType(String type) {
-        this.type = type;
+    public void setBillId(String billId) {
+        this.billId = billId;
     }
 
-    public String getAmount() {
-        return amount;
+    public String getPaymentId() {
+        return paymentId;
     }
 
-    public void setAmount(String amount) {
-        this.amount = amount;
+    public void setPaymentId(String paymentId) {
+        this.paymentId = paymentId;
     }
 
     public String getCellphone() {
@@ -82,14 +75,6 @@ public class Request_Charge implements Serializable {
 
     public void setCellphone(String cellphone) {
         this.cellphone = cellphone;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
     }
 
     public String getWebserviceId() {

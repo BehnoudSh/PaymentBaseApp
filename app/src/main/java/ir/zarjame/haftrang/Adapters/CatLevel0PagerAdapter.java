@@ -73,8 +73,6 @@ public class CatLevel0PagerAdapter extends PagerAdapter {
                 hashMap.put(hashmapIndex, dasteNtayi);
             }
 
-            // if (i == allitems.size() - 1)
-            //     hashMap.put(hashmapIndex, dasteNtayi);
 
         }
     }
@@ -83,14 +81,6 @@ public class CatLevel0PagerAdapter extends PagerAdapter {
     public Object instantiateItem(final ViewGroup collection, final int position) {
 
         ViewGroup itemView = (ViewGroup) mLayoutInflater.inflate(R.layout.item_catlevel0_pager, collection, false);
-
-//        itemView.bind(hashMap.get(position).get(0), clickListener);
-//
-//
-//
-//
-//        clickListener.onItemClick(hashMap.get(position).get(0), getAdapterPosition());
-
 
         RelativeLayout Holder1 = (RelativeLayout) itemView.findViewById(R.id.holder1);
         RelativeLayout Holder2 = (RelativeLayout) itemView.findViewById(R.id.holder2);
@@ -143,7 +133,7 @@ public class CatLevel0PagerAdapter extends PagerAdapter {
                     .load(hashMap.get(position).get(1).getCat_icon())
                     .apply(requestOptions)
                     .into(Image2);
-             Holder2.setOnClickListener(new View.OnClickListener() {
+            Holder2.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     _listener.onItemClick(hashMap.get(position).get(1));
@@ -192,6 +182,10 @@ public class CatLevel0PagerAdapter extends PagerAdapter {
             hashMap.get(position).get(3).setBg_color(_context.getResources().getColor(R.color.holder4));
 
             if (n == 6) {
+
+                Holder5_6Holder.setVisibility(View.VISIBLE);
+
+
                 Title5.setText(hashMap.get(position).get(4).getPersian_title());
                 Glide.with(_context)
                         .applyDefaultRequestOptions(requestOptions)

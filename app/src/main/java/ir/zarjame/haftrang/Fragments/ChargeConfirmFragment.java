@@ -8,7 +8,6 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.BottomSheetDialogFragment;
-import android.support.v4.app.Fragment;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
@@ -25,7 +24,6 @@ import android.widget.Toast;
 
 import com.daimajia.androidanimations.library.Techniques;
 import com.daimajia.androidanimations.library.YoYo;
-import com.daimajia.easing.linear.Linear;
 
 import java.util.ArrayList;
 
@@ -33,14 +31,12 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 import ir.zarjame.haftrang.Adapters.Adapter_simpleSpinner;
-import ir.zarjame.haftrang.Models.Operators;
 import ir.zarjame.haftrang.Models.Requests.Request_Charge;
-import ir.zarjame.haftrang.Models.Responses.Response_Charge;
+import ir.zarjame.haftrang.Models.Responses.Response_ChargeReseller;
 import ir.zarjame.haftrang.NetworkServices.ApiCallbacks;
 import ir.zarjame.haftrang.NetworkServices.ApiHandler;
 import ir.zarjame.haftrang.R;
 import ir.zarjame.haftrang.Tools.PublicTools;
-import ir.zarjame.haftrang.Tools.PublicVariables;
 
 import static ir.zarjame.haftrang.Models.Operators.IRANCELL;
 import static ir.zarjame.haftrang.Models.Operators.MCI;
@@ -229,7 +225,7 @@ public class ChargeConfirmFragment extends BottomSheetDialogFragment {
                             et_mobile.getText().toString(),
                             "",
                             "5a4f6a5c-3200-4811-9ada-503d5bef3768",
-                            "www.zarjame.ir",
+                            "",
                             selectedBank,
                             true,
                             "Android",
@@ -240,13 +236,13 @@ public class ChargeConfirmFragment extends BottomSheetDialogFragment {
                     dialog.show();
                     ApiHandler.charge(getActivity(), request, new ApiCallbacks.getChargeResponseInterface() {
                         @Override
-                        public void onGetChargeFailed() {
+                        public void onGetChargeFailed(String message) {
                             dialog.dismiss();
-                            Toast.makeText(getActivity(), "بروز خطا. دوباره تلاش کنید", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getActivity(), message, Toast.LENGTH_SHORT).show();
                         }
 
                         @Override
-                        public void onGetChargeSucceeded(Response_Charge response) {
+                        public void onGetChargeSucceeded(Response_ChargeReseller response) {
                             dialog.dismiss();
                             Intent i = new Intent(Intent.ACTION_VIEW);
                             i.setData(Uri.parse(response.getPaymentInfo().getUrl()));
@@ -330,8 +326,8 @@ public class ChargeConfirmFragment extends BottomSheetDialogFragment {
                 return false;
             }
 
-            if (Integer.parseInt(selectedPrice) < 500) {
-                Toast.makeText(getActivity(), "مبلغ شارژ ایرانسل حداقل ۵۰۰ تومان می‌باشد", Toast.LENGTH_SHORT).show();
+            if (Integer.parseInt(selectedPrice) < 1000) {
+                Toast.makeText(getActivity(), "مبلغ شارژ ایرانسل حداقل ۱,۰۰۰ تومان می‌باشد", Toast.LENGTH_SHORT).show();
                 YoYo.with(Techniques.Shake)
                         .duration(700)
                         .playOn(et_priceirancell);

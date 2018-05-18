@@ -41,7 +41,6 @@
             android:digits="0123456789"
             android:gravity="center"
             android:hint="شماره موبایل"
-
             android:inputType="phone"
             android:maxLength="11"
             android:padding="@dimen/default_gap"

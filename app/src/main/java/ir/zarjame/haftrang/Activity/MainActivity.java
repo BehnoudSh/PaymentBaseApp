@@ -209,6 +209,7 @@ public class MainActivity extends AppCompatActivity {
 
                 // TODO: 3/30/18 hardcode
                 PublicVariables.allCategories.add(new Response_Categories("2", "50000", "0", "فروش شارژ", "", "1", "1", "1", getResources().getColor(R.color.holder1)));
+                PublicVariables.allCategories.add(new Response_Categories("2", "60000", "0", "پرداخت قبض", "", "1", "1", "1", getResources().getColor(R.color.holder2)));
 
 
                 for (Response_Categories resp : response
@@ -267,6 +268,15 @@ public class MainActivity extends AppCompatActivity {
 
 
                             Intent intent = new Intent(MainActivity.this, ChargeActivity.class);
+                            intent.putExtra("bg_color", item.getBg_color());
+                            intent.putExtra("toolbar_title", item.getPersian_title());
+                            startActivity(intent);
+
+
+                        } else if (cat_id == 60000) {
+
+
+                            Intent intent = new Intent(MainActivity.this, BillActivity.class);
                             intent.putExtra("bg_color", item.getBg_color());
                             intent.putExtra("toolbar_title", item.getPersian_title());
                             startActivity(intent);
