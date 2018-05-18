@@ -7,6 +7,7 @@ import android.graphics.PorterDuff;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.BottomSheetDialogFragment;
 import android.support.v4.app.Fragment;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -16,6 +17,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -46,7 +48,7 @@ import static ir.zarjame.haftrang.Models.Operators.RIGHTEL;
 import static ir.zarjame.haftrang.Tools.PublicTools.getFormattedNumber;
 
 
-public class ChargeConfirmFragment extends Fragment {
+public class ChargeConfirmFragment extends BottomSheetDialogFragment {
     private Unbinder unbinder;
     String type;
     String operator;
@@ -68,6 +70,14 @@ public class ChargeConfirmFragment extends Fragment {
 
     @BindView(R.id.btn_confirm)
     Button btn_confirm;
+
+    @BindView(R.id.iv_fragment_charge_confirm_mellatBank)
+    ImageView iv_mellatBank;
+
+    @BindView(R.id.iv_fragment_charge_confirm_samanBank)
+    ImageView iv_samanBank;
+
+    String selectedBank = "Mellat";
 
     String selectedPrice = "";
 
@@ -220,7 +230,7 @@ public class ChargeConfirmFragment extends Fragment {
                             "",
                             "5a4f6a5c-3200-4811-9ada-503d5bef3768",
                             "www.zarjame.ir",
-                            "Mellat",
+                            selectedBank,
                             true,
                             "Android",
                             "json",
@@ -244,6 +254,26 @@ public class ChargeConfirmFragment extends Fragment {
                         }
                     });
                 }
+            }
+        });
+
+        iv_mellatBank.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                selectedBank = "Mellat";
+                iv_mellatBank.setAlpha(1f);
+                iv_samanBank.setAlpha(0.2f);
+
+            }
+        });
+
+        iv_samanBank.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                selectedBank = "Saman";
+                iv_mellatBank.setAlpha(0.2f);
+                iv_samanBank.setAlpha(1f);
+
             }
         });
     }

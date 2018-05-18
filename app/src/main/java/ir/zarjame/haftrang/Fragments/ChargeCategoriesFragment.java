@@ -14,6 +14,7 @@ import android.widget.LinearLayout;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
+import ir.zarjame.haftrang.Activity.ChargeActivity;
 import ir.zarjame.haftrang.Models.Operators;
 import ir.zarjame.haftrang.R;
 
@@ -141,19 +142,26 @@ public class ChargeCategoriesFragment extends Fragment {
 
     public void addFragment(String selectedtype, Operators selected_operator) {
 
-        Bundle bundle = new Bundle();
+//        Bundle bundle = new Bundle();
+//
+//        bundle.putString(selectedtype, "selectedtype");
+//
+//        bundle.putString(selected_operator.getStringValueEnglish(), "selectedoperator");
+//
+//        FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
+//
+//        fragmentTransaction.add(R.id.fragmentholder, ChargeConfirmFragment.newInstance(selectedtype, selected_operator.getStringValueEnglish()));
+//
+//        fragmentTransaction.addToBackStack("chargeconfirmfragment");
+//
+//        fragmentTransaction.commit();
 
-        bundle.putString(selectedtype, "selectedtype");
 
-        bundle.putString(selected_operator.getStringValueEnglish(), "selectedoperator");
+        ChargeConfirmFragment confirmFragment = ChargeConfirmFragment.newInstance(selectedtype, selected_operator.getStringValueEnglish());
 
-        FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
+        confirmFragment.show(((ChargeActivity) getActivity()).getSupportFragmentManager(), "");
 
-        fragmentTransaction.add(R.id.fragmentholder, ChargeConfirmFragment.newInstance(selectedtype, selected_operator.getStringValueEnglish()));
 
-        fragmentTransaction.addToBackStack("chargeconfirmfragment");
-
-        fragmentTransaction.commit();
     }
 
     @Override
