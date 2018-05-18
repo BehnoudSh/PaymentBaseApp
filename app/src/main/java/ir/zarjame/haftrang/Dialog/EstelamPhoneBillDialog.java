@@ -4,8 +4,10 @@ import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.view.Gravity;
@@ -25,7 +27,10 @@ import com.daimajia.androidanimations.library.YoYo;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
+import ir.zarjame.haftrang.Activity.BillActivity;
+import ir.zarjame.haftrang.Models.Requests.Request_Bill;
 import ir.zarjame.haftrang.Models.Requests.Request_PhoneBill;
+import ir.zarjame.haftrang.Models.Responses.Response_ChargeReseller;
 import ir.zarjame.haftrang.Models.Responses.Response_PhoneBill;
 import ir.zarjame.haftrang.NetworkServices.ApiCallbacks;
 import ir.zarjame.haftrang.NetworkServices.ApiHandler;
@@ -95,10 +100,10 @@ public class EstelamPhoneBillDialog extends Dialog {
                     return;
                 }
 
-                if (!et_phoneNumber.getText().toString().trim().startsWith("021")) {
-                    Toast.makeText(context, "در حال حاضر فقط سرویس استعلام برای تلفن ثابت تهران موجود است", Toast.LENGTH_LONG).show();
-                    return;
-                }
+//                if (!et_phoneNumber.getText().toString().trim().startsWith("021")) {
+//                    Toast.makeText(context, "در حال حاضر فقط سرویس استعلام برای تلفن ثابت تهران موجود است", Toast.LENGTH_LONG).show();
+//                    return;
+//                }
 
 
                 final ProgressDialog dialog = PublicTools.ProgressDialogInstance(context, "در حال استعلام مبلغ قبض تلفن ثابت");
@@ -121,17 +126,20 @@ public class EstelamPhoneBillDialog extends Dialog {
                             message = "دوره " + response.getData().get(0).getCycle()
                                     + "\n"
                                     + "مبلغ " + PublicTools.getThousandSeperated(response.getData().get(0).getPrice()) + " ریال "
-                                    + "\n"
-                                    + "شناسه قبض " + response.getData().get(0).getBill_id()
-                                    + "\n"
-                                    + "شناسه پرداخت " + response.getData().get(0).getPay_id();
+                                    + "\n";
+//                                    + "شناسه قبض " + response.getData().get(0).getBill_id()
+//                                    + "\n"
+//                                    + "شناسه پرداخت " + response.getData().get(0).getPay_id();
+                            makeOfflineDialog(message, response.getData().get(0).getBill_id(), response.getData().get(0).getPay_id(), false);
+
                         } else {
                             message = "دوره " + response.getData().get(0).getCycle()
                                     + "\n"
                                     + "مبلغ " + PublicTools.getThousandSeperated(response.getData().get(0).getPrice()) + " ریال ";
+                            makeOfflineDialog(message, response.getData().get(0).getBill_id(), response.getData().get(0).getPay_id(), true);
+
                         }
 
-                        makeOfflineDialog(message);
 
                         _dialogOffline.show();
 
@@ -151,19 +159,70 @@ public class EstelamPhoneBillDialog extends Dialog {
     }
 
 
-    void makeOfflineDialog(String message) {
-        _dialogOffline = new AlertDialog.Builder(context)
-                .setMessage(message)
-                .setCancelable(false)
-                .setPositiveButton("باشه", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
+    void makeOfflineDialog(String message, final String billid, final String payid, boolean zero) {
+
+        if (!zero) {
+            _dialogOffline = new AlertDialog.Builder(context)
+                    .setMessage(message)
+                    .setCancelable(false)
+                    .setNegativeButton("باشه", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
 
 
-                    }
-                })
+                        }
+                    })
+                    .setPositiveButton("پرداخت قبض", new OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
 
-                .create();
+                            Request_Bill request = new Request_Bill(billid,
+                                    payid,
+                                    "09368081516",
+                                    "5a4f6a5c-3200-4811-9ada-503d5bef3768",
+                                    "",
+                                    "Saman",
+                                    true,
+                                    "Android",
+                                    "json",
+                                    "json");
+                            final ProgressDialog dialog_payment = PublicTools.ProgressDialogInstance(context, "در حال دریافت اطلاعات ...");
+                            dialog_payment.show();
+                            ApiHandler.bill(context, request, new ApiCallbacks.getBillResponseInterface() {
+                                @Override
+                                public void onGetBillFailed(String message) {
+                                    dialog_payment.dismiss();
+                                    Toast.makeText(context, message, Toast.LENGTH_SHORT).show();
+                                }
+
+                                @Override
+                                public void onGetBillSucceeded(Response_ChargeReseller response) {
+                                    dialog_payment.dismiss();
+                                    Intent i = new Intent(Intent.ACTION_VIEW);
+                                    i.setData(Uri.parse(response.getPaymentInfo().getUrl()));
+                                    context.startActivity(i);
+                                }
+                            });
+
+
+                        }
+                    })
+
+                    .create();
+        } else
+
+        {
+            _dialogOffline = new AlertDialog.Builder(context)
+                    .setMessage(message)
+                    .setCancelable(false)
+                    .setNegativeButton("باشه", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+
+
+                        }
+                    }).create();
+        }
     }
 
 
