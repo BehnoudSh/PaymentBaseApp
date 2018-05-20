@@ -74,41 +74,41 @@ public class InternetActivity extends AppCompatActivity {
         roozane.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                List<Response_Internet_FinalPackage> list = allPackages.getProducts().getMtn().getRoozane();
+                List<Response_Internet_FinalPackage> list = allPackages.getProducts().getInternetPackage().getMtn().getRoozane();
             }
         });
         haftegi.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                List<Response_Internet_FinalPackage> list = allPackages.getProducts().getMtn().getHaftegi();
+                List<Response_Internet_FinalPackage> list = allPackages.getProducts().getInternetPackage().getMtn().getHaftegi();
 
             }
         });
         mahane.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                List<Response_Internet_FinalPackage> list = allPackages.getProducts().getMtn().getMahane();
+                List<Response_Internet_FinalPackage> list = allPackages.getProducts().getInternetPackage().getMtn().getMahane();
 
             }
         });
         shgeftangiz.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                List<Response_Internet_FinalPackage> list = allPackages.getProducts().getMtn().getShegeftangiz();
+                List<Response_Internet_FinalPackage> list = allPackages.getProducts().getInternetPackage().getMtn().getShegeftangiz();
 
             }
         });
         saati.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                List<Response_Internet_FinalPackage> list = allPackages.getProducts().getMtn().getSaati();
+                List<Response_Internet_FinalPackage> list = allPackages.getProducts().getInternetPackage().getMtn().getSaati();
 
             }
         });
         tdlte.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                List<Response_Internet_FinalPackage> list = allPackages.getProducts().getMtn().getTdlte();
+                List<Response_Internet_FinalPackage> list = allPackages.getProducts().getInternetPackage().getMtn().getTdlte();
 
             }
         });
