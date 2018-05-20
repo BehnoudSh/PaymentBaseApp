@@ -119,7 +119,7 @@ public class ApiHandler {
     }
 
     public static void initializeData(Context context, final ApiCallbacks.initializeDataInterface callback) {
-        Retrofit retrofit = ApiClient.getClient(context);
+        Retrofit retrofit = ApiClient.getClient_chargereseller(context);
         ApiInterface api = retrofit.create(ApiInterface.class);
         Call<Response_initializedata> call = api.chargeResellerGoods();
         call.enqueue(new Callback<Response_initializedata>() {

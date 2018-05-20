@@ -11,18 +11,18 @@ import java.io.Serializable;
 public class Response_Internet_Package_Irancell implements Serializable {
 
     @SerializedName("mtn")
-    private Response_Internet_Package_Irancell mtn;
+    private Response_Internet_mtn mtn;
 
 
-    public Response_Internet_Package_Irancell(Response_Internet_Package_Irancell mtn) {
+    public Response_Internet_Package_Irancell(Response_Internet_mtn mtn) {
         this.mtn = mtn;
     }
 
-    public Response_Internet_Package_Irancell getMtn() {
+    public Response_Internet_mtn getMtn() {
         return mtn;
     }
 
-    public void setMtn(Response_Internet_Package_Irancell mtn) {
+    public void setMtn(Response_Internet_mtn mtn) {
         this.mtn = mtn;
     }
 }
