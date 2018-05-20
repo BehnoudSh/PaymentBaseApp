@@ -231,7 +231,7 @@ public class ChargeConfirmFragment extends BottomSheetDialogFragment {
                             "Android",
                             "json",
                             "json");
-                    final ProgressDialog dialog = PublicTools.ProgressDialogInstance(getActivity(), "در حال دریافت اطلاعات ...");
+                    final ProgressDialog dialog = PublicTools.ProgressDialogInstance(getActivity(), "در حال اتصال به درگاه بانک ...");
 
                     dialog.show();
                     ApiHandler.charge(getActivity(), request, new ApiCallbacks.getChargeResponseInterface() {

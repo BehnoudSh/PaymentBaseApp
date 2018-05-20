@@ -18,6 +18,8 @@ import com.daimajia.androidanimations.library.YoYo;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import ir.zarjame.haftrang.Fragments.BillConfirmFragment;
+import ir.zarjame.haftrang.Fragments.ChargeConfirmFragment;
 import ir.zarjame.haftrang.Models.Requests.Request_Bill;
 import ir.zarjame.haftrang.Models.Requests.Request_Charge;
 import ir.zarjame.haftrang.Models.Responses.Response_ChargeReseller;
@@ -70,37 +72,13 @@ public class BillActivity extends AppCompatActivity {
         btn_confirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-
                 if (validation()) {
-                    Request_Bill request = new Request_Bill(et_billId.getText().toString().trim(),
-                            et_payId.getText().toString().trim(),
-                            "09368081516",
-                            "5a4f6a5c-3200-4811-9ada-503d5bef3768",
-                            "",
-                            "Saman",
-                            true,
-                            "Android",
-                            "json",
-                            "json");
-                    final ProgressDialog dialog = PublicTools.ProgressDialogInstance(BillActivity.this, "در حال دریافت اطلاعات ...");
-                    dialog.show();
-                    ApiHandler.bill(BillActivity.this, request, new ApiCallbacks.getBillResponseInterface() {
-                        @Override
-                        public void onGetBillFailed(String message) {
-                            dialog.dismiss();
-                            Toast.makeText(BillActivity.this, message, Toast.LENGTH_SHORT).show();
-                        }
 
-                        @Override
-                        public void onGetBillSucceeded(Response_ChargeReseller response) {
-                            dialog.dismiss();
-                            Intent i = new Intent(Intent.ACTION_VIEW);
-                            i.setData(Uri.parse(response.getPaymentInfo().getUrl()));
-                            startActivity(i);
-                        }
-                    });
+                    BillConfirmFragment confirmFragment = BillConfirmFragment.newInstance(et_billId.getText().toString().trim(), et_payId.getText().toString().trim(), "09368081516");
+
+                    confirmFragment.show(getSupportFragmentManager(), "");
                 }
+
             }
         });
     }

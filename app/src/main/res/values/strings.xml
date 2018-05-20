@@ -3,4 +3,15 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="ab">قبض سازمان آب و فاضلاب</string>
+    <string name="bargh">قبض برق</string>
+    <string name="gaz">قبض گاز</string>
+    <string name="tell">قبض تلفن ثابت</string>
+    <string name="mobile">قبض تلفن همراه</string>
+    <string name="municipal_charges">قبض شهرداری</string>
+    <string name="tax">قبض مالیات</string>
+    <string name="fine">قبض جریمه</string>
+    <string name="not_found">نوع قبض شناسایی نشد</string>
+
 </resources>

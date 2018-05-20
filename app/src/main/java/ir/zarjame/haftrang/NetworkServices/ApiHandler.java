@@ -21,6 +21,7 @@ import ir.zarjame.haftrang.Models.Responses.Response_Others;
 import ir.zarjame.haftrang.Models.Responses.Response_PhoneBill;
 import ir.zarjame.haftrang.Models.Responses.Response_SearchBuses;
 import ir.zarjame.haftrang.Models.Responses.Response_SearchFlights;
+import ir.zarjame.haftrang.Models.Responses.Response_initializedata;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -111,6 +112,29 @@ public class ApiHandler {
             @Override
             public void onFailure(Call<Response_Config> call, Throwable t) {
                 callback.onGetConfigFailed();
+            }
+        });
+
+
+    }
+
+    public static void initializeData(Context context, final ApiCallbacks.initializeDataInterface callback) {
+        Retrofit retrofit = ApiClient.getClient(context);
+        ApiInterface api = retrofit.create(ApiInterface.class);
+        Call<Response_initializedata> call = api.chargeResellerGoods();
+        call.enqueue(new Callback<Response_initializedata>() {
+            @Override
+            public void onResponse(Call<Response_initializedata> call, Response<Response_initializedata> response) {
+                if (response.code() < 300)
+                    callback.oninitializeDataSucceeded(response.body());
+                else
+                    callback.oninitializeDataFailed("بروز خطا در دریافت لیست محصولات");
+            }
+
+            @Override
+            public void onFailure(Call<Response_initializedata> call, Throwable t) {
+                callback.oninitializeDataFailed("بروز خطا در ارتباط، دوباره تلاش کنید");
+
             }
         });
 

@@ -13,6 +13,7 @@ import ir.zarjame.haftrang.Models.Responses.Response_Others;
 import ir.zarjame.haftrang.Models.Responses.Response_PhoneBill;
 import ir.zarjame.haftrang.Models.Responses.Response_SearchBuses;
 import ir.zarjame.haftrang.Models.Responses.Response_SearchFlights;
+import ir.zarjame.haftrang.Models.Responses.Response_initializedata;
 
 /**
  * Created by tinabehnoud on 12/29/17.
@@ -121,5 +122,14 @@ public class ApiCallbacks {
 
     }
 
+    public interface initializeDataInterface {
+
+
+        void oninitializeDataFailed(String message);
+
+        void oninitializeDataSucceeded(Response_initializedata response);
+
+
+    }
 
 }

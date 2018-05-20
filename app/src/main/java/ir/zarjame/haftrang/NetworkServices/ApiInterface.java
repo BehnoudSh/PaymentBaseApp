@@ -20,6 +20,7 @@ import ir.zarjame.haftrang.Models.Responses.Response_Others;
 import ir.zarjame.haftrang.Models.Responses.Response_PhoneBill;
 import ir.zarjame.haftrang.Models.Responses.Response_SearchBuses;
 import ir.zarjame.haftrang.Models.Responses.Response_SearchFlights;
+import ir.zarjame.haftrang.Models.Responses.Response_initializedata;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
@@ -74,5 +75,9 @@ public interface ApiInterface {
     @Headers("Content-Type: application/json")
     @POST("bill")
     Call<Response_ChargeReseller> bill(@Body Request_Bill request);
+
+    @GET("initializeData")
+    Call<Response_initializedata> chargeResellerGoods();
+
 
 }
