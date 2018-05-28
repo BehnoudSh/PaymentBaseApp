@@ -2,6 +2,7 @@ package ir.zarjame.haftrang.Activity;
 
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.CardView;
@@ -14,6 +15,9 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import ir.zarjame.haftrang.Fragments.ChargeCategoriesFragment;
+import ir.zarjame.haftrang.Fragments.InternetPackageFragment;
+import ir.zarjame.haftrang.Models.Operators;
 import ir.zarjame.haftrang.Models.Responses.Response_Internet_FinalPackage;
 import ir.zarjame.haftrang.Models.Responses.Response_initializedata;
 import ir.zarjame.haftrang.NetworkServices.ApiCallbacks;
@@ -75,12 +79,15 @@ public class InternetActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 List<Response_Internet_FinalPackage> list = allPackages.getProducts().getInternetPackage().getMtn().getRoozane();
+                addFragment(list);
             }
         });
         haftegi.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 List<Response_Internet_FinalPackage> list = allPackages.getProducts().getInternetPackage().getMtn().getHaftegi();
+                addFragment(list);
+
 
             }
         });
@@ -88,6 +95,8 @@ public class InternetActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 List<Response_Internet_FinalPackage> list = allPackages.getProducts().getInternetPackage().getMtn().getMahane();
+                addFragment(list);
+
 
             }
         });
@@ -95,6 +104,8 @@ public class InternetActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 List<Response_Internet_FinalPackage> list = allPackages.getProducts().getInternetPackage().getMtn().getShegeftangiz();
+                addFragment(list);
+
 
             }
         });
@@ -102,6 +113,8 @@ public class InternetActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 List<Response_Internet_FinalPackage> list = allPackages.getProducts().getInternetPackage().getMtn().getSaati();
+                addFragment(list);
+
 
             }
         });
@@ -109,6 +122,8 @@ public class InternetActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 List<Response_Internet_FinalPackage> list = allPackages.getProducts().getInternetPackage().getMtn().getTdlte();
+                addFragment(list);
+
 
             }
         });
@@ -157,5 +172,16 @@ public class InternetActivity extends AppCompatActivity {
                 }
             });
         }
+    }
+
+    public void addFragment(List<Response_Internet_FinalPackage> internetpackages) {
+
+        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+
+        fragmentTransaction.add(R.id.fragmentholder, InternetPackageFragment.newInstance(internetpackages));
+
+        fragmentTransaction.addToBackStack("internetcategoriesfragment");
+
+        fragmentTransaction.commit();
     }
 }

@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/rl_item_categories_parent"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="5dp"
+    android:background="@drawable/bg_custom_elevation"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/irancellgradiant">
+
+        <ImageView
+            android:id="@+id/iv_item_goods_img"
+            android:layout_width="100dp"
+            android:layout_height="170dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_margin="5dp"
+            android:visibility="gone" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toLeftOf="@id/iv_item_goods_img"
+            android:gravity="center_vertical"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_item_goods_persianName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/small_gap"
+                android:gravity="center"
+                android:padding="@dimen/small_gap"
+                android:text="dfssdfgdsgdsgdsgdsgdgsdgdsgsddgsgdsgddsggsdgdsdgsgsddgsgsddgsgdsgdsgdsgdssdggsdgdsgds"
+                android:textColor="@color/gray_dolphin"
+                android:textSize="@dimen/normal_txt_size"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tv_item_goods_storeName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/small_gap"
+                android:gravity="center_vertical"
+                android:padding="@dimen/small_gap"
+                android:text="dfssdfgdsgdsgdsgdsgdgsdgdsgsddgsgdsgddsggsdgdsdgsgsddgsgsddgsgdsgdsgdsgdssdggsdgdsgds"
+                android:textColor="@color/gray_dolphin"
+
+                android:textSize="@dimen/small_text_size"
+                android:visibility="gone" />
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/small_gap"
+                    android:gravity="center_vertical"
+                    android:text="تومان"
+
+                    android:textColor="@color/transparent_black_hex_10"
+                    android:textSize="@dimen/very_small_text_size" />
+
+                <TextView
+                    android:id="@+id/tv_item_goods_price"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="19842424"
+                    android:textColor="@color/transparent_black_hex_12"
+                    android:textSize="@dimen/default_txt_size"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+        </LinearLayout>
+    </LinearLayout>
+
+</RelativeLayout>
+
+
