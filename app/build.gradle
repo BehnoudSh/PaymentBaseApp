@@ -12,6 +12,15 @@ android {
         versionCode 4
         versionName "4.0"
         multiDexEnabled true
+
+//        jackOptions {
+//            enabled true
+//        }
+//        compileOptions {
+//            sourceCompatibility JavaVersion.VERSION_1_8
+//            targetCompatibility JavaVersion.VERSION_1_8
+//        }
+
     }
     buildTypes {
         release {
@@ -60,14 +69,11 @@ dependencies {
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.0.0'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.5.1'
+
+
+//    compile 'com.tbruyelle.rxpermissions2:rxpermissions:0.9.5@aar'
+    compile 'com.journeyapps:zxing-android-embedded:3.6.0'
 }
-
-
-
-
-
-
-
 
 
 apply plugin: 'com.google.gms.google-services'
