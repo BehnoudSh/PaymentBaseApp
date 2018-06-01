@@ -225,7 +225,7 @@ public class ChargeConfirmFragment extends BottomSheetDialogFragment {
                             et_mobile.getText().toString(),
                             "",
                             "5a4f6a5c-3200-4811-9ada-503d5bef3768",
-                            "",
+                            PublicTools.charge_url,
                             selectedBank,
                             true,
                             "Android",

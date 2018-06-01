@@ -11,10 +11,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.daimajia.androidanimations.library.Techniques;
+import com.daimajia.androidanimations.library.YoYo;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -32,7 +36,7 @@ public class BillConfirmFragment extends BottomSheetDialogFragment {
     private Unbinder unbinder;
     String billid;
     String payid;
-    String mobileno;
+//    String mobileno;
 
     @BindView(R.id.ll_parent)
     LinearLayout ll_parent;
@@ -63,19 +67,22 @@ public class BillConfirmFragment extends BottomSheetDialogFragment {
     @BindView(R.id.tv_fragment_bill_confirm_amount)
     TextView tv_amount;
 
+    @BindView(R.id.et_phonenumber)
+    EditText et_phonenumber;
+
     String selectedBank = "Mellat";
 
     public BillConfirmFragment() {
         // Required empty public constructor
     }
 
-    public static BillConfirmFragment newInstance(String billid, String payid, String mobileno) {
+    public static BillConfirmFragment newInstance(String billid, String payid) {
 
         BillConfirmFragment fragment = new BillConfirmFragment();
         Bundle args = new Bundle();
         args.putString("billId", billid);
         args.putString("payId", payid);
-        args.putString("mobileNo", mobileno);
+//        args.putString("mobileNo", mobileno);
         fragment.setArguments(args);
         return fragment;
 
@@ -87,7 +94,7 @@ public class BillConfirmFragment extends BottomSheetDialogFragment {
 
         billid = getArguments().getString("billId");
         payid = getArguments().getString("payId");
-        mobileno = getArguments().getString("mobileNo");
+//        mobileno = getArguments().getString("mobileNo");
 
     }
 
@@ -95,7 +102,6 @@ public class BillConfirmFragment extends BottomSheetDialogFragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
 
         tv_billId.setText(billid);
         tv_payId.setText(payid);
@@ -110,35 +116,36 @@ public class BillConfirmFragment extends BottomSheetDialogFragment {
             @Override
             public void onClick(View v) {
 
-                Request_Bill request = new Request_Bill(billid,
-                        payid,
-                        mobileno,
-                        "5a4f6a5c-3200-4811-9ada-503d5bef3768",
-                        "",
-                        selectedBank,
-                        true,
-                        "Android",
-                        "json",
-                        "json");
-                final ProgressDialog dialog = PublicTools.ProgressDialogInstance(getActivity(), "در حال اتصال به درگاه بانک ...");
-                dialog.show();
-                ApiHandler.bill(getActivity(), request, new ApiCallbacks.getBillResponseInterface() {
-                    @Override
-                    public void onGetBillFailed(String message) {
-                        dialog.dismiss();
-                        Toast.makeText(getActivity(), message, Toast.LENGTH_SHORT).show();
-                    }
+                if (validation()) {
 
-                    @Override
-                    public void onGetBillSucceeded(Response_ChargeReseller response) {
-                        dialog.dismiss();
-                        Intent i = new Intent(Intent.ACTION_VIEW);
-                        i.setData(Uri.parse(response.getPaymentInfo().getUrl()));
-                        startActivity(i);
-                    }
-                });
+                    Request_Bill request = new Request_Bill(billid,
+                            payid,
+                            et_phonenumber.getText().toString(),
+                            "5a4f6a5c-3200-4811-9ada-503d5bef3768",
+                            PublicTools.bill_url,
+                            selectedBank,
+                            true,
+                            "Android",
+                            "json",
+                            "json");
+                    final ProgressDialog dialog = PublicTools.ProgressDialogInstance(getActivity(), "در حال اتصال به درگاه بانک ...");
+                    dialog.show();
+                    ApiHandler.bill(getActivity(), request, new ApiCallbacks.getBillResponseInterface() {
+                        @Override
+                        public void onGetBillFailed(String message) {
+                            dialog.dismiss();
+                            Toast.makeText(getActivity(), message, Toast.LENGTH_SHORT).show();
+                        }
 
-
+                        @Override
+                        public void onGetBillSucceeded(Response_ChargeReseller response) {
+                            dialog.dismiss();
+                            Intent i = new Intent(Intent.ACTION_VIEW);
+                            i.setData(Uri.parse(response.getPaymentInfo().getUrl()));
+                            startActivity(i);
+                        }
+                    });
+                }
             }
         });
 
@@ -163,6 +170,31 @@ public class BillConfirmFragment extends BottomSheetDialogFragment {
         });
 
 
+    }
+
+    boolean validation() {
+
+        if (et_phonenumber.getText().length() == 0) {
+            Toast.makeText(getActivity(), "شماره موبایل را وارد نمایید", Toast.LENGTH_SHORT).show();
+            YoYo.with(Techniques.Shake)
+                    .duration(700)
+                    .playOn(et_phonenumber);
+
+            return false;
+        }
+
+        if (et_phonenumber.getText().length() != 11 || !et_phonenumber.getText().toString().startsWith("09")) {
+
+            Toast.makeText(getActivity(), "شماره موبایل صحیح نیست", Toast.LENGTH_SHORT).show();
+            YoYo.with(Techniques.Shake)
+                    .duration(700)
+                    .playOn(et_phonenumber);
+            return false;
+
+        }
+
+
+        return true;
     }
 
 

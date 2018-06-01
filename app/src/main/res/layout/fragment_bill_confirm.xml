@@ -165,7 +165,6 @@
             android:paddingRight="@dimen/default_gap"
             android:text="پرداخت از طریق اتصال به درگاه بانک:"
             android:textColor="@color/transparent_black_hex_8"
-
             android:textSize="@dimen/small_text_size" />
 
         <LinearLayout
@@ -193,13 +192,29 @@
 
         </LinearLayout>
 
+        <EditText
+            android:id="@+id/et_phonenumber"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/default_gap"
+            android:layout_marginLeft="@dimen/large_gap"
+            android:layout_marginRight="@dimen/large_gap"
+            android:background="@color/transparent_black_hex_1"
+            android:gravity="center"
+            android:hint="شماره موبایل برای پشتیبانی بهتر"
+            android:imeOptions="actionNext"
+            android:inputType="phone"
+            android:maxLength="13"
+            android:padding="@dimen/default_gap"
+            android:textColor="@color/gray_dolphin"
+            android:textColorHint="@color/transparent_black_hex_4"
+            android:textSize="@dimen/default_txt_size" />
 
         <Button
             android:id="@+id/btn_confirm"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
-
             android:text="تایید"
             android:textColor="@color/white" />
     </LinearLayout>

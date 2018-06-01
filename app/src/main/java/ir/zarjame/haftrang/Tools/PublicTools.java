@@ -16,6 +16,11 @@ import java.text.NumberFormat;
 public class PublicTools {
 
 
+    public static String bill_url = "";
+    public static String charge_url = "";
+    public static String internet_url = "";
+
+
     public static void hideKeyboard(Activity context) {
 
         View view = context.getCurrentFocus();

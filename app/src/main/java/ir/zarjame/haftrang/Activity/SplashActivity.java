@@ -154,6 +154,10 @@ public class SplashActivity extends AppCompatActivity {
                             @Override
                             public void onGetConfigSucceeded(final Response_Config response) {
 
+                                PublicTools.bill_url = response.getBill_url();
+                                PublicTools.charge_url = response.getCharge_url();
+                                PublicTools.internet_url = response.getInternet_url();
+
 
                                 if (response.getForced_update() == 1) {
 

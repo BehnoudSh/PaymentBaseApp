@@ -25,12 +25,49 @@ public class Response_Config implements Serializable {
     @SerializedName("quote")
     private String quote;
 
-    public Response_Config(int enabled, int version_code, int forced_update, String update_url, String quote) {
+    @SerializedName("bill_url")
+    private String bill_url;
+
+    @SerializedName("charge_url")
+    private String charge_url;
+
+    @SerializedName("internet_url")
+    private String internet_url;
+
+    public Response_Config(int enabled, int version_code, int forced_update, String update_url, String quote, String bill_url, String charge_url, String internet_url) {
         this.enabled = enabled;
         this.version_code = version_code;
         this.forced_update = forced_update;
         this.update_url = update_url;
         this.quote = quote;
+        this.bill_url = bill_url;
+        this.charge_url = charge_url;
+        this.internet_url = internet_url;
+    }
+
+
+    public String getBill_url() {
+        return bill_url;
+    }
+
+    public void setBill_url(String bill_url) {
+        this.bill_url = bill_url;
+    }
+
+    public String getCharge_url() {
+        return charge_url;
+    }
+
+    public void setCharge_url(String charge_url) {
+        this.charge_url = charge_url;
+    }
+
+    public String getInternet_url() {
+        return internet_url;
+    }
+
+    public void setInternet_url(String internet_url) {
+        this.internet_url = internet_url;
     }
 
     public int getEnabled() {

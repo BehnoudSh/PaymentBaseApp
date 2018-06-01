@@ -58,7 +58,7 @@
             android:background="@color/transparent_black_hex_1"
             android:digits="0123456789"
             android:gravity="center"
-            android:hint="مبلغ: حداقل ۵۰۰ تومان و حداکثر ۲۰۰,۰۰۰ تومان"
+            android:hint="مبلغ: حداقل ۱,۰۰۰ تومان و حداکثر ۲۰۰,۰۰۰ تومان"
             android:inputType="numberDecimal"
             android:maxLength="10"
             android:padding="@dimen/default_gap"

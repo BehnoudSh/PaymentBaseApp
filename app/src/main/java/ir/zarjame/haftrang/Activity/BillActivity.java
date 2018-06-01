@@ -88,7 +88,7 @@ public class BillActivity extends AppCompatActivity implements Dialog_Barcode_Ca
             public void onClick(View v) {
                 if (validation()) {
 
-                    BillConfirmFragment confirmFragment = BillConfirmFragment.newInstance(et_billId.getText().toString().trim(), et_payId.getText().toString().trim(), "09368081516");
+                    BillConfirmFragment confirmFragment = BillConfirmFragment.newInstance(et_billId.getText().toString().trim(), et_payId.getText().toString().trim());
 
                     confirmFragment.show(getSupportFragmentManager(), "");
                 }
@@ -137,7 +137,7 @@ public class BillActivity extends AppCompatActivity implements Dialog_Barcode_Ca
             return false;
         }
 
-        if (PayId.length() < 5) {
+        if (et_payId.getText().length() < 5) {
             Toast.makeText(this, "شناسه پرداخت را به درستی وارد نمایید", Toast.LENGTH_SHORT).show();
             YoYo.with(Techniques.Shake)
                     .duration(700)

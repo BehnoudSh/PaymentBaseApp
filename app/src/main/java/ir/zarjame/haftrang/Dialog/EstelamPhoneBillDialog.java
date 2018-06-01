@@ -28,6 +28,8 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 import ir.zarjame.haftrang.Activity.BillActivity;
+import ir.zarjame.haftrang.Activity.MainActivity;
+import ir.zarjame.haftrang.Fragments.BillConfirmFragment;
 import ir.zarjame.haftrang.Models.Requests.Request_Bill;
 import ir.zarjame.haftrang.Models.Requests.Request_PhoneBill;
 import ir.zarjame.haftrang.Models.Responses.Response_ChargeReseller;
@@ -176,33 +178,37 @@ public class EstelamPhoneBillDialog extends Dialog {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
 
-                            Request_Bill request = new Request_Bill(billid,
-                                    payid,
-                                    "09368081516",
-                                    "5a4f6a5c-3200-4811-9ada-503d5bef3768",
-                                    "",
-                                    "Saman",
-                                    true,
-                                    "Android",
-                                    "json",
-                                    "json");
-                            final ProgressDialog dialog_payment = PublicTools.ProgressDialogInstance(context, "در حال دریافت اطلاعات ...");
-                            dialog_payment.show();
-                            ApiHandler.bill(context, request, new ApiCallbacks.getBillResponseInterface() {
-                                @Override
-                                public void onGetBillFailed(String message) {
-                                    dialog_payment.dismiss();
-                                    Toast.makeText(context, message, Toast.LENGTH_SHORT).show();
-                                }
+                            BillConfirmFragment confirmFragment = BillConfirmFragment.newInstance(billid, payid);
 
-                                @Override
-                                public void onGetBillSucceeded(Response_ChargeReseller response) {
-                                    dialog_payment.dismiss();
-                                    Intent i = new Intent(Intent.ACTION_VIEW);
-                                    i.setData(Uri.parse(response.getPaymentInfo().getUrl()));
-                                    context.startActivity(i);
-                                }
-                            });
+                            confirmFragment.show(((MainActivity) context).getSupportFragmentManager(), "");
+
+//                            Request_Bill request = new Request_Bill(billid,
+//                                    payid,
+//                                    "09368081516",
+//                                    "5a4f6a5c-3200-4811-9ada-503d5bef3768",
+//                                    PublicTools.bill_url,
+//                                    "Saman",
+//                                    true,
+//                                    "Android",
+//                                    "json",
+//                                    "json");
+//                            final ProgressDialog dialog_payment = PublicTools.ProgressDialogInstance(context, "در حال دریافت اطلاعات ...");
+//                            dialog_payment.show();
+//                            ApiHandler.bill(context, request, new ApiCallbacks.getBillResponseInterface() {
+//                                @Override
+//                                public void onGetBillFailed(String message) {
+//                                    dialog_payment.dismiss();
+//                                    Toast.makeText(context, message, Toast.LENGTH_SHORT).show();
+//                                }
+//
+//                                @Override
+//                                public void onGetBillSucceeded(Response_ChargeReseller response) {
+//                                    dialog_payment.dismiss();
+//                                    Intent i = new Intent(Intent.ACTION_VIEW);
+//                                    i.setData(Uri.parse(response.getPaymentInfo().getUrl()));
+//                                    context.startActivity(i);
+//                                }
+//                            });
 
 
                         }
