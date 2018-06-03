@@ -88,7 +88,10 @@ public class BillActivity extends AppCompatActivity implements Dialog_Barcode_Ca
             public void onClick(View v) {
                 if (validation()) {
 
-                    BillConfirmFragment confirmFragment = BillConfirmFragment.newInstance(et_billId.getText().toString().trim(), et_payId.getText().toString().trim());
+                    BillConfirmFragment confirmFragment =
+                            BillConfirmFragment.newInstance(
+                                    BillIdPad13,
+                                    PayIdPad13);
 
                     confirmFragment.show(getSupportFragmentManager(), "");
                 }
@@ -147,8 +150,8 @@ public class BillActivity extends AppCompatActivity implements Dialog_Barcode_Ca
         }
 
 
-        BillIdPad13 = ir.zarjame.haftrang.Tools.StringUtils.leftPad(et_billId.getText().toString(), 13, '0');
-        PayIdPad13 = ir.zarjame.haftrang.Tools.StringUtils.leftPad(et_payId.getText().toString(), 13, '0');
+        BillIdPad13 = org.apache.commons.lang3.StringUtils.leftPad(et_billId.getText().toString().trim(), 13, '0');
+        PayIdPad13 = org.apache.commons.lang3.StringUtils.leftPad(et_payId.getText().toString().trim(), 13, '0');
 
 
         BarCode = BillIdPad13 + PayIdPad13;
@@ -267,7 +270,7 @@ public class BillActivity extends AppCompatActivity implements Dialog_Barcode_Ca
 
 
     public String getBillCheckDigit1(String input) {
-        input = ir.zarjame.haftrang.Tools.StringUtils.leftPad(input, 12, '0');
+        input = org.apache.commons.lang3.StringUtils.leftPad(input, 12, '0');
         int sum = 0;
         sum = sum + Integer.parseInt(String.valueOf(input.charAt(11))) * 2;
         sum = sum + Integer.parseInt(String.valueOf(input.charAt(10))) * 3;
