@@ -178,7 +178,11 @@ public class EstelamPhoneBillDialog extends Dialog {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
 
-                            BillConfirmFragment confirmFragment = BillConfirmFragment.newInstance(billid, payid);
+
+                            String billidpad13 = org.apache.commons.lang3.StringUtils.leftPad(billid, 13, '0');
+                            String payidpad13 = org.apache.commons.lang3.StringUtils.leftPad(payid, 13, '0');
+
+                            BillConfirmFragment confirmFragment = BillConfirmFragment.newInstance(billidpad13, payidpad13);
 
                             confirmFragment.show(((MainActivity) context).getSupportFragmentManager(), "");
 
