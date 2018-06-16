@@ -6,6 +6,7 @@ import java.util.List;
 import ir.zarjame.haftrang.Models.Requests.Request_Bill;
 import ir.zarjame.haftrang.Models.Requests.Request_Charge;
 import ir.zarjame.haftrang.Models.Requests.Request_Inquiry;
+import ir.zarjame.haftrang.Models.Requests.Request_Internet;
 import ir.zarjame.haftrang.Models.Requests.Request_PhoneBill;
 import ir.zarjame.haftrang.Models.Requests.Request_SearchBuses;
 import ir.zarjame.haftrang.Models.Requests.Request_SearchFlights;
@@ -75,6 +76,10 @@ public interface ApiInterface {
     @Headers("Content-Type: application/json")
     @POST("bill")
     Call<Response_ChargeReseller> bill(@Body Request_Bill request);
+
+    @Headers("Content-Type: application/json")
+    @POST("internetRecharge")
+    Call<Response_ChargeReseller> internet(@Body Request_Internet request);
 
     @GET("initializeData")
     Call<Response_initializedata> chargeResellerGoods();

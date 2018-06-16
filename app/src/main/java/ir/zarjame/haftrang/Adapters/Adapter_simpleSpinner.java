@@ -53,7 +53,6 @@ public class Adapter_simpleSpinner extends BaseAdapter {
 
 
         if (position == 0) {
-
             LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
             params.setMargins(0, 0, (int) context.getResources().getDimension(R.dimen.very_large_gap), 0);
             names.setLayoutParams(params);

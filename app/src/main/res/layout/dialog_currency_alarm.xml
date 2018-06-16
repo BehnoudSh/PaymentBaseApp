@@ -8,7 +8,6 @@
     android:gravity="center"
     android:orientation="vertical">
 
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -18,10 +17,10 @@
 
         <ImageView
             android:id="@+id/iv_dialog_currency_alarm_closeDialog"
-            android:layout_width="10dp"
-
-            android:layout_height="10dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:layout_marginLeft="@dimen/small_gap"
+            android:padding="15dp"
             android:src="@drawable/cancel" />
 
 
@@ -59,28 +58,27 @@
 
         android:textColor="@color/gray_dolphin" />
 
-
-    <android.support.v7.widget.AppCompatSpinner
+    <Spinner
         android:id="@+id/sp_dialog_currency_alarm_chooseCurrency"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginRight="@dimen/large_gap"
         android:padding="@dimen/small_gap"
+        android:popupTheme="@style/ThemeOverlay.AppCompat.Light"
         android:spinnerMode="dropdown"
-        android:textColor="@color/gray_dolphin"
-        app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
+        android:textColor="@color/gray_dolphin" />
 
-
-    <android.support.v7.widget.AppCompatSpinner
+    <Spinner
         android:id="@+id/sp_dialog_currency_alarm_chooseType"
+
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginRight="@dimen/large_gap"
         android:layout_marginTop="@dimen/default_gap"
         android:padding="@dimen/small_gap"
+        android:popupTheme="@style/ThemeOverlay.AppCompat.Light"
         android:spinnerMode="dropdown"
-        android:textColor="@color/gray_dolphin"
-        app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
+        android:textColor="@color/gray_dolphin" />
 
     <EditText
         android:id="@+id/et_dialog_currency_alarm_amount"
@@ -90,9 +88,9 @@
         android:layout_marginRight="@dimen/large_gap"
         android:gravity="center"
         android:hint="قیمت مورد نظر به ریال"
-        android:maxLength="10"
-
         android:inputType="numberDecimal"
+
+        android:maxLength="10"
         android:padding="@dimen/default_gap"
         android:textColor="@color/gray_dolphin"
         android:textColorHint="@color/transparent_black_hex_4"

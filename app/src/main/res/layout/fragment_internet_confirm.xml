@@ -1,13 +1,11 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@drawable/backrepeat"
     android:clickable="true"
     android:fillViewport="true"
-    android:orientation="vertical"
-    tools:context="ir.zarjame.haftrang.Fragments.ChargeConfirmFragment">
+    android:orientation="vertical">
 
     <LinearLayout
         android:id="@+id/ll_parent"
@@ -15,33 +13,17 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <LinearLayout
+
+        <TextView
+            android:id="@+id/tv_fragment_internet_confirm_desc"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/default_gap"
             android:gravity="center"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/title"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:padding="@dimen/default_gap"
-                android:paddingBottom="@dimen/large_gap"
-                android:paddingTop="@dimen/large_gap"
-                android:text="قبض سازمان برق"
-                android:textColor="@color/gray_wolf"
-                android:textSize="@dimen/default_txt_size"
-                android:textStyle="bold" />
-
-            <ImageView
-                android:id="@+id/iv_fragment_bill_confirm_organizationLogo"
-                android:layout_width="40dp"
-                android:layout_height="40dp" />
-
-
-        </LinearLayout>
+            android:padding="@dimen/default_gap"
+            android:paddingBottom="@dimen/large_gap"
+            android:paddingTop="@dimen/large_gap"
+            android:textColor="@color/gray_wolf"
+            android:textSize="@dimen/normal_txt_size" />
 
 
         <LinearLayout
@@ -51,78 +33,7 @@
 
 
             <TextView
-                android:id="@+id/tv_fragment_bill_confirm_billId"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:padding="@dimen/default_gap"
-                android:paddingBottom="@dimen/large_gap"
-                android:paddingTop="@dimen/large_gap"
-                android:text="5425252532"
-                android:textColor="@color/gray_wolf"
-                android:textSize="@dimen/normal_txt_size" />
-
-            <TextView
-
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:padding="@dimen/default_gap"
-                android:paddingBottom="@dimen/large_gap"
-                android:paddingTop="@dimen/large_gap"
-                android:text="شناسه قبض: "
-                android:textColor="@color/transparent_black_hex_9"
-                android:textSize="@dimen/normal_txt_size" />
-
-
-        </LinearLayout>
-
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-
-            <TextView
-                android:id="@+id/tv_fragment_bill_confirm_payId"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:padding="@dimen/default_gap"
-                android:paddingBottom="@dimen/large_gap"
-                android:paddingTop="@dimen/large_gap"
-                android:text="5425252532"
-                android:textColor="@color/gray_wolf"
-                android:textSize="@dimen/normal_txt_size" />
-
-            <TextView
-
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:padding="@dimen/default_gap"
-                android:paddingBottom="@dimen/large_gap"
-                android:paddingTop="@dimen/large_gap"
-                android:text="شناسه پرداخت: "
-                android:textColor="@color/transparent_black_hex_9"
-                android:textSize="@dimen/normal_txt_size" />
-
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-
-            <TextView
-                android:id="@+id/tv_fragment_bill_confirm_amount"
+                android:id="@+id/tv_fragment_internet_confirm_price"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -201,7 +112,7 @@
             android:layout_marginRight="@dimen/large_gap"
             android:background="@color/transparent_black_hex_1"
             android:gravity="center"
-            android:hint="شماره موبایل برای پشتیبانی بهتر"
+            android:hint="شماره موبایل"
             android:imeOptions="actionDone"
             android:inputType="phone"
             android:maxLength="13"

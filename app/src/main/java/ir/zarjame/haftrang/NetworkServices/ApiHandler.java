@@ -7,6 +7,7 @@ import java.util.List;
 import ir.zarjame.haftrang.Models.Requests.Request_Bill;
 import ir.zarjame.haftrang.Models.Requests.Request_Charge;
 import ir.zarjame.haftrang.Models.Requests.Request_Inquiry;
+import ir.zarjame.haftrang.Models.Requests.Request_Internet;
 import ir.zarjame.haftrang.Models.Requests.Request_PhoneBill;
 import ir.zarjame.haftrang.Models.Requests.Request_SearchBuses;
 import ir.zarjame.haftrang.Models.Requests.Request_SearchFlights;
@@ -344,6 +345,30 @@ public class ApiHandler {
             @Override
             public void onFailure(Call<Response_ChargeReseller> call, Throwable t) {
                 callback.onGetBillFailed("بروز خطا در ارتباط، دوباره تلاش کنید");
+            }
+        });
+    }
+
+    public static void internet(Context context, Request_Internet request, final ApiCallbacks.getInternetResponseInterface callback) {
+        Retrofit retrofit = ApiClient.getClient_chargereseller(context);
+        ApiInterface api = retrofit.create(ApiInterface.class);
+        Call<Response_ChargeReseller> call = api.internet(request);
+
+        call.enqueue(new Callback<Response_ChargeReseller>() {
+            @Override
+            public void onResponse(Call<Response_ChargeReseller> call, Response<Response_ChargeReseller> response) {
+                if (response.code() < 300) {
+                    if (response.body().getStatus().equals("Success"))
+                        callback.onGetInternetSucceeded(response.body());
+                    else
+                        callback.onGetInternetFailed(response.body().getErrorMessage());
+                } else
+                    callback.onGetInternetFailed("بروز خطا در ارتباط، دوباره تلاش کنید");
+            }
+
+            @Override
+            public void onFailure(Call<Response_ChargeReseller> call, Throwable t) {
+                callback.onGetInternetFailed("بروز خطا در ارتباط، دوباره تلاش کنید");
             }
         });
     }

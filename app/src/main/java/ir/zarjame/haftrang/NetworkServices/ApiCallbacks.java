@@ -73,6 +73,14 @@ public class ApiCallbacks {
 
     }
 
+    public interface getInternetResponseInterface {
+
+        void onGetInternetFailed(String message);
+
+        void onGetInternetSucceeded(Response_ChargeReseller response);
+
+    }
+
     public interface getBusCitiesInterface {
 
         void onGetBusCitiesFailed(String message);

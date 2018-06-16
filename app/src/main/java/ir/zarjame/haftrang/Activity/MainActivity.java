@@ -5,14 +5,13 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.Bundle;
 import android.os.Handler;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.animation.Animation;
@@ -20,6 +19,7 @@ import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.getkeepsafe.taptargetview.TapTarget;
 import com.getkeepsafe.taptargetview.TapTargetView;
@@ -32,7 +32,6 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import ir.zarjame.haftrang.Adapters.CatLevel0PagerAdapter;
 import ir.zarjame.haftrang.Fragments.CatLevel1CategoriesFragment;
-import ir.zarjame.haftrang.Models.Responses.Response_AllCars;
 import ir.zarjame.haftrang.Models.Responses.Response_Categories;
 import ir.zarjame.haftrang.NetworkServices.ApiCallbacks;
 import ir.zarjame.haftrang.NetworkServices.ApiHandler;
@@ -92,7 +91,8 @@ public class MainActivity extends AppCompatActivity {
 
     AlertDialog _dialogError;
 
-    boolean doubleBackToExitPressedOnce = true;
+    boolean doubleBackToExitPressedOnce = false;
+
 
     @Override
     protected void attachBaseContext(Context newBase) {
@@ -109,7 +109,6 @@ public class MainActivity extends AppCompatActivity {
 
         tv_quote.setText(getIntent().getStringExtra("daily_quote"));
         tv_quote.setSelected(true);
-        //setInitialSizes();
         setupactionbar();
 
         fab.setOnClickListener(new View.OnClickListener() {
@@ -283,9 +282,7 @@ public class MainActivity extends AppCompatActivity {
                             startActivity(intent);
 
 
-                        }
-
-                        else if (cat_id == 70000) {
+                        } else if (cat_id == 70000) {
 
 
                             Intent intent = new Intent(MainActivity.this, InternetActivity.class);
@@ -294,9 +291,7 @@ public class MainActivity extends AppCompatActivity {
                             startActivity(intent);
 
 
-                        }
-
-                        else {
+                        } else {
 
 
                             FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
@@ -368,30 +363,19 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
 
-
         if (getSupportFragmentManager().getBackStackEntryCount() > 0) {
             getSupportFragmentManager().popBackStack();
             return;
         }
 
-        Snackbar.make(parent, "برای خروج، دکمه را لمس نمایید", 1500)
-                .setAction("خروج", new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        finish();
 
-//                        try {
-//                            new Thread(new Runnable() {
-//                                @Override
-//                                public void run() {
-//                                    Glide.get(MainActivity.this).clearMemory();
-//                                }
-//                            }).start();
-//                        } catch (Exception ex) {
-//                        }
+        if (doubleBackToExitPressedOnce) {
+            super.onBackPressed();
+            return;
+        }
 
-                    }
-                }).show();
+        this.doubleBackToExitPressedOnce = true;
+        Toast.makeText(this, "برای خروج، دوباره دکمه‌ی بازگشت را لمس نمایید", Toast.LENGTH_SHORT).show();
 
         new Handler().postDelayed(new Runnable() {
 
@@ -399,8 +383,6 @@ public class MainActivity extends AppCompatActivity {
             public void run() {
                 doubleBackToExitPressedOnce = false;
             }
-        }, 1500);
-
-
+        }, 2000);
     }
 }

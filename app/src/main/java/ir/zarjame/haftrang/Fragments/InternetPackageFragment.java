@@ -21,6 +21,7 @@ import butterknife.ButterKnife;
 import butterknife.Unbinder;
 import ir.zarjame.haftrang.Activity.ChargeActivity;
 import ir.zarjame.haftrang.Activity.GoodsActivity;
+import ir.zarjame.haftrang.Activity.InternetActivity;
 import ir.zarjame.haftrang.Adapters.GoodsAdapter;
 import ir.zarjame.haftrang.Adapters.InternetPackagesAdapter;
 import ir.zarjame.haftrang.Dialog.GoodsImageDialog;
@@ -76,7 +77,7 @@ public class InternetPackageFragment extends Fragment {
         InternetPackagesAdapter adapter = new InternetPackagesAdapter(packages, getActivity(), new InternetPackagesAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(Response_Internet_FinalPackage item, int position) {
-                addFragment(item.getId());
+                addFragment(item.getId(), item.getName(), item.getPrice());
             }
         });
 
@@ -89,11 +90,14 @@ public class InternetPackageFragment extends Fragment {
 
     }
 
-    public void addFragment(String packageId) {
+    public void addFragment(String packageId, String packagedesc, String packageamount) {
 
-        //   ChargeConfirmFragment confirmFragment = ChargeConfirmFragment.newInstance(selectedtype, selected_operator.getStringValueEnglish());
+        InternetConfirmFragment confirmFragment = InternetConfirmFragment.newInstance(
+                packageId,
+                packagedesc,
+                packageamount);
 
-        //  confirmFragment.show(((ChargeActivity) getActivity()).getSupportFragmentManager(), "");
+        confirmFragment.show(((InternetActivity) getActivity()).getSupportFragmentManager(), "");
 
     }
 

@@ -23,6 +23,7 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.daimajia.androidanimations.library.Techniques;
@@ -54,10 +55,10 @@ public class CurrencyAlarmDialog extends Dialog {
     Context context;
 
     @BindView(R.id.sp_dialog_currency_alarm_chooseCurrency)
-    android.support.v7.widget.AppCompatSpinner sp_currencySpinner;
+    Spinner sp_currencySpinner;
 
     @BindView(R.id.sp_dialog_currency_alarm_chooseType)
-    android.support.v7.widget.AppCompatSpinner sp_typeSpinner;
+    Spinner sp_typeSpinner;
 
     @BindView(R.id.startAlarm)
     Button bt_startAlarm;
@@ -84,7 +85,7 @@ public class CurrencyAlarmDialog extends Dialog {
         WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
         lp.copyFrom(this.getWindow().getAttributes());
         lp.width = WindowManager.LayoutParams.MATCH_PARENT;
-        lp.height = WindowManager.LayoutParams.MATCH_PARENT;
+        lp.height = WindowManager.LayoutParams.WRAP_CONTENT;
         lp.gravity = Gravity.CENTER;
         this.getWindow().setAttributes(lp);
 
@@ -153,7 +154,6 @@ public class CurrencyAlarmDialog extends Dialog {
                     setCurrencyAmount(PublicVariables.alarm_selectedAmount);
 
                     dismiss();
-                    // Toast.makeText(context, "خبر طلا و ارز از ما", Toast.LENGTH_SHORT).show();
 
 
                     Response_Inquiry_Data selectedCurrency = new Response_Inquiry_Data();
