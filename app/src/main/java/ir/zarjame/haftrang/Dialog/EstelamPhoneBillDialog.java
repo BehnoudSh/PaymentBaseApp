@@ -53,8 +53,11 @@ public class EstelamPhoneBillDialog extends Dialog {
     android.support.v7.widget.Toolbar
             toolbar;
 
-    @BindView(R.id.estelamBill)
-    Button btn_estelamBill;
+    @BindView(R.id.estelamBill_payandore)
+    Button btn_estelamBill_payandore;
+
+    @BindView(R.id.estelamBill_miandore)
+    Button btn_estelamBill_miandore;
 
     @BindView(R.id.et_activity_cat_level2_search)
     EditText et_phoneNumber;
@@ -89,7 +92,7 @@ public class EstelamPhoneBillDialog extends Dialog {
 
         setupactionbar(bg_color, title);
 
-        btn_estelamBill.setOnClickListener(new View.OnClickListener() {
+        btn_estelamBill_payandore.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
@@ -102,13 +105,8 @@ public class EstelamPhoneBillDialog extends Dialog {
                     return;
                 }
 
-//                if (!et_phoneNumber.getText().toString().trim().startsWith("021")) {
-//                    Toast.makeText(context, "در حال حاضر فقط سرویس استعلام برای تلفن ثابت تهران موجود است", Toast.LENGTH_LONG).show();
-//                    return;
-//                }
 
-
-                final ProgressDialog dialog = PublicTools.ProgressDialogInstance(context, "در حال استعلام مبلغ قبض تلفن ثابت");
+                final ProgressDialog dialog = PublicTools.ProgressDialogInstance(context, "در حال استعلام بدهی پایان‌دوره");
                 dialog.show();
 
                 Request_PhoneBill request = new Request_PhoneBill(et_phoneNumber.getText().toString().trim());
@@ -129,9 +127,6 @@ public class EstelamPhoneBillDialog extends Dialog {
                                     + "\n"
                                     + "مبلغ " + PublicTools.getThousandSeperated(response.getData().get(0).getPrice()) + " ریال "
                                     + "\n";
-//                                    + "شناسه قبض " + response.getData().get(0).getBill_id()
-//                                    + "\n"
-//                                    + "شناسه پرداخت " + response.getData().get(0).getPay_id();
                             makeOfflineDialog(message, response.getData().get(0).getBill_id(), response.getData().get(0).getPay_id(), false);
 
                         } else {
@@ -149,6 +144,60 @@ public class EstelamPhoneBillDialog extends Dialog {
                 });
             }
         });
+
+        btn_estelamBill_miandore.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+                if (et_phoneNumber.getText().toString().trim().equals("") || et_phoneNumber.getText().toString().trim().length() != 11) {
+
+                    YoYo.with(Techniques.Shake)
+                            .duration(700)
+                            .playOn(et_phoneNumber);
+                    return;
+                }
+
+
+                final ProgressDialog dialog = PublicTools.ProgressDialogInstance(context, "در حال استعلام بدهی میان‌دوره");
+                dialog.show();
+
+                Request_PhoneBill request = new Request_PhoneBill(et_phoneNumber.getText().toString().trim());
+
+                ApiHandler.estelamPhoneBill_miandore(context, request, new ApiCallbacks.estelamPhoneBillInterface() {
+                    @Override
+                    public void onestelamPhoneBillFailed(String message) {
+                        dialog.dismiss();
+                        Toast.makeText(context, message, Toast.LENGTH_LONG).show();
+                    }
+
+                    @Override
+                    public void onestelamPhoneBillSucceeded(Response_PhoneBill response) {
+                        dialog.dismiss();
+                        String message = "";
+                        if (!response.getData().get(0).getPrice().equals("0")) {
+                            message = "دوره " + response.getData().get(0).getCycle()
+                                    + "\n"
+                                    + "مبلغ " + PublicTools.getThousandSeperated(response.getData().get(0).getPrice()) + " ریال "
+                                    + "\n";
+                            makeOfflineDialog(message, response.getData().get(0).getBill_id(), response.getData().get(0).getPay_id(), false);
+
+                        } else {
+                            message = "دوره " + response.getData().get(0).getCycle()
+                                    + "\n"
+                                    + "مبلغ " + PublicTools.getThousandSeperated(response.getData().get(0).getPrice()) + " ریال ";
+                            makeOfflineDialog(message, response.getData().get(0).getBill_id(), response.getData().get(0).getPay_id(), true);
+
+                        }
+
+
+                        _dialogOffline.show();
+
+                    }
+                });
+            }
+        });
+
     }
 
 

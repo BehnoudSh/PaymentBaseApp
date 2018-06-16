@@ -181,6 +181,7 @@ public class CatLevel0PagerAdapter extends PagerAdapter {
 
             hashMap.get(position).get(3).setBg_color(_context.getResources().getColor(R.color.holder4));
 
+
             if (n == 6) {
 
                 Holder5_6Holder.setVisibility(View.VISIBLE);
@@ -231,8 +232,17 @@ public class CatLevel0PagerAdapter extends PagerAdapter {
             }
 
         } catch (Exception ex) {
-        }
 
+            if (n == 6) {
+
+                Holder5_6Holder.setVisibility(View.VISIBLE);
+
+            } else {
+
+                Holder5_6Holder.setVisibility(View.GONE);
+
+            }
+        }
 
         collection.addView(itemView);
 

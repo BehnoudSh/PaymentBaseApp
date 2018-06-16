@@ -65,6 +65,11 @@ public interface ApiInterface {
     Call<Response_PhoneBill> estelamPhoneBill(@Body Request_PhoneBill request);
 
 
+    @Headers("Content-Type: application/json")
+    @POST("billservice2.php")
+    Call<Response_PhoneBill> estelamPhoneBill_miandore(@Body Request_PhoneBill request);
+
+
     @GET("car.php")
     Call<Response_AllCars> getCarPrices();
 

@@ -271,6 +271,32 @@ public class ApiHandler {
         });
     }
 
+    public static void estelamPhoneBill_miandore(Context context, Request_PhoneBill request, final ApiCallbacks.estelamPhoneBillInterface callback) {
+        Retrofit retrofit = ApiClient.getClient(context);
+        ApiInterface api = retrofit.create(ApiInterface.class);
+        Call<Response_PhoneBill> call = api.estelamPhoneBill_miandore(request);
+        call.enqueue(new Callback<Response_PhoneBill>() {
+            @Override
+            public void onResponse(Call<Response_PhoneBill> call, Response<Response_PhoneBill> response) {
+                if (response.code() < 300)
+
+                    callback.onestelamPhoneBillSucceeded(response.body());
+
+                else
+
+                    callback.onestelamPhoneBillFailed("بروز خطا در ارتباط، دوباره تلاش کنید");
+
+            }
+
+            @Override
+            public void onFailure(Call<Response_PhoneBill> call, Throwable t) {
+
+                callback.onestelamPhoneBillFailed("بروز خطا در ارتباط، دوباره تلاش کنید");
+
+            }
+        });
+    }
+
 
     public static void getCarPrices(Context context, final ApiCallbacks.getCarsInterface callback) {
         Retrofit retrofit = ApiClient.getClient(context);
