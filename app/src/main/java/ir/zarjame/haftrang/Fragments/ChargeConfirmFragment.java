@@ -55,6 +55,10 @@ public class ChargeConfirmFragment extends BottomSheetDialogFragment {
     @BindView(R.id.title)
     TextView tv_title;
 
+    @BindView(R.id.et_priceirancellUnit)
+    TextView tv_unitTitle;
+
+
     @BindView(R.id.et_mobile)
     EditText et_mobile;
 
@@ -72,6 +76,9 @@ public class ChargeConfirmFragment extends BottomSheetDialogFragment {
 
     @BindView(R.id.iv_fragment_charge_confirm_samanBank)
     ImageView iv_samanBank;
+
+    @BindView(R.id.et_priceirancellHolder)
+    LinearLayout ll_irancelPriceHolder;
 
     String selectedBank = "Mellat";
 
@@ -127,7 +134,8 @@ public class ChargeConfirmFragment extends BottomSheetDialogFragment {
         et_mobile.requestFocus();
 
         if (operator.equals(IRANCELL.getStringValueEnglish())) {
-            et_priceirancell.setVisibility(View.VISIBLE);
+            ll_irancelPriceHolder.setVisibility(View.VISIBLE);
+            tv_unitTitle.setVisibility(View.GONE);
 
         } else {
             sp_price.setVisibility(View.VISIBLE);
@@ -179,9 +187,7 @@ public class ChargeConfirmFragment extends BottomSheetDialogFragment {
                 tv_title.setText("شارژ سیم‌کارت اعتباری رایتل");
             } else if (type.equals("RTL!")) {
                 tv_title.setText("شارژ شورانگیز سیم‌کارت اعتباری رایتل");
-
             }
-
         }
 
         et_priceirancell.addTextChangedListener(new TextWatcher() {
@@ -196,6 +202,11 @@ public class ChargeConfirmFragment extends BottomSheetDialogFragment {
             @Override
             public void afterTextChanged(Editable editable) {
                 try {
+
+                    if (editable.length() == 0)
+                        tv_unitTitle.setVisibility(View.GONE);
+                    else
+                        tv_unitTitle.setVisibility(View.VISIBLE);
 
 
                     et_priceirancell.removeTextChangedListener(this);

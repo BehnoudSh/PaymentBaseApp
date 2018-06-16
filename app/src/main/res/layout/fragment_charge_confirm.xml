@@ -48,24 +48,46 @@
             android:textColorHint="@color/transparent_black_hex_4"
             android:textSize="@dimen/default_txt_size" />
 
-        <EditText
-            android:id="@+id/et_priceirancell"
+
+        <LinearLayout
+            android:id="@+id/et_priceirancellHolder"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/large_gap"
-            android:layout_marginLeft="@dimen/large_gap"
-            android:layout_marginRight="@dimen/large_gap"
-            android:background="@color/transparent_black_hex_1"
-            android:digits="0123456789"
-            android:gravity="center"
-            android:hint="مبلغ: حداقل ۱,۰۰۰ تومان و حداکثر ۲۰۰,۰۰۰ تومان"
-            android:inputType="numberDecimal"
-            android:maxLength="10"
-            android:padding="@dimen/default_gap"
-            android:textColor="@color/gray_dolphin"
-            android:textColorHint="@color/transparent_black_hex_4"
-            android:textSize="@dimen/default_txt_size"
-            android:visibility="gone" />
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:visibility="gone">
+
+            <TextView
+                android:id="@+id/et_priceirancellUnit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/default_gap"
+                android:gravity="center"
+                android:text="تومان"
+                android:textColor="@color/gray_wolf"
+                android:textSize="@dimen/small_text_size"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/et_priceirancell"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/large_gap"
+                android:layout_marginRight="@dimen/large_gap"
+                android:layout_weight="1"
+                android:background="@color/transparent_black_hex_1"
+                android:digits="0123456789"
+                android:gravity="center"
+                android:hint="مبلغ: حداقل ۱,۰۰۰ تومان و حداکثر ۲۰۰,۰۰۰ تومان"
+                android:inputType="numberDecimal"
+                android:maxLength="10"
+                android:padding="@dimen/default_gap"
+                android:textColor="@color/gray_dolphin"
+                android:textColorHint="@color/transparent_black_hex_4"
+                android:textSize="@dimen/default_txt_size" />
+
+
+        </LinearLayout>
 
         <android.support.v7.widget.AppCompatSpinner
             android:id="@+id/sp_price"
@@ -100,6 +122,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/large_gap"
             android:gravity="center"
             android:orientation="horizontal">
 
