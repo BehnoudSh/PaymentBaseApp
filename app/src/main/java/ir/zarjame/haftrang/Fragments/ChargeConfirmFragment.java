@@ -116,6 +116,7 @@ public class ChargeConfirmFragment extends BottomSheetDialogFragment {
         sp_price.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                selectedPrice = "";
                 if (position != 0)
                     selectedPrice = types.get(position);
             }
