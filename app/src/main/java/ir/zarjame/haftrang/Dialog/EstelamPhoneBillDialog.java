@@ -121,24 +121,34 @@ public class EstelamPhoneBillDialog extends Dialog {
                     @Override
                     public void onestelamPhoneBillSucceeded(Response_PhoneBill response) {
                         dialog.dismiss();
-                        String message = "";
-                        if (!response.getData().get(0).getPrice().equals("0")) {
-                            message = "دوره " + response.getData().get(0).getCycle()
-                                    + "\n"
-                                    + "مبلغ " + PublicTools.getThousandSeperated(response.getData().get(0).getPrice()) + " ریال "
-                                    + "\n";
-                            makeOfflineDialog(message, response.getData().get(0).getBill_id(), response.getData().get(0).getPay_id(), false);
+                        try {
 
-                        } else {
-                            message = "دوره " + response.getData().get(0).getCycle()
-                                    + "\n"
-                                    + "مبلغ " + PublicTools.getThousandSeperated(response.getData().get(0).getPrice()) + " ریال ";
-                            makeOfflineDialog(message, response.getData().get(0).getBill_id(), response.getData().get(0).getPay_id(), true);
+                            String message = "";
+                            if (!response.getData().get(0).getPrice().equals("0")) {
+                                message = "دوره " + response.getData().get(0).getCycle()
+                                        + "\n"
+                                        + "مبلغ " + PublicTools.getThousandSeperated(response.getData().get(0).getPrice()) + " ریال "
+                                        + "\n";
+                                makeOfflineDialog(message, response.getData().get(0).getBill_id(), response.getData().get(0).getPay_id(), false);
+
+                            } else {
+                                message = "دوره " + response.getData().get(0).getCycle()
+                                        + "\n"
+                                        + "مبلغ " + PublicTools.getThousandSeperated(response.getData().get(0).getPrice()) + " ریال ";
+                                makeOfflineDialog(message, response.getData().get(0).getBill_id(), response.getData().get(0).getPay_id(), true);
+
+                            }
+
+
+                            _dialogOffline.show();
+
+                            setConfirmSize();
+                        } catch (Exception ex) {
+
+                            Toast.makeText(context, "بروز خطا در استعلام، دوباره تلاش کنید", Toast.LENGTH_LONG).show();
 
                         }
 
-
-                        _dialogOffline.show();
 
                     }
                 });
@@ -174,30 +184,46 @@ public class EstelamPhoneBillDialog extends Dialog {
                     @Override
                     public void onestelamPhoneBillSucceeded(Response_PhoneBill response) {
                         dialog.dismiss();
-                        String message = "";
-                        if (!response.getData().get(0).getPrice().equals("0")) {
-                            message = "دوره " + response.getData().get(0).getCycle()
-                                    + "\n"
-                                    + "مبلغ " + PublicTools.getThousandSeperated(response.getData().get(0).getPrice()) + " ریال "
-                                    + "\n";
-                            makeOfflineDialog(message, response.getData().get(0).getBill_id(), response.getData().get(0).getPay_id(), false);
+                        try {
+                            String message = "";
+                            if (!response.getData().get(0).getPrice().equals("0")) {
+                                message = "دوره " + response.getData().get(0).getCycle()
+                                        + "\n"
+                                        + "مبلغ " + PublicTools.getThousandSeperated(response.getData().get(0).getPrice()) + " ریال "
+                                        + "\n";
+                                makeOfflineDialog(message, response.getData().get(0).getBill_id(), response.getData().get(0).getPay_id(), false);
 
-                        } else {
-                            message = "دوره " + response.getData().get(0).getCycle()
-                                    + "\n"
-                                    + "مبلغ " + PublicTools.getThousandSeperated(response.getData().get(0).getPrice()) + " ریال ";
-                            makeOfflineDialog(message, response.getData().get(0).getBill_id(), response.getData().get(0).getPay_id(), true);
+                            } else {
+                                message = "دوره " + response.getData().get(0).getCycle()
+                                        + "\n"
+                                        + "مبلغ " + PublicTools.getThousandSeperated(response.getData().get(0).getPrice()) + " ریال ";
+                                makeOfflineDialog(message, response.getData().get(0).getBill_id(), response.getData().get(0).getPay_id(), true);
+
+                            }
+
+
+                            _dialogOffline.show();
+
+                            setConfirmSize();
+                        } catch (Exception ex) {
+                            Toast.makeText(context, "بروز خطا در استعلام، دوباره تلاش کنید", Toast.LENGTH_LONG).show();
 
                         }
-
-
-                        _dialogOffline.show();
-
                     }
                 });
             }
         });
 
+    }
+
+    void setConfirmSize() {
+        try {
+            Button btnPositive = _dialogOffline.getButton(Dialog.BUTTON_POSITIVE);
+            btnPositive.setBackgroundResource(R.drawable.bg_rounded_color2);
+            btnPositive.setTextColor(context.getResources().getColor(R.color.gray_dolphin));
+//            btnPositive.setTextSize(context.getResources().getDimensionPixelSize(R.dimen.default_txt_size));
+        } catch (Exception ex) {
+        }
     }
 
 
@@ -216,14 +242,14 @@ public class EstelamPhoneBillDialog extends Dialog {
             _dialogOffline = new AlertDialog.Builder(context)
                     .setMessage(message)
                     .setCancelable(false)
-                    .setNegativeButton("باشه", new DialogInterface.OnClickListener() {
+                    .setNegativeButton("بستن", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
 
 
                         }
                     })
-                    .setPositiveButton("پرداخت قبض", new OnClickListener() {
+                    .setPositiveButton("پرداخت این قبض", new OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
 
@@ -234,50 +260,22 @@ public class EstelamPhoneBillDialog extends Dialog {
                             BillConfirmFragment confirmFragment = BillConfirmFragment.newInstance(billidpad13, payidpad13);
 
                             confirmFragment.show(((MainActivity) context).getSupportFragmentManager(), "");
-
-//                            Request_Bill request = new Request_Bill(billid,
-//                                    payid,
-//                                    "09368081516",
-//                                    "5a4f6a5c-3200-4811-9ada-503d5bef3768",
-//                                    PublicTools.bill_url,
-//                                    "Saman",
-//                                    true,
-//                                    "Android",
-//                                    "json",
-//                                    "json");
-//                            final ProgressDialog dialog_payment = PublicTools.ProgressDialogInstance(context, "در حال دریافت اطلاعات ...");
-//                            dialog_payment.show();
-//                            ApiHandler.bill(context, request, new ApiCallbacks.getBillResponseInterface() {
-//                                @Override
-//                                public void onGetBillFailed(String message) {
-//                                    dialog_payment.dismiss();
-//                                    Toast.makeText(context, message, Toast.LENGTH_SHORT).show();
-//                                }
-//
-//                                @Override
-//                                public void onGetBillSucceeded(Response_ChargeReseller response) {
-//                                    dialog_payment.dismiss();
-//                                    Intent i = new Intent(Intent.ACTION_VIEW);
-//                                    i.setData(Uri.parse(response.getPaymentInfo().getUrl()));
-//                                    context.startActivity(i);
-//                                }
-//                            });
-
-
                         }
                     })
 
+
                     .create();
+
+
         } else
 
         {
             _dialogOffline = new AlertDialog.Builder(context)
                     .setMessage(message)
                     .setCancelable(false)
-                    .setNegativeButton("باشه", new DialogInterface.OnClickListener() {
+                    .setNegativeButton("بستن", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
-
 
                         }
                     }).create();

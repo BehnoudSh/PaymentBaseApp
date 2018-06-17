@@ -198,6 +198,7 @@ public class BillActivity extends AppCompatActivity implements Dialog_Barcode_Ca
             // showSnack(getResources().getString(R.string.invalid_info));
 
         }
+
     }
 
     @Override

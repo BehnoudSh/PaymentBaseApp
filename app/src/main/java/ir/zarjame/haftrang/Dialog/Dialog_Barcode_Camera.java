@@ -56,6 +56,8 @@ public class Dialog_Barcode_Camera extends android.support.v4.app.DialogFragment
         activity = (AppCompatActivity) getActivity();
         barcodeView.decodeContinuous(this);
         barcodeView.setStatusText("بارکد قبض را به درستی روبروی دوربین قرار دهید");
+        barcodeView.resume();
+
 
         if (getArguments().getBoolean("isParentActivity"))
             callback = (Callback) getActivity();
@@ -107,6 +109,7 @@ public class Dialog_Barcode_Camera extends android.support.v4.app.DialogFragment
         if (result.getText() == null) {
             return;
         }
+        barcodeView.pause();
         callback.BarcodeCamera_onSuccess(getArguments().getInt("position", 0), result.getText());
         dismiss();
     }
