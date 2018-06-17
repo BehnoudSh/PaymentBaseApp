@@ -207,9 +207,21 @@ public class MainActivity extends AppCompatActivity {
                 PublicVariables.allCategories = response;
 
                 // TODO: 3/30/18 hardcode
-                PublicVariables.allCategories.add(new Response_Categories("2", "50000", "0", "خرید شارژ", "", "1", "1", "1", getResources().getColor(R.color.holder1)));
-                PublicVariables.allCategories.add(new Response_Categories("2", "60000", "0", "پرداخت قبض", "", "1", "1", "1", getResources().getColor(R.color.holder2)));
-                PublicVariables.allCategories.add(new Response_Categories("2", "70000", "0", "خرید بسته اینترنت", "", "1", "1", "1", getResources().getColor(R.color.holder3)));
+                response.get(response.size()-1).setIsenabled("1");
+                response.get(response.size()-1).setVisibility("1");
+
+                response.get(response.size() - 2).setIsenabled("1");
+                response.get(response.size() - 2).setVisibility("1");
+
+                response.get(response.size() - 3).setIsenabled("1");
+                response.get(response.size() - 3).setVisibility("1");
+
+                response.get(response.size() - 4).setIsenabled("1");
+                response.get(response.size() - 4).setVisibility("1");
+
+//                PublicVariables.allCategories.add(new Response_Categories("2", "50000", "0", "خرید شارژ", "", "1", "1", "1", getResources().getColor(R.color.holder1)));
+//                PublicVariables.allCategories.add(new Response_Categories("2", "60000", "0", "پرداخت قبض", "", "1", "1", "1", getResources().getColor(R.color.holder2)));
+//                PublicVariables.allCategories.add(new Response_Categories("2", "70000", "0", "خرید بسته اینترنت", "", "1", "1", "1", getResources().getColor(R.color.holder3)));
 
 
                 for (Response_Categories resp : response
@@ -263,33 +275,6 @@ public class MainActivity extends AppCompatActivity {
                             intent.putExtra("bg_color", item.getBg_color());
                             intent.putExtra("toolbar_title", item.getPersian_title());
                             startActivity(intent);
-
-                        } else if (cat_id == 50000) {
-
-
-                            Intent intent = new Intent(MainActivity.this, ChargeActivity.class);
-                            intent.putExtra("bg_color", item.getBg_color());
-                            intent.putExtra("toolbar_title", item.getPersian_title());
-                            startActivity(intent);
-
-
-                        } else if (cat_id == 60000) {
-
-
-                            Intent intent = new Intent(MainActivity.this, BillActivity.class);
-                            intent.putExtra("bg_color", item.getBg_color());
-                            intent.putExtra("toolbar_title", item.getPersian_title());
-                            startActivity(intent);
-
-
-                        } else if (cat_id == 70000) {
-
-
-                            Intent intent = new Intent(MainActivity.this, InternetActivity.class);
-                            intent.putExtra("bg_color", item.getBg_color());
-                            intent.putExtra("toolbar_title", item.getPersian_title());
-                            startActivity(intent);
-
 
                         } else {
 

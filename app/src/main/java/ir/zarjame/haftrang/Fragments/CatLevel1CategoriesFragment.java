@@ -22,9 +22,13 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
+import ir.zarjame.haftrang.Activity.BillActivity;
 import ir.zarjame.haftrang.Activity.BusActivity;
+import ir.zarjame.haftrang.Activity.ChargeActivity;
 import ir.zarjame.haftrang.Activity.FlightActivity;
 import ir.zarjame.haftrang.Activity.GoodsActivity;
+import ir.zarjame.haftrang.Activity.InternetActivity;
+import ir.zarjame.haftrang.Activity.MainActivity;
 import ir.zarjame.haftrang.Adapters.CatLevel1CategoriesAdapter;
 import ir.zarjame.haftrang.Dialog.EstelamPhoneBillDialog;
 import ir.zarjame.haftrang.Models.Responses.Response_Categories;
@@ -101,8 +105,7 @@ public class CatLevel1CategoriesFragment extends Fragment {
 
         List<Response_Categories> temp = new ArrayList<>();
 
-        for (Response_Categories resp : PublicVariables.allCategories
-                ) {
+        for (Response_Categories resp : PublicVariables.allCategories) {
             if (resp.getCat_level() != null)
                 if (resp.getVisibility().equals("1")) {
                     if (catlevel0_id == 0) {
@@ -120,7 +123,14 @@ public class CatLevel1CategoriesFragment extends Fragment {
                             }
                         }
                     }
-                    //    }
+
+                    if (catlevel0_id == 5000) {
+                        if (5000 < Integer.parseInt(resp.getCat_id()) && Integer.parseInt(resp.getCat_id()) < 6000) {
+                            if (resp.getCat_level().equals("1")) {
+                                temp.add(resp);
+                            }
+                        }
+                    }
                 }
         }
         CatLevel1CategoriesAdapter categories_level_1Adapter = new CatLevel1CategoriesAdapter(temp, toolbar_bg_color, getActivity(), new CatLevel1CategoriesAdapter.OnItemClickListener() {
@@ -131,35 +141,63 @@ public class CatLevel1CategoriesFragment extends Fragment {
                     int cat_id = Integer.parseInt(item.getCat_id());
 
                     if (0 < cat_id && cat_id < 1000) {
+
                         Intent intent = new Intent(getActivity(), GoodsActivity.class);
                         intent.putExtra("cat_id", cat_id);
                         intent.putExtra("toolbar_title", item.getPersian_title());
                         intent.putExtra("bg_color", toolbar_bg_color);
                         startActivity(intent);
+
                     } else if (cat_id == 2007) {
+
                         Intent intent = new Intent(getActivity(), BusActivity.class);
                         intent.putExtra("toolbar_title", item.getPersian_title());
                         intent.putExtra("bg_color", toolbar_bg_color);
                         startActivity(intent);
+
                     } else if (cat_id == 2001) {
+
                         Intent intent = new Intent(getActivity(), FlightActivity.class);
                         intent.putExtra("toolbar_title", item.getPersian_title());
                         intent.putExtra("bg_color", toolbar_bg_color);
                         startActivity(intent);
-                    } else if (cat_id == 2004) {
 
+                    } else if (cat_id == 2004) {
 
                         EstelamPhoneBillDialog dialog = new EstelamPhoneBillDialog(getActivity(), toolbar_bg_color, item.getPersian_title());
                         dialog.show();
 
+                    } else if (cat_id == 5001) {
+
+                        Intent intent = new Intent(getActivity(), ChargeActivity.class);
+                        intent.putExtra("bg_color", item.getBg_color());
+                        intent.putExtra("toolbar_title", item.getPersian_title());
+                        intent.putExtra("bg_color", toolbar_bg_color);
+                        startActivity(intent);
+
+                    } else if (cat_id == 5002) {
+
+                        Intent intent = new Intent(getActivity(), BillActivity.class);
+                        intent.putExtra("bg_color", item.getBg_color());
+                        intent.putExtra("toolbar_title", item.getPersian_title());
+                        intent.putExtra("bg_color", toolbar_bg_color);
+                        startActivity(intent);
+
+                    } else if (cat_id == 5003) {
+
+                        Intent intent = new Intent(getActivity(), InternetActivity.class);
+                        intent.putExtra("bg_color", item.getBg_color());
+                        intent.putExtra("toolbar_title", item.getPersian_title());
+                        intent.putExtra("bg_color", toolbar_bg_color);
+                        startActivity(intent);
 
                     }
+
                 } else {
 
                     Toast.makeText(getActivity(), "به زودی ...", Toast.LENGTH_LONG).show();
 
                 }
-
             }
 
         });
