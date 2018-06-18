@@ -53,7 +53,6 @@ public class InternetPackagesAdapter extends RecyclerView.Adapter<InternetPackag
         myViewHolder.tv_price.setText(PublicTools.getThousandSeperated(category.getPrice()));
         myViewHolder.tv_persianName.setText(category.getName());
 
-        myViewHolder.iv_img.setBackgroundResource(R.drawable.irancelllogo);
 
 
     }

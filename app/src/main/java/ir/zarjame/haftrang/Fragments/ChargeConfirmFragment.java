@@ -31,6 +31,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 import ir.zarjame.haftrang.Adapters.Adapter_simpleSpinner;
+import ir.zarjame.haftrang.Dialog.ChargeResellerFinalConfirmDialog;
 import ir.zarjame.haftrang.Models.Requests.Request_Charge;
 import ir.zarjame.haftrang.Models.Responses.Response_ChargeReseller;
 import ir.zarjame.haftrang.NetworkServices.ApiCallbacks;
@@ -84,15 +85,20 @@ public class ChargeConfirmFragment extends BottomSheetDialogFragment {
 
     String selectedPrice = "";
 
+    String persianOperator = "";
+
     public ChargeConfirmFragment() {
         // Required empty public constructor
     }
 
-    public static ChargeConfirmFragment newInstance(String selectedtype, String selected_operator) {
+    public static ChargeConfirmFragment newInstance(String selectedtype,
+                                                    String selected_operator,
+                                                    String selected_operator_persian) {
 
         ChargeConfirmFragment fragment = new ChargeConfirmFragment();
         Bundle args = new Bundle();
         args.putString("selectedoperator", selected_operator);
+        args.putString("selectedoperator_persian", selected_operator_persian);
         args.putString("selectedtype", selectedtype);
         fragment.setArguments(args);
         return fragment;
@@ -105,6 +111,7 @@ public class ChargeConfirmFragment extends BottomSheetDialogFragment {
 
         type = getArguments().getString("selectedtype");
         operator = getArguments().getString("selectedoperator");
+        persianOperator = getArguments().getString("selectedoperator_persian");
 
     }
 
@@ -232,35 +239,19 @@ public class ChargeConfirmFragment extends BottomSheetDialogFragment {
             public void onClick(View v) {
                 if (validation()) {
 
-                    Request_Charge request = new Request_Charge(type,
+
+                    ChargeResellerFinalConfirmDialog dialog = new ChargeResellerFinalConfirmDialog(
+                            getActivity(),
+                            persianOperator,
                             selectedPrice.replace(",", ""),
                             et_mobile.getText().toString(),
-                            "",
-                            "5a4f6a5c-3200-4811-9ada-503d5bef3768",
-                            PublicTools.charge_url,
-                            selectedBank,
-                            true,
-                            "Android",
-                            "json",
-                            "json");
-                    final ProgressDialog dialog = PublicTools.ProgressDialogInstance(getActivity(), "در حال اتصال به درگاه بانک ...");
+                            type,
+                            selectedBank
 
+                    );
                     dialog.show();
-                    ApiHandler.charge(getActivity(), request, new ApiCallbacks.getChargeResponseInterface() {
-                        @Override
-                        public void onGetChargeFailed(String message) {
-                            dialog.dismiss();
-                            Toast.makeText(getActivity(), message, Toast.LENGTH_SHORT).show();
-                        }
 
-                        @Override
-                        public void onGetChargeSucceeded(Response_ChargeReseller response) {
-                            dialog.dismiss();
-                            Intent i = new Intent(Intent.ACTION_VIEW);
-                            i.setData(Uri.parse(response.getPaymentInfo().getUrl()));
-                            startActivity(i);
-                        }
-                    });
+
                 }
             }
         });

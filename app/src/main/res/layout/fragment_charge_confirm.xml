@@ -37,6 +37,7 @@
             android:layout_margin="@dimen/large_gap"
             android:layout_marginLeft="@dimen/large_gap"
             android:layout_marginRight="@dimen/large_gap"
+            android:imeOptions="actionDone"
             android:background="@color/transparent_black_hex_1"
             android:digits="0123456789"
             android:gravity="center"

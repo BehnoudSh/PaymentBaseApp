@@ -125,24 +125,31 @@ public class EstelamPhoneBillDialog extends Dialog {
 
                             String message = "";
                             if (!response.getData().get(0).getPrice().equals("0")) {
-                                message = "دوره " + response.getData().get(0).getCycle()
-                                        + "\n"
-                                        + "مبلغ " + PublicTools.getThousandSeperated(response.getData().get(0).getPrice()) + " ریال "
-                                        + "\n";
-                                makeOfflineDialog(message, response.getData().get(0).getBill_id(), response.getData().get(0).getPay_id(), false);
+
+                                String billidpad13 = org.apache.commons.lang3.StringUtils.leftPad(response.getData().get(0).getBill_id(), 13, '0');
+                                String payidpad13 = org.apache.commons.lang3.StringUtils.leftPad(response.getData().get(0).getPay_id(), 13, '0');
+
+                                BillConfirmFragment confirmFragment = BillConfirmFragment.newInstance(billidpad13, payidpad13);
+
+                                confirmFragment.show(((MainActivity) context).getSupportFragmentManager(), "");
+
+
+//                                message = "دوره " + response.getData().get(0).getCycle()
+//                                        + "\n"
+//                                        + "مبلغ " + PublicTools.getThousandSeperated(response.getData().get(0).getPrice()) + " ریال "
+//                                        + "\n";
+//                                makeOfflineDialog(message, response.getData().get(0).getBill_id(), response.getData().get(0).getPay_id(), false);
 
                             } else {
                                 message = "دوره " + response.getData().get(0).getCycle()
                                         + "\n"
                                         + "مبلغ " + PublicTools.getThousandSeperated(response.getData().get(0).getPrice()) + " ریال ";
                                 makeOfflineDialog(message, response.getData().get(0).getBill_id(), response.getData().get(0).getPay_id(), true);
-
+                                _dialogOffline.show();
                             }
 
 
-                            _dialogOffline.show();
-
-                            setConfirmSize();
+                            //setConfirmSize();
                         } catch (Exception ex) {
 
                             Toast.makeText(context, "بروز خطا در استعلام، دوباره تلاش کنید", Toast.LENGTH_LONG).show();
@@ -187,24 +194,31 @@ public class EstelamPhoneBillDialog extends Dialog {
                         try {
                             String message = "";
                             if (!response.getData().get(0).getPrice().equals("0")) {
-                                message = "دوره " + response.getData().get(0).getCycle()
-                                        + "\n"
-                                        + "مبلغ " + PublicTools.getThousandSeperated(response.getData().get(0).getPrice()) + " ریال "
-                                        + "\n";
-                                makeOfflineDialog(message, response.getData().get(0).getBill_id(), response.getData().get(0).getPay_id(), false);
+
+                                String billidpad13 = org.apache.commons.lang3.StringUtils.leftPad(response.getData().get(0).getBill_id(), 13, '0');
+                                String payidpad13 = org.apache.commons.lang3.StringUtils.leftPad(response.getData().get(0).getPay_id(), 13, '0');
+
+                                BillConfirmFragment confirmFragment = BillConfirmFragment.newInstance(billidpad13, payidpad13);
+
+                                confirmFragment.show(((MainActivity) context).getSupportFragmentManager(), "");
+
+
+//                                message = "دوره " + response.getData().get(0).getCycle()
+//                                        + "\n"
+//                                        + "مبلغ " + PublicTools.getThousandSeperated(response.getData().get(0).getPrice()) + " ریال "
+//                                        + "\n";
+//                                makeOfflineDialog(message, response.getData().get(0).getBill_id(), response.getData().get(0).getPay_id(), false);
 
                             } else {
                                 message = "دوره " + response.getData().get(0).getCycle()
                                         + "\n"
                                         + "مبلغ " + PublicTools.getThousandSeperated(response.getData().get(0).getPrice()) + " ریال ";
                                 makeOfflineDialog(message, response.getData().get(0).getBill_id(), response.getData().get(0).getPay_id(), true);
-
+                                _dialogOffline.show();
                             }
 
 
-                            _dialogOffline.show();
-
-                            setConfirmSize();
+                            //setConfirmSize();
                         } catch (Exception ex) {
                             Toast.makeText(context, "بروز خطا در استعلام، دوباره تلاش کنید", Toast.LENGTH_LONG).show();
 
@@ -242,7 +256,7 @@ public class EstelamPhoneBillDialog extends Dialog {
             _dialogOffline = new AlertDialog.Builder(context)
                     .setMessage(message)
                     .setCancelable(false)
-                    .setNegativeButton("بستن", new DialogInterface.OnClickListener() {
+                    .setNegativeButton("باشه", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
 
@@ -273,7 +287,7 @@ public class EstelamPhoneBillDialog extends Dialog {
             _dialogOffline = new AlertDialog.Builder(context)
                     .setMessage(message)
                     .setCancelable(false)
-                    .setNegativeButton("بستن", new DialogInterface.OnClickListener() {
+                    .setNegativeButton("باشه", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
 

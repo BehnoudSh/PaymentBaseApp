@@ -23,6 +23,7 @@ import com.daimajia.androidanimations.library.YoYo;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
+import ir.zarjame.haftrang.Dialog.ChargeResellerFinalConfirmDialog;
 import ir.zarjame.haftrang.Models.Requests.Request_Bill;
 import ir.zarjame.haftrang.Models.Responses.Response_ChargeReseller;
 import ir.zarjame.haftrang.NetworkServices.ApiCallbacks;
@@ -118,6 +119,7 @@ public class BillConfirmFragment extends BottomSheetDialogFragment {
 
                 if (validation()) {
 
+
                     Request_Bill request = new Request_Bill(billid,
                             payid,
                             et_phonenumber.getText().toString(),
@@ -145,6 +147,8 @@ public class BillConfirmFragment extends BottomSheetDialogFragment {
                             startActivity(i);
                         }
                     });
+
+
                 }
             }
         });

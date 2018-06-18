@@ -157,7 +157,9 @@ public class ChargeCategoriesFragment extends Fragment {
 //        fragmentTransaction.commit();
 
 
-        ChargeConfirmFragment confirmFragment = ChargeConfirmFragment.newInstance(selectedtype, selected_operator.getStringValueEnglish());
+        ChargeConfirmFragment confirmFragment = ChargeConfirmFragment.newInstance(selectedtype,
+                selected_operator.getStringValueEnglish(),
+                selected_operator.getStringValuePersian());
 
         confirmFragment.show(((ChargeActivity) getActivity()).getSupportFragmentManager(), "");
 
