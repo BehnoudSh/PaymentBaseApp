@@ -129,7 +129,7 @@ public class BillConfirmFragment extends BottomSheetDialogFragment {
                             true,
                             "Android",
                             "json",
-                            "json");
+                            "get");
                     final ProgressDialog dialog = PublicTools.ProgressDialogInstance(getActivity(), "در حال اتصال به درگاه بانک ...");
                     dialog.show();
                     ApiHandler.bill(getActivity(), request, new ApiCallbacks.getBillResponseInterface() {

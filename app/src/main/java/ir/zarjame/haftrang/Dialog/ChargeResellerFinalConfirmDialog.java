@@ -118,7 +118,7 @@ public class ChargeResellerFinalConfirmDialog extends Dialog {
                         true,
                         "Android",
                         "json",
-                        "json");
+                        "get");
                 final ProgressDialog dialog = PublicTools.ProgressDialogInstance(context, "در حال اتصال به درگاه بانک ...");
 
                 dialog.show();

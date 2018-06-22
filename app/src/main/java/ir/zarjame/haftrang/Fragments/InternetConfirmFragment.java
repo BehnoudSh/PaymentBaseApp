@@ -23,13 +23,11 @@ import com.daimajia.androidanimations.library.YoYo;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
-import ir.zarjame.haftrang.Models.Requests.Request_Bill;
 import ir.zarjame.haftrang.Models.Requests.Request_Internet;
 import ir.zarjame.haftrang.Models.Responses.Response_ChargeReseller;
 import ir.zarjame.haftrang.NetworkServices.ApiCallbacks;
 import ir.zarjame.haftrang.NetworkServices.ApiHandler;
 import ir.zarjame.haftrang.R;
-import ir.zarjame.haftrang.Tools.BillUtils;
 import ir.zarjame.haftrang.Tools.PublicTools;
 
 
@@ -88,6 +86,8 @@ public class InternetConfirmFragment extends BottomSheetDialogFragment {
         packageDesc = getArguments().getString("packagedesc");
         packagePrice = getArguments().getString("packageprice");
 
+
+ 
     }
 
 
@@ -113,7 +113,7 @@ public class InternetConfirmFragment extends BottomSheetDialogFragment {
                             true,
                             "Android",
                             "json",
-                            "json");
+                            "get");
                     final ProgressDialog dialog = PublicTools.ProgressDialogInstance(getActivity(), "در حال اتصال به درگاه بانک ...");
                     dialog.show();
                     ApiHandler.internet(getActivity(), request, new ApiCallbacks.getInternetResponseInterface() {
@@ -156,6 +156,12 @@ public class InternetConfirmFragment extends BottomSheetDialogFragment {
         });
 
 
+        et_phonenumber.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                et_phonenumber.requestFocus();
+            }
+        });
     }
 
     boolean validation() {
@@ -189,6 +195,7 @@ public class InternetConfirmFragment extends BottomSheetDialogFragment {
 
         View layout = inflater.inflate(R.layout.fragment_internet_confirm, container, false);
         unbinder = ButterKnife.bind(this, layout);
+
 
         return layout;
     }
