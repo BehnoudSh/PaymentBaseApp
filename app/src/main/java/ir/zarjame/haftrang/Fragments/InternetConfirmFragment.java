@@ -1,15 +1,22 @@
 package ir.zarjame.haftrang.Fragments;
 
 
+import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.BottomSheetDialogFragment;
+import android.support.v4.app.DialogFragment;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -31,7 +38,7 @@ import ir.zarjame.haftrang.R;
 import ir.zarjame.haftrang.Tools.PublicTools;
 
 
-public class InternetConfirmFragment extends BottomSheetDialogFragment {
+public class InternetConfirmFragment extends DialogFragment {
     private Unbinder unbinder;
 
     String packageId = "";
@@ -86,8 +93,6 @@ public class InternetConfirmFragment extends BottomSheetDialogFragment {
         packageDesc = getArguments().getString("packagedesc");
         packagePrice = getArguments().getString("packageprice");
 
-
- 
     }
 
 
@@ -200,4 +205,15 @@ public class InternetConfirmFragment extends BottomSheetDialogFragment {
         return layout;
     }
 
+    @Override
+    public void onStart() {
+        super.onStart();
+        Dialog dialog = getDialog();
+        if (dialog != null) {
+            int width = ViewGroup.LayoutParams.MATCH_PARENT;
+            int height = ViewGroup.LayoutParams.WRAP_CONTENT;
+            dialog.getWindow().setLayout(width, height);
+        }
+
+    }
 }

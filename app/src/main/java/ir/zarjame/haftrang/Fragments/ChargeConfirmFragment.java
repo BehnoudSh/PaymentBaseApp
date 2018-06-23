@@ -1,6 +1,7 @@
 package ir.zarjame.haftrang.Fragments;
 
 
+import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.PorterDuff;
@@ -8,6 +9,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.BottomSheetDialogFragment;
+import android.support.v4.app.DialogFragment;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
@@ -45,7 +47,7 @@ import static ir.zarjame.haftrang.Models.Operators.RIGHTEL;
 import static ir.zarjame.haftrang.Tools.PublicTools.getFormattedNumber;
 
 
-public class ChargeConfirmFragment extends BottomSheetDialogFragment {
+public class ChargeConfirmFragment extends DialogFragment {
     private Unbinder unbinder;
     String type;
     String operator;
@@ -402,6 +404,18 @@ public class ChargeConfirmFragment extends BottomSheetDialogFragment {
         unbinder = ButterKnife.bind(this, layout);
 
         return layout;
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        Dialog dialog = getDialog();
+        if (dialog != null) {
+            int width = ViewGroup.LayoutParams.MATCH_PARENT;
+            int height = ViewGroup.LayoutParams.WRAP_CONTENT;
+            dialog.getWindow().setLayout(width, height);
+        }
+
     }
 
 }

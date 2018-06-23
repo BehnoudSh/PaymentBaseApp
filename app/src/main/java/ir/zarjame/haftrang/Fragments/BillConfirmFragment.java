@@ -1,12 +1,14 @@
 package ir.zarjame.haftrang.Fragments;
 
 
+import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.BottomSheetDialogFragment;
+import android.support.v4.app.DialogFragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -33,7 +35,7 @@ import ir.zarjame.haftrang.Tools.BillUtils;
 import ir.zarjame.haftrang.Tools.PublicTools;
 
 
-public class BillConfirmFragment extends BottomSheetDialogFragment {
+public class BillConfirmFragment extends DialogFragment {
     private Unbinder unbinder;
     String billid;
     String payid;
@@ -210,6 +212,18 @@ public class BillConfirmFragment extends BottomSheetDialogFragment {
         unbinder = ButterKnife.bind(this, layout);
 
         return layout;
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        Dialog dialog = getDialog();
+        if (dialog != null) {
+            int width = ViewGroup.LayoutParams.MATCH_PARENT;
+            int height = ViewGroup.LayoutParams.WRAP_CONTENT;
+            dialog.getWindow().setLayout(width, height);
+        }
+
     }
 
 }
