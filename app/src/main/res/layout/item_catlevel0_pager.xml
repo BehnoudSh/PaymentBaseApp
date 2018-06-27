@@ -29,19 +29,19 @@
                 <View
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="0.9" />
+                    android:layout_weight="0.7" />
 
                 <ImageView
                     android:id="@+id/item1Img"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="1.2"
+                    android:layout_weight="1.6"
                     android:scaleType="fitCenter" />
 
                 <View
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="0.9" />
+                    android:layout_weight="0.7" />
             </LinearLayout>
 
             <TextView
@@ -74,19 +74,19 @@
                 <View
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="0.9" />
+                    android:layout_weight="0.7" />
 
                 <ImageView
                     android:id="@+id/item2Img"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="1.2"
+                    android:layout_weight="1.6"
                     android:scaleType="fitCenter" />
 
                 <View
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="0.9" />
+                    android:layout_weight="0.7" />
             </LinearLayout>
 
             <TextView
@@ -126,19 +126,19 @@
                 <View
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="0.9" />
+                    android:layout_weight="0.7" />
 
                 <ImageView
                     android:id="@+id/item3Img"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="1.2"
+                    android:layout_weight="1.6"
                     android:scaleType="fitCenter" />
 
                 <View
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="0.9" />
+                    android:layout_weight="0.7" />
             </LinearLayout>
 
             <TextView
@@ -171,19 +171,19 @@
                 <View
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="0.9" />
+                    android:layout_weight="0.7" />
 
                 <ImageView
                     android:id="@+id/item4Img"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="1.2"
+                    android:layout_weight="1.6"
                     android:scaleType="fitCenter" />
 
                 <View
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="0.9" />
+                    android:layout_weight="0.7" />
             </LinearLayout>
 
             <TextView
@@ -227,19 +227,19 @@
                 <View
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="0.9" />
+                    android:layout_weight="0.7" />
 
                 <ImageView
                     android:id="@+id/item5Img"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="1.2"
+                    android:layout_weight="1.6"
                     android:scaleType="fitCenter" />
 
                 <View
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="0.9" />
+                    android:layout_weight="0.7" />
             </LinearLayout>
 
             <TextView
@@ -272,19 +272,19 @@
                 <View
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="0.9" />
+                    android:layout_weight="0.7" />
 
                 <ImageView
                     android:id="@+id/item6Img"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="1.2"
+                    android:layout_weight="1.6"
                     android:scaleType="fitCenter" />
 
                 <View
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="0.9" />
+                    android:layout_weight="0.7" />
             </LinearLayout>
 
             <TextView
