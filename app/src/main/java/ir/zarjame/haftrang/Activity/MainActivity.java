@@ -207,20 +207,20 @@ public class MainActivity extends AppCompatActivity {
                 PublicVariables.allCategories = response;
 
                 // TODO: 3/30/18 hardcode
-                response.get(response.size() - 1).setIsenabled("1");
-                response.get(response.size() - 1).setVisibility("1");
-
-                response.get(response.size() - 2).setIsenabled("1");
-                response.get(response.size() - 2).setVisibility("1");
-
-                response.get(response.size() - 3).setIsenabled("1");
-                response.get(response.size() - 3).setVisibility("1");
-
-                response.get(response.size() - 4).setIsenabled("1");
-                response.get(response.size() - 4).setVisibility("1");
-
-                response.get(response.size() - 5).setIsenabled("1");
-                response.get(response.size() - 5).setVisibility("1");
+//                response.get(response.size() - 1).setIsenabled("1");
+//                response.get(response.size() - 1).setVisibility("1");
+//
+//                response.get(response.size() - 2).setIsenabled("1");
+//                response.get(response.size() - 2).setVisibility("1");
+//
+//                response.get(response.size() - 3).setIsenabled("1");
+//                response.get(response.size() - 3).setVisibility("1");
+//
+//                response.get(response.size() - 4).setIsenabled("1");
+//                response.get(response.size() - 4).setVisibility("1");
+//
+//                response.get(response.size() - 5).setIsenabled("1");
+//                response.get(response.size() - 5).setVisibility("1");
 
 
                 for (Response_Categories resp : response
