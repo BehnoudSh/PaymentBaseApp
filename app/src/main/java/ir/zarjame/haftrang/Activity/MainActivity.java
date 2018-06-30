@@ -219,9 +219,8 @@ public class MainActivity extends AppCompatActivity {
                 response.get(response.size() - 4).setIsenabled("1");
                 response.get(response.size() - 4).setVisibility("1");
 
-//                PublicVariables.allCategories.add(new Response_Categories("2", "50000", "0", "خرید شارژ", "", "1", "1", "1", getResources().getColor(R.color.holder1)));
-//                PublicVariables.allCategories.add(new Response_Categories("2", "60000", "0", "پرداخت قبض", "", "1", "1", "1", getResources().getColor(R.color.holder2)));
-//                PublicVariables.allCategories.add(new Response_Categories("2", "70000", "0", "خرید بسته اینترنت", "", "1", "1", "1", getResources().getColor(R.color.holder3)));
+                response.get(response.size() - 5).setIsenabled("1");
+                response.get(response.size() - 5).setVisibility("1");
 
 
                 for (Response_Categories resp : response
@@ -274,6 +273,16 @@ public class MainActivity extends AppCompatActivity {
                             Intent intent = new Intent(MainActivity.this, CarPricesActivity.class);
                             intent.putExtra("bg_color", item.getBg_color());
                             intent.putExtra("toolbar_title", item.getPersian_title());
+                            startActivity(intent);
+
+                        } else if (cat_id == 10000)
+
+                        {
+
+                            Intent intent = new Intent(MainActivity.this, WebViewActivity.class);
+                            intent.putExtra("bg_color", item.getBg_color());
+                            intent.putExtra("toolbar_title", item.getPersian_title());
+                            intent.putExtra("url", item.getUrl());
                             startActivity(intent);
 
                         } else {

@@ -35,11 +35,14 @@ public class Response_Categories implements Serializable {
     @SerializedName("visibility")
     private String visibility;
 
+    @SerializedName("url")
+    private String url;
+
 
     private int bg_color;
 
 
-    public Response_Categories(String id, String cat_id, String cat_level, String persian_title, String cat_icon, String isenabled, String minversion, String visibility, int bg_color) {
+    public Response_Categories(String id, String cat_id, String cat_level, String persian_title, String cat_icon, String isenabled, String minversion, String visibility, String url, int bg_color) {
         this.id = id;
         this.cat_id = cat_id;
         this.cat_level = cat_level;
@@ -48,6 +51,7 @@ public class Response_Categories implements Serializable {
         this.isenabled = isenabled;
         this.minversion = minversion;
         this.visibility = visibility;
+        this.url = url;
         this.bg_color = bg_color;
     }
 
@@ -99,14 +103,6 @@ public class Response_Categories implements Serializable {
         this.isenabled = isenabled;
     }
 
-    public int getBg_color() {
-        return bg_color;
-    }
-
-    public void setBg_color(int bg_color) {
-        this.bg_color = bg_color;
-    }
-
     public String getMinversion() {
         return minversion;
     }
@@ -121,5 +117,21 @@ public class Response_Categories implements Serializable {
 
     public void setVisibility(String visibility) {
         this.visibility = visibility;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
+
+    public int getBg_color() {
+        return bg_color;
+    }
+
+    public void setBg_color(int bg_color) {
+        this.bg_color = bg_color;
     }
 }

@@ -16,5 +16,8 @@
     <dimen name="very_large_gap">30dp</dimen>
     <dimen name="very_very_large_gap">70dp</dimen>
     <dimen name="very_very_very_large_gap">100dp</dimen>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
 
 </resources>

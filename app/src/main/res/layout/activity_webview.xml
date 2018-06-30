@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/backrepeat">
+
+    <include
+        android:id="@+id/activity_main_toolbar"
+        layout="@layout/toolbar" />
+    <WebView
+        android:id="@+id/wv_activity_webview_webView"
+        android:layout_width="match_parent"
+
+        android:layout_height="match_parent" />
+</LinearLayout>

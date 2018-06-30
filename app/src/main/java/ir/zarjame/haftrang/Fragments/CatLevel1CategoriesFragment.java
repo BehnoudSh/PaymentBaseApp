@@ -131,6 +131,9 @@ public class CatLevel1CategoriesFragment extends Fragment {
                             }
                         }
                     }
+
+
+
                 }
         }
         CatLevel1CategoriesAdapter categories_level_1Adapter = new CatLevel1CategoriesAdapter(temp, toolbar_bg_color, getActivity(), new CatLevel1CategoriesAdapter.OnItemClickListener() {
