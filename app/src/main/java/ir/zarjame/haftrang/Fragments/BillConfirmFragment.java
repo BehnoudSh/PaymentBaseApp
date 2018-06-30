@@ -109,8 +109,9 @@ public class BillConfirmFragment extends DialogFragment {
         String numberFromCache = SharedPref.getBillPhoneNumber();
 
 
-        if (numberFromCache != null && !numberFromCache.equals(""))
+        if (numberFromCache != null && !numberFromCache.equals("")){
             et_phonenumber.setText(numberFromCache);
+            et_phonenumber.setSelection(et_phonenumber.getText().length());}
         else
             et_phonenumber.setText("");
         tv_billId.setText(billid);

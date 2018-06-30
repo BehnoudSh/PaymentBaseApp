@@ -142,18 +142,18 @@ public class ChargeConfirmFragment extends DialogFragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
+        et_mobile.requestFocus();
 
         String numberFromCache = SharedPref.getChargePhoneNumber();
 
 
         if (numberFromCache != null && !numberFromCache.equals("")) {
             et_mobile.setText(numberFromCache);
-
+            et_mobile.setSelection(et_mobile.getText().length());
 
         } else {
             et_mobile.setText("");
-            et_mobile.requestFocus();
+
         }
 
 
