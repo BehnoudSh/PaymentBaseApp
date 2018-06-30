@@ -207,8 +207,8 @@ public class MainActivity extends AppCompatActivity {
                 PublicVariables.allCategories = response;
 
                 // TODO: 3/30/18 hardcode
-                response.get(response.size()-1).setIsenabled("1");
-                response.get(response.size()-1).setVisibility("1");
+                response.get(response.size() - 1).setIsenabled("1");
+                response.get(response.size() - 1).setVisibility("1");
 
                 response.get(response.size() - 2).setIsenabled("1");
                 response.get(response.size() - 2).setVisibility("1");
@@ -353,9 +353,14 @@ public class MainActivity extends AppCompatActivity {
             return;
         }
 
-
         if (doubleBackToExitPressedOnce) {
             super.onBackPressed();
+
+            Intent intent = new Intent(Intent.ACTION_MAIN);
+            intent.addCategory(Intent.CATEGORY_HOME);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(intent);
+
             return;
         }
 
@@ -363,7 +368,6 @@ public class MainActivity extends AppCompatActivity {
         Toast.makeText(this, "برای خروج، دوباره دکمه‌ی بازگشت را لمس نمایید", Toast.LENGTH_SHORT).show();
 
         new Handler().postDelayed(new Runnable() {
-
             @Override
             public void run() {
                 doubleBackToExitPressedOnce = false;
