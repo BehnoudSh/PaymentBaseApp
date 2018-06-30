@@ -124,7 +124,9 @@
             android:name=".Activity.InternetActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.NoActionBar" />
-        <activity android:name=".Activity.WebViewActivity"></activity>
+        <activity android:name=".Activity.WebViewActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.NoActionBar"/>
     </application>
 
 </manifest>
