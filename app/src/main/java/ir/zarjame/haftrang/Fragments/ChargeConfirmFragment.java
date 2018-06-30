@@ -40,6 +40,7 @@ import ir.zarjame.haftrang.NetworkServices.ApiCallbacks;
 import ir.zarjame.haftrang.NetworkServices.ApiHandler;
 import ir.zarjame.haftrang.R;
 import ir.zarjame.haftrang.Tools.PublicTools;
+import ir.zarjame.haftrang.Tools.SharedPref;
 
 import static ir.zarjame.haftrang.Models.Operators.IRANCELL;
 import static ir.zarjame.haftrang.Models.Operators.MCI;
@@ -114,6 +115,14 @@ public class ChargeConfirmFragment extends DialogFragment {
         type = getArguments().getString("selectedtype");
         operator = getArguments().getString("selectedoperator");
         persianOperator = getArguments().getString("selectedoperator_persian");
+
+        String numberFromCache = SharedPref.getChargePhoneNumber();
+
+
+        if (numberFromCache != null && !numberFromCache.equals(""))
+            et_mobile.setText(numberFromCache);
+        else
+            et_mobile.setText("");
 
     }
 
@@ -241,6 +250,7 @@ public class ChargeConfirmFragment extends DialogFragment {
             public void onClick(View v) {
                 if (validation()) {
 
+                    SharedPref.setChargePhoneNumber(et_mobile.getText().toString());
 
                     ChargeResellerFinalConfirmDialog dialog = new ChargeResellerFinalConfirmDialog(
                             getActivity(),

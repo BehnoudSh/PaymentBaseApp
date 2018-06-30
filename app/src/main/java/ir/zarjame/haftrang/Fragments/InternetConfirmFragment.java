@@ -36,6 +36,7 @@ import ir.zarjame.haftrang.NetworkServices.ApiCallbacks;
 import ir.zarjame.haftrang.NetworkServices.ApiHandler;
 import ir.zarjame.haftrang.R;
 import ir.zarjame.haftrang.Tools.PublicTools;
+import ir.zarjame.haftrang.Tools.SharedPref;
 
 
 public class InternetConfirmFragment extends DialogFragment {
@@ -93,6 +94,15 @@ public class InternetConfirmFragment extends DialogFragment {
         packageDesc = getArguments().getString("packagedesc");
         packagePrice = getArguments().getString("packageprice");
 
+
+        String numberFromCache = SharedPref.getInternetPhoneNumber();
+
+
+        if (numberFromCache != null && !numberFromCache.equals(""))
+            et_phonenumber.setText(numberFromCache);
+        else
+            et_phonenumber.setText("");
+
     }
 
 
@@ -109,6 +119,8 @@ public class InternetConfirmFragment extends DialogFragment {
             public void onClick(View v) {
 
                 if (validation()) {
+
+                    SharedPref.setInternetPhoneNumber(et_phonenumber.getText().toString());
 
                     Request_Internet request = new Request_Internet(packageId,
                             et_phonenumber.getText().toString(),

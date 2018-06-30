@@ -177,17 +177,39 @@ public class SharedPref {
 
     //endregion
 
-
     public static Boolean getHelpState() {
         return SharedPref.getInstance().mPreferences.getBoolean("help", false);
+    }
 
+    public static void setHelpState() {
+        SharedPref.getInstance().mPreferences.edit().putBoolean("help", true).apply();
+    }
+
+    public static String getChargePhoneNumber() {
+        return SharedPref.getInstance().mPreferences.getString("chargephonenumber", "");
 
     }
 
-    public static void setHelpState( ) {
+    public static void setChargePhoneNumber(String currencytype) {
+        SharedPref.getInstance().mPreferences.edit().putString("chargephonenumber", currencytype).apply();
+    }
 
+    public static String getInternetPhoneNumber() {
+        return SharedPref.getInstance().mPreferences.getString("internetphonenumber", "");
 
-        SharedPref.getInstance().mPreferences.edit().putBoolean("help", true).apply();
+    }
+
+    public static void setInternetPhoneNumber(String currencytype) {
+        SharedPref.getInstance().mPreferences.edit().putString("internetphonenumber", currencytype).apply();
+    }
+
+    public static String getBillPhoneNumber() {
+        return SharedPref.getInstance().mPreferences.getString("billphonenumber", "");
+
+    }
+
+    public static void setBillPhoneNumber(String currencytype) {
+        SharedPref.getInstance().mPreferences.edit().putString("billphonenumber", currencytype).apply();
     }
 
 }

@@ -33,6 +33,7 @@ import ir.zarjame.haftrang.NetworkServices.ApiHandler;
 import ir.zarjame.haftrang.R;
 import ir.zarjame.haftrang.Tools.BillUtils;
 import ir.zarjame.haftrang.Tools.PublicTools;
+import ir.zarjame.haftrang.Tools.SharedPref;
 
 
 public class BillConfirmFragment extends DialogFragment {
@@ -97,8 +98,14 @@ public class BillConfirmFragment extends DialogFragment {
 
         billid = getArguments().getString("billId");
         payid = getArguments().getString("payId");
-//        mobileno = getArguments().getString("mobileNo");
 
+        String numberFromCache = SharedPref.getBillPhoneNumber();
+
+
+        if (numberFromCache != null && !numberFromCache.equals(""))
+            et_phonenumber.setText(numberFromCache);
+        else
+            et_phonenumber.setText("");
     }
 
 
@@ -121,6 +128,7 @@ public class BillConfirmFragment extends DialogFragment {
 
                 if (validation()) {
 
+                    SharedPref.setBillPhoneNumber(et_phonenumber.getText().toString());
 
                     Request_Bill request = new Request_Bill(billid,
                             payid,
