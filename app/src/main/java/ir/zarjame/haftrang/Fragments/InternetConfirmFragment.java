@@ -95,13 +95,7 @@ public class InternetConfirmFragment extends DialogFragment {
         packagePrice = getArguments().getString("packageprice");
 
 
-        String numberFromCache = SharedPref.getInternetPhoneNumber();
 
-
-        if (numberFromCache != null && !numberFromCache.equals(""))
-            et_phonenumber.setText(numberFromCache);
-        else
-            et_phonenumber.setText("");
 
     }
 
@@ -109,7 +103,13 @@ public class InternetConfirmFragment extends DialogFragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        String numberFromCache = SharedPref.getInternetPhoneNumber();
 
+
+        if (numberFromCache != null && !numberFromCache.equals(""))
+            et_phonenumber.setText(numberFromCache);
+        else
+            et_phonenumber.setText("");
         tv_desc.setText(packageDesc);
 
         tv_amount.setText(PublicTools.getThousandSeperated(packagePrice) + " تومان");

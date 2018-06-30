@@ -99,6 +99,13 @@ public class BillConfirmFragment extends DialogFragment {
         billid = getArguments().getString("billId");
         payid = getArguments().getString("payId");
 
+
+    }
+
+
+    @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
         String numberFromCache = SharedPref.getBillPhoneNumber();
 
 
@@ -106,13 +113,6 @@ public class BillConfirmFragment extends DialogFragment {
             et_phonenumber.setText(numberFromCache);
         else
             et_phonenumber.setText("");
-    }
-
-
-    @Override
-    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-
         tv_billId.setText(billid);
         tv_payId.setText(payid);
         tv_amount.setText(PublicTools.getThousandSeperated(String.valueOf(BillUtils.getAmount(payid))) + " ریال");

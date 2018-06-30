@@ -116,13 +116,6 @@ public class ChargeConfirmFragment extends DialogFragment {
         operator = getArguments().getString("selectedoperator");
         persianOperator = getArguments().getString("selectedoperator_persian");
 
-        String numberFromCache = SharedPref.getChargePhoneNumber();
-
-
-        if (numberFromCache != null && !numberFromCache.equals(""))
-            et_mobile.setText(numberFromCache);
-        else
-            et_mobile.setText("");
 
     }
 
@@ -150,7 +143,19 @@ public class ChargeConfirmFragment extends DialogFragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        et_mobile.requestFocus();
+
+        String numberFromCache = SharedPref.getChargePhoneNumber();
+
+
+        if (numberFromCache != null && !numberFromCache.equals("")) {
+            et_mobile.setText(numberFromCache);
+
+
+        } else {
+            et_mobile.setText("");
+            et_mobile.requestFocus();
+        }
+
 
         if (operator.equals(IRANCELL.getStringValueEnglish())) {
             ll_irancelPriceHolder.setVisibility(View.VISIBLE);
