@@ -29,6 +29,7 @@ import ir.zarjame.haftrang.Activity.FlightActivity;
 import ir.zarjame.haftrang.Activity.GoodsActivity;
 import ir.zarjame.haftrang.Activity.InternetActivity;
 import ir.zarjame.haftrang.Activity.MainActivity;
+import ir.zarjame.haftrang.Activity.WebViewActivity;
 import ir.zarjame.haftrang.Adapters.CatLevel1CategoriesAdapter;
 import ir.zarjame.haftrang.Dialog.EstelamPhoneBillDialog;
 import ir.zarjame.haftrang.Models.Responses.Response_Categories;
@@ -133,7 +134,6 @@ public class CatLevel1CategoriesFragment extends Fragment {
                     }
 
 
-
                 }
         }
         CatLevel1CategoriesAdapter categories_level_1Adapter = new CatLevel1CategoriesAdapter(temp, toolbar_bg_color, getActivity(), new CatLevel1CategoriesAdapter.OnItemClickListener() {
@@ -141,60 +141,78 @@ public class CatLevel1CategoriesFragment extends Fragment {
             public void onItemClick(Response_Categories item, int position) {
 
                 if (item.getIsenabled().equals("1")) {
-                    int cat_id = Integer.parseInt(item.getCat_id());
 
-                    if (0 < cat_id && cat_id < 1000) {
 
-                        Intent intent = new Intent(getActivity(), GoodsActivity.class);
-                        intent.putExtra("cat_id", cat_id);
-                        intent.putExtra("toolbar_title", item.getPersian_title());
-                        intent.putExtra("bg_color", toolbar_bg_color);
-                        startActivity(intent);
+                    if (!item.getUrl().equals("")) {
 
-                    } else if (cat_id == 2007) {
-
-                        Intent intent = new Intent(getActivity(), BusActivity.class);
-                        intent.putExtra("toolbar_title", item.getPersian_title());
-                        intent.putExtra("bg_color", toolbar_bg_color);
-                        startActivity(intent);
-
-                    } else if (cat_id == 2001) {
-
-                        Intent intent = new Intent(getActivity(), FlightActivity.class);
-                        intent.putExtra("toolbar_title", item.getPersian_title());
-                        intent.putExtra("bg_color", toolbar_bg_color);
-                        startActivity(intent);
-
-                    } else if (cat_id == 2004) {
-
-                        EstelamPhoneBillDialog dialog = new EstelamPhoneBillDialog(getActivity(), toolbar_bg_color, item.getPersian_title());
-                        dialog.show();
-
-                    } else if (cat_id == 5001) {
-
-                        Intent intent = new Intent(getActivity(), ChargeActivity.class);
+                        Intent intent = new Intent(getActivity(), WebViewActivity.class);
                         intent.putExtra("bg_color", item.getBg_color());
                         intent.putExtra("toolbar_title", item.getPersian_title());
-                        intent.putExtra("bg_color", toolbar_bg_color);
+                        intent.putExtra("url", item.getUrl());
                         startActivity(intent);
 
-                    } else if (cat_id == 5002) {
+                    } else
 
-                        Intent intent = new Intent(getActivity(), BillActivity.class);
-                        intent.putExtra("bg_color", item.getBg_color());
-                        intent.putExtra("toolbar_title", item.getPersian_title());
-                        intent.putExtra("bg_color", toolbar_bg_color);
-                        startActivity(intent);
+                    {
 
-                    } else if (cat_id == 5003) {
+                        int cat_id = Integer.parseInt(item.getCat_id());
 
-                        Intent intent = new Intent(getActivity(), InternetActivity.class);
-                        intent.putExtra("bg_color", item.getBg_color());
-                        intent.putExtra("toolbar_title", item.getPersian_title());
-                        intent.putExtra("bg_color", toolbar_bg_color);
-                        startActivity(intent);
+                        if (0 < cat_id && cat_id < 1000) {
+
+                            Intent intent = new Intent(getActivity(), GoodsActivity.class);
+                            intent.putExtra("cat_id", cat_id);
+                            intent.putExtra("toolbar_title", item.getPersian_title());
+                            intent.putExtra("bg_color", toolbar_bg_color);
+                            startActivity(intent);
+
+                        } else if (cat_id == 2007) {
+
+                            Intent intent = new Intent(getActivity(), BusActivity.class);
+                            intent.putExtra("toolbar_title", item.getPersian_title());
+                            intent.putExtra("bg_color", toolbar_bg_color);
+                            startActivity(intent);
+
+                        } else if (cat_id == 2001) {
+
+                            Intent intent = new Intent(getActivity(), FlightActivity.class);
+                            intent.putExtra("toolbar_title", item.getPersian_title());
+                            intent.putExtra("bg_color", toolbar_bg_color);
+                            startActivity(intent);
+
+                        } else if (cat_id == 2004) {
+
+                            EstelamPhoneBillDialog dialog = new EstelamPhoneBillDialog(getActivity(), toolbar_bg_color, item.getPersian_title());
+                            dialog.show();
+
+                        } else if (cat_id == 5001) {
+
+                            Intent intent = new Intent(getActivity(), ChargeActivity.class);
+                            intent.putExtra("bg_color", item.getBg_color());
+                            intent.putExtra("toolbar_title", item.getPersian_title());
+                            intent.putExtra("bg_color", toolbar_bg_color);
+                            startActivity(intent);
+
+                        } else if (cat_id == 5002) {
+
+                            Intent intent = new Intent(getActivity(), BillActivity.class);
+                            intent.putExtra("bg_color", item.getBg_color());
+                            intent.putExtra("toolbar_title", item.getPersian_title());
+                            intent.putExtra("bg_color", toolbar_bg_color);
+                            startActivity(intent);
+
+                        } else if (cat_id == 5003) {
+
+                            Intent intent = new Intent(getActivity(), InternetActivity.class);
+                            intent.putExtra("bg_color", item.getBg_color());
+                            intent.putExtra("toolbar_title", item.getPersian_title());
+                            intent.putExtra("bg_color", toolbar_bg_color);
+                            startActivity(intent);
+
+                        }
+
 
                     }
+
 
                 } else {
 
