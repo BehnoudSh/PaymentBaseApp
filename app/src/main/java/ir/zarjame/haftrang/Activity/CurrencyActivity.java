@@ -1,5 +1,6 @@
 package ir.zarjame.haftrang.Activity;
 
+import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.support.design.widget.FloatingActionButton;
@@ -11,6 +12,9 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.getkeepsafe.taptargetview.TapTarget;
+import com.getkeepsafe.taptargetview.TapTargetView;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -30,7 +34,11 @@ import ir.zarjame.haftrang.NetworkServices.ApiHandler;
 import ir.zarjame.haftrang.R;
 import ir.zarjame.haftrang.Tools.PublicTools;
 import ir.zarjame.haftrang.Tools.ScreenUtils;
+import ir.zarjame.haftrang.Tools.TypeFaceUtil;
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
+
+import static ir.zarjame.haftrang.Tools.SharedPref.getHelpState;
+import static ir.zarjame.haftrang.Tools.SharedPref.setHelpState;
 
 public class CurrencyActivity extends AppCompatActivity {
 
@@ -75,6 +83,35 @@ public class CurrencyActivity extends AppCompatActivity {
             });
         }
     }
+
+    void showHelp(Activity activity, View view, String title, String description) {
+
+        TypeFaceUtil typeface = new TypeFaceUtil(activity);
+
+        TapTargetView.showFor(activity,
+                TapTarget.forView(view, title, description)
+                        .outerCircleColor(R.color.transparent_black_hex_1)      // Specify a color for the outer circle
+                        .outerCircleAlpha(0.85f)            // Specify the alpha amount for the outer circle
+                        .targetCircleColor(R.color.air_force_blue)   // Specify a color for the target circle
+                        .titleTextSize(20)                  // Specify the size (in sp) of the title text
+                        .titleTextColor(R.color.red_error)      // Specify the color of the title text
+                        .descriptionTextSize(12)            // Specify the size (in sp) of the description text
+                        .textColor(R.color.white)            // Specify a color for both the title and description text
+                        .textTypeface(typeface.getSansFont())  // Specify a typeface for the text
+                        .dimColor(R.color.black)            // If set, will dim behind the view with 30% opacity of the given color
+                        .drawShadow(true)                   // Whether to draw a drop shadow or not
+                        .cancelable(false)                  // Whether tapping outside the outer circle dismisses the view
+                        .transparentTarget(true)           // Specify whether the target is transparent (displays the content underneath)
+                        .targetRadius(60),                  // Specify the target radius (in dp)
+                new TapTargetView.Listener() {          // The listener can listen for regular clicks, long clicks or cancels
+                    @Override
+                    public void onTargetClick(TapTargetView view) {
+                        super.onTargetClick(view);      // This call is optional
+                        setHelpState();
+                    }
+                });
+    }
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -122,50 +159,56 @@ public class CurrencyActivity extends AppCompatActivity {
 
                     }
 
-                    map.get(key).add(data);
+                    if (data.getPrice() != null && !data.getPrice().equals("0"))
+                        map.get(key).add(data);
                 }
 
                 for (List<Response_Inquiry_Data> group : map.values()) {
 
-                    View groupView = CurrencyActivity.this.getLayoutInflater().inflate(R.layout.activity_currency_groups, null);
+                    if (group.size() > 0) {
+                        View groupView = CurrencyActivity.this.getLayoutInflater().inflate(R.layout.activity_currency_groups, null);
 
-                    LinearLayout linear = (LinearLayout) groupView.findViewById(R.id.parent);
-                    TextView groupTitle = (TextView) groupView.findViewById(R.id.tv_activity_currency_groups_title);
-                    TextView groupUnit = (TextView) groupView.findViewById(R.id.tv_activity_currency_groups_unitName);
+                        LinearLayout linear = (LinearLayout) groupView.findViewById(R.id.parent);
+                        TextView groupTitle = (TextView) groupView.findViewById(R.id.tv_activity_currency_groups_title);
+                        TextView groupUnit = (TextView) groupView.findViewById(R.id.tv_activity_currency_groups_unitName);
 
-                    int currentGroup = 0;
+                        int currentGroup = 0;
 
-                    for (Response_Inquiry_Data item : group) {
+                        for (Response_Inquiry_Data item : group) {
 
-                        View layout = CurrencyActivity.this.getLayoutInflater().inflate(R.layout.item_currency_group, null);
 
-                        ((TextView) (layout.findViewById(R.id.tv_item_currency_group_price))).setText(item.getPrice());
-                        ((TextView) (layout.findViewById(R.id.tv_item_currency_group_title))).setText(item.getName());
+                            View layout = CurrencyActivity.this.getLayoutInflater().inflate(R.layout.item_currency_group, null);
 
-                        currentGroup = item.getGroup();
+                            ((TextView) (layout.findViewById(R.id.tv_item_currency_group_price))).setText(item.getPrice());
+                            ((TextView) (layout.findViewById(R.id.tv_item_currency_group_title))).setText(item.getName());
 
-                        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-                        params.setMargins((int) ScreenUtils.convertDpToPixel(5, CurrencyActivity.this),
-                                (int) ScreenUtils.convertDpToPixel(5, CurrencyActivity.this),
-                                (int) ScreenUtils.convertDpToPixel(5, CurrencyActivity.this),
-                                (int) ScreenUtils.convertDpToPixel(5, CurrencyActivity.this));
-                        linear.setLayoutParams(params);
-                        linear.addView(layout);
+                            currentGroup = item.getGroup();
 
-                    }
+                            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+                            params.setMargins((int) ScreenUtils.convertDpToPixel(5, CurrencyActivity.this),
+                                    (int) ScreenUtils.convertDpToPixel(5, CurrencyActivity.this),
+                                    (int) ScreenUtils.convertDpToPixel(5, CurrencyActivity.this),
+                                    (int) ScreenUtils.convertDpToPixel(5, CurrencyActivity.this));
+                            linear.setLayoutParams(params);
+                            linear.addView(layout);
 
-                    for (Response_Inquiry_Data_Group groupSpec : response.getData_group()
-                            ) {
 
-                        if (groupSpec != null) {
-                            if (groupSpec.getGroup() == currentGroup) {
-                                groupTitle.setText(groupSpec.getGroup_title());
-                                groupUnit.setText("واحد: " + groupSpec.getGroup_currency());
+                        }
+
+                        for (Response_Inquiry_Data_Group groupSpec : response.getData_group()
+                                ) {
+
+                            if (groupSpec != null) {
+                                if (groupSpec.getGroup() == currentGroup) {
+                                    groupTitle.setText(groupSpec.getGroup_title());
+                                    groupUnit.setText("واحد: " + groupSpec.getGroup_currency());
+                                }
                             }
                         }
+
+                        parent.addView(linear);
                     }
 
-                    parent.addView(linear);
 
                 }
             }
@@ -178,5 +221,10 @@ public class CurrencyActivity extends AppCompatActivity {
                 alarmDialog.show();
             }
         });
+
+
+        if (!getHelpState())
+            showHelp(CurrencyActivity.this, fab, "مدیریت خبرهای ما", "در طلا و ارز و بلیط اتوبوس و پرواز می‌تونید از ما بخواهید که خبرتون کنیم! در صفحه مربوطه حتما یه نگاهی بهش بیندازید.");
+
     }
 }
