@@ -47,15 +47,50 @@
 
         </ScrollView>
 
-
         <android.support.design.widget.FloatingActionButton
             android:id="@+id/fab"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
-            android:layout_margin="@dimen/default_gap"
+            android:layout_margin="@dimen/small_gap"
             android:src="@drawable/notification"
             app:fabSize="normal" />
+
+        <RelativeLayout
+            android:id="@+id/rl_activity_currency_bottomHelp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="@dimen/large_gap"
+            android:background="@color/white_smoke"
+            android:padding="@dimen/small_gap"
+            android:visibility="gone">
+
+            <ImageView
+                android:id="@+id/iv_activity_currency_closeHelp"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:padding="@dimen/small_gap"
+                android:src="@drawable/cancel"
+                android:tint="@color/red_error" />
+
+            <TextView
+                android:id="@+id/tv_activity_currency_help"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toLeftOf="@+id/iv_activity_currency_closeHelp"
+                android:ellipsize="marquee"
+                android:gravity="center_vertical"
+                android:marqueeRepeatLimit="-1"
+                android:singleLine="true"
+                android:text="می‌تونید از ما بخواهید در مورد قیمت ارز و تغییرات اون، سریعا به شما خبر بدیم! با کلیک بر روی دکمه‌ی روبرو می‌تونید انتخاب کنید هر وقت قیمت یورو شد ۵ هزار تومان ما خبرتون کنیم!"
+                android:textColor="@color/black" />
+
+
+        </RelativeLayout>
 
 
     </RelativeLayout>

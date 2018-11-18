@@ -3,24 +3,24 @@ package ir.zarjame.haftrang.Activity;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.getkeepsafe.taptargetview.TapTarget;
-import com.getkeepsafe.taptargetview.TapTargetView;
+import com.daimajia.androidanimations.library.Techniques;
+import com.daimajia.androidanimations.library.YoYo;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -37,8 +37,6 @@ import ir.zarjame.haftrang.Tools.ScreenUtils;
 import ir.zarjame.haftrang.Tools.TypeFaceUtil;
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
-import static ir.zarjame.haftrang.Tools.SharedPref.getHelpState;
-import static ir.zarjame.haftrang.Tools.SharedPref.setHelpState;
 
 public class CurrencyActivity extends AppCompatActivity {
 
@@ -63,6 +61,15 @@ public class CurrencyActivity extends AppCompatActivity {
     @BindView(R.id.datelastupdated)
     TextView tv_datelastupdated;
 
+    @BindView(R.id.rl_activity_currency_bottomHelp)
+    RelativeLayout rl_bottomHelp;
+
+    @BindView(R.id.tv_activity_currency_help)
+    TextView tv_help;
+
+    @BindView(R.id.iv_activity_currency_closeHelp)
+    ImageView iv_closeHelp;
+
 
     List<Response_Inquiry_Data> currencyList;
 
@@ -84,33 +91,33 @@ public class CurrencyActivity extends AppCompatActivity {
         }
     }
 
-    void showHelp(Activity activity, View view, String title, String description) {
-
-        TypeFaceUtil typeface = new TypeFaceUtil(activity);
-
-        TapTargetView.showFor(activity,
-                TapTarget.forView(view, title, description)
-                        .outerCircleColor(R.color.transparent_black_hex_1)      // Specify a color for the outer circle
-                        .outerCircleAlpha(0.85f)            // Specify the alpha amount for the outer circle
-                        .targetCircleColor(R.color.air_force_blue)   // Specify a color for the target circle
-                        .titleTextSize(20)                  // Specify the size (in sp) of the title text
-                        .titleTextColor(R.color.red_error)      // Specify the color of the title text
-                        .descriptionTextSize(12)            // Specify the size (in sp) of the description text
-                        .textColor(R.color.white)            // Specify a color for both the title and description text
-                        .textTypeface(typeface.getSansFont())  // Specify a typeface for the text
-                        .dimColor(R.color.black)            // If set, will dim behind the view with 30% opacity of the given color
-                        .drawShadow(true)                   // Whether to draw a drop shadow or not
-                        .cancelable(false)                  // Whether tapping outside the outer circle dismisses the view
-                        .transparentTarget(true)           // Specify whether the target is transparent (displays the content underneath)
-                        .targetRadius(60),                  // Specify the target radius (in dp)
-                new TapTargetView.Listener() {          // The listener can listen for regular clicks, long clicks or cancels
-                    @Override
-                    public void onTargetClick(TapTargetView view) {
-                        super.onTargetClick(view);      // This call is optional
-                        setHelpState();
-                    }
-                });
-    }
+//    void showHelp(Activity activity, View view, String title, String description) {
+//
+//        TypeFaceUtil typeface = new TypeFaceUtil(activity);
+//
+//        TapTargetView.showFor(activity,
+//                TapTarget.forView(view, title, description)
+//                        .outerCircleColor(R.color.transparent_black_hex_1)      // Specify a color for the outer circle
+//                        .outerCircleAlpha(0.85f)            // Specify the alpha amount for the outer circle
+//                        .targetCircleColor(R.color.air_force_blue)   // Specify a color for the target circle
+//                        .titleTextSize(20)                  // Specify the size (in sp) of the title text
+//                        .titleTextColor(R.color.red_error)      // Specify the color of the title text
+//                        .descriptionTextSize(12)            // Specify the size (in sp) of the description text
+//                        .textColor(R.color.white)            // Specify a color for both the title and description text
+//                        .textTypeface(typeface.getSansFont())  // Specify a typeface for the text
+//                        .dimColor(R.color.black)            // If set, will dim behind the view with 30% opacity of the given color
+//                        .drawShadow(true)                   // Whether to draw a drop shadow or not
+//                        .cancelable(false)                  // Whether tapping outside the outer circle dismisses the view
+//                        .transparentTarget(true)           // Specify whether the target is transparent (displays the content underneath)
+//                        .targetRadius(60),                  // Specify the target radius (in dp)
+//                new TapTargetView.Listener() {          // The listener can listen for regular clicks, long clicks or cancels
+//                    @Override
+//                    public void onTargetClick(TapTargetView view) {
+//                        super.onTargetClick(view);      // This call is optional
+//                        setHelpState();
+//                    }
+//                });
+//    }
 
 
     @Override
@@ -211,6 +218,24 @@ public class CurrencyActivity extends AppCompatActivity {
 
 
                 }
+
+
+                rl_bottomHelp.setVisibility(View.VISIBLE);
+                YoYo.with(Techniques.SlideInLeft)
+                        .duration(2000)
+                        .playOn(rl_bottomHelp);
+                tv_help.setSelected(true);
+                iv_closeHelp.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        YoYo.with(Techniques.SlideOutLeft)
+                                .duration(1000)
+                                .playOn(rl_bottomHelp);
+                        rl_bottomHelp.setVisibility(View.GONE);
+
+                    }
+                });
+
             }
         });
 
@@ -223,8 +248,8 @@ public class CurrencyActivity extends AppCompatActivity {
         });
 
 
-        if (!getHelpState())
-            showHelp(CurrencyActivity.this, fab, "مدیریت خبرهای ما", "در طلا و ارز و بلیط اتوبوس و پرواز می‌تونید از ما بخواهید که خبرتون کنیم! در صفحه مربوطه حتما یه نگاهی بهش بیندازید.");
+//        if (!getHelpState())
+//            showHelp(CurrencyActivity.this, fab, "خبر قیمت ارز از ما", "می‌تونید از اینجا از ما بخواهید در مورد قیمت ارز و تغییرات اون، سریعا به شما خبر بدیم!");
 
     }
 }

@@ -177,13 +177,13 @@ public class SharedPref {
 
     //endregion
 
-    public static Boolean getHelpState() {
-        return SharedPref.getInstance().mPreferences.getBoolean("help", false);
-    }
-
-    public static void setHelpState() {
-        SharedPref.getInstance().mPreferences.edit().putBoolean("help", true).apply();
-    }
+//    public static Boolean getHelpState() {
+//        return SharedPref.getInstance().mPreferences.getBoolean("help", false);
+//    }
+//
+//    public static void setHelpState() {
+//        SharedPref.getInstance().mPreferences.edit().putBoolean("help", true).apply();
+//    }
 
     public static String getChargePhoneNumber() {
         return SharedPref.getInstance().mPreferences.getString("chargephonenumber", "");
