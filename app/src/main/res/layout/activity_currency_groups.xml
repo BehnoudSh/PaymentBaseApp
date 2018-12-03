@@ -7,15 +7,35 @@
     android:background="@drawable/bg_currency_groups"
     android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/tv_activity_currency_groups_title"
+
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:padding="@dimen/default_gap"
-        android:textColor="@color/gray_dolphin"
-        android:textSize="@dimen/default_txt_size"
-        android:textStyle="bold" />
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/tv_activity_currency_groups_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:gravity="center"
+            android:padding="@dimen/default_gap"
+            android:textColor="@color/gray_dolphin"
+            android:textSize="@dimen/default_txt_size"
+            android:textStyle="bold" />
+
+
+        <ImageView
+            android:id="@+id/sharecurrency"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_alignParentLeft="true"
+            android:layout_margin="@dimen/default_gap"
+            android:padding="@dimen/default_gap"
+            android:src="@drawable/share"
+            android:tint="@color/gray_dolphin" />
+
+    </RelativeLayout>
+
 
     <LinearLayout
         android:layout_width="match_parent"

@@ -114,7 +114,6 @@ public class CurrencyAlarmDialog extends Dialog {
         types.add("نوع بررسی را انتخاب کنید ...");
         types.add("بیشتر از");
         types.add("کمتر از");
-        types.add("برابر با");
         populateTypeSpinner(types);
 
         bt_startAlarm.setOnClickListener(new View.OnClickListener() {
@@ -163,7 +162,7 @@ public class CurrencyAlarmDialog extends Dialog {
 
                     }
 
-                    if (PublicVariables.alarm_selectedType.equals("برابر با")) {
+                   /* if (PublicVariables.alarm_selectedType.equals("برابر با")) {
 
                         if (Long.valueOf(selectedCurrency.getPrice().replace(",", "")) != PublicVariables.alarm_selectedAmount) {
 
@@ -174,19 +173,23 @@ public class CurrencyAlarmDialog extends Dialog {
 
                         }
 
-                    } else if (PublicVariables.alarm_selectedType.equals("بیشتر از")) {
+                    } else*/
+
+                    if (PublicVariables.alarm_selectedType.equals("بیشتر از")) {
                         if (Long.valueOf(selectedCurrency.getPrice().replace(",", "")) < PublicVariables.alarm_selectedAmount) {
-                            showAlarmDialog("در حال حاضر قیمت " + selectedCurrency.getName() + " کمتر از " + PublicTools.getThousandSeperated(PublicVariables.alarm_selectedAmount) + " ریال هست ولی ما پیوسته در حال بررسی قیمت هستیم و شما را مطلع خواهیم ساخت.");
+                            showAlarmDialog("ما پیوسته در حال بررسی قیمت هستیم و شما را مطلع خواهیم ساخت.");
 
                         } else {
-                            showAlarmDialog("در حال حاضر قیمت " + selectedCurrency.getName() + " بیشتر از " + PublicTools.getThousandSeperated(PublicVariables.alarm_selectedAmount) + " ریال هست.");
+                            showAlarmDialog("در حال حاضر قیمت " + selectedCurrency.getName() + " کمتر از " + PublicTools.getThousandSeperated(PublicVariables.alarm_selectedAmount) + " ریال هست ولی ما پیوسته در حال بررسی قیمت هستیم و شما را مطلع خواهیم ساخت.");
+
 
                         }
                     } else if (PublicVariables.alarm_selectedType.equals("کمتر از")) {
                         if (Long.valueOf(selectedCurrency.getPrice().replace(",", "")) > PublicVariables.alarm_selectedAmount) {
-                            showAlarmDialog("در حال حاضر قیمت " + selectedCurrency.getName() + " بیشتر از " + PublicTools.getThousandSeperated(PublicVariables.alarm_selectedAmount) + " ریال هست ولی ما پیوسته در حال بررسی قیمت هستیم و شما را مطلع خواهیم ساخت.");
+                            showAlarmDialog("ما پیوسته در حال بررسی قیمت هستیم و شما را مطلع خواهیم ساخت.");
+
                         } else {
-                            showAlarmDialog("در حال حاضر قیمت " + selectedCurrency.getName() + " کمتر از " + PublicTools.getThousandSeperated(PublicVariables.alarm_selectedAmount) + " ریال هست.");
+                            showAlarmDialog("در حال حاضر قیمت " + selectedCurrency.getName() + " بیشتر از " + PublicTools.getThousandSeperated(PublicVariables.alarm_selectedAmount) + " ریال هست ولی ما پیوسته در حال بررسی قیمت هستیم و شما را مطلع خواهیم ساخت.");
 
                         }
                     }
@@ -229,19 +232,27 @@ public class CurrencyAlarmDialog extends Dialog {
 
 
     void showAlarmDialog(final String message) {
-        AlertDialog _dialog = new AlertDialog.Builder(context)
-                .setMessage(message)
-                .setCancelable(true)
-                .setPositiveButton("باشه", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
+//        AlertDialog _dialog = new AlertDialog.Builder(context)
+//                .setMessage(message)
+//                .setCancelable(true)
+//
+//                .setPositiveButton("باشه", new DialogInterface.OnClickListener() {
+//                    @Override
+//                    public void onClick(DialogInterface dialog, int which) {
+//
+//                        dialog.dismiss();
+//
+//                    }
+//                })
+//
+//                .create();
+//        _dialog.show();
 
-                        dialog.dismiss();
 
-                    }
-                })
-                .create();
-        _dialog.show();
+        AlarmSelectedDialog dialog = new AlarmSelectedDialog(context, message);
+        dialog.show();
+
+
     }
 
 

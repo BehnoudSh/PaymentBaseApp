@@ -3,6 +3,7 @@ package ir.zarjame.haftrang.Activity;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
@@ -170,15 +171,15 @@ public class CurrencyActivity extends AppCompatActivity {
                         map.get(key).add(data);
                 }
 
-                for (List<Response_Inquiry_Data> group : map.values()) {
+                for (final List<Response_Inquiry_Data> group : map.values()) {
 
                     if (group.size() > 0) {
                         View groupView = CurrencyActivity.this.getLayoutInflater().inflate(R.layout.activity_currency_groups, null);
 
-                        LinearLayout linear = (LinearLayout) groupView.findViewById(R.id.parent);
+                        final LinearLayout linear = (LinearLayout) groupView.findViewById(R.id.parent);
                         TextView groupTitle = (TextView) groupView.findViewById(R.id.tv_activity_currency_groups_title);
                         TextView groupUnit = (TextView) groupView.findViewById(R.id.tv_activity_currency_groups_unitName);
-
+                        ImageView iv_share = (ImageView) groupView.findViewById(R.id.sharecurrency);
                         int currentGroup = 0;
 
                         for (Response_Inquiry_Data item : group) {
@@ -212,6 +213,28 @@ public class CurrencyActivity extends AppCompatActivity {
                                 }
                             }
                         }
+
+
+                        iv_share.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                String shareBody = "";
+
+                                for (Response_Inquiry_Data item : group) {
+
+                                    shareBody += item.getName() + ": " + item.getPrice();
+                                    shareBody += "\n";
+
+                                }
+
+
+                                Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
+                                sharingIntent.setType("text/plain");
+                                //sharingIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, "Subject Here");
+                                sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, shareBody);
+                                startActivity(Intent.createChooser(sharingIntent, "اشتراک‌گذاری اطلاعات با"));
+                            }
+                        });
 
                         parent.addView(linear);
                     }
