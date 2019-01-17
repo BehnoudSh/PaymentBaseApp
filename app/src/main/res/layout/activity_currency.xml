@@ -52,7 +52,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
-            android:layout_margin="@dimen/small_gap"
+            android:layout_margin="10dp"
             android:src="@drawable/notification"
             app:fabSize="normal" />
 
@@ -61,7 +61,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
-            android:layout_marginBottom="@dimen/large_gap"
+            android:layout_marginBottom="17dp"
             android:background="@color/white_smoke"
             android:padding="@dimen/small_gap"
             android:visibility="gone">
@@ -86,7 +86,7 @@
                 android:gravity="center_vertical"
                 android:marqueeRepeatLimit="-1"
                 android:singleLine="true"
-                android:text="می‌تونید از ما بخواهید در مورد قیمت ارز و تغییرات اون، سریعا به شما خبر بدیم! با کلیک بر روی دکمه‌ی روبرو می‌تونید انتخاب کنید هر وقت قیمت یورو شد ۵ هزار تومان ما خبرتون کنیم!"
+                android:text="                    با کلیک روی دکمه‌ی روبرو می‌تونید از تغییرات طلا و ارز با خبر بشید!"
                 android:textColor="@color/black" />
 
 

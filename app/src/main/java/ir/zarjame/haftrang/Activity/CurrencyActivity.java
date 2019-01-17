@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
@@ -151,7 +152,7 @@ public class CurrencyActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onGetInquirySucceeded(Response_Inquiry response) {
+            public void onGetInquirySucceeded(final Response_Inquiry response) {
 
                 currencyList = response.getData();
 
@@ -177,8 +178,8 @@ public class CurrencyActivity extends AppCompatActivity {
                         View groupView = CurrencyActivity.this.getLayoutInflater().inflate(R.layout.activity_currency_groups, null);
 
                         final LinearLayout linear = (LinearLayout) groupView.findViewById(R.id.parent);
-                        TextView groupTitle = (TextView) groupView.findViewById(R.id.tv_activity_currency_groups_title);
-                        TextView groupUnit = (TextView) groupView.findViewById(R.id.tv_activity_currency_groups_unitName);
+                        final TextView groupTitle = (TextView) groupView.findViewById(R.id.tv_activity_currency_groups_title);
+                        final TextView groupUnit = (TextView) groupView.findViewById(R.id.tv_activity_currency_groups_unitName);
                         ImageView iv_share = (ImageView) groupView.findViewById(R.id.sharecurrency);
                         int currentGroup = 0;
 
@@ -218,21 +219,11 @@ public class CurrencyActivity extends AppCompatActivity {
                         iv_share.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
-                                String shareBody = "";
 
-                                for (Response_Inquiry_Data item : group) {
-
-                                    shareBody += item.getName() + ": " + item.getPrice();
-                                    shareBody += "\n";
-
-                                }
-
-
-                                Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
-                                sharingIntent.setType("text/plain");
-                                //sharingIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, "Subject Here");
-                                sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, shareBody);
-                                startActivity(Intent.createChooser(sharingIntent, "اشتراک‌گذاری اطلاعات با"));
+                                shareCurrencyData(
+                                        groupTitle.getText().toString(),
+                                        groupUnit.getText().toString(),
+                                        group);
                             }
                         });
 
@@ -270,9 +261,39 @@ public class CurrencyActivity extends AppCompatActivity {
             }
         });
 
+    }
 
-//        if (!getHelpState())
-//            showHelp(CurrencyActivity.this, fab, "خبر قیمت ارز از ما", "می‌تونید از اینجا از ما بخواهید در مورد قیمت ارز و تغییرات اون، سریعا به شما خبر بدیم!");
+
+    void shareCurrencyData(String title, String unit, List<Response_Inquiry_Data> data) {
+
+        String shareBody = "";
+
+        shareBody += "* " + title + " *" + "\n";
+        shareBody += unit + "\n";
+        for (Response_Inquiry_Data item : data) {
+
+            shareBody += item.getName() + ": " + item.getPrice();
+
+            shareBody += "\n";
+
+        }
+        shareBody += "\n";
+        shareBody += "هفت‌رنگ دنیایی رو به رشد از سرویس‌های مورد نیاز هر ایرانی";
+        shareBody += "\n";
+
+
+        final String appPackageName = getPackageName();
+//        try {
+//            shareBody += "market://details?id=" + appPackageName;
+//        } catch (android.content.ActivityNotFoundException anfe) {
+
+        shareBody += "https://play.google.com/store/apps/details?id=" + appPackageName;
+        // }
+
+        Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
+        sharingIntent.setType("text/plain");
+        sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, shareBody);
+        startActivity(Intent.createChooser(sharingIntent, "اشتراک‌گذاری اطلاعات با"));
 
     }
 }
