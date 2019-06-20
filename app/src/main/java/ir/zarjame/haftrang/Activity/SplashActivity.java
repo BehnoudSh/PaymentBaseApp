@@ -164,7 +164,7 @@ public class SplashActivity extends AppCompatActivity {
                                     _dialogForceUpdate = makeCafeBazaarDialog(response.getUpdate_url());
                                     _dialogForceUpdate.show();
                                 } else {
-                                    Intent i = new Intent(SplashActivity.this, MainActivity.class);
+                                    Intent i = new Intent(SplashActivity.this, MainActivity2.class);
                                     i.putExtra("daily_quote", response.getQuote());
                                     startActivity(i);
                                     finish();

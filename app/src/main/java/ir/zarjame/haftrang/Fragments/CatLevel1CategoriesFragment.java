@@ -223,7 +223,6 @@ public class CatLevel1CategoriesFragment extends Fragment {
 
         });
 
-
         rv_categoriesList.setLayoutManager(mLayoutManager);
         rv_categoriesList.setItemAnimator(new DefaultItemAnimator());
         rv_categoriesList.setAdapter(categories_level_1Adapter);
@@ -231,6 +230,7 @@ public class CatLevel1CategoriesFragment extends Fragment {
         rv_categoriesList.setItemViewCacheSize(200);
         rv_categoriesList.setDrawingCacheEnabled(true);
         rv_categoriesList.setDrawingCacheQuality(View.DRAWING_CACHE_QUALITY_LOW);
+
 
 
     }
