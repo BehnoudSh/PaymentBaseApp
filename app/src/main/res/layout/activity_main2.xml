@@ -1,82 +1,97 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/backrepeat"
-    android:orientation="vertical"
     tools:context=".Activity.MainActivity2">
 
     <include
         android:id="@+id/activity_main_toolbar"
         layout="@layout/toolbar" />
 
-    <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    <ImageView
+        android:id="@+id/bgbgbg"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_gravity="center"
-        android:layout_margin="@dimen/default_gap"
-        android:layout_weight="1"
-        android:id="@+id/chargeHolder"
-        app:cardBackgroundColor="#ebebeb"
-        android:background="@drawable/bg_rounded_color1"
-        card_view:cardCornerRadius="4dp">
+        android:layout_height="match_parent"
+        android:layout_below="@+id/activity_main_toolbar"
+        android:scaleType="centerCrop" />
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/activity_main_toolbar"
+        android:orientation="vertical">
 
-        <LinearLayout
+        <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/chargeHolder"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="horizontal"
-            android:padding="@dimen/small_gap">
+            android:layout_height="0dp"
+            android:layout_gravity="center"
+            android:layout_margin="@dimen/large_gap"
+            android:layout_weight="1"
+            android:background="@drawable/bg_rounded_color1"
+            app:cardBackgroundColor="@color/transparent_white_hex_13"
+            card_view:cardCornerRadius="4dp">
+
 
             <LinearLayout
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="1">
-
-                <ImageView
-
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:scaleType="fitCenter"
-                    android:src="@drawable/sharj" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="3">
-
+                android:orientation="horizontal"
+                android:padding="@dimen/small_gap">
 
                 <LinearLayout
-                    android:layout_width="match_parent"
+                    android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:orientation="vertical">
+                    android:layout_weight="1">
 
+                    <ImageView
 
-                    <TextView
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="@dimen/small_gap"
-                        android:gravity="center_vertical"
-                        android:padding="@dimen/small_gap"
-                        android:text="خرید شارژ"
+                        android:layout_height="match_parent"
+                        android:scaleType="fitCenter"
+                        android:src="@drawable/sharj" />
 
-                        android:textColor="@color/gray_dolphin"
-                        android:textSize="@dimen/medium_text_size"
-                        android:textStyle="bold" />
+                </LinearLayout>
 
-                    <TextView
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="3">
+
+
+                    <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="@dimen/default_gap"
-                        android:layout_marginBottom="@dimen/small_gap"
-                        android:gravity="center_vertical"
-                        android:text="خرید شارژ برای اپراتورهای ایرانسل، همراه اول و رایتل"
-                        android:textColor="@color/transparent_black_hex_7"
-                        android:textSize="@dimen/normal_txt_size" />
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="@dimen/small_gap"
+                            android:gravity="center_vertical"
+                            android:padding="@dimen/small_gap"
+                            android:text="خرید شارژ"
+
+                            android:textColor="@color/gray_dolphin"
+                            android:textSize="@dimen/medium_text_size"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="@dimen/default_gap"
+                            android:layout_marginBottom="@dimen/small_gap"
+                            android:gravity="center_vertical"
+                            android:text="خرید شارژ برای اپراتورهای ایرانسل، همراه اول و رایتل"
+                            android:textColor="@color/transparent_black_hex_7"
+                            android:textSize="@dimen/normal_txt_size" />
+
+                    </LinearLayout>
+
 
                 </LinearLayout>
 
@@ -84,162 +99,160 @@
             </LinearLayout>
 
 
-        </LinearLayout>
+        </android.support.v7.widget.CardView>
 
-
-    </android.support.v7.widget.CardView>
-
-    <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_gravity="center"
-        android:layout_margin="@dimen/default_gap"
-        android:layout_weight="1"
-        android:id="@+id/internetHolder"
-        android:background="@drawable/bg_rounded_color2"
-
-        app:cardBackgroundColor="#ebebeb"
-        card_view:cardCornerRadius="4dp">
-
-        <LinearLayout
+        <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/internetHolder"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="horizontal"
-            android:padding="@dimen/small_gap">
+            android:layout_height="0dp"
+            android:layout_gravity="center"
+            android:layout_margin="@dimen/large_gap"
+            android:layout_weight="1"
+            android:background="@drawable/bg_rounded_color2"
+
+            app:cardBackgroundColor="@color/transparent_white_hex_13"
+            card_view:cardCornerRadius="4dp">
 
             <LinearLayout
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="1">
-
-                <ImageView
-
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:scaleType="fitCenter"
-                    android:src="@drawable/internet" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="3">
-
+                android:orientation="horizontal"
+                android:padding="@dimen/small_gap">
 
                 <LinearLayout
-                    android:layout_width="match_parent"
+                    android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:orientation="vertical">
+                    android:layout_weight="1">
 
+                    <ImageView
 
-                    <TextView
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="@dimen/small_gap"
-                        android:gravity="center_vertical"
-                        android:padding="@dimen/small_gap"
-                        android:text="خرید بسته‌ی اینترنت"
+                        android:layout_height="match_parent"
+                        android:scaleType="fitCenter"
+                        android:src="@drawable/internet" />
 
-                        android:textColor="@color/gray_dolphin"
-                        android:textSize="@dimen/medium_text_size"
-                        android:textStyle="bold" />
+                </LinearLayout>
 
-                    <TextView
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="3">
+
+
+                    <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="@dimen/default_gap"
-                        android:layout_marginBottom="@dimen/small_gap"
-                        android:gravity="center_vertical"
-                        android:text="خرید انواع بسته‌های اینترنت ایرانسل"
-                        android:textColor="@color/transparent_black_hex_7"
-                        android:textSize="@dimen/normal_txt_size" />
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="@dimen/small_gap"
+                            android:gravity="center_vertical"
+                            android:padding="@dimen/small_gap"
+                            android:text="خرید بسته‌ی اینترنت"
+
+                            android:textColor="@color/gray_dolphin"
+                            android:textSize="@dimen/medium_text_size"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="@dimen/default_gap"
+                            android:layout_marginBottom="@dimen/small_gap"
+                            android:gravity="center_vertical"
+                            android:text="خرید انواع بسته‌های اینترنت ایرانسل"
+                            android:textColor="@color/transparent_black_hex_7"
+                            android:textSize="@dimen/normal_txt_size" />
+
+                    </LinearLayout>
+
 
                 </LinearLayout>
 
 
             </LinearLayout>
 
+        </android.support.v7.widget.CardView>
 
-        </LinearLayout>
-
-    </android.support.v7.widget.CardView>
-
-    <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:foreground="?android:attr/selectableItemBackground"
-        android:clickable="true"
-        android:id="@+id/ghabzHolder"
-        android:layout_gravity="center"
-        android:layout_margin="@dimen/default_gap"
-        android:layout_weight="1"
-        app:cardBackgroundColor="#ebebeb"
-        card_view:cardCornerRadius="4dp">
-
-        <LinearLayout
+        <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/ghabzHolder"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="horizontal"
-            android:padding="@dimen/small_gap">
+            android:layout_height="0dp"
+            android:layout_gravity="center"
+            android:layout_margin="@dimen/large_gap"
+            android:layout_weight="1"
+            android:clickable="true"
+            android:foreground="?android:attr/selectableItemBackground"
+            app:cardBackgroundColor="@color/transparent_white_hex_13"
+            card_view:cardCornerRadius="4dp">
 
             <LinearLayout
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="1">
-
-                <ImageView
-
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:scaleType="fitCenter"
-                    android:src="@drawable/ghabz" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="3">
-
+                android:orientation="horizontal"
+                android:padding="@dimen/small_gap">
 
                 <LinearLayout
-                    android:layout_width="match_parent"
+                    android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:orientation="vertical">
+                    android:layout_weight="1">
 
+                    <ImageView
 
-                    <TextView
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="@dimen/small_gap"
-                        android:gravity="center_vertical"
-                        android:padding="@dimen/small_gap"
-                        android:text="پرداخت قبض"
+                        android:layout_height="match_parent"
+                        android:scaleType="fitCenter"
+                        android:src="@drawable/ghabz" />
 
-                        android:textColor="@color/gray_dolphin"
-                        android:textSize="@dimen/medium_text_size"
-                        android:textStyle="bold" />
+                </LinearLayout>
 
-                    <TextView
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="3">
+
+
+                    <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="@dimen/default_gap"
-                        android:layout_marginBottom="@dimen/small_gap"
-                        android:gravity="center_vertical"
-                        android:text="پرداخت انواع قبوض خدماتی"
-                        android:textColor="@color/transparent_black_hex_7"
-                        android:textSize="@dimen/normal_txt_size" />
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="@dimen/small_gap"
+                            android:gravity="center_vertical"
+                            android:padding="@dimen/small_gap"
+                            android:text="پرداخت قبض"
+
+                            android:textColor="@color/gray_dolphin"
+                            android:textSize="@dimen/medium_text_size"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="@dimen/default_gap"
+                            android:layout_marginBottom="@dimen/small_gap"
+                            android:gravity="center_vertical"
+                            android:text="پرداخت انواع قبوض خدماتی"
+                            android:textColor="@color/transparent_black_hex_7"
+                            android:textSize="@dimen/normal_txt_size" />
+
+                    </LinearLayout>
+
 
                 </LinearLayout>
 
 
             </LinearLayout>
 
-
-        </LinearLayout>
-
-    </android.support.v7.widget.CardView>
+        </android.support.v7.widget.CardView>
+    </LinearLayout>
 
 
-</LinearLayout>
+</RelativeLayout>

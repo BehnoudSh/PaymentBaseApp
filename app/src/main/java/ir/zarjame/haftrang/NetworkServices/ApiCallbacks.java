@@ -8,6 +8,7 @@ import ir.zarjame.haftrang.Models.Responses.Response_Categories;
 import ir.zarjame.haftrang.Models.Responses.Response_ChargeReseller;
 import ir.zarjame.haftrang.Models.Responses.Response_Config;
 import ir.zarjame.haftrang.Models.Responses.Response_FlightCity;
+import ir.zarjame.haftrang.Models.Responses.Response_Image;
 import ir.zarjame.haftrang.Models.Responses.Response_Inquiry;
 import ir.zarjame.haftrang.Models.Responses.Response_Others;
 import ir.zarjame.haftrang.Models.Responses.Response_PhoneBill;
@@ -139,5 +140,13 @@ public class ApiCallbacks {
 
 
     }
+    public interface imageInterface {
 
+
+        void ongetImageFailed();
+
+        void ongetImageSucceeded(Response_Image response);
+
+
+    }
 }

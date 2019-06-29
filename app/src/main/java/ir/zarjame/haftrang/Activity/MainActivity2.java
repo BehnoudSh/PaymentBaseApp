@@ -13,6 +13,12 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
+
+import ir.zarjame.haftrang.Models.Responses.Response_Image;
+import ir.zarjame.haftrang.NetworkServices.ApiCallbacks;
+import ir.zarjame.haftrang.NetworkServices.ApiHandler;
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 import butterknife.ButterKnife;
 
@@ -45,6 +51,9 @@ public class MainActivity2 extends AppCompatActivity {
     @BindView(R.id.internetHolder)
     CardView internetHolder;
 
+    @BindView(R.id.bgbgbg)
+    ImageView bgbgbg;
+
     Animation.AnimationListener listener;
 
     @Override
@@ -58,6 +67,29 @@ public class MainActivity2 extends AppCompatActivity {
         setContentView(R.layout.activity_main2);
         ButterKnife.bind(this);
         setupactionbar();
+//        ApiHandler.getImage(this, new ApiCallbacks.imageInterface() {
+//            @Override
+//            public void ongetImageFailed() {
+//
+//            }
+//
+//            @Override
+//            public void ongetImageSucceeded(Response_Image response) {
+//
+//
+//                RequestOptions requestOptions = new RequestOptions();
+//                requestOptions.placeholder(0);
+//                requestOptions.fitCenter();
+//
+//                Glide.with(MainActivity2.this)
+//                        .applyDefaultRequestOptions(requestOptions)
+//                        .load(response.getUrls().getRegular())
+//                        .apply(requestOptions)
+//                        .into(bgbgbg);
+//
+//
+//            }
+//        });
 
         listener = new Animation.AnimationListener() {
             @Override

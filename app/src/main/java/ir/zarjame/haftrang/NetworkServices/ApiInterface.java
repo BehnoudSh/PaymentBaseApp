@@ -16,6 +16,7 @@ import ir.zarjame.haftrang.Models.Responses.Response_Categories;
 import ir.zarjame.haftrang.Models.Responses.Response_ChargeReseller;
 import ir.zarjame.haftrang.Models.Responses.Response_Config;
 import ir.zarjame.haftrang.Models.Responses.Response_FlightCity;
+import ir.zarjame.haftrang.Models.Responses.Response_Image;
 import ir.zarjame.haftrang.Models.Responses.Response_Inquiry;
 import ir.zarjame.haftrang.Models.Responses.Response_Others;
 import ir.zarjame.haftrang.Models.Responses.Response_PhoneBill;
@@ -88,6 +89,11 @@ public interface ApiInterface {
 
     @GET("initializeData")
     Call<Response_initializedata> chargeResellerGoods();
+
+
+
+//    @GET("https://api.unsplash.com/photos/random?client_id=c853b64f7cc38d64c361fa6b99203d4a00d16562bf6ed0c8d5dfc8da542da882")
+//    Call<Response_Image> getUnsplashImage();
 
 
 }

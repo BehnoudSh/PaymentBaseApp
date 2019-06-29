@@ -17,6 +17,7 @@ import ir.zarjame.haftrang.Models.Responses.Response_Categories;
 import ir.zarjame.haftrang.Models.Responses.Response_ChargeReseller;
 import ir.zarjame.haftrang.Models.Responses.Response_Config;
 import ir.zarjame.haftrang.Models.Responses.Response_FlightCity;
+import ir.zarjame.haftrang.Models.Responses.Response_Image;
 import ir.zarjame.haftrang.Models.Responses.Response_Inquiry;
 import ir.zarjame.haftrang.Models.Responses.Response_Others;
 import ir.zarjame.haftrang.Models.Responses.Response_PhoneBill;
@@ -398,5 +399,26 @@ public class ApiHandler {
             }
         });
     }
+
+
+//    public static void getImage(Context context, final ApiCallbacks.imageInterface callback) {
+//        Retrofit retrofit = ApiClient.getClient(context);
+//        ApiInterface api = retrofit.create(ApiInterface.class);
+//        Call<Response_Image> call = api.getUnsplashImage();
+//        call.enqueue(new Callback<Response_Image>() {
+//            @Override
+//            public void onResponse(Call<Response_Image> call, Response<Response_Image> response) {
+//                callback.ongetImageSucceeded(response.body());
+//            }
+//
+//            @Override
+//            public void onFailure(Call<Response_Image> call, Throwable t) {
+//                callback.ongetImageFailed();
+//            }
+//        });
+//
+//
+//    }
+
 
 }
