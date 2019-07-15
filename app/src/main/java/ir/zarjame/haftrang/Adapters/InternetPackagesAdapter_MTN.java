@@ -8,13 +8,9 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.request.RequestOptions;
-
 import java.util.List;
 
 import ir.zarjame.haftrang.Models.Responses.Response_Internet_FinalPackage;
-import ir.zarjame.haftrang.Models.Responses.Response_Others_Result;
 import ir.zarjame.haftrang.R;
 import ir.zarjame.haftrang.Tools.PublicTools;
 
@@ -22,14 +18,14 @@ import ir.zarjame.haftrang.Tools.PublicTools;
  * Created by tinabehnoud on 8/4/17.
  */
 
-public class InternetPackagesAdapter extends RecyclerView.Adapter<InternetPackagesAdapter.MyViewHolder> {
+public class InternetPackagesAdapter_MTN extends RecyclerView.Adapter<InternetPackagesAdapter_MTN.MyViewHolder> {
 
 
     private List<Response_Internet_FinalPackage> categoriesList;
     private Context context;
     OnItemClickListener clickListener;
 
-    public InternetPackagesAdapter(List<Response_Internet_FinalPackage> categoriesList, Context context, OnItemClickListener listener) {
+    public InternetPackagesAdapter_MTN(List<Response_Internet_FinalPackage> categoriesList, Context context, OnItemClickListener listener) {
         this.categoriesList = categoriesList;
         this.context = context;
         this.clickListener = listener;
@@ -39,7 +35,7 @@ public class InternetPackagesAdapter extends RecyclerView.Adapter<InternetPackag
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
         View itemView = LayoutInflater.from(viewGroup.getContext())
-                .inflate(R.layout.item_internetpackage, viewGroup, false);
+                .inflate(R.layout.item_internetpackage_mtn, viewGroup, false);
 
         return new MyViewHolder(itemView);
     }
@@ -79,7 +75,7 @@ public class InternetPackagesAdapter extends RecyclerView.Adapter<InternetPackag
         }
 
 
-        public void bind(final Response_Internet_FinalPackage item, final InternetPackagesAdapter.OnItemClickListener listener) {
+        public void bind(final Response_Internet_FinalPackage item, final InternetPackagesAdapter_MTN.OnItemClickListener listener) {
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override

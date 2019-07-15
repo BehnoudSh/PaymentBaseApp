@@ -101,7 +101,9 @@ public class ChargeActivity extends AppCompatActivity {
     void setupactionbar(int bg_color, String toolbar_title) {
         {
             tv_actionbar_title.setText(toolbar_title);
-            toolbar.setBackgroundColor(bg_color);
+//            toolbar.setBackgroundColor(bg_color);
+            toolbar.setBackgroundColor(getResources().getColor(R.color.transparent_black_percent_60));
+
             iv_actionbar_back.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

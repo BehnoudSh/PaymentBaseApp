@@ -92,8 +92,5 @@ public interface ApiInterface {
 
 
 
-//    @GET("https://api.unsplash.com/photos/random?client_id=c853b64f7cc38d64c361fa6b99203d4a00d16562bf6ed0c8d5dfc8da542da882")
-//    Call<Response_Image> getUnsplashImage();
-
 
 }

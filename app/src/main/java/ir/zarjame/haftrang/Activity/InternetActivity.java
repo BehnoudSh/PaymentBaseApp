@@ -15,9 +15,9 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import ir.zarjame.haftrang.Fragments.ChargeCategoriesFragment;
-import ir.zarjame.haftrang.Fragments.InternetPackageFragment;
-import ir.zarjame.haftrang.Models.Operators;
+import ir.zarjame.haftrang.Fragments.InternetPackageFragment_MCI;
+import ir.zarjame.haftrang.Fragments.InternetPackageFragment_MTN;
+import ir.zarjame.haftrang.Fragments.InternetPackageFragment_RTL;
 import ir.zarjame.haftrang.Models.Responses.Response_Internet_FinalPackage;
 import ir.zarjame.haftrang.Models.Responses.Response_initializedata;
 import ir.zarjame.haftrang.NetworkServices.ApiCallbacks;
@@ -43,17 +43,35 @@ public class InternetActivity extends AppCompatActivity {
     Response_initializedata allPackages;
 
     @BindView(R.id.card_view_irancell_roozane)
-    CardView roozane;
+    CardView mtn_roozane;
     @BindView(R.id.card_view_irancell_haftegi)
-    CardView haftegi;
+    CardView mtn_haftegi;
     @BindView(R.id.card_view_irancell_mahane)
-    CardView mahane;
+    CardView mtn_mahane;
     @BindView(R.id.card_view_irancell_shegeftangiz)
-    CardView shgeftangiz;
+    CardView mtn_shgeftangiz;
     @BindView(R.id.card_view_irancell_saati)
-    CardView saati;
+    CardView mtn_saati;
     @BindView(R.id.card_view_irancell_tdlte)
-    CardView tdlte;
+    CardView mtn_tdlte;
+
+    @BindView(R.id.card_view_mci_haftegi)
+    CardView mci_haftegi;
+
+    @BindView(R.id.card_view_mci_mahane)
+    CardView mci_mahane;
+
+    @BindView(R.id.card_view_mci_roozane)
+    CardView mci_roozane;
+
+    @BindView(R.id.card_view_rtl_haftegi)
+    CardView rtl_haftegi;
+
+    @BindView(R.id.card_view_rtl_mahane)
+    CardView rtl_mahane;
+
+    @BindView(R.id.card_view_rtl_roozane)
+    CardView rtl_roozane;
 
     @Override
     protected void attachBaseContext(Context newBase) {
@@ -74,61 +92,94 @@ public class InternetActivity extends AppCompatActivity {
 
         getInternetAvailablePackages();
 
-
-        roozane.setOnClickListener(new View.OnClickListener() {
+        mtn_roozane.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 List<Response_Internet_FinalPackage> list = allPackages.getProducts().getInternetPackage().getMtn().getRoozane();
-                addFragment(list);
+                addFragment_mtn(list);
             }
         });
-        haftegi.setOnClickListener(new View.OnClickListener() {
+        mtn_haftegi.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 List<Response_Internet_FinalPackage> list = allPackages.getProducts().getInternetPackage().getMtn().getHaftegi();
-                addFragment(list);
-
-
+                addFragment_mtn(list);
             }
         });
-        mahane.setOnClickListener(new View.OnClickListener() {
+        mtn_mahane.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 List<Response_Internet_FinalPackage> list = allPackages.getProducts().getInternetPackage().getMtn().getMahane();
-                addFragment(list);
-
-
+                addFragment_mtn(list);
             }
         });
-        shgeftangiz.setOnClickListener(new View.OnClickListener() {
+        mtn_shgeftangiz.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 List<Response_Internet_FinalPackage> list = allPackages.getProducts().getInternetPackage().getMtn().getShegeftangiz();
-                addFragment(list);
-
-
+                addFragment_mtn(list);
             }
         });
-        saati.setOnClickListener(new View.OnClickListener() {
+        mtn_saati.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 List<Response_Internet_FinalPackage> list = allPackages.getProducts().getInternetPackage().getMtn().getSaati();
-                addFragment(list);
-
-
+                addFragment_mtn(list);
             }
         });
-        tdlte.setOnClickListener(new View.OnClickListener() {
+        mtn_tdlte.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 List<Response_Internet_FinalPackage> list = allPackages.getProducts().getInternetPackage().getMtn().getTdlte();
-                addFragment(list);
-
-
+                addFragment_mtn(list);
             }
         });
 
 
+        mci_haftegi.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                List<Response_Internet_FinalPackage> list = allPackages.getProducts().getInternetPackage().getMci().getHaftegi();
+                addFragment_mci(list);
+            }
+        });
+        mci_roozane.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                List<Response_Internet_FinalPackage> list = allPackages.getProducts().getInternetPackage().getMci().getRoozane();
+                addFragment_mci(list);
+            }
+        });
+        mci_mahane.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                List<Response_Internet_FinalPackage> list = allPackages.getProducts().getInternetPackage().getMci().getMahane();
+                addFragment_mci(list);
+            }
+        });
+
+
+        rtl_haftegi.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                List<Response_Internet_FinalPackage> list = allPackages.getProducts().getInternetPackage().getRtl().getHaftegi();
+                addFragment_rtl(list);
+            }
+        });
+        rtl_mahane.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                List<Response_Internet_FinalPackage> list = allPackages.getProducts().getInternetPackage().getRtl().getMahane();
+                addFragment_rtl(list);
+            }
+        });
+        rtl_roozane.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                List<Response_Internet_FinalPackage> list = allPackages.getProducts().getInternetPackage().getRtl().getRoozane();
+                addFragment_rtl(list);
+            }
+        });
     }
 
     private void getInternetAvailablePackages() {
@@ -159,7 +210,9 @@ public class InternetActivity extends AppCompatActivity {
     void setupactionbar(int bg_color, String toolbar_title) {
         {
             tv_actionbar_title.setText(toolbar_title);
-            toolbar.setBackgroundColor(bg_color);
+            toolbar.setBackgroundColor(getResources().getColor(R.color.transparent_black_percent_60));
+
+//            toolbar.setBackgroundColor(bg_color);
             iv_actionbar_back.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -174,14 +227,38 @@ public class InternetActivity extends AppCompatActivity {
         }
     }
 
-    public void addFragment(List<Response_Internet_FinalPackage> internetpackages) {
+    public void addFragment_mtn(List<Response_Internet_FinalPackage> internetpackages) {
 
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
 
-        fragmentTransaction.add(R.id.fragmentholder, InternetPackageFragment.newInstance(internetpackages));
+        fragmentTransaction.add(R.id.fragmentholder, InternetPackageFragment_MTN.newInstance(internetpackages));
 
         fragmentTransaction.addToBackStack("internetcategoriesfragment");
 
         fragmentTransaction.commit();
     }
+
+
+    public void addFragment_mci(List<Response_Internet_FinalPackage> internetpackages) {
+
+        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+
+        fragmentTransaction.add(R.id.fragmentholder, InternetPackageFragment_MCI.newInstance(internetpackages));
+
+        fragmentTransaction.addToBackStack("internetcategoriesfragment");
+
+        fragmentTransaction.commit();
+    }
+
+    public void addFragment_rtl(List<Response_Internet_FinalPackage> internetpackages) {
+
+        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+
+        fragmentTransaction.add(R.id.fragmentholder, InternetPackageFragment_RTL.newInstance(internetpackages));
+
+        fragmentTransaction.addToBackStack("internetcategoriesfragment");
+
+        fragmentTransaction.commit();
+    }
+
 }

@@ -4,14 +4,13 @@ package ir.zarjame.haftrang.Fragments;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v7.widget.CardView;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import java.io.Serializable;
 import java.util.List;
@@ -19,19 +18,14 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
-import ir.zarjame.haftrang.Activity.ChargeActivity;
-import ir.zarjame.haftrang.Activity.GoodsActivity;
 import ir.zarjame.haftrang.Activity.InternetActivity;
-import ir.zarjame.haftrang.Adapters.GoodsAdapter;
-import ir.zarjame.haftrang.Adapters.InternetPackagesAdapter;
-import ir.zarjame.haftrang.Dialog.GoodsImageDialog;
-import ir.zarjame.haftrang.Models.Operators;
+import ir.zarjame.haftrang.Adapters.InternetPackagesAdapter_MCI;
+import ir.zarjame.haftrang.Adapters.InternetPackagesAdapter_MTN;
 import ir.zarjame.haftrang.Models.Responses.Response_Internet_FinalPackage;
-import ir.zarjame.haftrang.Models.Responses.Response_Others_Result;
 import ir.zarjame.haftrang.R;
 
 
-public class InternetPackageFragment extends Fragment {
+public class InternetPackageFragment_MCI extends Fragment {
 
     @BindView(R.id.rv_internetPackages)
     RecyclerView rv_internetPackages;
@@ -43,12 +37,12 @@ public class InternetPackageFragment extends Fragment {
     LinearLayoutManager mLayoutManager = new LinearLayoutManager(getActivity());
 
 
-    public InternetPackageFragment() {
+    public InternetPackageFragment_MCI() {
     }
 
-    public static InternetPackageFragment newInstance(List<Response_Internet_FinalPackage> packages) {
+    public static InternetPackageFragment_MCI newInstance(List<Response_Internet_FinalPackage> packages) {
 
-        InternetPackageFragment fragment = new InternetPackageFragment();
+        InternetPackageFragment_MCI fragment = new InternetPackageFragment_MCI();
         Bundle args = new Bundle();
         args.putSerializable("packages", (Serializable) packages);
         fragment.setArguments(args);
@@ -67,14 +61,19 @@ public class InternetPackageFragment extends Fragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        populateRecycler(packages);
+        if (packages != null) {
+            populateRecycler(packages);
+        } else {
+            getActivity().getSupportFragmentManager().popBackStack();
+            Toast.makeText(getActivity(), "در حال حاضر بسته‌ای موجود نیست", Toast.LENGTH_LONG).show();
+        }
     }
 
 
     void populateRecycler(List<Response_Internet_FinalPackage> packages) {
 
 
-        InternetPackagesAdapter adapter = new InternetPackagesAdapter(packages, getActivity(), new InternetPackagesAdapter.OnItemClickListener() {
+        InternetPackagesAdapter_MCI adapter = new InternetPackagesAdapter_MCI(packages, getActivity(), new InternetPackagesAdapter_MCI.OnItemClickListener() {
             @Override
             public void onItemClick(Response_Internet_FinalPackage item, int position) {
                 addFragment(item.getId(), item.getName(), item.getPrice());
