@@ -8,10 +8,12 @@ import android.os.Handler;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 
 import butterknife.ButterKnife;
+import ir.zarjame.haftrang.BuildConfig;
 import ir.zarjame.haftrang.Models.Responses.Response_Config;
 import ir.zarjame.haftrang.NetworkServices.ApiCallbacks;
 import ir.zarjame.haftrang.NetworkServices.ApiHandler;
@@ -143,9 +145,7 @@ public class SplashActivity extends AppCompatActivity {
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                ApiHandler.getConfig(SplashActivity.this, new ApiCallbacks.getConfigInterface()
-
-                        {
+                ApiHandler.getConfig(SplashActivity.this, new ApiCallbacks.getConfigInterface() {
                             @Override
                             public void onGetConfigFailed() {
                                 _dialogConfigError.show();
@@ -158,10 +158,15 @@ public class SplashActivity extends AppCompatActivity {
                                 PublicTools.charge_url = response.getCharge_url();
                                 PublicTools.internet_url = response.getInternet_url();
 
+                                //force update
+                                if (response.getForced_update() == 1 && BuildConfig.VERSION_CODE < response.getVersion_code()) {
+                                    _dialogForceUpdate = makeCafeBazaarDialog(response.getUpdate_url(), false, response);
+                                    _dialogForceUpdate.show();
+                                }
 
-                                if (response.getForced_update() == 1) {
-
-                                    _dialogForceUpdate = makeCafeBazaarDialog(response.getUpdate_url());
+                                //update ekhtiari
+                                else if (response.getForced_update() == 0 && BuildConfig.VERSION_CODE < response.getVersion_code()) {
+                                    _dialogForceUpdate = makeCafeBazaarDialog(response.getUpdate_url(), true, response);
                                     _dialogForceUpdate.show();
                                 } else {
                                     Intent i = new Intent(SplashActivity.this, MainActivity2.class);
@@ -179,22 +184,57 @@ public class SplashActivity extends AppCompatActivity {
 
     }
 
-    AlertDialog makeCafeBazaarDialog(final String url) {
+    //https://play.google.com/store/apps/details?id=ir.zarjame.haftrang&hl=en
+    //"http://cafebazaar.ir/app/?id=ir.zarjame.haftrang"
+    AlertDialog makeCafeBazaarDialog(final String url, final boolean isForceUpdate, final Response_Config response) {
+
+        String message = "";
+        if (!TextUtils.isEmpty(response.getChangelog())) {
+            message = "نسخه جدید هفت‌رنگ را دریافت نمایید" + "\n \n" + "تغییرات این نسخه:" + "\n" + response.getChangelog();
+        } else {
+            message = "نسخه جدید هفت‌رنگ را دریافت نمایید";
+
+        }
+
         AlertDialog _dialog = new AlertDialog.Builder(this)
-                .setMessage("نسخه جدید هفت‌رنگ را دریافت نمایید")
+                .setMessage(message)
                 .setCancelable(false)
-                .setPositiveButton("دریافت نسخه جدید", new DialogInterface.OnClickListener() {
+                .setPositiveButton("نسخه جدید هفت‌رنگ", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
+//                        Intent i = new Intent(Intent.ACTION_VIEW);
+//                        if (!TextUtils.isEmpty(response.getUpdate_url()))
+//                            i.setData(Uri.parse(url));
+//                        else
+//                            i.setData(Uri.parse("https://play.google.com/store/apps/details?id=ir.zarjame.haftrang&hl=en"));
+//                        startActivity(i);
 
 
-                        Intent i = new Intent(Intent.ACTION_VIEW);
-                        i.setData(Uri.parse("http://cafebazaar.ir/app/?id=ir.zarjame.haftrang"));
-                        startActivity(i);
+                        final String appPackageName = getPackageName();
+                        try {
+                            startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + appPackageName)));
+                        } catch (android.content.ActivityNotFoundException anfe) {
+                            startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=" + appPackageName)));
+                        }
+
 
                     }
                 })
+                .setNegativeButton("فعلا بیخیال", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        if (isForceUpdate) {
+                            Intent intent = new Intent(SplashActivity.this, MainActivity2.class);
+                            intent.putExtra("daily_quote", response.getQuote());
+                            startActivity(intent);
+                            finish();
+                        } else {
+                            finish();
+                        }
+                    }
+                })
                 .create();
+
         return _dialog;
     }
 
