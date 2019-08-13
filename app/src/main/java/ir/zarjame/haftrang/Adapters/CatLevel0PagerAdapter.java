@@ -277,10 +277,17 @@ public class CatLevel0PagerAdapter extends PagerAdapter {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
 
-                        String url = "http://cafebazaar.ir/app/?id=ir.zarjame.haftrang";
-                        Intent i = new Intent(Intent.ACTION_VIEW);
-                        i.setData(Uri.parse(url));
-                        _context.startActivity(i);
+//                        String url = "http://cafebazaar.ir/app/?id=ir.zarjame.haftrang";
+//                        Intent i = new Intent(Intent.ACTION_VIEW);
+//                        i.setData(Uri.parse(url));
+//                        _context.startActivity(i);
+
+                        final String appPackageName = _context.getPackageName();
+                        try {
+                            _context.startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + appPackageName)));
+                        } catch (android.content.ActivityNotFoundException anfe) {
+                            _context.startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=" + appPackageName)));
+                        }
 
                     }
                 })
