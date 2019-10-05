@@ -140,13 +140,10 @@ public class ApiHandler {
             }
         });
 
-
     }
 
 
-    public static void getBusCities(Context context, final ApiCallbacks.getBusCitiesInterface callback)
-
-    {
+    public static void getBusCities(Context context, final ApiCallbacks.getBusCitiesInterface callback) {
         Retrofit retrofit = ApiClient.getClient(context);
         ApiInterface api = retrofit.create(ApiInterface.class);
         Call<List<Response_BusCity>> call = api.getBusCities();
@@ -168,9 +165,7 @@ public class ApiHandler {
 
     }
 
-    public static void getFlightCities(Context context, final ApiCallbacks.getFlightCitiesInterface callback)
-
-    {
+    public static void getFlightCities(Context context, final ApiCallbacks.getFlightCitiesInterface callback) {
 
         Retrofit retrofit = ApiClient.getClient(context);
         ApiInterface api = retrofit.create(ApiInterface.class);
@@ -197,9 +192,7 @@ public class ApiHandler {
 
     }
 
-    public static void searchBuses(Context context, Request_SearchBuses request, final ApiCallbacks.searchBusesInterface callback)
-
-    {
+    public static void searchBuses(Context context, Request_SearchBuses request, final ApiCallbacks.searchBusesInterface callback) {
 
         Retrofit retrofit = ApiClient.getClient(context);
         ApiInterface api = retrofit.create(ApiInterface.class);
@@ -222,9 +215,7 @@ public class ApiHandler {
     }
 
 
-    public static void searchFlights(Context context, Request_SearchFlights request, final ApiCallbacks.searchFlightsInterface callback)
-
-    {
+    public static void searchFlights(Context context, Request_SearchFlights request, final ApiCallbacks.searchFlightsInterface callback) {
 
         Retrofit retrofit = ApiClient.getClient(context);
         ApiInterface api = retrofit.create(ApiInterface.class);

@@ -169,7 +169,7 @@ public class SplashActivity extends AppCompatActivity {
                                     _dialogForceUpdate = makeCafeBazaarDialog(response.getUpdate_url(), true, response);
                                     _dialogForceUpdate.show();
                                 } else {
-                                    Intent i = new Intent(SplashActivity.this, MainActivity2.class);
+                                    Intent i = new Intent(SplashActivity.this, MainActivity.class);
                                     i.putExtra("daily_quote", response.getQuote());
                                     startActivity(i);
                                     finish();
@@ -224,7 +224,7 @@ public class SplashActivity extends AppCompatActivity {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         if (isForceUpdate) {
-                            Intent intent = new Intent(SplashActivity.this, MainActivity2.class);
+                            Intent intent = new Intent(SplashActivity.this, MainActivity.class);
                             intent.putExtra("daily_quote", response.getQuote());
                             startActivity(intent);
                             finish();

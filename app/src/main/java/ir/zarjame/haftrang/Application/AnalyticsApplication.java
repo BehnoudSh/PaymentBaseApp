@@ -1,12 +1,13 @@
 package ir.zarjame.haftrang.Application;
 
 import android.app.Application;
+import android.support.multidex.MultiDexApplication;
 
 import ir.zarjame.haftrang.R;
 import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
 
 
-public class AnalyticsApplication extends Application {
+public class AnalyticsApplication extends MultiDexApplication {
 
 
     @Override

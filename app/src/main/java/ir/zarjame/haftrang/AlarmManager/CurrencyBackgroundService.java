@@ -62,51 +62,56 @@ public class CurrencyBackgroundService extends Service {
 
                 @Override
                 public void onGetInquirySucceeded(Response_Inquiry response) {
+                    if (response != null && response.getData() != null && response.getData().size() > 0) {
+                        for (Response_Inquiry_Data data : response.getData()) {
 
-                    for (Response_Inquiry_Data data : response.getData()) {
+                            if (data.getName().contains(getCurrencyName())) {
 
-                        if (data.getName().contains(getCurrencyName())) {
+                                Intent intent = new Intent(context, SplashActivity.class);
+                                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                                PendingIntent pendingIntent = PendingIntent.getActivity(context, 1410,
+                                        intent, PendingIntent.FLAG_ONE_SHOT);
 
-                            Intent intent = new Intent(context, SplashActivity.class);
-                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                            PendingIntent pendingIntent = PendingIntent.getActivity(context, 1410,
-                                    intent, PendingIntent.FLAG_ONE_SHOT);
+                                NotificationCompat.Builder notificationBuilder = new
+                                        NotificationCompat.Builder(context)
+                                        .setSmallIcon(R.mipmap.ic_launcher)
+                                        .setContentTitle(getCurrencyName())
+                                        .setContentText(data.getPrice().toString() + " ریال")
+                                        .setAutoCancel(true)
+                                        .setContentIntent(pendingIntent);
 
-                            NotificationCompat.Builder notificationBuilder = new
-                                    NotificationCompat.Builder(context)
-                                    .setSmallIcon(R.mipmap.ic_launcher)
-                                    .setContentTitle(getCurrencyName())
-                                    .setContentText(data.getPrice().toString() + " ریال")
-                                    .setAutoCancel(true)
-                                    .setContentIntent(pendingIntent);
-
-                            NotificationManager notificationManager =
-                                    (NotificationManager)
-                                            getSystemService(Context.NOTIFICATION_SERVICE);
-
-
-                            Uri alarmSound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
-                            notificationBuilder.setSound(alarmSound);
+                                NotificationManager notificationManager =
+                                        (NotificationManager)
+                                                getSystemService(Context.NOTIFICATION_SERVICE);
 
 
-                            if (getCurrencyType().equals("بیشتر از")) {
+                                Uri alarmSound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+                                notificationBuilder.setSound(alarmSound);
 
-                                if (Long.valueOf(data.getPrice().replace(",", "")) > getCurrencyAmount())
-                                    notificationManager.notify(1410, notificationBuilder.build());
 
-                            } else if (getCurrencyType().equals("کمتر از")) {
-                                if (Long.valueOf(data.getPrice().replace(",", "")) < getCurrencyAmount())
+                                if (getCurrencyType().equals("بیشتر از")) {
 
-                                    notificationManager.notify(1410, notificationBuilder.build());
+                                    if (Long.valueOf(data.getPrice().replace(",", "")) > getCurrencyAmount())
+                                        notificationManager.notify(1410, notificationBuilder.build());
 
-                            } else if (getCurrencyType().equals("برابر با")) {
-                                if (Long.valueOf(data.getPrice().replace(",", "")) == getCurrencyAmount())
+                                } else if (getCurrencyType().equals("کمتر از")) {
+                                    if (Long.valueOf(data.getPrice().replace(",", "")) < getCurrencyAmount())
 
-                                    notificationManager.notify(1402, notificationBuilder.build());
+                                        notificationManager.notify(1410, notificationBuilder.build());
 
+                                }
+
+
+//                            else if (getCurrencyType().equals("برابر با")) {
+//                                if (Long.valueOf(data.getPrice().replace(",", "")) == getCurrencyAmount())
+//
+//                                    notificationManager.notify(1402, notificationBuilder.build());
+//
+//                            }
                             }
                         }
                     }
+
                 }
             });
 
