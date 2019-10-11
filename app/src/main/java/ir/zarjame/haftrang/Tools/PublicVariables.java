@@ -23,5 +23,5 @@ public class PublicVariables {
 
     public static long alarm_selectedAmount = 0;
 
-    public static long AlarmInterval = 30 * 60 * 1000; //10 minutes
+    public static long AlarmInterval = 30 * 60 * 1000; //30 minutes
 }

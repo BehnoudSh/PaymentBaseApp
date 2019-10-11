@@ -5,13 +5,21 @@ package ir.zarjame.haftrang.AlarmManager;
  */
 
 import android.content.*;
+import android.os.Build;
 
 public class CurrencyAlarmReceiver extends BroadcastReceiver {
 
     @Override
     public void onReceive(Context context, Intent intent) {
-        Intent background = new Intent(context, CurrencyBackgroundService.class);
-        context.startService(background);
+//        Intent background = new Intent(context, CurrencyBackgroundService.class);
+//        context.startService(background);
+
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            context.startForegroundService(new Intent(context, CurrencyBackgroundService.class));
+        } else {
+            context.startService(new Intent(context, CurrencyBackgroundService.class));
+        }
     }
 
 }

@@ -42,6 +42,10 @@ public class CurrencyBackgroundService extends Service {
         this.backgroundThread = new Thread(myTask);
         SharedPref.getInstance().initSharedPref(this.context);
 
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            startForeground(1, new Notification());
+        }
+
     }
 
     private Runnable myTask = new Runnable() {
@@ -62,48 +66,72 @@ public class CurrencyBackgroundService extends Service {
 
                 @Override
                 public void onGetInquirySucceeded(Response_Inquiry response) {
+                    if (response != null && response.getData() != null && response.getData().size() > 0) {
+                        for (Response_Inquiry_Data data : response.getData()) {
 
-                    for (Response_Inquiry_Data data : response.getData()) {
+                            if (data.getName().contains(getCurrencyName())) {
 
-                        if (data.getName().contains(getCurrencyName())) {
+                                Intent intent = new Intent(context, SplashActivity.class);
+                                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                                PendingIntent pendingIntent = PendingIntent.getActivity(context, 1410,
+                                        intent, PendingIntent.FLAG_ONE_SHOT);
 
-                            Intent intent = new Intent(context, SplashActivity.class);
-                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                            PendingIntent pendingIntent = PendingIntent.getActivity(context, 1410,
-                                    intent, PendingIntent.FLAG_ONE_SHOT);
+                                NotificationCompat.Builder notificationBuilder;
+                                NotificationManager notificationManager = null;
+                                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
 
-                            NotificationCompat.Builder notificationBuilder = new
-                                    NotificationCompat.Builder(context)
-                                    .setSmallIcon(R.mipmap.ic_launcher)
-                                    .setContentTitle(getCurrencyName())
-                                    .setContentText(data.getPrice().toString() + " ریال")
-                                    .setAutoCancel(true)
-                                    .setContentIntent(pendingIntent);
+                                    // Sets an ID for the notification, so it can be updated.
+                                    int notifyID = 1;
+                                    String CHANNEL_ID = "my_channel_01";// The id of the channel.
+                                    CharSequence name = getString(R.string.app_name);// The user-visible name of the channel.
+                                    int importance = NotificationManager.IMPORTANCE_HIGH;
+                                    NotificationChannel mChannel = new NotificationChannel(CHANNEL_ID, name, importance);
+                                    notificationBuilder = new
+                                            NotificationCompat.Builder(context)
+                                            .setSmallIcon(R.mipmap.ic_launcher)
+                                            .setContentTitle(getCurrencyName())
+                                            .setContentText(data.getPrice().toString() + " ریال")
+                                            .setAutoCancel(true)
+                                            .setChannelId(CHANNEL_ID)
+                                            .setContentIntent(pendingIntent);
 
-                            NotificationManager notificationManager =
-                                    (NotificationManager)
-                                            getSystemService(Context.NOTIFICATION_SERVICE);
+                                    notificationManager =
+                                            (NotificationManager)
+                                                    getSystemService(Context.NOTIFICATION_SERVICE);
 
 
-                            Uri alarmSound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
-                            notificationBuilder.setSound(alarmSound);
+                                    notificationManager.createNotificationChannel(mChannel);
+                                } else {
+                                    notificationBuilder = new
+                                            NotificationCompat.Builder(context)
+                                            .setSmallIcon(R.mipmap.ic_launcher)
+                                            .setContentTitle(getCurrencyName())
+                                            .setContentText(data.getPrice().toString() + " ریال")
+                                            .setAutoCancel(true)
+                                            .setContentIntent(pendingIntent);
+
+                                    notificationManager =
+                                            (NotificationManager)
+                                                    getSystemService(Context.NOTIFICATION_SERVICE);
+
+                                }
 
 
-                            if (getCurrencyType().equals("بیشتر از")) {
+                                Uri alarmSound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+                                notificationBuilder.setSound(alarmSound);
 
-                                if (Long.valueOf(data.getPrice().replace(",", "")) > getCurrencyAmount())
-                                    notificationManager.notify(1410, notificationBuilder.build());
 
-                            } else if (getCurrencyType().equals("کمتر از")) {
-                                if (Long.valueOf(data.getPrice().replace(",", "")) < getCurrencyAmount())
+                                if (getCurrencyType().equals("بیشتر از")) {
 
-                                    notificationManager.notify(1410, notificationBuilder.build());
+                                    if (Long.valueOf(data.getPrice().replace(",", "")) > getCurrencyAmount())
+                                        notificationManager.notify(1410, notificationBuilder.build());
 
-                            } else if (getCurrencyType().equals("برابر با")) {
-                                if (Long.valueOf(data.getPrice().replace(",", "")) == getCurrencyAmount())
+                                } else if (getCurrencyType().equals("کمتر از")) {
+                                    if (Long.valueOf(data.getPrice().replace(",", "")) < getCurrencyAmount())
 
-                                    notificationManager.notify(1402, notificationBuilder.build());
+                                        notificationManager.notify(1410, notificationBuilder.build());
 
+                                }
                             }
                         }
                     }
@@ -111,6 +139,7 @@ public class CurrencyBackgroundService extends Service {
             });
 
             stopSelf();
+
         }
     };
 

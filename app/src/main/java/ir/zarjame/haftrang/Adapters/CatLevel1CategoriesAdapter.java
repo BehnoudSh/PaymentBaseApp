@@ -132,10 +132,17 @@ public class CatLevel1CategoriesAdapter extends RecyclerView.Adapter<CatLevel1Ca
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
 
-                        String url = "http://cafebazaar.ir/app/?id=ir.zarjame.haftrang";
-                        Intent i = new Intent(Intent.ACTION_VIEW);
-                        i.setData(Uri.parse(url));
-                        context.startActivity(i);
+//                        String url = "http://cafebazaar.ir/app/?id=ir.zarjame.haftrang";
+//                        Intent i = new Intent(Intent.ACTION_VIEW);
+//                        i.setData(Uri.parse(url));
+//                        context.startActivity(i);
+
+                        final String appPackageName = context.getPackageName();
+                        try {
+                            context.startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + appPackageName)));
+                        } catch (android.content.ActivityNotFoundException anfe) {
+                            context.startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=" + appPackageName)));
+                        }
 
                     }
                 })

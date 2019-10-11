@@ -104,7 +104,7 @@ public class CurrencyAlarmDialog extends Dialog {
         ArrayList<String> currencyListString = new ArrayList<>();
         currencyListString.add("طلا یا ارز را انتخاب کنید ...");
         for (Response_Inquiry_Data item : this.currencyList
-                ) {
+        ) {
 
             currencyListString.add(item.getName());
         }
@@ -180,7 +180,7 @@ public class CurrencyAlarmDialog extends Dialog {
                             showAlarmDialog("ما پیوسته در حال بررسی قیمت هستیم و شما را مطلع خواهیم ساخت.");
 
                         } else {
-                            showAlarmDialog("در حال حاضر قیمت " + selectedCurrency.getName() + " کمتر از " + PublicTools.getThousandSeperated(PublicVariables.alarm_selectedAmount) + " ریال هست ولی ما پیوسته در حال بررسی قیمت هستیم و شما را مطلع خواهیم ساخت.");
+                            showAlarmDialog("در حال حاضر قیمت " + selectedCurrency.getName() + " بیشتر از " + PublicTools.getThousandSeperated(PublicVariables.alarm_selectedAmount) + " ریال هست ولی ما پیوسته در حال بررسی قیمت هستیم و شما را مطلع خواهیم ساخت.");
 
 
                         }
@@ -189,7 +189,7 @@ public class CurrencyAlarmDialog extends Dialog {
                             showAlarmDialog("ما پیوسته در حال بررسی قیمت هستیم و شما را مطلع خواهیم ساخت.");
 
                         } else {
-                            showAlarmDialog("در حال حاضر قیمت " + selectedCurrency.getName() + " بیشتر از " + PublicTools.getThousandSeperated(PublicVariables.alarm_selectedAmount) + " ریال هست ولی ما پیوسته در حال بررسی قیمت هستیم و شما را مطلع خواهیم ساخت.");
+                            showAlarmDialog("در حال حاضر قیمت " + selectedCurrency.getName() + " کمتر از " + PublicTools.getThousandSeperated(PublicVariables.alarm_selectedAmount) + " ریال هست ولی ما پیوسته در حال بررسی قیمت هستیم و شما را مطلع خواهیم ساخت.");
 
                         }
                     }

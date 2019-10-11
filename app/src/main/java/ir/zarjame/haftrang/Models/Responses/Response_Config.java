@@ -10,11 +10,14 @@ import java.io.Serializable;
 
 public class Response_Config implements Serializable {
 
-    @SerializedName("enabled")
-    private int enabled;
+//    @SerializedName("enabled")
+//    private int enabled;
 
     @SerializedName("version_code")
     private int version_code;
+
+    @SerializedName("changelog")
+    private String changelog;
 
     @SerializedName("forced_update")
     private int forced_update;
@@ -34,9 +37,9 @@ public class Response_Config implements Serializable {
     @SerializedName("internet_url")
     private String internet_url;
 
-    public Response_Config(int enabled, int version_code, int forced_update, String update_url, String quote, String bill_url, String charge_url, String internet_url) {
-        this.enabled = enabled;
+    public Response_Config(int version_code, String changelog, int forced_update, String update_url, String quote, String bill_url, String charge_url, String internet_url) {
         this.version_code = version_code;
+        this.changelog = changelog;
         this.forced_update = forced_update;
         this.update_url = update_url;
         this.quote = quote;
@@ -45,45 +48,20 @@ public class Response_Config implements Serializable {
         this.internet_url = internet_url;
     }
 
-
-    public String getBill_url() {
-        return bill_url;
-    }
-
-    public void setBill_url(String bill_url) {
-        this.bill_url = bill_url;
-    }
-
-    public String getCharge_url() {
-        return charge_url;
-    }
-
-    public void setCharge_url(String charge_url) {
-        this.charge_url = charge_url;
-    }
-
-    public String getInternet_url() {
-        return internet_url;
-    }
-
-    public void setInternet_url(String internet_url) {
-        this.internet_url = internet_url;
-    }
-
-    public int getEnabled() {
-        return enabled;
-    }
-
-    public void setEnabled(int enabled) {
-        this.enabled = enabled;
-    }
-
     public int getVersion_code() {
         return version_code;
     }
 
     public void setVersion_code(int version_code) {
         this.version_code = version_code;
+    }
+
+    public String getChangelog() {
+        return changelog;
+    }
+
+    public void setChangelog(String changelog) {
+        this.changelog = changelog;
     }
 
     public int getForced_update() {
@@ -108,5 +86,29 @@ public class Response_Config implements Serializable {
 
     public void setQuote(String quote) {
         this.quote = quote;
+    }
+
+    public String getBill_url() {
+        return bill_url;
+    }
+
+    public void setBill_url(String bill_url) {
+        this.bill_url = bill_url;
+    }
+
+    public String getCharge_url() {
+        return charge_url;
+    }
+
+    public void setCharge_url(String charge_url) {
+        this.charge_url = charge_url;
+    }
+
+    public String getInternet_url() {
+        return internet_url;
+    }
+
+    public void setInternet_url(String internet_url) {
+        this.internet_url = internet_url;
     }
 }
