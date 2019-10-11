@@ -42,6 +42,10 @@ public class CurrencyBackgroundService extends Service {
         this.backgroundThread = new Thread(myTask);
         SharedPref.getInstance().initSharedPref(this.context);
 
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            startForeground(1, new Notification());
+        }
+
     }
 
     private Runnable myTask = new Runnable() {
@@ -72,17 +76,45 @@ public class CurrencyBackgroundService extends Service {
                                 PendingIntent pendingIntent = PendingIntent.getActivity(context, 1410,
                                         intent, PendingIntent.FLAG_ONE_SHOT);
 
-                                NotificationCompat.Builder notificationBuilder = new
-                                        NotificationCompat.Builder(context)
-                                        .setSmallIcon(R.mipmap.ic_launcher)
-                                        .setContentTitle(getCurrencyName())
-                                        .setContentText(data.getPrice().toString() + " ریال")
-                                        .setAutoCancel(true)
-                                        .setContentIntent(pendingIntent);
+                                NotificationCompat.Builder notificationBuilder;
+                                NotificationManager notificationManager = null;
+                                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
 
-                                NotificationManager notificationManager =
-                                        (NotificationManager)
-                                                getSystemService(Context.NOTIFICATION_SERVICE);
+                                    // Sets an ID for the notification, so it can be updated.
+                                    int notifyID = 1;
+                                    String CHANNEL_ID = "my_channel_01";// The id of the channel.
+                                    CharSequence name = getString(R.string.app_name);// The user-visible name of the channel.
+                                    int importance = NotificationManager.IMPORTANCE_HIGH;
+                                    NotificationChannel mChannel = new NotificationChannel(CHANNEL_ID, name, importance);
+                                    notificationBuilder = new
+                                            NotificationCompat.Builder(context)
+                                            .setSmallIcon(R.mipmap.ic_launcher)
+                                            .setContentTitle(getCurrencyName())
+                                            .setContentText(data.getPrice().toString() + " ریال")
+                                            .setAutoCancel(true)
+                                            .setChannelId(CHANNEL_ID)
+                                            .setContentIntent(pendingIntent);
+
+                                    notificationManager =
+                                            (NotificationManager)
+                                                    getSystemService(Context.NOTIFICATION_SERVICE);
+
+
+                                    notificationManager.createNotificationChannel(mChannel);
+                                } else {
+                                    notificationBuilder = new
+                                            NotificationCompat.Builder(context)
+                                            .setSmallIcon(R.mipmap.ic_launcher)
+                                            .setContentTitle(getCurrencyName())
+                                            .setContentText(data.getPrice().toString() + " ریال")
+                                            .setAutoCancel(true)
+                                            .setContentIntent(pendingIntent);
+
+                                    notificationManager =
+                                            (NotificationManager)
+                                                    getSystemService(Context.NOTIFICATION_SERVICE);
+
+                                }
 
 
                                 Uri alarmSound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
@@ -100,22 +132,14 @@ public class CurrencyBackgroundService extends Service {
                                         notificationManager.notify(1410, notificationBuilder.build());
 
                                 }
-
-
-//                            else if (getCurrencyType().equals("برابر با")) {
-//                                if (Long.valueOf(data.getPrice().replace(",", "")) == getCurrencyAmount())
-//
-//                                    notificationManager.notify(1402, notificationBuilder.build());
-//
-//                            }
                             }
                         }
                     }
-
                 }
             });
 
             stopSelf();
+
         }
     };
 
