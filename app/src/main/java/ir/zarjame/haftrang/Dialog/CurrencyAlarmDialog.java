@@ -176,16 +176,23 @@ public class CurrencyAlarmDialog extends Dialog {
                     } else*/
 
                     if (PublicVariables.alarm_selectedType.equals("بیشتر از")) {
-                        if (Long.valueOf(selectedCurrency.getPrice().replace(",", "")) < PublicVariables.alarm_selectedAmount) {
+
+                        if (Long.valueOf(selectedCurrency.getPrice().replace(",", "")) == PublicVariables.alarm_selectedAmount) {
+                            showAlarmDialog("در حال حاضر قیمت " + selectedCurrency.getName() + " برابر با " + PublicTools.getThousandSeperated(PublicVariables.alarm_selectedAmount) + " ریال هست ولی ما پیوسته در حال بررسی قیمت هستیم و در صورت افزایش، شما را مطلع خواهیم ساخت.");
+
+                        } else if (Long.valueOf(selectedCurrency.getPrice().replace(",", "")) < PublicVariables.alarm_selectedAmount) {
                             showAlarmDialog("ما پیوسته در حال بررسی قیمت هستیم و شما را مطلع خواهیم ساخت.");
 
                         } else {
                             showAlarmDialog("در حال حاضر قیمت " + selectedCurrency.getName() + " بیشتر از " + PublicTools.getThousandSeperated(PublicVariables.alarm_selectedAmount) + " ریال هست ولی ما پیوسته در حال بررسی قیمت هستیم و شما را مطلع خواهیم ساخت.");
 
-
                         }
                     } else if (PublicVariables.alarm_selectedType.equals("کمتر از")) {
-                        if (Long.valueOf(selectedCurrency.getPrice().replace(",", "")) > PublicVariables.alarm_selectedAmount) {
+
+                        if (Long.valueOf(selectedCurrency.getPrice().replace(",", "")) == PublicVariables.alarm_selectedAmount) {
+                            showAlarmDialog("در حال حاضر قیمت " + selectedCurrency.getName() + " برابر با " + PublicTools.getThousandSeperated(PublicVariables.alarm_selectedAmount) + " ریال هست ولی ما پیوسته در حال بررسی قیمت هستیم و در صورت کاهش، شما را مطلع خواهیم ساخت.");
+
+                        } else if (Long.valueOf(selectedCurrency.getPrice().replace(",", "")) > PublicVariables.alarm_selectedAmount) {
                             showAlarmDialog("ما پیوسته در حال بررسی قیمت هستیم و شما را مطلع خواهیم ساخت.");
 
                         } else {
