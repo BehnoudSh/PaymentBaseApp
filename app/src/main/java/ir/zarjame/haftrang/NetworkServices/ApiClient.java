@@ -14,7 +14,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ApiClient {
 
-    public static final String BASE_URL_BACKEND = "http://api.zarjame.ir/";
+    public static final String BASE_URL_BACKEND = "";
 
     private static Retrofit retrofit = null;
     private static Retrofit retrofit_charge = null;

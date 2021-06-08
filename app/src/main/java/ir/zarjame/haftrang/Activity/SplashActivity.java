@@ -32,6 +32,7 @@ public class SplashActivity extends AppCompatActivity {
     AlertDialog _dialogConfigError;
     Handler handler = new Handler();
     Animation.AnimationListener listener;
+
     @Override
     protected void attachBaseContext(Context newBase) {
         super.attachBaseContext(ViewPumpContextWrapper.wrap(newBase));
@@ -117,16 +118,21 @@ public class SplashActivity extends AppCompatActivity {
 
         super.onStart();
 
-        if (PublicTools.checkNetworkStatus(SplashActivity.this)) {
 
-            getConfig();
+        Intent i = new Intent(SplashActivity.this, MainActivity2.class);
+        startActivity(i);
+        finish();
 
-        } else {
-
-            makeOfflineDialog();
-            _dialogOffline.show();
-
-        }
+//        if (PublicTools.checkNetworkStatus(SplashActivity.this)) {
+//
+//            getConfig();
+//
+//        } else {
+//
+//            makeOfflineDialog();
+//            _dialogOffline.show();
+//
+//        }
     }
 
     @Override
