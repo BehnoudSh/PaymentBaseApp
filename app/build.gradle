@@ -58,7 +58,7 @@ dependencies {
     implementation 'com.daimajia.easing:library:2.0@aar'
     implementation 'com.daimajia.androidanimations:library:2.3@aar'
     implementation 'com.google.firebase:firebase-core:18.0.1'
-    releaseImplementation 'com.crashlytics.sdk.android:crashlytics:17.2.2'
+//    releaseImplementation 'com.crashlytics.sdk.android:crashlytics:17.2.2'
     implementation 'com.google.firebase:firebase-messaging:21.0.0'
     implementation 'androidx.cardview:cardview:1.0.0'
     implementation 'org.apache.commons:commons-lang3:3.8'
@@ -70,5 +70,5 @@ dependencies {
 
 
 apply plugin: 'com.android.application'
-apply plugin: 'io.fabric'
+//apply plugin: 'io.fabric'
 apply plugin: 'com.google.gms.google-services'
