@@ -2,18 +2,21 @@ package ir.zarjame.haftrang.Activity;
 
 import android.app.ProgressDialog;
 import android.content.Context;
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-import android.support.v7.widget.DefaultItemAnimator;
-import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.StaggeredGridLayoutManager;
+ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.DefaultItemAnimator;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.StaggeredGridLayoutManager;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import io.github.inflationx.viewpump.ViewPumpContextWrapper;
 import ir.zarjame.haftrang.Adapters.CarCompanyAdapter;
 import ir.zarjame.haftrang.Dialog.CarListDialog;
 import ir.zarjame.haftrang.Models.Responses.Response_AllCars;
@@ -22,7 +25,6 @@ import ir.zarjame.haftrang.NetworkServices.ApiCallbacks;
 import ir.zarjame.haftrang.NetworkServices.ApiHandler;
 import ir.zarjame.haftrang.R;
 import ir.zarjame.haftrang.Tools.PublicTools;
-import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 public class CarPricesActivity extends AppCompatActivity {
 
@@ -36,7 +38,7 @@ public class CarPricesActivity extends AppCompatActivity {
     ImageView toolbaricon;
 
     @BindView(R.id.toolbar)
-    android.support.v7.widget.Toolbar
+    Toolbar
             toolbar;
 
 
@@ -46,7 +48,7 @@ public class CarPricesActivity extends AppCompatActivity {
 
     @Override
     protected void attachBaseContext(Context newBase) {
-        super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
+        super.attachBaseContext(ViewPumpContextWrapper.wrap(newBase));
     }
 
     @Override

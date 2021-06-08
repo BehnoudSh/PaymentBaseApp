@@ -3,11 +3,6 @@ package ir.zarjame.haftrang.Fragments;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
-import android.support.v7.widget.DefaultItemAnimator;
-import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +11,13 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.Nullable;
+import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.DefaultItemAnimator;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.StaggeredGridLayoutManager;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,15 +25,10 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 import ir.zarjame.haftrang.Activity.BillActivity;
-import ir.zarjame.haftrang.Activity.BusActivity;
 import ir.zarjame.haftrang.Activity.ChargeActivity;
-import ir.zarjame.haftrang.Activity.FlightActivity;
 import ir.zarjame.haftrang.Activity.GoodsActivity;
 import ir.zarjame.haftrang.Activity.InternetActivity;
-import ir.zarjame.haftrang.Activity.MainActivity;
-import ir.zarjame.haftrang.Activity.WebViewActivity;
 import ir.zarjame.haftrang.Adapters.CatLevel1CategoriesAdapter;
-import ir.zarjame.haftrang.Dialog.EstelamPhoneBillDialog;
 import ir.zarjame.haftrang.Models.Responses.Response_Categories;
 import ir.zarjame.haftrang.R;
 import ir.zarjame.haftrang.Tools.PublicVariables;
@@ -55,7 +52,7 @@ public class CatLevel1CategoriesFragment extends Fragment {
     ImageView toolbaricon;
 
     @BindView(R.id.toolbar)
-    android.support.v7.widget.Toolbar
+    Toolbar
             toolbar;
 
     void setupactionbar(String toolbartitle, int toolbar_bg_color) {

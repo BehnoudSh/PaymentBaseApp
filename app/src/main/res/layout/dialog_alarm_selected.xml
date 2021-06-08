@@ -33,7 +33,7 @@
             android:id="@+id/iv_dialog_currency_alarm_icon"
             android:layout_width="40dp"
             android:layout_height="40dp"
-            android:src="@drawable/success" />
+            app:srcCompat="@drawable/success" />
 
 
     </LinearLayout>

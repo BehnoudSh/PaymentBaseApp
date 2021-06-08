@@ -12,7 +12,7 @@ import android.content.Intent;
 import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.IBinder;
-import android.support.v4.app.NotificationCompat;
+import androidx.core.app.NotificationCompat;
 
 import ir.zarjame.haftrang.Activity.SplashActivity;
 import ir.zarjame.haftrang.Models.Requests.Request_SearchBuses;

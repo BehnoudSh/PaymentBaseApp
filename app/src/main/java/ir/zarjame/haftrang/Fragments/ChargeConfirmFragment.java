@@ -2,14 +2,8 @@ package ir.zarjame.haftrang.Fragments;
 
 
 import android.app.Dialog;
-import android.app.ProgressDialog;
-import android.content.Intent;
 import android.graphics.PorterDuff;
-import android.net.Uri;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.design.widget.BottomSheetDialogFragment;
-import android.support.v4.app.DialogFragment;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
@@ -24,6 +18,9 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.Nullable;
+import androidx.fragment.app.DialogFragment;
+
 import com.daimajia.androidanimations.library.Techniques;
 import com.daimajia.androidanimations.library.YoYo;
 
@@ -34,12 +31,7 @@ import butterknife.ButterKnife;
 import butterknife.Unbinder;
 import ir.zarjame.haftrang.Adapters.Adapter_simpleSpinner;
 import ir.zarjame.haftrang.Dialog.ChargeResellerFinalConfirmDialog;
-import ir.zarjame.haftrang.Models.Requests.Request_Charge;
-import ir.zarjame.haftrang.Models.Responses.Response_ChargeReseller;
-import ir.zarjame.haftrang.NetworkServices.ApiCallbacks;
-import ir.zarjame.haftrang.NetworkServices.ApiHandler;
 import ir.zarjame.haftrang.R;
-import ir.zarjame.haftrang.Tools.PublicTools;
 import ir.zarjame.haftrang.Tools.SharedPref;
 
 import static ir.zarjame.haftrang.Models.Operators.IRANCELL;

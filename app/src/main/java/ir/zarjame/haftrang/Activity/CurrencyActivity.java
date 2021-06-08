@@ -1,13 +1,9 @@
 package ir.zarjame.haftrang.Activity;
 
-import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -16,8 +12,12 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+
 import com.daimajia.androidanimations.library.Techniques;
 import com.daimajia.androidanimations.library.YoYo;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -26,6 +26,7 @@ import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import io.github.inflationx.viewpump.ViewPumpContextWrapper;
 import ir.zarjame.haftrang.Dialog.CurrencyAlarmDialog;
 import ir.zarjame.haftrang.Models.Requests.Request_Inquiry;
 import ir.zarjame.haftrang.Models.Responses.Response_Inquiry;
@@ -36,8 +37,6 @@ import ir.zarjame.haftrang.NetworkServices.ApiHandler;
 import ir.zarjame.haftrang.R;
 import ir.zarjame.haftrang.Tools.PublicTools;
 import ir.zarjame.haftrang.Tools.ScreenUtils;
-import ir.zarjame.haftrang.Tools.TypeFaceUtil;
-import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 
 public class CurrencyActivity extends AppCompatActivity {
@@ -58,7 +57,7 @@ public class CurrencyActivity extends AppCompatActivity {
     ImageView toolbaricon;
 
     @BindView(R.id.toolbar)
-    android.support.v7.widget.Toolbar
+    Toolbar
             toolbar;
     @BindView(R.id.datelastupdated)
     TextView tv_datelastupdated;
@@ -77,7 +76,7 @@ public class CurrencyActivity extends AppCompatActivity {
 
     @Override
     protected void attachBaseContext(Context newBase) {
-        super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
+        super.attachBaseContext(ViewPumpContextWrapper.wrap(newBase));
     }
 
     void setupactionbar(int bg_color, String toolbar_title) {

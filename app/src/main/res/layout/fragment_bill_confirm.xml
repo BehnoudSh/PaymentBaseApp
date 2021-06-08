@@ -179,7 +179,7 @@
                 android:layout_width="60dp"
                 android:layout_height="60dp"
                 android:layout_marginRight="@dimen/default_gap"
-                android:src="@drawable/mellatbanklogo" />
+                app:srcCompat="@drawable/mellatbanklogo" />
 
             <ImageView
                 android:id="@+id/iv_fragment_charge_confirm_samanBank"
@@ -187,7 +187,7 @@
                 android:layout_height="60dp"
                 android:layout_marginLeft="@dimen/default_gap"
                 android:alpha="0.3"
-                android:src="@drawable/samanbanklogo" />
+                app:srcCompat="@drawable/samanbanklogo" />
 
 
         </LinearLayout>

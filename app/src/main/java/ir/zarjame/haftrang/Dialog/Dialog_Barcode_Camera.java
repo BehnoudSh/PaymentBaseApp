@@ -5,11 +5,13 @@ import android.content.DialogInterface;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.DialogFragment;
 
 import com.google.zxing.ResultPoint;
 import com.journeyapps.barcodescanner.BarcodeCallback;
@@ -27,7 +29,7 @@ import ir.zarjame.haftrang.R;
  * Created by tinabehnoud on 5/24/18.
  */
 
-public class Dialog_Barcode_Camera extends android.support.v4.app.DialogFragment implements BarcodeCallback {
+public class Dialog_Barcode_Camera extends DialogFragment implements BarcodeCallback {
 
 
     AppCompatActivity activity;

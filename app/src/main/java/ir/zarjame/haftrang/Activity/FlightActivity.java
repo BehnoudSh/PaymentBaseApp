@@ -3,9 +3,6 @@ package ir.zarjame.haftrang.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.support.design.widget.FloatingActionButton;
-import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -15,8 +12,13 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+
 import com.daimajia.androidanimations.library.Techniques;
 import com.daimajia.androidanimations.library.YoYo;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.mohamadamin.persianmaterialdatetimepicker.utils.PersianCalendar;
 
 import java.util.ArrayList;
@@ -25,6 +27,7 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import io.github.inflationx.viewpump.ViewPumpContextWrapper;
 import ir.zarjame.haftrang.Dialog.FlightAlarmDialog;
 import ir.zarjame.haftrang.Dialog.FlightSearchResultDialog;
 import ir.zarjame.haftrang.Dialog.FlightSelectCityDialog;
@@ -36,7 +39,6 @@ import ir.zarjame.haftrang.NetworkServices.ApiHandler;
 import ir.zarjame.haftrang.R;
 import ir.zarjame.haftrang.Tools.PublicTools;
 import ir.zarjame.haftrang.Tools.PublicVariables;
-import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 import static ir.zarjame.haftrang.Tools.SharedPref.setFlightSourceDestination;
 
@@ -74,17 +76,16 @@ public class FlightActivity extends AppCompatActivity {
     TextView datetimebus;
 
     @BindView(R.id.toolbar)
-    android.support.v7.widget.Toolbar
+    Toolbar
             toolbar;
 
     Response_FlightCity selectedSource;
 
     Response_FlightCity selectedDestination;
 
-
     @Override
     protected void attachBaseContext(Context newBase) {
-        super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
+        super.attachBaseContext(ViewPumpContextWrapper.wrap(newBase));
     }
 
     ArrayList<Response_FlightCity> cities = new ArrayList<Response_FlightCity>();

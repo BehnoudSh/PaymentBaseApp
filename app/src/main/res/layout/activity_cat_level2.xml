@@ -27,7 +27,7 @@
             android:layout_width="15dp"
             android:layout_height="15dp"
             android:layout_marginLeft="@dimen/default_gap"
-            android:src="@drawable/searchicon" />
+            app:srcCompat="@drawable/searchicon" />
 
         <EditText
             android:id="@+id/et_activity_cat_level2_search"
@@ -55,7 +55,7 @@
     </LinearLayout>
 
 
-    <android.support.v7.widget.RecyclerView
+    <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_activity_cat_level2_List"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

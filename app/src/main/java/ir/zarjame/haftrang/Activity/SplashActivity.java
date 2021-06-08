@@ -5,14 +5,16 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Handler;
-import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+
 import butterknife.ButterKnife;
+import io.github.inflationx.viewpump.ViewPumpContextWrapper;
 import ir.zarjame.haftrang.BuildConfig;
 import ir.zarjame.haftrang.Models.Responses.Response_Config;
 import ir.zarjame.haftrang.NetworkServices.ApiCallbacks;
@@ -21,7 +23,6 @@ import ir.zarjame.haftrang.R;
 import ir.zarjame.haftrang.Tools.PublicTools;
 import ir.zarjame.haftrang.Tools.ScreenUtils;
 import ir.zarjame.haftrang.Tools.SharedPref;
-import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 public class SplashActivity extends AppCompatActivity {
 
@@ -31,10 +32,9 @@ public class SplashActivity extends AppCompatActivity {
     AlertDialog _dialogConfigError;
     Handler handler = new Handler();
     Animation.AnimationListener listener;
-
     @Override
     protected void attachBaseContext(Context newBase) {
-        super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
+        super.attachBaseContext(ViewPumpContextWrapper.wrap(newBase));
     }
 
     @Override

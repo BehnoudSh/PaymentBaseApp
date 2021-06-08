@@ -5,9 +5,11 @@ import android.content.Context;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.content.ContextCompat;
-import android.support.v7.app.AppCompatActivity;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -17,20 +19,19 @@ import android.widget.Toast;
 
 import com.daimajia.androidanimations.library.Techniques;
 import com.daimajia.androidanimations.library.YoYo;
-import com.google.zxing.common.StringUtils;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import io.github.inflationx.viewpump.ViewPumpContextWrapper;
 import ir.zarjame.haftrang.Dialog.Dialog_Barcode_Camera;
 import ir.zarjame.haftrang.Fragments.BillConfirmFragment;
 import ir.zarjame.haftrang.R;
-import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 
 public class BillActivity extends AppCompatActivity implements Dialog_Barcode_Camera.Callback {
     @BindView(R.id.toolbar)
-    android.support.v7.widget.Toolbar
+    Toolbar
             toolbar;
 
     @BindView(R.id.iv_actionbar_back)
@@ -67,7 +68,7 @@ public class BillActivity extends AppCompatActivity implements Dialog_Barcode_Ca
 
     @Override
     protected void attachBaseContext(Context newBase) {
-        super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
+        super.attachBaseContext(ViewPumpContextWrapper.wrap(newBase));
     }
 
     @Override

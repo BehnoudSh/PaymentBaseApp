@@ -1,6 +1,5 @@
 package ir.zarjame.haftrang.Tools;
 
-import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.net.ConnectivityManager;
@@ -8,6 +7,8 @@ import android.net.NetworkInfo;
 import android.text.TextUtils;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
@@ -21,7 +22,7 @@ public class PublicTools {
     public static String internet_url = "";
 
 
-    public static void hideKeyboard(Activity context) {
+    public static void hideKeyboard(AppCompatActivity context) {
 
         View view = context.getCurrentFocus();
         if (view != null) {

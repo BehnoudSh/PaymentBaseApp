@@ -1,26 +1,28 @@
 package ir.zarjame.haftrang.Activity;
 
 import android.content.Context;
-import android.support.v4.app.FragmentTransaction;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.CardView;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.cardview.widget.CardView;
+import androidx.fragment.app.FragmentTransaction;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import io.github.inflationx.viewpump.ViewPumpContextWrapper;
 import ir.zarjame.haftrang.Fragments.ChargeCategoriesFragment;
 import ir.zarjame.haftrang.Models.Operators;
 import ir.zarjame.haftrang.R;
-import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 public class ChargeActivity extends AppCompatActivity {
 
 
     @BindView(R.id.toolbar)
-    android.support.v7.widget.Toolbar
+    Toolbar
             toolbar;
 
     @BindView(R.id.iv_actionbar_back)
@@ -43,7 +45,7 @@ public class ChargeActivity extends AppCompatActivity {
 
     @Override
     protected void attachBaseContext(Context newBase) {
-        super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
+        super.attachBaseContext(ViewPumpContextWrapper.wrap(newBase));
     }
 
     @Override

@@ -1,12 +1,9 @@
 package ir.zarjame.haftrang.Adapters;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
-import android.support.v4.view.PagerAdapter;
-import android.support.v7.app.AlertDialog;
 import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,6 +13,11 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.viewpager.widget.PagerAdapter;
+
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
@@ -342,7 +344,7 @@ public class CatLevel0PagerAdapter extends PagerAdapter {
     double getScreenSizeInInch() {
 
         DisplayMetrics dm = new DisplayMetrics();
-        ((Activity) _context).getWindowManager().getDefaultDisplay().getMetrics(dm);
+        ((AppCompatActivity) _context).getWindowManager().getDefaultDisplay().getMetrics(dm);
         double x = Math.pow(ScreenUtils.ScreenSizesInPixel.x / dm.xdpi, 2);
         double y = Math.pow(ScreenUtils.ScreenSizesInPixel.y / dm.ydpi, 2);
         return Math.sqrt(x + y);

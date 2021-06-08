@@ -24,7 +24,7 @@
             android:layout_centerInParent="true"
             android:layout_weight="1"
             android:id="@+id/haftrangicon"
-            android:src="@drawable/playstoreicon" />
+            app:srcCompat="@drawable/playstoreicon" />
 
         <View
             android:layout_width="0dp"

@@ -47,7 +47,7 @@
 
         </ScrollView>
 
-        <android.support.design.widget.FloatingActionButton
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/fab"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -73,7 +73,7 @@
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
                 android:padding="@dimen/small_gap"
-                android:src="@drawable/cancel"
+                app:srcCompat="@drawable/cancel"
                 android:tint="@color/red_error" />
 
             <TextView

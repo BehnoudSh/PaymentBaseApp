@@ -3,9 +3,6 @@ package ir.zarjame.haftrang.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.support.design.widget.FloatingActionButton;
-import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -16,8 +13,13 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+
 import com.daimajia.androidanimations.library.Techniques;
 import com.daimajia.androidanimations.library.YoYo;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.mohamadamin.persianmaterialdatetimepicker.utils.PersianCalendar;
 
 import java.util.ArrayList;
@@ -26,6 +28,7 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import io.github.inflationx.viewpump.ViewPumpContextWrapper;
 import ir.zarjame.haftrang.Dialog.BusAlarmDialog;
 import ir.zarjame.haftrang.Dialog.BusSearchResultDialog;
 import ir.zarjame.haftrang.Dialog.BusSelectCityDialog;
@@ -38,7 +41,6 @@ import ir.zarjame.haftrang.NetworkServices.ApiHandler;
 import ir.zarjame.haftrang.R;
 import ir.zarjame.haftrang.Tools.PublicTools;
 import ir.zarjame.haftrang.Tools.PublicVariables;
-import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 public class BusActivity extends AppCompatActivity {
     @BindView(R.id.iv_actionbar_back)
@@ -50,7 +52,7 @@ public class BusActivity extends AppCompatActivity {
     @BindView(R.id.actionbarholder)
     RelativeLayout actionbarholder;
     @BindView(R.id.toolbar)
-    android.support.v7.widget.Toolbar
+    Toolbar
             toolbar;
     @BindView(R.id.tv_activity_bus_source)
     TextView tv_source;
@@ -84,7 +86,7 @@ public class BusActivity extends AppCompatActivity {
 
     @Override
     protected void attachBaseContext(Context newBase) {
-        super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
+        super.attachBaseContext(ViewPumpContextWrapper.wrap(newBase));
     }
 
     @Override

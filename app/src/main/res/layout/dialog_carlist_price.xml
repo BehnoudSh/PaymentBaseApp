@@ -22,7 +22,7 @@
             android:layout_height="50dp"
             android:layout_marginLeft="@dimen/small_gap"
             android:padding="20dp"
-            android:src="@drawable/cancel" />
+            app:srcCompat="@drawable/cancel" />
 
 
         <TextView
@@ -39,7 +39,7 @@
             android:id="@+id/iv_dialog_currency_alarm_icon"
             android:layout_width="25dp"
             android:layout_height="25dp"
-            android:src="@drawable/sedan"
+            app:srcCompat="@drawable/sedan"
             android:tint="@color/gray_dolphin" />
 
 
@@ -51,7 +51,7 @@
         android:layout_marginTop="@dimen/default_gap"
         android:background="@drawable/gradiant" />
 
-    <android.support.v7.widget.RecyclerView
+    <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_activity_car_prices_companyList"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

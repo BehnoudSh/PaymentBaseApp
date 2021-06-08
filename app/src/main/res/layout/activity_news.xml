@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     tools:context="ir.zarjame.haftrang.Activity.NewsActivity">
 
-    <android.support.design.widget.TabLayout
+    <TabLayout
         android:id="@+id/tl_activity_news_tabs"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -17,9 +17,9 @@
         app:tabMode="fixed">
 
 
-    </android.support.design.widget.TabLayout>
+    </TabLayout>
 
-    <android.support.v4.view.ViewPager
+    <androidx.viewpager.widget.ViewPager
         android:id="@+id/vp_news_pager"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

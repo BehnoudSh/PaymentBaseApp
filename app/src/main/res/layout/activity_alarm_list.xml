@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white">
@@ -28,7 +29,7 @@
                 android:id="@+id/iv_activity_alarm_list_stopBus"
                 android:layout_width="20dp"
                 android:layout_height="20dp"
-                android:src="@drawable/delete" />
+                app:srcCompat="@drawable/delete" />
 
             <TextView
                 android:id="@+id/tv_activity_alarm_list_busItem"
@@ -44,7 +45,7 @@
             <ImageView
                 android:layout_width="30dp"
                 android:layout_height="30dp"
-                android:src="@drawable/bussideview"
+                app:srcCompat="@drawable/bussideview"
                 android:tint="@color/gray_dolphin" />
 
         </LinearLayout>
@@ -64,7 +65,7 @@
                 android:id="@+id/iv_activity_alarm_list_stopFlight"
                 android:layout_width="20dp"
                 android:layout_height="20dp"
-                android:src="@drawable/delete" />
+                app:srcCompat="@drawable/delete" />
 
             <TextView
                 android:id="@+id/tv_activity_alarm_list_flightItem"
@@ -81,7 +82,7 @@
             <ImageView
                 android:layout_width="30dp"
                 android:layout_height="30dp"
-                android:src="@drawable/departures"
+                app:srcCompat="@drawable/departures"
 
                 android:tint="@color/gray_dolphin" />
 
@@ -102,7 +103,7 @@
                 android:id="@+id/iv_activity_alarm_list_stopCurrency"
                 android:layout_width="20dp"
                 android:layout_height="20dp"
-                android:src="@drawable/delete" />
+                app:srcCompat="@drawable/delete" />
 
             <TextView
                 android:id="@+id/tv_activity_alarm_list_currencyItem"
@@ -119,7 +120,7 @@
             <ImageView
                 android:layout_width="30dp"
                 android:layout_height="30dp"
-                android:src="@drawable/money"
+                app:srcCompat="@drawable/money"
 
                 android:tint="@color/gray_dolphin" />
 

@@ -21,7 +21,7 @@
             android:layout_height="40dp"
             android:layout_marginLeft="@dimen/small_gap"
             android:padding="15dp"
-            android:src="@drawable/cancel" />
+            app:srcCompat="@drawable/cancel" />
 
 
         <TextView
@@ -38,7 +38,7 @@
             android:id="@+id/iv_dialog_currency_alarm_icon"
             android:layout_width="25dp"
             android:layout_height="25dp"
-            android:src="@drawable/notification"
+            app:srcCompat="@drawable/notification"
             android:tint="@color/gray_dolphin" />
 
 

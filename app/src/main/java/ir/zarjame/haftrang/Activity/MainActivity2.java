@@ -3,9 +3,7 @@ package ir.zarjame.haftrang.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Handler;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.CardView;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -13,16 +11,14 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.request.RequestOptions;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.cardview.widget.CardView;
 
-import ir.zarjame.haftrang.Models.Responses.Response_Image;
-import ir.zarjame.haftrang.NetworkServices.ApiCallbacks;
-import ir.zarjame.haftrang.NetworkServices.ApiHandler;
-import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 import butterknife.ButterKnife;
 
 import butterknife.BindView;
+import io.github.inflationx.viewpump.ViewPumpContextWrapper;
 import ir.zarjame.haftrang.R;
 
 public class MainActivity2 extends AppCompatActivity {
@@ -36,7 +32,7 @@ public class MainActivity2 extends AppCompatActivity {
     TextView tv_actionbar_title;
 
     @BindView(R.id.toolbar)
-    android.support.v7.widget.Toolbar
+    Toolbar
             toolbar;
 
     @BindView(R.id.iv_actionbar_back)
@@ -58,7 +54,7 @@ public class MainActivity2 extends AppCompatActivity {
 
     @Override
     protected void attachBaseContext(Context newBase) {
-        super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
+        super.attachBaseContext(ViewPumpContextWrapper.wrap(newBase));
     }
 
     @Override

@@ -91,7 +91,7 @@
 
         </LinearLayout>
 
-        <android.support.v7.widget.AppCompatSpinner
+        <androidx.appcompat.widget.AppCompatSpinner
             android:id="@+id/sp_price"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -136,7 +136,7 @@
                 android:layout_width="60dp"
                 android:layout_height="60dp"
                 android:layout_marginRight="@dimen/default_gap"
-                android:src="@drawable/mellatbanklogo" />
+                app:srcCompat="@drawable/mellatbanklogo" />
 
             <ImageView
                 android:id="@+id/iv_fragment_charge_confirm_samanBank"
@@ -144,7 +144,7 @@
                 android:layout_height="60dp"
                 android:layout_marginLeft="@dimen/default_gap"
                 android:alpha="0.3"
-                android:src="@drawable/samanbanklogo" />
+                app:srcCompat="@drawable/samanbanklogo" />
 
 
         </LinearLayout>
